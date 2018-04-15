@@ -1,0 +1,58 @@
+/*>1 "People also search for" block */
+.g {
+    position: relative;
+}
+
+.exp-outline {
+    border-right: none!important;
+    border-left: none!important;
+    border-radius: 0!important;
+}
+
+.AUiS2 {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+[id^=eobc_] {
+    padding-left: 0!important;
+}
+/*<1 "People also search for" block */
+
+#rhscol { /* fix "Searches related to" block partially overlaying search result (bug: 4/6/18 4:15 AM) */
+	min-width: 0!important;
+	width: 0;
+}
+
+.icons_wrappers_1_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	position: relative;
+	width: 0;
+}
+
+.icons_wrappers_2_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	position: absolute;
+	top: 2px;
+    right: 14px;
+    white-space: nowrap;
+}
+
+html[dir="rtl"] .icons_wrappers_2_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	right: unset;
+	left: 14px;
+}
+
+.favicons_and_flags_pipbbdfondfipmjmdkmggihiknhmcfhd:not(:first-child) {
+    margin-left: 9px;
+}
+
+html[dir="rtl"] .favicons_and_flags_pipbbdfondfipmjmdkmggihiknhmcfhd:not(:first-child) {
+    margin-left: unset;
+}
+
+html[dir="rtl"] .favicons_and_flags_pipbbdfondfipmjmdkmggihiknhmcfhd:not(:last-child) {
+    margin-left: 9px;
+}
+
+.favicons_and_flags_pipbbdfondfipmjmdkmggihiknhmcfhd {
+    transition: opacity 0.2s;
+}

@@ -1,0 +1,80 @@
+﻿{
+  "desc": {
+  "message": "Adds infinite scrolling, site icons, server locations, View image button, Download image button and sticks header to top."
+  },
+
+  "general_text": {
+    "message": "General"
+  },
+  "restore_text": {
+    "message": "Settings restore"
+  },
+  "restore_defaults_btn_text": {
+    "message": "Restore defaults"
+  },
+  "links_text": {
+    "message": "Links"
+  },
+
+  "stick_header_text": {
+    "message": "Stick header on top of the page"
+  },
+  "compact_header_text": {
+    "message": "Compact header"
+  },
+  "show_site_icons_text": {
+    "message": "Show site icons"
+  },
+  "show_server_locations_text": {
+    "message": "Show server locations"
+  },
+  "show_paginator_text": {
+    "message": "Show pagination buttons"
+  },
+  "show_people_also_search_for_text": {
+    "message": "Show \"People also search for\" block"
+  },
+  "show_turn_off_btn_text": {
+    "message": "Show turn off/on button"
+  },
+  "show_scroll_to_top_btn_text": {
+    "message": "Show scroll to top button"
+  },
+  "show_page_separators_text": {
+    "message": "Show page separators"
+  },
+  "show_view_img_btn_text": {
+    "message": "Show \"View image\" button"
+  },
+  "show_download_img_btn_text": {
+    "message": "Show \"Download image\" button"
+  },
+  "show_save_as_dialog_on_img_download_text": {
+    "message": "Show \"Save As\" dialog"
+  },
+
+  "download_imgs_path_text": {
+    "message": "Destination folder"
+  },
+  
+  "download_imgs_path_help_title": {
+    "message": "The path to the folder in the downloads folder, into which downloaded images will go. May contain subfolders. Must not contain symbols prohibited by the operating system. If the folder does not exist, it will be created on the first download. Leave empty to download images into the default folder. Example: !Google/Images"
+  },
+
+  "rate_text": {
+    "message": "⭐️ Rate this extension if you like it"
+  },
+  "rate_href": {
+    "message": "https://goo.gl/YroH3G"
+  },
+  "link_to_google_plus_group_text": {
+    "message": "🖼️ Download free Chrome extensions and themes"
+  },
+  "donate_link_text": {
+    "message": "💖 Support the development of this extension by donating any amount via PayPal"
+  },
+
+  "body_width": {
+    "message": "438px"
+  }
+}

@@ -1,0 +1,27 @@
+body {
+    overflow: hidden;
+}
+
+body > *:not(#main), #cnt > *:not(.mw), #center_col > *:not(#res) {
+    display: none;
+}
+
+#ires, #rcnt { /* #ires fix text result offset; #rcnt fix image result offset; */
+    margin-top: 0!important;
+}
+
+#cnt {
+    padding-top: 0!important;
+}
+
+.none_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	display: none;
+}
+
+.opacity_0_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	opacity: 0;
+}
+
+body {
+    transition: opacity 0.2s ease-out;
+}

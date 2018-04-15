@@ -1,0 +1,28 @@
+.turn_off_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
+    position: fixed;
+}
+
+/*> top panel */
+#searchform {
+    position: fixed!important;
+    z-index: 999;
+}
+/*< top panel */
+
+/*> bottom panel */
+#hdtb-s {
+    background-color: #fafafa;
+    border-bottom: solid 1px #ebebeb;
+    min-width: 980px;
+    position: fixed;
+    width: 100%;
+}
+/*< bottom panel */
+    
+#navcnt {
+    position: fixed;
+}
+
+#hdtb-s, .sfbgx {
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
