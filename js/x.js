@@ -195,13 +195,13 @@ x.load_css = (doc, filename) => {
         }
     };
 
-    x.fade_in = (el, add_ext_id) => { // g
+    x.fade_in = async (el, add_ext_id) => { // g
         let cls = get_opacity_class(add_ext_id);
 
         if (x.has_class(el, cls.opacity_0)) {
             x.remove_class(el, cls.none);
 
-            el.offsetWidth;
+           await x.delay(50);
 
             x.remove_class(el, cls.opacity_0);
         }
