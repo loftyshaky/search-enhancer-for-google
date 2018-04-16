@@ -85,7 +85,7 @@ x.append = (el, child) => { // append child
     el.appendChild(child);
 };
 
-x.remove = (el) => { // remove child
+x.remove = el => { // remove child
     if (el) {
         el.parentNode.removeChild(el);
     }
