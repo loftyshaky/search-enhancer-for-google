@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             //>2 decide how to open links t
             cs.loading.set_link_opening_rule(null, false);
             //<2 decide how to open links t
+
+            x.remove(preferences_iframe);
         };
 
         preferences_iframe.src = window.location.origin + '/preferences';
