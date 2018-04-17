@@ -10,6 +10,8 @@
 
 //>1 restore defaults t
 
+//>1 set_color_input_and_input_vizualization_color f
+
 //>1 expand_subotions f
 
 //>1 ask for permission to be granted or remove it t
@@ -70,6 +72,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             } else if (this.type === 'text') {
                 o.settings[storage_name] = this.value;
+
+            } else if (el.type === 'color') {
+                set_color_input_and_input_vizualization_color(el, this.value);
+
+                o.settings[storage_name] = this.value;
             }
 
             x.set(o);
@@ -83,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     //>1 restore_settings_on_load f
     async function restore_settings_on_load() { // g
         let o = await x.get('settings');
-        let els = sa('.settings_items');
+        let els = sa('.settings_items, .settings_items_input_e');
 
         for (el of els) {
             let storage_name = el.dataset.storage;
@@ -97,6 +104,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             } else if (el.type === 'text') {
                 el.value = o.settings[storage_name];
+
+            } else if (el.type === 'color') {
+                set_color_input_and_input_vizualization_color(el, o.settings[storage_name]);
             }
         }
     }
@@ -113,6 +123,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
     //<1 restore defaults t 
+
+    //>1 set_color_input_and_input_vizualization_color f
+    function set_color_input_and_input_vizualization_color(input, color) {
+        input.value = color;
+        sb(input.closest('.settings_item_wrappers'), '.color_input_vizualizations').style.backgroundColor = color;
+    }
+    //<1 set_color_input_and_input_vizualization_color f
 
     //>1 expand_subotions f
     function expand_subotions(storage_name, storage_vsalue) {
@@ -178,8 +195,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     restore_settings_on_load();
 
-    s('#download_imgs_path').addEventListener('input', change_settings);
     x.add_event_listener_to_multiple_els(document, '.settings_items', 'change', change_settings);
+    x.add_event_listener_to_multiple_els(document, '.settings_items_input_e', 'input', change_settings);
     x.add_event_listener_with_params_to_multiple_els(document, '.subotions', 'transitionend', x.set_faded_out_to_none, ['opacity_0']);
 })();
 //< settings t

@@ -27,7 +27,9 @@ function set_default_settings() {
             'show_view_img_btn': true,
             'show_download_img_btn': false,
             'show_save_as_dialog_on_img_download': false,
-            'download_imgs_path': ''
+            'download_imgs_path': '',
+            'unload_pages': false,
+            'keywords_color': '#dd0000'
         }
     });
 }
@@ -63,6 +65,18 @@ browser.runtime.onInstalled.addListener(async e => {
 
         if (!('download_imgs_path' in o.settings)) { // 8 april 2018
             o.settings.download_imgs_path = '';
+        }
+
+        if (!('unload_pages' in o.settings)) { //  april 2018
+            o.settings.unload_pages = false;
+        }
+
+        if (!('unload_pages' in o.settings)) { //  april 2018
+            o.settings.unload_pages = false;
+        }
+
+        if (!('keywords_color' in o.settings)) { //  april 2018
+            o.settings.keywords_color = '#dd0000';
         }
 
         x.set(o);

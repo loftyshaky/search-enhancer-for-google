@@ -102,6 +102,10 @@ x.after = (el_to_insert_after, el_to_insert) => { // insert after
 x.as_first = (el_to_insert_after, el_to_insert) => { // insert as the first child
     el_to_insert_after.insertBefore(el_to_insert, el_to_insert_after.firstElementChild);
 };
+
+x.replace = (el_to_replace, new_el) => {
+    el_to_replace.parentNode.replaceChild(new_el, el_to_replace);
+}
 //< dom manipulation t
 
 //> get_parent_with_class f

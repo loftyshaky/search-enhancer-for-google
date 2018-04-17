@@ -52,6 +52,12 @@
   "show_save_as_dialog_on_img_download_text": {
     "message": "Show \"Save As\" dialog"
   },
+  "unload_pages_text": {
+    "message": "Unload pages that are off-screen (less RAM consumption)"
+  },
+  "keywords_color_text": {
+    "message": "Keywords color"
+  },
 
   "download_imgs_path_text": {
     "message": "Destination folder"
