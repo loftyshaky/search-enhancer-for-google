@@ -85,7 +85,7 @@ x.append = (el, child) => { // append child
     el.appendChild(child);
 };
 
-x.remove = (el) => { // remove child
+x.remove = el => { // remove child
     if (el) {
         el.parentNode.removeChild(el);
     }
@@ -102,6 +102,10 @@ x.after = (el_to_insert_after, el_to_insert) => { // insert after
 x.as_first = (el_to_insert_after, el_to_insert) => { // insert as the first child
     el_to_insert_after.insertBefore(el_to_insert, el_to_insert_after.firstElementChild);
 };
+
+x.replace = (el_to_replace, new_el) => {
+    el_to_replace.parentNode.replaceChild(new_el, el_to_replace);
+}
 //< dom manipulation t
 
 //> get_parent_with_class f
@@ -181,34 +185,40 @@ x.load_css = (doc, filename) => {
 
 //> animation t
 (() => {
-    x.fade_out = (el, add_ext_id) => { // g
+    x.fade_out = (el, add_ext_id, set_display_none) => { // g
         let cls = get_opacity_class(add_ext_id);
 
         if (!x.has_class(el, cls.opacity_0)) {
+            el.fade_action = 'fading_out';
+
             x.add_class(el, cls.opacity_0);
 
-            el.addEventListener('transitionend', function (e) { // arguments not working with arrow functions
-                e.target.removeEventListener(e.type, arguments.callee);
+            if (set_display_none) {
+                el.addEventListener('transitionend', function (e) { // arguments not working with arrow functions
+                    e.target.removeEventListener(e.type, arguments.callee);
 
-                x.add_class(el, cls.none);
-            });
+                    x.add_class(el, cls.none);
+                });
+            }
         }
     };
 
-    x.fade_in = (el, add_ext_id) => { // g
+    x.fade_in = async (el, add_ext_id) => { // g
         let cls = get_opacity_class(add_ext_id);
 
         if (x.has_class(el, cls.opacity_0)) {
+            el.fade_action = 'fading_in';
+
             x.remove_class(el, cls.none);
 
-            el.offsetWidth;
+            await x.delay(50);
 
             x.remove_class(el, cls.opacity_0);
         }
     };
 
-    x.set_faded_out_to_none = function (old_class, e) { // g
-        if (e.target === this && x.has_class(this, old_class)) {
+    x.set_faded_out_to_none = function (e) { // g
+        if (e.target === this && this.fade_action === 'fading_out') {
             x.add_class(this, 'none');
         }
     };

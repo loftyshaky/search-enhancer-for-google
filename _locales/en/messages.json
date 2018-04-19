@@ -43,6 +43,12 @@
   "show_page_separators_text": {
     "message": "Show page separators"
   },
+  "custom_keywords_color_text": {
+    "message": "Custom keywords color"
+  },
+  "keywords_color_text": {
+    "message": "Keywords color"
+  },
   "show_view_img_btn_text": {
     "message": "Show \"View image\" button"
   },
@@ -51,6 +57,9 @@
   },
   "show_save_as_dialog_on_img_download_text": {
     "message": "Show \"Save As\" dialog"
+  },
+  "unload_pages_text": {
+    "message": "Unload pages that are off-screen (less RAM consumption)"
   },
 
   "download_imgs_path_text": {
