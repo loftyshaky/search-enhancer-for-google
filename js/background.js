@@ -24,12 +24,13 @@ function set_default_settings() {
             'show_paginator': true,
             'show_people_also_search_for': true,
             'show_turn_off_btn': true,
+            'custom_keywords_color': true,
+            'keywords_color': '#dd0000',
             'show_view_img_btn': true,
             'show_download_img_btn': false,
             'show_save_as_dialog_on_img_download': false,
             'download_imgs_path': '',
-            'unload_pages': false,
-            'keywords_color': '#dd0000'
+            'unload_pages': false
         }
     });
 }
@@ -77,6 +78,10 @@ browser.runtime.onInstalled.addListener(async e => {
 
         if (!('keywords_color' in o.settings)) { //  april 17 2018
             o.settings.keywords_color = '#dd0000';
+        }
+
+        if (!('custom_keywords_color' in o.settings)) { //  april 19 2018
+            o.settings.custom_keywords_color = true;
         }
 
         x.set(o);

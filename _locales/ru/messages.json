@@ -43,6 +43,12 @@
   "show_page_separators_text": {
     "message": "Показывать разделители страниц"
   },
+  "custom_keywords_color_text": {
+    "message": "Свой цвет ключевых слов"
+  },
+  "keywords_color_text": {
+    "message": "Цвет ключевых слов"
+  },
   "show_view_img_btn_text": {
     "message": "Показывать кнопку \"Открыть в полном размере\""
   },
@@ -54,9 +60,6 @@
   },
   "unload_pages_text": {
     "message": "Выгружать страницы вне экрана (снижает потребление RAM)"
-  },
-  "keywords_color_text": {
-    "message": "Цвет ключевых слов"
   },
 
   "download_imgs_path_text": {

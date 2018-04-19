@@ -720,9 +720,11 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
         //>1 set_keywords_color f
         function set_keywords_color(head) {
-            let style = x.create('style', '');
-            style.innerHTML = '.st em {color: ' + settings.keywords_color + '!important}';
-            x.append(head, style);
+            if (settings.custom_keywords_color) {
+                let style = x.create('style', '');
+                style.innerHTML = '.st em {color: ' + settings.keywords_color + '!important}';
+                x.append(head, style);
+            }
         }
         //<1 set_keywords_color f
 
