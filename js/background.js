@@ -67,15 +67,15 @@ browser.runtime.onInstalled.addListener(async e => {
             o.settings.download_imgs_path = '';
         }
 
-        if (!('unload_pages' in o.settings)) { //  april 2018
+        if (!('unload_pages' in o.settings)) { //  april 17 2018
             o.settings.unload_pages = false;
         }
 
-        if (!('unload_pages' in o.settings)) { //  april 2018
+        if (!('unload_pages' in o.settings)) { //  april 17 2018
             o.settings.unload_pages = false;
         }
 
-        if (!('keywords_color' in o.settings)) { //  april 2018
+        if (!('keywords_color' in o.settings)) { //  april 17 2018
             o.settings.keywords_color = '#dd0000';
         }
 
