@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else if (this.type === 'text') {
                 o.settings[storage_name] = this.value;
 
-            } else if (el.type === 'color') {
-                set_color_input_and_input_vizualization_color(el, this.value);
+            } else if (this.type === 'color') {
+                set_color_input_and_input_vizualization_color(this, this.value);
 
                 o.settings[storage_name] = this.value;
             }
