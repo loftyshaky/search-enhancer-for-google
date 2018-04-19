@@ -253,7 +253,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                     if (cs.get_window_scroll_top() === 0) {
                         if (!x.has_class(scroll_to_top_btn, ext_id('none'))) {
-                            x.fade_out(scroll_to_top_btn, true);
+                            x.fade_out(scroll_to_top_btn, true, true);
 
                         } else {
                             x.add_class(scroll_to_top_btn, ext_id('opacity_0'));
@@ -276,7 +276,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 document.documentElement.scrollTop = 0;
 
                 if (scroll_to_top_btn) { // if scroll to top button exist; declared above (var scroll_to_top_btn = x.create('div', ext_id('scroll_to_top_btn') + ' ' + ext_id('opacity_0'));)
-                    x.fade_out(scroll_to_top_btn, true);
+                    x.fade_out(scroll_to_top_btn, true, true);
                 }
             }
             //<2 scroll_to_top f

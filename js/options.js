@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 x.fade_in(subotions, false);
 
             } else {
-                x.fade_out(subotions, false);
+                x.fade_out(subotions, false, false);
             }
         }
     }
@@ -197,6 +197,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     x.add_event_listener_to_multiple_els(document, '.settings_items', 'change', change_settings);
     x.add_event_listener_to_multiple_els(document, '.settings_items_input_e', 'input', change_settings);
-    x.add_event_listener_with_params_to_multiple_els(document, '.subotions', 'transitionend', x.set_faded_out_to_none, ['opacity_0']);
+    x.add_event_listener_to_multiple_els(document, '.subotions', 'transitionend', x.set_faded_out_to_none);
 })();
 //< settings t
