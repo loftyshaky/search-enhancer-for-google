@@ -36,7 +36,9 @@
 
 //>1 load page t
 
-//>2 load_page f + //>3 load loading bar t; //>3 append iframe to body t; //>3 decide how to open links t; //>3 hide people also search block if settings.show_people_also_search_for === false t; //>3 load site icons (execution) t; //>3 update element with namber of pages t; //>3 handle image section t
+//>2 load_page f + //>3 load loading bar t; //>3 append iframe to body t; //>3 decide how to open links t; //>3 hide people also search block if settings.show_people_also_search_for === false t; //>3 correct scroll position 1 t; //>3 correct scroll position 2 t; //>3 load site icons (execution) t; //>3 update element with namber of pages t; //>3 handle image section t
+
+//>2 set_variable_loading_iframe f
 
 //>2 get_search_results_height f
 
@@ -348,7 +350,8 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
     //> loading o
     cs.loading = (() => {
         //>1 set variables t
-        let loading_iframe = false;
+        let loading_iframe_scroll = false;
+        let loading_iframe_placeholder = false;
         let el_to_insert_iframe_after;
         let current_search_results_height = 9999999999;
         let previous_scroll_height_minus_top = 0;
@@ -368,13 +371,13 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         //>1 load page t
         //>2 load_page f
         function load_page(mode) {
-            if ((mode === 'scroll' && Math.max(current_search_results_height - (window.pageYOffset + window.innerHeight), 0) < 400 && !loading_iframe && !settings.turned_off) || (mode === 'placeholder' && !x.has_class(this, ext_id('.iframe_placeholder_loading') && !x.has_class(this, ext_id('.iframe_placeholder_error'))))) { // check distance between scroll position and bottom of page and load page if specified condition met t
-                loading_iframe = true;
-
+            if ((mode === 'scroll' && Math.max(current_search_results_height - (window.pageYOffset + window.innerHeight), 0) < 400 && !loading_iframe_scroll && !settings.turned_off) || (mode === 'placeholder' && !x.has_class(this, ext_id('.iframe_placeholder_loading') && !x.has_class(this, ext_id('.iframe_placeholder_error'))))) { // check distance between scroll position and bottom of page and load page if specified condition met t
                 if ((mode === 'scroll' && el_to_insert_iframe_after) || mode === 'placeholder') {
                     let current_page_el = s('#foot .cur');
 
                     if ((mode === 'scroll' && current_page_el && current_page_el.nextElementSibling && sb(current_page_el.nextElementSibling, '.fl')) || mode === 'placeholder') { // if not last page // !s('.sr__price-range') - if not shopping page 
+                    set_variable_loading_iframe(mode, true);
+
                         if (!s('.sr__price-range')) { //if not shopping page 
                             if (mode === 'scroll') {
                                 //>3 load loading bar t
@@ -392,6 +395,8 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                                 x.add_class(this, ext_id('iframe_placeholder_loading')); // animate iframe_placeholder
 
                                 var next_page_url = this.dataset.iframe_src;
+
+                                var scroll_top = cs.get_window_scroll_top();
                             }
 
                             //>3 append iframe to body t
@@ -400,6 +405,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                             let iframe = x.create('iframe', ext_id('iframe') + ' ' + ext_id('out_of_view'));
                             iframe.id = iframe_id;
                             iframe.src = next_page_url;
+
                             if (mode === 'scroll') {
                                 x.after(el_to_insert_iframe_after, iframe);
 
@@ -460,25 +466,31 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                                             x.fade_in(separator, true);
                                         }
 
+                                        //>3 correct scroll position 1 t
                                         if (mode === 'placeholder') {
                                             var scroll_top = cs.get_window_scroll_top();
                                             var iframe_height = iframe.offsetHeight;
                                             var placeholder_height = this.offsetHeight;
                                         }
-
+                                        //<3 correct scroll position 1 t
+                                     
                                         x.remove_class(iframe, ext_id('out_of_view'));
-
-                                        await x.delay(50);
-
+                                     
                                         x.add_class(iframe.contentDocument.body, ext_id('transition_body'));
-
-                                        x.remove_class(iframe.contentDocument.body, ext_id('opacity_0'));
+                                                                    
+                                        x.remove_class(iframe.contentDocument.body, ext_id('opacity_0'));                               
 
                                         x.remove(loading_bar);
 
+                                        //>3 correct scroll position 2 t
                                         if (mode === 'placeholder') {
-                                            document.documentElement.scrollTop = scroll_top + iframe_height - placeholder_height;
+                                            let rect = iframe.getBoundingClientRect();
+
+                                            if (rect.bottom < rect.height) {
+                                                document.documentElement.scrollTop = scroll_top + iframe_height - placeholder_height;
+                                            }
                                         }
+                                        //<3 correct scroll position 2 t
 
                                         current_search_results_height = await get_search_results_height();
 
@@ -526,7 +538,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                                         iframe.contentDocument.body.addEventListener('transitionend', resize_iframe_on_its_body_resize_animation.bind(null, iframe_id));
 
-                                        loading_iframe = false;
+                                        set_variable_loading_iframe(mode, false);
                                     };
                                 }
                             };
@@ -537,13 +549,21 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                         el_to_insert_iframe_after = null;
                     }
-
-                } else {
-                    loading_iframe = false;
                 }
             }
         }
         //<2 load_page f
+
+        //>2 set_variable_loading_iframe f
+        function set_variable_loading_iframe(mode, value) {
+            if (mode === 'scroll') {
+                loading_iframe_scroll = value;
+
+            } else if (mode === 'placeholder') {
+                loading_iframe_placeholder = value;
+            }
+        }
+        //<2 set_variable_loading_iframe f
 
         //>2 get_search_results_height f
         async function get_search_results_height() {
@@ -555,10 +575,12 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
         //>2 resize_iframe f
         async function resize_iframe(iframe) {
-            await x.delay(0);
+            if (iframe.contentDocument.body) {
+                await x.delay(0);
 
-            iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
-            iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
+                iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
+                iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
+            }
         }
         //<2 resize_iframe f
 
@@ -569,9 +591,13 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     let target = mutation.target;
 
                     if (!x.has_class(target, ext_id('favicons_and_flags')) && !x.has_class(target, ext_id('icons_wrappers_2'))) {
-                        let iframe_id = target.closest('body').dataset.id;
+                        let body = target.closest('body');
 
-                        resize_iframe(s('#' + iframe_id));
+                        if (body) {
+                            let iframe_id = body.dataset.id;
+
+                            resize_iframe(s('#' + iframe_id));
+                        }
                     }
                 }
             });
@@ -588,7 +614,6 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             }
         }
         //<2 resize iframe on its body resize (with animation) t
-
 
         //>2 open_img f
         function open_img() {
@@ -737,27 +762,29 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         //>1 unload_iframe f
         if (settings.unload_pages) {
             async function unload_iframe() {
-                let iframes = sa('.' + ext_id('iframe') + ', .' + ext_id('first_page_results_wrapper'));
+                if (!loading_iframe_placeholder) {
+                    let iframes = sa('.' + ext_id('iframe') + ', .' + ext_id('first_page_results_wrapper'));
 
-                for (iframe of iframes) {
-                    if (!x.has_class(iframe, ext_id('none'))) {
-                        var rect = iframe.getBoundingClientRect();
+                    for (iframe of iframes) {
+                        if (!x.has_class(iframe, ext_id('none'))) {
+                            var rect = iframe.getBoundingClientRect();
 
-                        if (rect.bottom <= - 400) {
-                            let iframe_placeholder = x.create('div', ext_id('iframe_placeholders'));
+                            if (rect.bottom <= - 400) {
+                                let iframe_placeholder = x.create('div', ext_id('iframe_placeholders'));
 
-                            iframe_placeholder.style.height = iframe.offsetHeight + 'px';
+                                iframe_placeholder.style.height = iframe.offsetHeight + 'px';
 
-                            if (x.has_class(iframe, 'iframe_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
-                                iframe_placeholder.dataset.iframe_src = iframe.src;
+                                if (x.has_class(iframe, 'iframe_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
+                                    iframe_placeholder.dataset.iframe_src = iframe.src;
 
-                            } else if (x.has_class(iframe, 'first_page_results_wrapper_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
-                                iframe_placeholder.dataset.iframe_src = s('#foot .fl').href;
+                                } else if (x.has_class(iframe, 'first_page_results_wrapper_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
+                                    iframe_placeholder.dataset.iframe_src = s('#foot .fl').href;
+                                }
+
+                                x.replace(iframe, iframe_placeholder)
+
+                                iframe_placeholder.addEventListener('click', load_page.bind(iframe_placeholder, 'placeholder'));
                             }
-
-                            x.replace(iframe, iframe_placeholder)
-
-                            iframe_placeholder.addEventListener('click', load_page.bind(iframe_placeholder, 'placeholder'));
                         }
                     }
                 }
