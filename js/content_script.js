@@ -1045,9 +1045,12 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             if (mouse_btn !== 2) { // if not right-click
                 e.preventDefault();
 
-                let immersive_container = this.closest('.immersive-container');
-                let link_el = sb(immersive_container, '.irc_mi');
-                let progress_bar = sb(immersive_container, '.jfk-progressBar-blocking');
+                let image_el_id = this.closest('.immersive-container').dataset.itemId;
+                let image_el = s('[name="' + image_el_id + '"]');
+                let image_el_wrapper = image_el.closest('.rg_bx');
+                let image_data = sb(image_el_wrapper, '.rg_meta').innerHTML;
+                let json = JSON.parse(image_data);
+                let img = json.ou;
 
                 if (mouse_btn === 0) { // when left-clicking
                     var active = true;
@@ -1056,24 +1059,8 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     var active = false;
                 }
 
-                if (link_el.hasAttribute('style') || progress_bar.style.display === '') { // ex: (link_el.hasAttribute('style')) https://www.google.ru/search?q=red+sox&newwindow=1&rlz=1C1CHBF_enRU766RU766&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjU5OLM1u7ZAhVJJJoKHS0-B6gQ_AUICigB&biw=1920&bih=959#imgrc=0GsOwU2643JxYM: || ex: (progress_bar.style.display === '' [when progressbar visible]) https://www.google.ru/search?newwindow=1&rlz=1C1CHBF_enRU766RU766&biw=1920&bih=959&tbm=isch&sa=1&ei=nNWqWoqaJouE6ASH7qjABA&q=4k+wallpaper&oq=4k+w&gs_l=psy-ab.1.0.0i67k1l3j0j0i67k1j0j0i67k1j0j0i67k1l2.80921.81948.0.82920.4.4.0.0.0.0.160.613.0j4.4.0....0...1c.1.64.psy-ab..0.4.612....0.2urKuPfzJIc#imgrc=CAUdLsHsWH2NuM:
-                    var link = link_el.src;
-
-                } else { // ex: https://www.google.ru/search?q=red+sox&newwindow=1&rlz=1C1CHBF_enRU766RU766&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjU5OLM1u7ZAhVJJJoKHS0-B6gQ_AUICigB&biw=1920&bih=959#imgrc=eVyi85jIlRXXcM:
-                    var link = '';
-                }
-
-                let base64 = sb(this.closest('.immersive-container'), '.irc_mut').src;
-
-                if (link !== '') {
-                    send_message_to_background_to_view_or_download_img(link, this, active);
-
-                } else { // ex: https://www.google.ru/search?newwindow=1&rlz=1C1CHBF_enRU766RU766&biw=1920&bih=558&tbm=isch&sa=1&ei=JZ-qWpPpAY2LmwWJiZ_oBg&q=cat&oq=cat&gs_l=psy-ab.3..0j0i67k1j0l4j0i67k1l2j0l2.26699.27541.0.28165.3.
-                    send_message_to_background_to_view_or_download_img(base64, this, active);
-                }
+                send_message_to_background_to_view_or_download_img(img, this, active);
             }
-
-            append_view_and_download_img_btns(document.body);
         }
         //<1 view_or_download_img f
 
