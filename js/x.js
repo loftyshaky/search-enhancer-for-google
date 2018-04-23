@@ -4,8 +4,6 @@
 
 //> dom manipulation t
 
-//> get_parent_with_class f
-
 //> has_class f
 
 //> remove_class f
@@ -107,20 +105,6 @@ x.replace = (el_to_replace, new_el) => {
     el_to_replace.parentNode.replaceChild(new_el, el_to_replace);
 }
 //< dom manipulation t
-
-//> get_parent_with_class f
-x.get_parent_with_class = (el, class_name, breakpoint) => {
-    let count = 0;
-
-    while (el && el.parentNode && !x.has_class(el, class_name) && count !== breakpoint) {
-        el = el.parentNode;
-
-        count++;
-    }
-
-    return el;
-};
-//< get_parent_with_class f
 
 //> has_class f
 x.has_class = (el, class_name) => {

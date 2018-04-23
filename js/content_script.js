@@ -1045,7 +1045,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             if (mouse_btn !== 2) { // if not right-click
                 e.preventDefault();
 
-                let immersive_container = x.get_parent_with_class(this, 'immersive-container', 50);
+                let immersive_container = this.closest('.immersive-container');
                 let link_el = sb(immersive_container, '.irc_mi');
                 let progress_bar = sb(immersive_container, '.jfk-progressBar-blocking');
 
@@ -1063,7 +1063,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     var link = '';
                 }
 
-                let base64 = sb(x.get_parent_with_class(this, 'immersive-container', 50), '.irc_mut').src;
+                let base64 = sb(this.closest('.immersive-container'), '.irc_mut').src;
 
                 if (link !== '') {
                     send_message_to_background_to_view_or_download_img(link, this, active);
