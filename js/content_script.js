@@ -2,8 +2,6 @@
 
 //> actions on page load t
 
-//>1 get open in new tab google search setting t + //>2 decide how to open links t
-
 //>1 localize t
 
 //>1 show paginator if settings.show_paginator === true t
@@ -36,7 +34,7 @@
 
 //>1 load page t
 
-//>2 load_page f + //>3 load loading bar t; //>3 append iframe to body t; //>3 decide how to open links t; //>3 hide people also search block if settings.show_people_also_search_for === false t; //>3 correct scroll position 1 t; //>3 correct scroll position 2 t; //>3 load site icons (execution) t; //>3 update element with namber of pages t; //>3 handle image section t
+//>2 load_page f + //>3 load loading bar t; //>3 append iframe to body t; //>3 check if google thinks you are robot t; //>3 hide people also search block if settings.show_people_also_search_for === false t; //>3 correct scroll position 1 t; //>3 correct scroll position 2 t; //>3 load site icons (execution) t; //>3 update element with namber of pages t; //>3 handle image section t
 
 //>2 set_variable_loading_iframe f
 
@@ -55,8 +53,6 @@
 //>1 load site icons and run load flags function t
 
 //>1 load_site_flags f
-
-//>1 set_link_opening_rule f
 
 //>1 fix non clickable, non hoverable site flags (title not showing) t
 
@@ -115,29 +111,6 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
     //> actions on page load t
     document.addEventListener('DOMContentLoaded', async () => {
-        //>1 get open in new tab google search setting t
-        (() => {
-            let preferences_iframe = x.create('iframe', ext_id('preferences_iframe'));
-
-            preferences_iframe.onload = () => {
-                let open_search_results_in_new_tab_hidden_input_value = sb(preferences_iframe.contentDocument, '#nwc').nextElementSibling.value;
-
-                if (open_search_results_in_new_tab_hidden_input_value === '0') {
-                    cs.open_search_results_in_new_tab = false;
-                }
-
-                //>2 decide how to open links t
-                cs.loading.set_link_opening_rule(null, false);
-                //<2 decide how to open links t
-
-                x.remove(preferences_iframe);
-            };
-
-            preferences_iframe.src = window.location.origin + '/preferences';
-            x.append(document.body, preferences_iframe);
-        })();
-        //<1 get open in new tab google search setting t
-
         //>1 localize t
         locale.view_img_btns_text = 'View image';
         locale.download_img_btns_text = 'Download image';
@@ -376,7 +349,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     let current_page_el = s('#foot .cur');
 
                     if ((mode === 'scroll' && current_page_el && current_page_el.nextElementSibling && sb(current_page_el.nextElementSibling, '.fl')) || mode === 'placeholder') { // if not last page // !s('.sr__price-range') - if not shopping page 
-                    set_variable_loading_iframe(mode, true);
+                        set_variable_loading_iframe(mode, true);
 
                         if (!s('.sr__price-range')) { //if not shopping page 
                             if (mode === 'scroll') {
@@ -417,9 +390,9 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                             //<3 append iframe to body t
 
                             iframe.onload = () => {
-                                //>3 decide how to open links t
+                                //>3 check if google thinks you are robot t;
                                 try {
-                                    cs.loading.set_link_opening_rule(iframe, true);
+                                    iframe.contentDocument.head.insertAdjacentHTML('beforeend', '<base target=_parent>'); // open links in window rather than iframe
 
                                 } catch (er) { // if google thinks you are robot
                                     if (mode === 'scroll') {
@@ -434,7 +407,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                                     return;
                                 }
-                                //<3 decide how to open links t
+                                //<3 check if google thinks you are robot t;
 
                                 x.add_class(iframe.contentDocument.body, ext_id('opacity_0'));
 
@@ -473,12 +446,12 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                                             var placeholder_height = this.offsetHeight;
                                         }
                                         //<3 correct scroll position 1 t
-                                     
+
                                         x.remove_class(iframe, ext_id('out_of_view'));
-                                     
+
                                         x.add_class(iframe.contentDocument.body, ext_id('transition_body'));
-                                                                    
-                                        x.remove_class(iframe.contentDocument.body, ext_id('opacity_0'));                               
+
+                                        x.remove_class(iframe.contentDocument.body, ext_id('opacity_0'));
 
                                         x.remove(loading_bar);
 
@@ -697,34 +670,6 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         }
         //<1 load_site_flags f
 
-        //>1 set_link_opening_rule f
-        function set_link_opening_rule(iframe, one_iframe) { // g
-            if (cs.open_search_results_in_new_tab) { // if open links in new window google search setting enabled (=is_true) t
-                var target = 'target';
-
-            } else { // if disabled
-                var target = 'parent';
-            }
-
-            let html = '<base class="' + ext_id('link_opening_rule') + '"target="_' + target + '">';
-
-            if (one_iframe) {
-                iframe.contentDocument.head.insertAdjacentHTML('beforeend', html);
-
-            } else {
-                let iframes = sa('.' + ext_id('iframe'));
-
-                for (iframe of iframes) {
-                    if (iframe.contentDocument.head) {
-                        x.remove(sb(iframe.contentDocument.head, '.' + ext_id('link_opening_rule')));
-
-                        iframe.contentDocument.head.insertAdjacentHTML('beforeend', html);
-                    }
-                }
-            }
-        }
-        //<1 set_link_opening_rule f
-
         //>1 fix non clickable, non hoverable site flags (title not showing) t
         async function fix_non_clickable_site_flags(iframe_id, delay) {
             await x.delay(delay);
@@ -797,8 +742,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         window.addEventListener('scroll', load_page.bind(null, 'scroll'));
 
         return {
-            load_site_icons: load_site_icons,
-            set_link_opening_rule: set_link_opening_rule
+            load_site_icons: load_site_icons
         }
     })();
     //< loading o
