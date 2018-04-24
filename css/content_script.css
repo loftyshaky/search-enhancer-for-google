@@ -179,6 +179,16 @@ html[dir="rtl"] .scroll_to_top_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
 .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd .mn-hd-txt {
 	padding-right: 0;
 }
+
+html[dir="rtl"] .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	padding-right: unset;
+	padding-left: 16px!important;
+}
+
+html[dir="rtl"] .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd .mn-hd-txt {
+	padding-right: unset;
+	padding-left: 0;
+}
 /*<1 image action buttons */ 
 /*< my elements */
 
