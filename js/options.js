@@ -16,8 +16,6 @@
 
 //>1 ask for permission to be granted or remove it t
 
-//>1 enable_or_disable_on_determining_filename_event f
-
 op = {};
 
 //> enable transition t
@@ -68,8 +66,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 expand_subotions(storage_name, o.settings[storage_name]);
 
-                enable_or_disable_on_determining_filename_event(o);
-
             } else if (this.type === 'text') {
                 o.settings[storage_name] = this.value;
 
@@ -80,6 +76,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             x.set(o);
+
+            x.send_message_to_background({ message: 'reload_settings_in_background' });
 
         } catch (er) {
             console.error(er);
@@ -99,8 +97,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 el.checked = o.settings[storage_name];
 
                 expand_subotions(storage_name, o.settings[storage_name]);
-
-                enable_or_disable_on_determining_filename_event(o);
 
             } else if (el.type === 'text') {
                 el.value = o.settings[storage_name];
@@ -179,19 +175,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
     //<1 ask for permission to be granted or remove it t
-
-    //>1 enable_or_disable_on_determining_filename_event f
-    function enable_or_disable_on_determining_filename_event(o) {
-        if (o.settings.show_download_img_btn) {
-            if (o.settings.show_save_as_dialog_on_img_download) {
-                x.send_message_to_background({ message: 'disable_on_determining_filename_event' });
-
-            } else {
-                x.send_message_to_background({ message: 'enable_on_determining_filename_event' });
-            }
-        }
-    }
-    //<1 enable_or_disable_on_determining_filename_event f
 
     restore_settings_on_load();
 

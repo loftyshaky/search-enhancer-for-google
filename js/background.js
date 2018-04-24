@@ -1,3 +1,5 @@
+//> get_settings f
+
 //> set default settings t
 
 //> on installed t
@@ -9,10 +11,21 @@
 //> on message t
 
 b = {};
+settings = {};
+
+//> get_settings f
+async function get_settings() {
+    let o = await x.get('settings');
+
+    settings = o.settings;
+}
+//< get_settings f
+
+get_settings();
 
 //> set default settings t
-function set_default_settings() {
-    x.set({
+async function set_default_settings() {
+    await x.set({
         'settings': {
             'turned_off': false,
             'show_site_icons': true,
@@ -38,13 +51,15 @@ function set_default_settings() {
             'unload_pages': false
         }
     });
+
+    get_settings();
 }
 //< set default settings t
 
 //> on installed t
 browser.runtime.onInstalled.addListener(async e => {
     if (e.reason === "install") {
-        set_default_settings();
+        await set_default_settings();
 
     } else if (e.reason === "update") {
         let o = await x.get('settings');
@@ -121,17 +136,9 @@ browser.browserAction.onClicked.addListener(activeTab => {
 //< open options page when clicking on browser action t
 
 //> change name of image on download t
-(async () => {
-    b.change_name_of_image_on_download = (download_item, suggest) => {
-        suggest({ filename: b.download_imgs_path + download_item.filename });
-    };
-
-    let o = await x.get('settings');
-
-    if (Object.keys(o).length !== 0 && o.settings.show_download_img_btn && !o.settings.show_save_as_dialog_on_img_download) {
-        browser.downloads.onDeterminingFilename.addListener(b.change_name_of_image_on_download);
-    }
-})()
+b.change_name_of_image_on_download = (download_item, suggest) => {
+    suggest({ filename: b.download_imgs_path + download_item.filename });
+};
 //< change name of image on download t
 
 //> on message t
@@ -163,36 +170,38 @@ browser.runtime.onMessage.addListener((message_o, sender, send_response) => {
             });
         });
 
-    } else if (message_o.message === 'download_img') {
+    } else if (message_o.message === 'download_img' || message_o.message === 'download_all_imgs') {
         let download_item = {};
 
         download_item.url = message_o.img;
 
-        if (!message_o.show_save_as_dialog_on_img_download && message_o.download_imgs_path !== '') {
-            download_item.filename = 'img.png'; // will be replaced
+        if ((message_o.message === 'download_img' && !message_o.show_save_as_dialog_on_img_download) || message_o.message === 'download_all_imgs') {
+            browser.downloads.onDeterminingFilename.removeListener(b.change_name_of_image_on_download);
+            browser.downloads.onDeterminingFilename.addListener(b.change_name_of_image_on_download);
 
         } else {
-            download_item.saveAs = message_o.show_save_as_dialog_on_img_download;
+            browser.downloads.onDeterminingFilename.removeListener(b.change_name_of_image_on_download);
         }
 
-        x.get('settings').then(o => {
-            b.download_imgs_path = o.settings.download_imgs_path;
-            b.download_imgs_path = b.download_imgs_path[b.download_imgs_path.length - 1] !== '/' ? b.download_imgs_path + '/' : b.download_imgs_path
+        if (!message_o.show_save_as_dialog_on_img_download && message_o.download_imgs_path !== '') {
+            download_item.filename = 'img.png'; // will be replaced
+        }
 
-            browser.downloads.download(download_item, () => {
-                if (browser.runtime.lastError) {
-                    send_response('error');
-                }
-            });
+        download_item.saveAs = message_o.show_save_as_dialog_on_img_download;
+
+        b.download_imgs_path = settings.download_imgs_path;
+        b.download_imgs_path = b.download_imgs_path[b.download_imgs_path.length - 1] !== '/' ? b.download_imgs_path + '/' : b.download_imgs_path
+
+        browser.downloads.download(download_item, () => {
+            if (browser.runtime.lastError) {
+                send_response('error');
+            }
         });
 
         return true;
 
-    } else if (message_o.message === 'enable_on_determining_filename_event') {
-        browser.downloads.onDeterminingFilename.addListener(b.change_name_of_image_on_download);
-
-    } else if (message_o.message === 'disable_on_determining_filename_event') {
-        browser.downloads.onDeterminingFilename.removeListener(b.change_name_of_image_on_download);
+    } else if (message_o.message === 'reload_settings_in_background') {
+        get_settings();
     }
 });
 //< on message t

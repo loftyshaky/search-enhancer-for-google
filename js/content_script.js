@@ -1170,8 +1170,15 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             } else if (mode === 'search_by_img') {
                 x.send_message_to_background({ message: mode, img: img, active: active });
 
-            } else if (mode === 'download_img') {
-                browser.runtime.sendMessage({ message: mode, img: img, show_save_as_dialog_on_img_download: settings.show_save_as_dialog_on_img_download, download_imgs_path: settings.download_imgs_path }, response => {
+            } else if (mode === 'download_img' || mode === 'download_all_imgs') {
+                if (mode === 'download_img') {
+                    var show_save_as_dialog_on_img_download = settings.show_save_as_dialog_on_img_download;
+                
+                } else if (mode === 'download_all_imgs') {
+                    var show_save_as_dialog_on_img_download = false;
+                }
+
+                browser.runtime.sendMessage({ message: mode, img: img, show_save_as_dialog_on_img_download: show_save_as_dialog_on_img_download, download_imgs_path: settings.download_imgs_path }, response => {
                     if (response) {
                         alert(locale.img_download_error_alert);
                     }
@@ -1245,7 +1252,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     event.button = 0;
 
                     for (; download_all_imgs_current_node_index < last_node_index;) {
-                        view_download_img_or_search_by_img.call(null, 'download_all', 'download_img', meta_els.item(download_all_imgs_current_node_index), event);
+                        view_download_img_or_search_by_img.call(null, 'download_all', 'download_all_imgs', meta_els.item(download_all_imgs_current_node_index), event);
 
                         download_all_imgs_current_node_index++;
                     }
