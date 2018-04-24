@@ -212,6 +212,7 @@ input[type='checkbox'] {
     text-align: center;
     margin-left: 8px;
     cursor: help;
+    line-height: 21px;
 }
 
 .bottom_links:not(:first-child) {
