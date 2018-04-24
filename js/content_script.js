@@ -571,7 +571,9 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                         }
 
                     } else {
-                        show_message_to_user(el_to_insert_iframe_after, 'last_page');
+                        if (!s('#gs_si0')) { // if not google home page or Images page
+                            show_message_to_user(el_to_insert_iframe_after, 'last_page');
+                        }
 
                         el_to_insert_iframe_after = null;
                     }
