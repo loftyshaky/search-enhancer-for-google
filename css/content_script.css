@@ -144,7 +144,8 @@ html[dir="rtl"] .scroll_to_top_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
 	text-align: center;
 	position: relative;
     top: -20px;
-    margin-bottom: 6px;
+	margin-bottom: 6px;
+	direction: ltr;
 }
 
 .message_to_user_error_pipbbdfondfipmjmdkmggihiknhmcfhd {

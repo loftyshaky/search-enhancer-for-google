@@ -888,11 +888,13 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 //<3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
 
                 //>3 hide tools menu t
-                if (scroll_top !== 0) {
-                    x.add_class(s('#hdtbMenus'), ext_id('none'));
+                if (settings.stick_header && settings.compact_header) {
+                    if (scroll_top !== 0) {
+                        x.add_class(s('#hdtbMenus'), ext_id('none'));
 
-                } else {
-                    x.remove_class(s('#hdtbMenus'), ext_id('none'));
+                    } else {
+                        x.remove_class(s('#hdtbMenus'), ext_id('none'));
+                    }
                 }
                 //<3 hide tools menu t
             }

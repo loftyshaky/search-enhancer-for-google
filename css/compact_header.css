@@ -79,6 +79,11 @@ html[dir="rtl"] #ab_ctls {
     margin-top: 9px;
 }
 
+html[dir="rtl"] .hdtbU {
+    margin-left: unset;
+    margin-right: -1058px;
+}
+
 #hdtb-mn-gp {
     display: none!important;
 }
