@@ -216,7 +216,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             async function toggle_infinity_scroll() {
                 let o = await x.get('settings');
 
-                let turn_off_btn = s('.' + ext_id('turn_off_btn'));
+                let turn_off_btn = s(ext_id('.turn_off_btn'));
 
                 if (settings.turned_off) {
                     settings.turned_off = false;
@@ -761,7 +761,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         if (settings.unload_pages) {
             async function unload_iframe() {
                 if (!loading_iframe_placeholder) {
-                    let iframes = sa('.' + ext_id('iframe') + ', .' + ext_id('first_page_results_wrapper'));
+                    let iframes = sa(ext_id('.iframe') + ', .' + ext_id('first_page_results_wrapper'));
 
                     for (iframe of iframes) {
                         if (!x.has_class(iframe, ext_id('none'))) {
@@ -809,7 +809,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
             if (!s('#gs_si0')) { // if not google home page or Images page
                 //>2 pagination and turn_off_btn t
-                let turn_off_btn = s('.' + ext_id('turn_off_btn'));
+                let turn_off_btn = s(ext_id('.turn_off_btn'));
                 let pagination = s('#navcnt');
                 let turn_off_btn_modifier = 46;
                 let pagination_modifier = 93;
@@ -874,7 +874,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                     x.after(bst, all_images_etc);
 
-                    x.remove(s('.' + ext_id('compact_header')))
+                    x.remove(s(ext_id('.compact_header')))
                 }
 
                 //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
@@ -970,7 +970,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
             if (appbar) {
                 let appbar_height = appbar.offsetHeight;
-                let turn_off_btn = s('.' + ext_id('turn_off_btn'));
+                let turn_off_btn = s(ext_id('.turn_off_btn'));
                 let paginator = s('#navcnt');
 
                 if (paginator, turn_off_btn) {
@@ -1061,7 +1061,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 let img_viewer_btn_wrappers = sab(basae_element, '.iAcjwd.irc_but_r tr');
 
                 if (img_viewer_btn_wrappers[0]) {
-                    let my_img_action_trs = sa('.' + ext_id('my_img_action_trs'));
+                    let my_img_action_trs = sa(ext_id('.my_img_action_trs'));
 
                     //>2 set height of my_img_action_trs to eight of tallest td in image viewer t
                     if (my_img_action_trs[0]) {
@@ -1087,8 +1087,8 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                             img_viewer_btn_wrapper.insertAdjacentHTML('afterend', '<tr class="' + ext_id('my_img_action_trs') + '"> ' + view_img_btn_html + download_img_btn_html + '</tr>');
 
                             let img_viewer_btns_wrapper = img_viewer_btn_wrapper.closest('.iAcjwd.irc_but_r');
-                            let view_img_btn = sb(img_viewer_btns_wrapper, '.' + ext_id('view_img_btns'));
-                            let download_img_btn = sb(img_viewer_btns_wrapper, '.' + ext_id('download_img_btns'));
+                            let view_img_btn = sb(img_viewer_btns_wrapper, ext_id('.view_img_btns'));
+                            let download_img_btn = sb(img_viewer_btns_wrapper, ext_id('.download_img_btns'));
 
                             if (view_img_btn) {
                                 view_img_btn.addEventListener('mousedown', view_download_img_or_search_by_img.bind(view_img_btn, 'image_viewer', 'view_img', null));
@@ -1110,7 +1110,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 for (search_by_img_wrapper of search_by_img_wrappers) {
                     search_by_img_wrapper.insertAdjacentHTML('beforeend', '<a class="' + ext_id('search_by_img_btns') + ' o5rIVb irc_hol i3724" tabindex="0" href="javascript:void(0)"><span class="irc_ho">' + locale.search_by_img_btns_text + '</span></a>'); // javascript:void(0) = prevent search by image link from opening
 
-                    let search_by_img_btns = sb(search_by_img_wrapper, '.' + ext_id('search_by_img_btns'));
+                    let search_by_img_btns = sb(search_by_img_wrapper, ext_id('.search_by_img_btns'));
 
                     search_by_img_btns.addEventListener('mousedown', view_download_img_or_search_by_img.bind(search_by_img_btns, 'image_viewer', 'search_by_img', null));
                 }
@@ -1206,7 +1206,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
         //>1 remove_img_preview_btns f
         function remove_img_preview_btns() { // g
-            x.remove(sb(this, '.' + ext_id('img_preview_btns_wrapper')));
+            x.remove(sb(this, ext_id('.img_preview_btns_wrapper')));
         }
         //<1 remove_img_preview_btns f
 
