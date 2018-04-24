@@ -175,6 +175,10 @@ html[dir="rtl"] .scroll_to_top_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
 .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
 	padding-right: 16px!important;
 }
+
+.download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd .mn-hd-txt {
+	padding-right: 0;
+}
 /*<1 image action buttons */ 
 /*< my elements */
 
