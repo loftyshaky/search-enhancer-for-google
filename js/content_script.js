@@ -140,7 +140,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             if (all) {
                 if (all.textContent === 'Все') {
                     locale.view_img_btns_text = 'Открыть в полном размере';
-                    locale.search_by_img_btns_text = 'Поиск по картике';
+                    locale.search_by_img_btns_text = 'Поиск по картинке';
                     locale.download_img_btns_text = 'Скачать картинку';
                     locale.download_all_imgs_btn_text = 'Скачать все картинки';
                     locale.img_download_error_alert = 'Произошла ошибка при скачивании картинки.';
