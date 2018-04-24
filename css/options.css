@@ -14,7 +14,7 @@
 
 body {
     margin: auto;
-    width: __MSG_body_width__;
+    max-width: __MSG_body_width__;
 }
 
 body {

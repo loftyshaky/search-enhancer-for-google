@@ -175,6 +175,14 @@ html[dir="rtl"] .scroll_to_top_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
 .my_img_action_trs_pipbbdfondfipmjmdkmggihiknhmcfhd svg {
     height: calc(100% - 2px)!important;
 }
+
+.search_by_img_btns_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	margin-left: 11px;
+}
+
+.download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	padding-right: 16px!important;
+}
 /*<1 image action buttons */ 
 /*< my elements */
 

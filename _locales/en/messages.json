@@ -52,11 +52,26 @@
   "show_view_img_btn_text": {
     "message": "Show \"View image\" button"
   },
+  "show_search_by_image_btn_text": {
+    "message": "Show \"Search by image\" button"
+  },
   "show_download_img_btn_text": {
     "message": "Show \"Download image\" button"
   },
   "show_save_as_dialog_on_img_download_text": {
     "message": "Show \"Save As\" dialog"
+  },
+  "show_download_all_imgs_btn_text": {
+    "message": "Show \"Download all images\" button in tools menu"
+  },
+  "show_view_img_btn_on_img_previews_text": {
+    "message": "Show \"View image\" button when hovering over image preview"
+  },
+  "show_download_img_btn_on_img_previews_text": {
+    "message": "Show \"Download image\" button when hovering over image preview"
+  },
+  "show_search_by_image_btn_on_img_previews_text": {
+    "message": "Show \"Search by image\" button when hovering over image preview"
   },
   "unload_pages_text": {
     "message": "Unload pages that are off-screen (less RAM consumption)"

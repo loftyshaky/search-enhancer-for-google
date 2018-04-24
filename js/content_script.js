@@ -10,6 +10,8 @@
 
 //>1 hide people also search block if settings.show_people_also_search_for === false t
 
+//>1 load image preview buttons css t
+
 //>1 turn off / on button t
 
 //>2 disable / enable infinity scroll t
@@ -28,7 +30,7 @@
 
 //>1 load site icons on page load t
 
-//>1 catch dom changes t + //>2 hide pagination when on appbar load slides t; //>2 append "View image" button t
+//>1 catch dom changes t + //>2 hide pagination when on appbar load slides t; //>2 append "View image" button t; //>2 bind create_img_preview_btns to image previews t; //>2 create download_all_imgs_btn in tools menu t
 
 //> loading o
 
@@ -78,13 +80,23 @@
 
 //>1 set_box_shadow_on_searchbar_if_not_on_top t
 
-//> view_or_download_img o
+//> view_download_img_or_search_by_img o
 
-//>1 append_view_and_download_img_btns f + //>2 set height of my_img_action_trs to eight of tallest td in image viewer t;
+//>1 append_view_download_img_btns_and_search_by_imng_btns f + //>2 set height of my_img_action_trs to eight of tallest td in image viewer t;
 
-//>1 view_or_download_img f
+//>1 view_download_img_or_search_by_img f
 
-//>1 send_message_to_background_to_view_or_download_img f
+//>1 send_message_to_background_to_view_download_img_or_search_by_img f
+
+//>1 create_img_preview_btns f
+
+//>1 create_img_preview_btn f
+
+//>1 remove_img_preview_btns f
+
+//>1 create download_all_imgs_btn in tools menu t
+
+//>1 download_all_imgs f
 
 cs = {};
 svg = {};
@@ -94,7 +106,8 @@ locale = {};
 cs.open_search_results_in_new_tab = true;
 
 svg.turn_off = '<svg viewBox="0 0 100 100"><g><path d="M50.304,99.651C24.221,99.651,3,78.431,3,52.348c0-13.036,5.459-25.621,14.979-34.534   c2.42-2.256,6.201-2.13,8.463,0.278c2.256,2.414,2.133,6.201-0.281,8.46c-7.218,6.756-11.192,15.917-11.192,25.797   c0,19.485,15.85,35.335,35.335,35.335s35.335-15.85,35.335-35.335c0-9.658-3.828-18.681-10.777-25.402   c-2.373-2.297-2.437-6.087-0.14-8.463c2.297-2.367,6.084-2.443,8.463-0.14c9.298,8.997,14.424,21.075,14.424,34.005   C97.608,78.431,76.387,99.651,50.304,99.651z"></path></g><path d="M50.304,51.19c-3.308,0-5.985-2.68-5.985-5.985V5.985C44.319,2.68,46.996,0,50.304,0s5.985,2.68,5.985,5.985  v39.221C56.288,48.511,53.612,51.19,50.304,51.19z"></path></svg>';
-svg.image = '<svg viewBox="0 0 89.8 89.8""><g><path d="M80.1,4.9H9.9C4.4,4.9,0,9.3,0,14.8V75c0,5.5,4.4,9.9,9.9,9.9h70.2c5.5,0,9.9-4.4,9.9-9.9V14.8C90,9.3,85.6,4.9,80.1,4.9z M10,75v-8l20.2-20.2l31.7,28.1L10,75z M80,74.9h-3.1L55.8,56.2L65,47l1 ,15V74.9z M68.5,36.4c-2-2-5.1-2-7.1,0L48.3,49.5l-15-13.3 c-2-1.8-5-1.7-6.9,0.2L10,52.9l-0.1-38L80,14.8v33L68.5,36.4z"/></g></svg>';
+svg.eye = '<svg viewBox="0 0 22 22"><style type="text/css">.st0{fill:none;}</style><path class="st0" d="M-1-1h24v24H-1V-1z"/><path d="M11,3.5C6,3.5,1.7,6.6,0,11c1.7,4.4,6,7.5,11,7.5s9.3-3.1,11-7.5C20.3,6.6,16,3.5,11,3.5z M11,16c-2.8,0-5-2.2-5-5 s2.2-5,5-5s5,2.2,5,5S13.8,16,11,16z M11,8c-1.7,0-3,1.3-3,3s1.3,3,3,3s3-1.3,3-3S12.7,8,11,8z"/></svg>';
+svg.search = '<svg viewBox="0 0 17.5 17.5"><style type="text/css">.st0{fill:none;}</style><path d="M12.5,11h-0.8l-0.3-0.3c1-1.1,1.6-2.6,1.6-4.2C13,2.9,10.1,0,6.5,0S0,2.9,0,6.5S2.9,13,6.5,13c1.6,0,3.1-0.6,4.2-1.6 l0.3,0.3v0.8l5,5l1.5-1.5L12.5,11z M6.5,11C4,11,2,9,2,6.5S4,2,6.5,2S11,4,11,6.5S9,11,6.5,11z"/><path class="st0" d="M-3-3h24v24H-3V-3z"/></svg>';
 svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}</style><path d="M15.5,6h-4V0h-6v6h-4l7,7L15.5,6z M1.5,15v2h14v-2H1.5z"/><path class="st0" d="M-3.5-3h24v24h-24V-3z"/></svg>';
 
 
@@ -113,8 +126,11 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
     document.addEventListener('DOMContentLoaded', async () => {
         //>1 localize t
         locale.view_img_btns_text = 'View image';
+        locale.search_by_img_btns_text = 'Search by image';
         locale.download_img_btns_text = 'Download image';
+        locale.download_all_imgs_btn_text = 'Download all images';
         locale.img_download_error_alert = 'An error occurred while downloading the image.';
+        locale.you_already_downloaded_these_images_alert = 'You already downloaded these images. Load more images and then try again.';
         locale.message_to_user_error_text = "An error occured. Google thinks you're a robot. Reload the page and solve captcha.";
         locale.message_to_user_last_page_text = 'Last page.';
 
@@ -124,8 +140,11 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             if (all) {
                 if (all.textContent === 'Все') {
                     locale.view_img_btns_text = 'Открыть в полном размере';
+                    locale.search_by_img_btns_text = 'Поиск по картике';
                     locale.download_img_btns_text = 'Скачать картинку';
+                    locale.download_all_imgs_btn_text = 'Скачать все картинки';
                     locale.img_download_error_alert = 'Произошла ошибка при скачивании картинки.';
+                    locale.you_already_downloaded_these_images_alert = 'Вы уже скачали эти картинки. Загрузите больше картинок и затем попробуйте снова.';
                     locale.message_to_user_error_text = 'Произошла ошибка. Google думает что вы робот. Перезагрузите страницу и решите каптчу.';
                     locale.message_to_user_last_page_text = 'Последняя страница.';
                 }
@@ -158,6 +177,12 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             x.load_css(document, 'hiddden_people_also_search_for');
         }
         //<1 hide people also search block if settings.show_people_also_search_for === false t
+
+        //>1 load image preview buttons css t
+        if ((settings.show_view_img_btn && settings.show_view_img_btn_on_img_previews) || (settings.show_search_by_image_btn && settings.show_search_by_image_btn_on_img_previews) || (settings.show_download_img_btn && settings.show_download_img_btn_on_img_previews)) {
+            x.load_css(document, 'img_preview_btns');
+        }
+        //<1 load image preview buttons css t
 
         //>1 turn off / on button t
         (() => {
@@ -296,6 +321,8 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
         //>1 catch dom changes t
         (() => {
+            let create_img_preview_btns_binded_to_first_loaded_imgs = false;
+
             let observer = new MutationObserver(function (mutations) {
                 for (mutation of mutations) {
                     let target = mutation.target;
@@ -309,8 +336,34 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     //<2 hide pagination when on appbar load slides t
 
                     //>2 append "View image" button t
-                    cs.view_or_download_img.append_view_and_download_img_btns(target);
+                    cs.view_download_img_or_search_by_img.append_view_download_img_btns_and_search_by_imng_btns(target);
                     //<2 append "View image" button t
+
+                    //>2 bind create_img_preview_btns to image previews t
+                    if ((settings.show_view_img_btn && settings.show_view_img_btn_on_img_previews) || (settings.show_search_by_image_btn && settings.show_search_by_image_btn_on_img_previews) || (settings.show_download_img_btn && settings.show_download_img_btn_on_img_previews)) {
+                        if (target.id === 'gsr' && !create_img_preview_btns_binded_to_first_loaded_imgs) {
+
+                            create_img_preview_btns_binded_to_first_loaded_imgs = true;
+
+                            x.add_event_listener_to_multiple_els(target, '.rg_bx', 'mouseenter', cs.view_download_img_or_search_by_img.create_img_preview_btns);
+                            x.add_event_listener_to_multiple_els(target, '.rg_bx', 'mouseleave', cs.view_download_img_or_search_by_img.remove_img_preview_btns);
+
+                        }
+
+                        for (added_node of mutation.addedNodes) {
+                            if (added_node.nodeType === Node.ELEMENT_NODE && x.has_class(added_node, 'rg_bx')) {
+                                added_node.addEventListener('mouseenter', cs.view_download_img_or_search_by_img.create_img_preview_btns);
+                                added_node.addEventListener('mouseleave', cs.view_download_img_or_search_by_img.remove_img_preview_btns);
+                            }
+                        }
+                    }
+                    //<2 bind create_img_preview_btns to image previews t
+
+                    //>2 create download_all_imgs_btn in tools menu t
+                    if (s('#gs_si0') && settings.show_download_img_btn && settings.show_download_all_imgs_btn) { // if google home page or Images page
+                        cs.view_download_img_or_search_by_img.create_download_all_imgs_btn();
+                    }
+                    //<2 create download_all_imgs_btn in tools menu t
                 }
             });
 
@@ -997,10 +1050,13 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
     })();
     //< sticking elements t
 
-    //> view_or_download_img o
-    cs.view_or_download_img = (() => {
-        //>1 append_view_and_download_img_btns f
-        function append_view_and_download_img_btns(basae_element) {
+    //> view_download_img_or_search_by_img o
+    cs.view_download_img_or_search_by_img = (() => {
+        let search_by_img_btns_appended = false;
+        let download_all_imgs_current_node_index = 0;
+
+        //>1 append_view_download_img_btns_and_search_by_imng_btns f
+        function append_view_download_img_btns_and_search_by_imng_btns(basae_element) {
             if (settings.show_view_img_btn || settings.show_download_img_btn) {
                 let img_viewer_btn_wrappers = sab(basae_element, '.iAcjwd.irc_but_r tr');
 
@@ -1021,7 +1077,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                             let download_img_btn_html = '';
 
                             if (settings.show_view_img_btn) {
-                                view_img_btn_html = '<td><a class="' + ext_id('view_img_btns') + ' ' + ext_id('my_img_action_btns') + '" tabindex="0"><span class="RL3J9c Cws1Yc wmCrUb">' + svg.image + '</span><span class="Tl8XHc">' + locale.view_img_btns_text + '</span></a></td>';
+                                view_img_btn_html = '<td><a class="' + ext_id('view_img_btns') + ' ' + ext_id('my_img_action_btns') + '" tabindex="0"><span class="RL3J9c Cws1Yc wmCrUb">' + svg.eye + '</span><span class="Tl8XHc">' + locale.view_img_btns_text + '</span></a></td>';
                             }
 
                             if (settings.show_download_img_btn) {
@@ -1030,25 +1086,61 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                             img_viewer_btn_wrapper.insertAdjacentHTML('afterend', '<tr class="' + ext_id('my_img_action_trs') + '"> ' + view_img_btn_html + download_img_btn_html + '</tr>');
 
-                            x.add_event_listener_to_multiple_els(document.body, '.' + ext_id('my_img_action_btns'), 'mousedown', view_or_download_img);
+                            let img_viewer_btns_wrapper = img_viewer_btn_wrapper.closest('.iAcjwd.irc_but_r');
+                            let view_img_btn = sb(img_viewer_btns_wrapper, '.' + ext_id('view_img_btns'));
+                            let download_img_btn = sb(img_viewer_btns_wrapper, '.' + ext_id('download_img_btns'));
+
+                            if (view_img_btn) {
+                                view_img_btn.addEventListener('mousedown', view_download_img_or_search_by_img.bind(view_img_btn, 'image_viewer', 'view_img', null));
+                            }
+
+                            if (download_img_btn) {
+                                download_img_btn.addEventListener('mousedown', view_download_img_or_search_by_img.bind(download_img_btn, 'image_viewer', 'download_img', null));
+                            }
                         }
                     }
                 }
             }
-        }
-        //<1 append_view_and_download_img_btns f
 
-        //>1 view_or_download_img f
-        function view_or_download_img(e) {
+            let search_by_img_wrappers = sa('.irc_hd  [class="rn92ee"]');
+
+            if (search_by_img_wrappers[0] && !search_by_img_btns_appended && settings.show_search_by_image_btn) {
+                search_by_img_btns_appended = true;
+
+                for (search_by_img_wrapper of search_by_img_wrappers) {
+                    search_by_img_wrapper.insertAdjacentHTML('beforeend', '<a class="' + ext_id('search_by_img_btns') + ' o5rIVb irc_hol i3724" tabindex="0" href="javascript:void(0)"><span class="irc_ho">' + locale.search_by_img_btns_text + '</span></a>'); // javascript:void(0) = prevent search by image link from opening
+
+                    let search_by_img_btns = sb(search_by_img_wrapper, '.' + ext_id('search_by_img_btns'));
+
+                    search_by_img_btns.addEventListener('mousedown', view_download_img_or_search_by_img.bind(search_by_img_btns, 'image_viewer', 'search_by_img', null));
+                }
+            }
+        }
+        //<1 append_view_download_img_btns_and_search_by_imng_btns f
+
+        //>1 view_download_img_or_search_by_img f
+        function view_download_img_or_search_by_img(mode, send_message_mode, meta_el, e) {
             let mouse_btn = e.button;
 
             if (mouse_btn !== 2) { // if not right-click
                 e.preventDefault();
 
-                let image_el_id = this.closest('.immersive-container').dataset.itemId;
-                let image_el = s('[name="' + image_el_id + '"]');
-                let image_el_wrapper = image_el.closest('.rg_bx');
-                let image_data = sb(image_el_wrapper, '.rg_meta').innerHTML;
+                if (mode === 'image_viewer') {
+                    let image_el_id = this.closest('.immersive-container').dataset.itemId;
+                    let image_el = s('[name="' + image_el_id + '"]');
+                    var image_el_wrapper = image_el.closest('.rg_bx');
+
+                } else if (mode === 'preview') {
+                    var image_el_wrapper = this.closest('.rg_bx');
+                }
+
+                if (mode === 'image_viewer' || mode === 'preview') {
+                    var image_data = sb(image_el_wrapper, '.rg_meta').innerHTML;
+
+                } else if (mode === 'download_all') {
+                    var image_data = meta_el.innerHTML;
+                }
+
                 let json = JSON.parse(image_data);
                 let img = json.ou;
 
@@ -1059,29 +1151,113 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     var active = false;
                 }
 
-                send_message_to_background_to_view_or_download_img(img, this, active);
+                send_message_to_background_to_view_download_img_or_search_by_img(send_message_mode, img, active);
             }
         }
-        //<1 view_or_download_img f
+        //<1 view_download_img_or_search_by_img f
 
-        //>1 send_message_to_background_to_view_or_download_img f
-        async function send_message_to_background_to_view_or_download_img(img, btn, active) {
-            if (x.has_class(btn, ext_id('view_img_btns'))) {
-                x.send_message_to_background({ message: 'view_img', img: img, active: active });
+        //>1 send_message_to_background_to_view_download_img_or_search_by_img f
+        async function send_message_to_background_to_view_download_img_or_search_by_img(mode, img, active) {
+            if (mode === 'view_img') {
+                x.send_message_to_background({ message: mode, img: img, active: active });
 
-            } else if (x.has_class(btn, ext_id('download_img_btns'))) {
-                browser.runtime.sendMessage({ message: "download_img", img: img, show_save_as_dialog_on_img_download: settings.show_save_as_dialog_on_img_download, download_imgs_path: settings.download_imgs_path }, response => {
+            } else if (mode === 'search_by_img') {
+                x.send_message_to_background({ message: mode, img: img, active: active });
+
+            } else if (mode === 'download_img') {
+                browser.runtime.sendMessage({ message: mode, img: img, show_save_as_dialog_on_img_download: settings.show_save_as_dialog_on_img_download, download_imgs_path: settings.download_imgs_path }, response => {
                     if (response) {
                         alert(locale.img_download_error_alert);
                     }
                 });
             }
         }
-        //<1 send_message_to_background_to_view_or_download_img f
+        //<1 send_message_to_background_to_view_download_img_or_search_by_img f
+
+        //>1 create_img_preview_btns f
+        function create_img_preview_btns() { // g
+            let img_preview_btns_wrapper = x.create('div', ext_id('img_preview_btns_wrapper'));
+            x.as_first(this, img_preview_btns_wrapper);
+
+            if (settings.show_view_img_btn && settings.show_view_img_btn_on_img_previews) {
+                create_img_preview_btn('view_img', img_preview_btns_wrapper, 'img_preview_view_img_btn', 'eye', 'view_img_btns_text');
+            }
+
+            if (settings.show_search_by_image_btn && settings.show_search_by_image_btn_on_img_previews) {
+                create_img_preview_btn('search_by_img', img_preview_btns_wrapper, 'img_preview_search_by_image_btn', 'search', 'search_by_img_btns_text');
+            }
+
+            if (settings.show_download_img_btn && settings.show_download_img_btn_on_img_previews) {
+                create_img_preview_btn('download_img', img_preview_btns_wrapper, 'img_preview_download_img_btn', 'download', 'download_img_btns_text');
+            }
+        }
+        //<1 create_img_preview_btns f
+
+        //>1 create_img_preview_btn f
+        function create_img_preview_btn(send_message_mode, img_preview_btns_wrapper, btn_class, svg_name, locale_name) {
+            let btn = x.create('button', ext_id(btn_class) + ' ' + ext_id('img_preview_btns'));
+            btn.innerHTML = svg[svg_name];
+            btn.title = locale[locale_name];
+            x.append(img_preview_btns_wrapper, btn);
+
+            btn.addEventListener('mousedown', view_download_img_or_search_by_img.bind(btn, 'preview', send_message_mode, null));
+        }
+        //<1 create_img_preview_btn f
+
+        //>1 remove_img_preview_btns f
+        function remove_img_preview_btns() { // g
+            x.remove(sb(this, '.' + ext_id('img_preview_btns_wrapper')));
+        }
+        //<1 remove_img_preview_btns f
+
+        //>1 create download_all_imgs_btn in tools menu t
+        function create_download_all_imgs_btn() { // g
+            let download_all_imgs_btn = s(ext_id('.download_all_imgs_btn'));
+
+            if (!download_all_imgs_btn) {
+                let tools = s('.hdtb-mn-cont');
+
+                tools.insertAdjacentHTML('beforeend', '<div class="' + ext_id('download_all_imgs_btn') + ' hdtb-mn-hd" aria-haspopup="true" role="button" tabindex="0"><div class="mn-hd-txt">' + locale.download_all_imgs_btn_text + '</div></div>');
+
+                download_all_imgs_btn = sb(tools, ext_id('.download_all_imgs_btn'));
+
+                download_all_imgs_btn.addEventListener('mousedown', download_all_imgs);
+            }
+        }
+        //<1 create download_all_imgs_btn in tools menu t
+
+        //>1 download_all_imgs f
+        function download_all_imgs(e) {
+            if (e.button !== 2) { // if not right-click
+                e.preventDefault();
+
+                let meta_els = sa('.rg_meta:not(.tHqoQ)'); // :not(.tHqoQ) = skip related images in image viewer
+                let last_node_index = meta_els.length;
+
+                if (download_all_imgs_current_node_index !== last_node_index) {
+                    let event = new Event('');
+                    event.button = 0;
+
+                    for (; download_all_imgs_current_node_index < last_node_index;) {
+                        view_download_img_or_search_by_img.call(null, 'download_all', 'download_img', meta_els.item(download_all_imgs_current_node_index), event);
+
+                        download_all_imgs_current_node_index++;
+                    }
+
+                } else {
+                    alert(locale.you_already_downloaded_these_images_alert);
+                }
+            }
+        }
+        //<1 download_all_imgs f
+
 
         return {
-            append_view_and_download_img_btns: append_view_and_download_img_btns
+            append_view_download_img_btns_and_search_by_imng_btns: append_view_download_img_btns_and_search_by_imng_btns,
+            create_img_preview_btns: create_img_preview_btns,
+            remove_img_preview_btns: remove_img_preview_btns,
+            create_download_all_imgs_btn: create_download_all_imgs_btn
         }
     })();
-    //< view_or_download_img o
+    //< view_download_img_or_search_by_img o
 })();

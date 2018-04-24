@@ -10,6 +10,7 @@
     "css/sticky_header.css",
     "css/compact_header.css",
     "css/hiddden_people_also_search_for.css",
+    "css/img_preview_btns.css",
     "flags/*"
   ],
   "icons": {
@@ -834,6 +835,6 @@
   "options_ui": {
     "page": "options.html",
     "chrome_style": false,
-    "open_in_tab": false
+    "open_in_tab": true
   }
 }
