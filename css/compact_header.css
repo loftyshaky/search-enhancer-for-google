@@ -47,10 +47,15 @@ html[dir="rtl"] .hdtb-mitem:first-child {
     width: 0;
 }
 
+html[dir="rtl"] #ab_ctls {
+    right: unset;
+    left: auto;
+}
+
 #hdtbMenus {
     width: inherit;
     position: absolute;
-    right: 0px;
+    right: 0;
 }
 
 #hdtbMenus {

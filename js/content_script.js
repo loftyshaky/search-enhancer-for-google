@@ -958,7 +958,9 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         //>1 get_margin_of_view_saved_or_safe_search f
         function get_margin_of_view_saved_or_safe_search(el) {
             if (x.has_class(el, 'ab_ctl')) { // if view saved or safe search
-                return parseInt(window.getComputedStyle(el).marginLeft);
+                let margin_left = parseInt(window.getComputedStyle(el).marginLeft);
+
+                return margin_left !== 0 ? margin_left : parseInt(window.getComputedStyle(el).marginRight);
 
             } else {
                 return 0;
