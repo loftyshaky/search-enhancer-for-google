@@ -464,7 +464,7 @@ html[dir="rtl"] #navcnt {
 }
 
 .out_of_view_pipbbdfondfipmjmdkmggihiknhmcfhd {
-	position: absolute;
+	position: fixed;
     left: -9999px;
 }
 
