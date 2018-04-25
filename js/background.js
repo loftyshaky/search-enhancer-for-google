@@ -124,7 +124,7 @@ browser.runtime.onInstalled.addListener(async e => {
             o.settings.show_search_by_image_btn_on_img_previews = true;
         }
 
-        if ('stick_header' in o.settings) {{ // april 26 2018
+        if ('stick_header' in o.settings) { // april 26 2018
             o.settings.sticky_header = true;
 
             delete o.settings.stick_header;
