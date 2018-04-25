@@ -11,6 +11,7 @@
     "css/compact_header.css",
     "css/hiddden_people_also_search_for.css",
     "css/img_preview_btns.css",
+    "css/collapsed_safe_search_menu.css",
     "flags/*"
   ],
   "icons": {

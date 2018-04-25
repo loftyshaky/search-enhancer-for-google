@@ -68,7 +68,7 @@
 
 //> sticking elements t
 
-//>1 stick or unstick pagination, turn off / on button and header t + //>2 pagination and turn_off_btn t;  //>2 related searches t; //<2 header f; //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t; //>3 hide tools menu t
+//>1 stick or unstick pagination, turn off / on button and header t + //>2 pagination and turn_off_btn t;  //>2 related searches t;  //>2 safe search etc t; //<2 header f; //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t; //>3 hide tools menu t
 
 //>1 get_header_size f
 
@@ -820,8 +820,18 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
     //> sticking elements t
     cs.sticking = (() => {
+        let header_right_hand_els_width;
+
         //>1 stick or unstick pagination, turn off / on button and header t
-        function stick_els() {
+        async function stick_els() {
+            await x.delay(0);
+
+            if (typeof header_right_hand_els_width === 'undefined') {
+                let safe_search_etc = s('#ab_ctls');
+
+                header_right_hand_els_width = s('#hdtb-msb').offsetWidth + safe_search_etc.offsetWidth + parseInt(window.getComputedStyle(safe_search_etc).right) + 16;
+            }
+
             let scroll_top = cs.get_window_scroll_top();
             let header_size_o = get_header_size();
 
@@ -876,6 +886,27 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 }
                 //<2 related searches t
             }
+
+            //>2 safe search etc t
+            if (settings.stick_header || (settings.stick_header && settings.compact_header && scroll_top === 0)) {
+                let ab_ctls = s('#ab_ctls');
+
+                if (header_right_hand_els_width > window.innerWidth) {
+                    x.load_css(document, 'collapsed_safe_search_menu');
+
+                    if (scroll_top === 0) {
+                        x.remove_class(ab_ctls, ext_id('none'));
+
+                    } else {
+                        x.add_class(ab_ctls, ext_id('none'));
+                    }
+
+                } else {
+                    x.remove(s(ext_id('.collapsed_safe_search_menu')));
+                    x.remove_class(ab_ctls, ext_id('none'));
+                }
+            }
+            //<2 safe search etc t
 
             //<2 header f
             if (settings.compact_header) {

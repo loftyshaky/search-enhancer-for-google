@@ -1,0 +1,8 @@
+#ab_ctls {
+    position: fixed;
+    top: 122px;
+}
+
+#center_col {
+    margin-top: 28px; /* the gap between safe search etc and tags is 2px (margin-top: 27px;) but scroll position changes instantly when set to it and scrolling from top. Because of that i made gap 3px (margin-top: 28px;) */
+}
