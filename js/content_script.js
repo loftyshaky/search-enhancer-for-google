@@ -1134,8 +1134,8 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
                 if (mode === 'image_viewer') {
                     let image_el_id = this.closest('.immersive-container').dataset.itemId;
-                    let image_el = s('[name="' + image_el_id + '"]');
-                    var image_el_wrapper = image_el.closest('.rg_bx');
+                    let image_el = s('[name="' + image_el_id + '"]') || s('.irc_rimask[data-item-id="' + image_el_id + '"]'); // .irc_rimask[data-item-id = if Related images
+                    var image_el_wrapper = image_el.closest('.rg_bx') || image_el; // image_el = if Related images
 
                 } else if (mode === 'preview') {
                     var image_el_wrapper = this.closest('.rg_bx');
