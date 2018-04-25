@@ -1060,6 +1060,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
     cs.view_download_img_or_search_by_img = (() => {
         let search_by_img_btns_appended = false;
         let download_all_imgs_current_node_index = 0;
+        let origin = window.location.origin;
 
         //>1 append_view_download_img_btns_and_search_by_imng_btns f
         function append_view_download_img_btns_and_search_by_imng_btns(basae_element) {
@@ -1157,18 +1158,18 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     var active = false;
                 }
 
-                send_message_to_background_to_view_download_img_or_search_by_img(send_message_mode, img, active);
+                send_message_to_background_to_view_download_img_or_search_by_img(send_message_mode, img, active, origin);
             }
         }
         //<1 view_download_img_or_search_by_img f
 
         //>1 send_message_to_background_to_view_download_img_or_search_by_img f
-        async function send_message_to_background_to_view_download_img_or_search_by_img(mode, img, active) {
+        async function send_message_to_background_to_view_download_img_or_search_by_img(mode, img, active, origin) {
             if (mode === 'view_img') {
                 x.send_message_to_background({ message: mode, img: img, active: active });
 
             } else if (mode === 'search_by_img') {
-                x.send_message_to_background({ message: mode, img: img, active: active });
+                x.send_message_to_background({ message: mode, img: img, active: active, origin: origin });
 
             } else if (mode === 'download_img' || mode === 'download_all_imgs') {
                 if (mode === 'download_img') {

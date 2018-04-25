@@ -164,7 +164,7 @@ browser.runtime.onMessage.addListener((message_o, sender, send_response) => {
 
         }, tab => {
             browser.tabs.create({
-                url: message_o.message !== 'search_by_img' ? message_o.img : 'https://www.google.ru/searchbyimage?&image_url=' + message_o.img,
+                url: message_o.message !== 'search_by_img' ? message_o.img : message_o.origin + '/searchbyimage?&image_url=' + message_o.img,
                 index: tab[0].index + 1,
                 active: message_o.active
             });
