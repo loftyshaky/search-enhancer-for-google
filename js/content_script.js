@@ -6,7 +6,7 @@
 
 //>1 show paginator if settings.show_paginator === true t
 
-//>1 stick header if settings.stick_header === true t
+//>1 stick header if settings.sticky_header === true t
 
 //>1 hide people also search block if settings.show_people_also_search_for === false t
 
@@ -32,7 +32,7 @@
 
 //>1 load site icons on page load t
 
-//>1 catch dom changes t + //>2 hide pagination when on appbar load slides t; //>2 append "View image" button t; //>2 bind create_img_preview_btns to image previews t; //>2 create download_all_imgs_btn in tools menu t
+//>1 catch dom changes t + //>2 hide pagination when on appbar load slides t; //>2 append "View image" button t; //>2 bind create_img_preview_btns to image previews t; //>2 create download_all_imgs_btn in tools menu t; //>2 catch search_by_img_drop_zone adding t; //>2 search by image by draggging and droppping image observer t;  //>3 add_or_remove_stick_and_compact_header_css f
 
 //> loading o
 
@@ -81,6 +81,8 @@
 //>1 move_related_searches_el f
 
 //>1 set_box_shadow_on_searchbar_if_not_on_top t
+
+//>1 insert_all_images_etc_at_default_position f
 
 //> view_download_img_or_search_by_img o
 
@@ -168,11 +170,11 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         })();
         //<1 show paginator t
 
-        //>1 stick header if settings.stick_header === true t
-        if (settings.stick_header) {
+        //>1 stick header if settings.sticky_header === true t
+        if (settings.sticky_header) {
             x.load_css(document, 'sticky_header');
         }
-        //<1 stick header if settings.stick_header === true t
+        //<1 stick header if settings.sticky_header === true t
 
         //>1 hide people also search block if settings.show_people_also_search_for === false t
         if (!settings.show_people_also_search_for) {
@@ -205,7 +207,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                     }
 
                 } else {
-                    if (settings.stick_header) {
+                    if (settings.sticky_header) {
                         x.add_class(s('#navcnt'), ext_id('paginator_when_turn_off_btn_hidden_and_header_sticked'));
 
                     } else {
@@ -246,16 +248,16 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 x.append(document.body, scroll_to_top_btn);
 
                 scroll_to_top_btn.addEventListener('click', scroll_to_top);
+                scroll_to_top_btn.addEventListener('transitionend', x.set_faded_out_to_none.bind(scroll_to_top_btn, true));
                 window.addEventListener('scroll', hide_or_show_scroll_to_top_btn);
 
                 hide_or_show_scroll_to_top_btn();
 
                 //>2 hide_or_show_scroll_to_top_btn f
-                function hide_or_show_scroll_to_top_btn() {
-
+                async function hide_or_show_scroll_to_top_btn() {
                     if (cs.get_window_scroll_top() === 0) {
                         if (!x.has_class(scroll_to_top_btn, ext_id('none'))) {
-                            x.fade_out(scroll_to_top_btn, true, true);
+                            x.fade_out(scroll_to_top_btn, true, false);
 
                         } else {
                             x.add_class(scroll_to_top_btn, ext_id('opacity_0'));
@@ -288,7 +290,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 let tools_menu = s('#hdtbMenus');
 
                 if (tools_menu.getAttribute('aria-expanded') === 'false') {
-                    if (settings.stick_header && settings.compact_header) {
+                    if (settings.sticky_header && settings.compact_header) {
 
                         tools_menu.style.display = '';  // not adding 'none' class because it breaks tools disabling
 
@@ -339,7 +341,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         (() => {
             let create_img_preview_btns_binded_to_first_loaded_imgs = false;
 
-            let observer = new MutationObserver(function (mutations) {
+            let observer_general = new MutationObserver(function (mutations) {
                 for (mutation of mutations) {
                     let target = mutation.target;
 
@@ -380,10 +382,60 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                         cs.view_download_img_or_search_by_img.create_download_all_imgs_btn();
                     }
                     //<2 create download_all_imgs_btn in tools menu t
+
+                    //>2 catch search_by_img_drop_zone adding t
+                    for (added_node of mutation.addedNodes) {
+                        if (added_node.id === 'qbp') {
+                            add_or_remove_stick_and_compact_header_css(target);
+
+                            observer_drag_search_by_img.observe(added_node, { attributes: true });
+                        }
+                    }
+                    //<2 catch search_by_img_drop_zone adding t
                 }
             });
 
-            observer.observe(document.body, { childList: true, subtree: true });
+            observer_general.observe(document.body, { childList: true, subtree: true });
+
+            //>2 search by image by draggging and droppping image observer t
+            let observer_drag_search_by_img = new MutationObserver(function (mutations) {
+                cs.sticking.searching_by_image_by_draggging_and_droppping = true;
+
+                for (mutation of mutations) {
+                    add_or_remove_stick_and_compact_header_css(mutation.target);
+                }
+            });
+
+            //>3 add_or_remove_stick_and_compact_header_css f
+            function add_or_remove_stick_and_compact_header_css(search_by_img_drop_zone) {
+                if (!search_by_img_drop_zone.style.display || search_by_img_drop_zone.style.display !== 'none' || x.has_class(search_by_img_drop_zone, 'qbup')) {
+                    let all_images_etc = s('#top_nav');
+
+                    if (all_images_etc.closest('#searchform')) {
+                        cs.sticking.insert_all_images_etc_at_default_position(all_images_etc);
+                    }
+
+                    x.remove(s(ext_id('.sticky_header')));
+                    x.remove(s(ext_id('.compact_header')));
+
+                    cs.sticking.get_header_size(); // unhide hidden all_images_etc items
+
+                } else {
+                    cs.sticking.searching_by_image_by_draggging_and_droppping = false;
+
+                    if (settings.sticky_header) {
+                        x.load_css(document, 'sticky_header');
+                    }
+
+                    if (settings.compact_header) {
+                        x.load_css(document, 'compact_header');
+                    }
+
+                    cs.sticking.stick_els();
+                }
+            }
+            //<3 add_or_remove_stick_and_compact_header_css f
+            //<2 search by image by draggging and droppping image observer t
         })();
         //<1 catch dom changes t
     });
@@ -821,136 +873,139 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
     //> sticking elements t
     cs.sticking = (() => {
         let header_right_hand_els_width;
+        let searching_by_image_by_draggging_and_droppping = false; // g
 
         //>1 stick or unstick pagination, turn off / on button and header t
         async function stick_els() {
             await x.delay(0);
 
-            if (typeof header_right_hand_els_width === 'undefined') {
-                let safe_search_etc = s('#ab_ctls');
+            if (!cs.sticking.searching_by_image_by_draggging_and_droppping) {
+                if (typeof header_right_hand_els_width === 'undefined') {
+                    let safe_search_etc = s('#ab_ctls');
 
-                header_right_hand_els_width = s('#hdtb-msb').offsetWidth + safe_search_etc.offsetWidth + parseInt(window.getComputedStyle(safe_search_etc).right) + 16;
-            }
-
-            let scroll_top = cs.get_window_scroll_top();
-            let header_size_o = get_header_size();
-
-            if (!s('#gs_si0')) { // if not google home page or Images page
-                //>2 pagination and turn_off_btn t
-                let turn_off_btn = s(ext_id('.turn_off_btn'));
-                let pagination = s('#navcnt');
-                let turn_off_btn_modifier = 46;
-                let pagination_modifier = 93;
-
-                if (scroll_top >= header_size_o.size) {
-                    var stick_size = set_stick_size(header_size_o.size, true);
-                    var toggle_f = 'add_class';
-
-                } else {
-                    var stick_size = set_stick_size(header_size_o.size, false);
-                    var toggle_f = 'remove_class';
+                    header_right_hand_els_width = s('#hdtb-msb').offsetWidth + safe_search_etc.offsetWidth + parseInt(window.getComputedStyle(safe_search_etc).right) + 16;
                 }
 
-                if (turn_off_btn) {
-                    turn_off_btn.style.top = stick_size + turn_off_btn_modifier + 'px';
-                    pagination.style.top = stick_size + pagination_modifier + 'px';
+                let scroll_top = cs.get_window_scroll_top();
+                let header_size_o = cs.sticking.get_header_size();
 
-                    x[toggle_f](turn_off_btn, ext_id('fixed'));
-                    x[toggle_f](pagination, ext_id('fixed'));
-                }
-                //<2 pagination and turn_off_btn t
+                if (!s('#gs_si0')) { // if not google home page or Images page
+                    //>2 pagination and turn_off_btn t
+                    let turn_off_btn = s(ext_id('.turn_off_btn'));
+                    let pagination = s('#navcnt');
+                    let turn_off_btn_modifier = 46;
+                    let pagination_modifier = 93;
 
-                //>2 related searches t
-                let related_searches = s('#brs');
-                let sidepanel = s('#rhs_block');
-                let appbar = s('#appbar');
-
-                if (sidepanel && related_searches && appbar) {
-                    let sidepanel_height = sidepanel.offsetHeight;
-                    let appbar_height = appbar.offsetHeight;
-                    let related_searches_modifier = 61;
-                    let stick_size_1 = settings.stick_header ? 0 : header_size_o.size
-
-                    if (scroll_top >= sidepanel_height + appbar_height + stick_size_1 - related_searches_modifier) {
-                        var stick_size_2 = set_stick_size(header_size_o.size, true);
+                    if (scroll_top >= header_size_o.size) {
+                        var stick_size = set_stick_size(header_size_o.size, true);
                         var toggle_f = 'add_class';
 
                     } else {
-                        var stick_size_2 = set_stick_size(header_size_o.size, false);
+                        var stick_size = set_stick_size(header_size_o.size, false);
                         var toggle_f = 'remove_class';
                     }
 
-                    related_searches.style.top = stick_size_2 + related_searches_modifier + 'px';
+                    if (turn_off_btn) {
+                        turn_off_btn.style.top = stick_size + turn_off_btn_modifier + 'px';
+                        pagination.style.top = stick_size + pagination_modifier + 'px';
 
-                    x[toggle_f](related_searches, ext_id('fixed'));
+                        x[toggle_f](turn_off_btn, ext_id('fixed'));
+                        x[toggle_f](pagination, ext_id('fixed'));
+                    }
+                    //<2 pagination and turn_off_btn t
+
+                    //>2 related searches t
+                    let related_searches = s('#brs');
+                    let sidepanel = s('#rhs_block');
+                    let appbar = s('#appbar');
+
+                    if (sidepanel && related_searches && appbar) {
+                        let sidepanel_height = sidepanel.offsetHeight;
+                        let appbar_height = appbar.offsetHeight;
+                        let related_searches_modifier = 61;
+                        let stick_size_1 = settings.sticky_header ? 0 : header_size_o.size
+
+                        if (scroll_top >= sidepanel_height + appbar_height + stick_size_1 - related_searches_modifier) {
+                            var stick_size_2 = set_stick_size(header_size_o.size, true);
+                            var toggle_f = 'add_class';
+
+                        } else {
+                            var stick_size_2 = set_stick_size(header_size_o.size, false);
+                            var toggle_f = 'remove_class';
+                        }
+
+                        related_searches.style.top = stick_size_2 + related_searches_modifier + 'px';
+
+                        x[toggle_f](related_searches, ext_id('fixed'));
+                    }
+                    //<2 related searches t
                 }
-                //<2 related searches t
-            }
 
-            //>2 safe search etc t
-            if (settings.stick_header || (settings.stick_header && settings.compact_header && scroll_top === 0)) {
-                let ab_ctls = s('#ab_ctls');
+                //>2 safe search etc t
+                if (settings.sticky_header || (settings.sticky_header && settings.compact_header && scroll_top === 0)) {
+                    let ab_ctls = s('#ab_ctls');
 
-                if (header_right_hand_els_width > window.innerWidth) {
-                    x.load_css(document, 'collapsed_safe_search_menu');
+                    if (header_right_hand_els_width > window.innerWidth) {
+                        x.load_css(document, 'collapsed_safe_search_menu');
 
-                    if (scroll_top === 0) {
+                        if (scroll_top === 0) {
+                            x.remove_class(ab_ctls, ext_id('none'));
+
+                        } else {
+                            x.add_class(ab_ctls, ext_id('none'));
+                        }
+
+                    } else {
+                        x.remove(s(ext_id('.collapsed_safe_search_menu')));
                         x.remove_class(ab_ctls, ext_id('none'));
-
-                    } else {
-                        x.add_class(ab_ctls, ext_id('none'));
-                    }
-
-                } else {
-                    x.remove(s(ext_id('.collapsed_safe_search_menu')));
-                    x.remove_class(ab_ctls, ext_id('none'));
-                }
-            }
-            //<2 safe search etc t
-
-            //<2 header f
-            if (settings.compact_header) {
-                let search_input_form = s('.sfbg.nojsv');
-                let all_images_etc = s('#top_nav');
-
-                if (header_size_o.is_compact) {
-                    x.append(search_input_form, all_images_etc);
-
-                    x.load_css(document, 'compact_header');
-
-                } else {
-                    let bst = s('#bst');
-
-                    x.after(bst, all_images_etc);
-
-                    x.remove(s(ext_id('.compact_header')))
-                }
-
-                //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
-                let irc_bg = s('#irc_bg');
-
-                if (irc_bg) {
-                    irc_bg.style.top = s('#irc_pbg').getBoundingClientRect().top + cs.get_window_scroll_top() + 'px';
-                }
-                //<3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
-
-                //>3 hide tools menu t
-                if (settings.stick_header && settings.compact_header) {
-                    if (scroll_top !== 0) {
-                        s('#hdtbMenus').style.display = 'none'; // not adding 'none' class because it breaks tools disabling
-
-                    } else {
-                        s('#hdtbMenus').style.display = ''; // not adding 'none' class because it breaks tools disabling
                     }
                 }
-                //<3 hide tools menu t
+                //<2 safe search etc t
+
+                //<2 header f
+                if (settings.compact_header) {
+                    let search_input_form = s('.sfbg.nojsv');
+                    let all_images_etc = s('#top_nav');
+
+                    if (header_size_o.is_compact) {
+                        x.append(search_input_form, all_images_etc);
+
+                        x.load_css(document, 'compact_header');
+
+                    } else {
+                        let bst = s('#bst');
+
+                        x.after(bst, all_images_etc);
+
+                        x.remove(s(ext_id('.compact_header')))
+                    }
+
+                    //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
+                    let irc_bg = s('#irc_bg');
+
+                    if (irc_bg) {
+                        irc_bg.style.top = s('#irc_pbg').getBoundingClientRect().top + cs.get_window_scroll_top() + 'px';
+                    }
+                    //<3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
+
+                    //>3 hide tools menu t
+                    if (settings.sticky_header && settings.compact_header) {
+                        if (scroll_top !== 0) {
+                            s('#hdtbMenus').style.display = 'none'; // not adding 'none' class because it breaks tools disabling
+
+                        } else {
+                            s('#hdtbMenus').style.display = ''; // not adding 'none' class because it breaks tools disabling
+                        }
+                    }
+                    //<3 hide tools menu t
+                }
+                //<2 header t
             }
-            //<2 header t
         }
         //<1 stick or unstick pagination, turn off / on button and header t
 
         //>1 get_header_size f
-        function get_header_size() {
+        function get_header_size() { // g
             let header_size_o = {};
             let compare_value = document.documentElement.clientWidth + 29; // gap between all, images etc and login items should be 40px when language of google.com is english
             let scroll_top = cs.get_window_scroll_top();
@@ -975,7 +1030,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 compare_value -= 15;
             }
 
-            if (settings.stick_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value >= header_els_width))) { // don't resize header when first loaded if ((stick_els_f_runned_once || scroll_top !== 0) && settings.stick_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value > header_els_width)))
+            if (settings.sticky_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value >= header_els_width))) { // don't resize header when first loaded if ((stick_els_f_runned_once || scroll_top !== 0) && settings.sticky_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value > header_els_width)))
                 header_size_o.size = 65;
                 header_size_o.is_compact = true;
 
@@ -984,7 +1039,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 header_size_o.is_compact = false;
             }
 
-            if (scroll_top !== 0 && settings.stick_header && settings.compact_header) {
+            if (scroll_top !== 0 && settings.sticky_header && settings.compact_header) {
                 while (el_to_hide_index !== - 1 && compare_value + (is_image_tab && !x.has_class(all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index], 'ab_ctl') ? 16 : 0) < header_els_width) {
                     x.add_class(all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index], ext_id('hidden'));
 
@@ -1000,7 +1055,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
         //>1 set_stick_size f
         function set_stick_size(header_size, el_pinned) {
-            return settings.stick_header || !el_pinned ? header_size : 0;
+            return settings.sticky_header || !el_pinned ? header_size : 0;
         }
         //<1 set_stick_size f
 
@@ -1027,7 +1082,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 let paginator = s('#navcnt');
 
                 if (paginator, turn_off_btn) {
-                    if (settings.stick_header) {
+                    if (settings.sticky_header) {
                         var moddifier = 0;
 
                     } else {
@@ -1078,7 +1133,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 
             if (searchbar) {
                 if (cs.get_window_scroll_top() !== 0) {
-                    if (settings.stick_header) {
+                    if (settings.sticky_header) {
                         x.add_class(searchbar, ext_id('header_scroll_box_shadow'));
                     }
 
@@ -1092,13 +1147,26 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
         };
         //<1 set_box_shadow_on_searchbar_if_not_on_top t
 
+        //>1 insert_all_images_etc_at_default_position f
+        function insert_all_images_etc_at_default_position(all_images_etc) { // g
+            let bst = s('#bst');
+
+            x.after(bst, all_images_etc);
+        }
+
+        //<1 insert_all_images_etc_at_default_position f
+
         window.addEventListener('scroll', hide_paginator_and_turn_off_btn);
         window.addEventListener('scroll', set_box_shadow_on_searchbar_if_not_on_top);
 
         return {
+            searching_by_image_by_draggging_and_droppping: searching_by_image_by_draggging_and_droppping,
+
             stick_els: stick_els,
+            get_header_size: get_header_size,
             hide_paginator_and_turn_off_btn: hide_paginator_and_turn_off_btn,
-            move_related_searches_el: move_related_searches_el
+            move_related_searches_el: move_related_searches_el,
+            insert_all_images_etc_at_default_position: insert_all_images_etc_at_default_position
         }
     })();
     //< sticking elements t

@@ -30,7 +30,7 @@ async function set_default_settings() {
             'turned_off': false,
             'show_site_icons': true,
             'show_server_locations': true,
-            'stick_header': true,
+            'sticky_header': true,
             'compact_header': true,
             'show_scroll_to_top_btn': true,
             'show_page_separators': true,
@@ -88,40 +88,46 @@ browser.runtime.onInstalled.addListener(async e => {
             o.settings.download_imgs_path = '';
         }
 
-        if (!('unload_pages' in o.settings)) { //  april 17 2018
+        if (!('unload_pages' in o.settings)) { // april 17 2018
             o.settings.unload_pages = false;
         }
 
-        if (!('unload_pages' in o.settings)) { //  april 17 2018
+        if (!('unload_pages' in o.settings)) { // april 17 2018
             o.settings.unload_pages = false;
         }
 
-        if (!('keywords_color' in o.settings)) { //  april 17 2018
+        if (!('keywords_color' in o.settings)) { // april 17 2018
             o.settings.keywords_color = '#dd0000';
         }
 
-        if (!('custom_keywords_color' in o.settings)) { //  april 19 2018
+        if (!('custom_keywords_color' in o.settings)) { // april 19 2018
             o.settings.custom_keywords_color = true;
         }
 
-        if (!('show_view_img_btn_on_img_previews' in o.settings)) { //  april 24 2018
+        if (!('show_view_img_btn_on_img_previews' in o.settings)) { // april 24 2018
             o.settings.show_view_img_btn_on_img_previews = true;
         }
 
-        if (!('show_download_img_btn_on_img_previews' in o.settings)) { //  april 24 2018
+        if (!('show_download_img_btn_on_img_previews' in o.settings)) { // april 24 2018
             o.settings.show_download_img_btn_on_img_previews = true;
         }
 
-        if (!('show_download_all_imgs_btn' in o.settings)) { //  april 24 2018
+        if (!('show_download_all_imgs_btn' in o.settings)) { // april 24 2018
             o.settings.show_download_all_imgs_btn = true;
         }
 
-        if (!('show_search_by_image_btn' in o.settings)) { //  april 24 2018
+        if (!('show_search_by_image_btn' in o.settings)) { // april 24 2018
             o.settings.show_search_by_image_btn = true;
         }
 
-        if (!('show_search_by_image_btn_on_img_previews' in o.settings)) { //  april 24 2018
+        if (!('show_search_by_image_btn_on_img_previews' in o.settings)) { // april 24 2018
             o.settings.show_search_by_image_btn_on_img_previews = true;
+        }
+
+        if ('stick_header' in o.settings) {{ // april 26 2018
+            o.settings.sticky_header = true;
+
+            delete o.settings.stick_header;
         }
 
         x.set(o);

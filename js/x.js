@@ -193,6 +193,8 @@ x.load_css = (doc, filename) => {
         if (x.has_class(el, cls.opacity_0)) {
             el.fade_action = 'fading_in';
 
+            await x.delay(0); // fixes problem when scroll jumps when scrolling from top (bug related to scroll to top button)
+
             x.remove_class(el, cls.none);
 
             await x.delay(50);
@@ -201,9 +203,9 @@ x.load_css = (doc, filename) => {
         }
     };
 
-    x.set_faded_out_to_none = function (e) { // g
+    x.set_faded_out_to_none = function (add_ext_id, e) { // g
         if (e.target === this && this.fade_action === 'fading_out') {
-            x.add_class(this, 'none');
+            x.add_class(this, !add_ext_id ? 'none' : ext_id('none'));
         }
     };
 
