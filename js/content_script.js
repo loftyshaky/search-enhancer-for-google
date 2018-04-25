@@ -22,6 +22,8 @@
 
 //>2 scroll_to_top f
 
+//>2 if tools is not opened and header is sticky and compact show them; if tools is not opened and header is not compact scroll to top
+
 //>1 move related searches element on page load t
 
 //>1 move extra titles (games, movies) and copyright notice ex search: need for speed 2015 t 
@@ -281,7 +283,21 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             }
             //<2 scroll_to_top f
 
-            s('#hdtb-tls').addEventListener('click', scroll_to_top); // scroll to top when clicking on "Tools" button
+            //>2 if tools is not opened and header is sticky and compact show them; if tools is not opened and header is not compact scroll to top
+            s('#hdtb-tls').addEventListener('click', function () {
+                let tools_menu = s('#hdtbMenus');
+
+                if (tools_menu.getAttribute('aria-expanded') === 'false') {
+                    if (settings.stick_header && settings.compact_header) {
+
+                        tools_menu.style.display = '';  // not adding 'none' class because it breaks tools disabling
+
+                    } else {
+                        scroll_to_top();
+                    }
+                }
+            });
+            //<2 if tools is not opened and header is sticky and compact show them; if tools is not opened and header is not compact scroll to top
         })();
         //<1 scroll to top t
 
@@ -890,10 +906,10 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
                 //>3 hide tools menu t
                 if (settings.stick_header && settings.compact_header) {
                     if (scroll_top !== 0) {
-                        x.add_class(s('#hdtbMenus'), ext_id('none'));
+                        s('#hdtbMenus').style.display = 'none'; // not adding 'none' class because it breaks tools disabling
 
                     } else {
-                        x.remove_class(s('#hdtbMenus'), ext_id('none'));
+                        s('#hdtbMenus').style.display = ''; // not adding 'none' class because it breaks tools disabling
                     }
                 }
                 //<3 hide tools menu t
@@ -1174,7 +1190,7 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
             } else if (mode === 'download_img' || mode === 'download_all_imgs') {
                 if (mode === 'download_img') {
                     var show_save_as_dialog_on_img_download = settings.show_save_as_dialog_on_img_download;
-                
+
                 } else if (mode === 'download_all_imgs') {
                     var show_save_as_dialog_on_img_download = false;
                 }
