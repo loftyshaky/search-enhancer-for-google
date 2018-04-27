@@ -1036,14 +1036,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                         x.remove(s(ext_id('.compact_header')))
                     }
 
-                    //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
-                    let irc_bg = s('#irc_bg');
-
-                    if (irc_bg) {
-                        irc_bg.style.top = s('#irc_pbg').getBoundingClientRect().top + cs.get_window_scroll_top() + 'px';
-                    }
-                    //<3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t 
-
                     //>3 hide tools menu t
                     if (settings.sticky_header && settings.compact_header) {
                         if (scroll_top !== 0) {
