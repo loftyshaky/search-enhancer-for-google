@@ -194,7 +194,9 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 }
 
             } else {
-                x.add_class(paginator, ext_id('static'));
+                if (paginator) {
+                    x.add_class(paginator, ext_id('static'));
+                }
             }
         })();
         //<1 show paginator t
