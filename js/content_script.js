@@ -1589,7 +1589,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     let event = new Event('');
                     event.button = 0;
 
-                    for (let ; download_all_imgs_current_node_index < last_node_index;) {
+                    for (; download_all_imgs_current_node_index < last_node_index;) {
                         do_img_action.call(null, 'download_all', 'download_all_imgs', meta_els.item(download_all_imgs_current_node_index), event);
 
                         download_all_imgs_current_node_index++;
