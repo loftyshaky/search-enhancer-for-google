@@ -37,6 +37,8 @@ fieldset:not(:last-child) {
 legend {
     font-size: 20px;
     margin-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 a {
