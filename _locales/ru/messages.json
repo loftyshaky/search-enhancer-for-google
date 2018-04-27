@@ -16,6 +16,22 @@
     "message": "Ссылки"
   },
 
+
+  "enable_infinite_scrolling_text": {
+    "message": "Включить бесконечный скроллинг"
+  },
+  "show_turn_off_btn_text": {
+    "message": "Показывать кнопку включения/выключения"
+  },
+  "show_paginator_text": {
+    "message": "Показывать кнопки страниц"
+  },
+  "show_page_separators_text": {
+    "message": "Показывать разделители страниц"
+  },
+  "unload_pages_text": {
+    "message": "Выгружать страницы вне экрана (снижает потребление RAM)"
+  },
   "sticky_header_text": {
     "message": "Закрепить \"шапку\" наверху страницы"
   },
@@ -28,20 +44,11 @@
   "show_server_locations_text": {
     "message": "Показывать местонахождение серверов"
   },
-  "show_paginator_text": {
-    "message": "Показывать кнопки страниц"
-  },
   "show_people_also_search_for_text": {
     "message": "Показывать \"Похожие запросы\""
   },
-  "show_turn_off_btn_text": {
-    "message": "Показывать кнопку включения/выключения"
-  },
   "show_scroll_to_top_btn_text": {
     "message": "Показывать кнопку \"вверх\""
-  },
-  "show_page_separators_text": {
-    "message": "Показывать разделители страниц"
   },
   "custom_keywords_color_text": {
     "message": "Свой цвет ключевых слов"
@@ -84,9 +91,6 @@
   },
   "show_download_all_imgs_btn_text": {
     "message": "Показывать кнопку \"Скачать все картинки\" в меню инструментов"
-  },
-  "unload_pages_text": {
-    "message": "Выгружать страницы вне экрана (снижает потребление RAM)"
   },
 
   "download_imgs_path_text": {

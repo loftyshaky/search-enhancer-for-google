@@ -186,10 +186,15 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         (() => {
             let paginator = s('#navcnt');
 
-            if (settings.show_paginator && paginator) {
-                x.add_class(paginator, ext_id('visible'));
+            if (settings.enable_infinite_scrolling && settings.show_paginator) {
+                if (paginator) {
+                    x.add_class(paginator, ext_id('visible'));
 
-                paginator.offsetWidth;
+                    x.load_css(document, 'paginator');
+                }
+
+            } else {
+                x.add_class(paginator, ext_id('static'));
             }
         })();
         //<1 show paginator t
@@ -207,7 +212,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         //<1 hide people also search block if settings.show_people_also_search_for === false t
 
         //>1 turn off / on button t
-        (() => {
+        if (settings.enable_infinite_scrolling) {
             let paginator = s('#navcnt');
 
             if (paginator) {
@@ -256,7 +261,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 x.set(o);
             }
             //<2 disable / enable infinity scroll t
-        })();
+        }
         //<1 turn off / on button t
 
         //>1 scroll to top t
@@ -874,42 +879,44 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         }
         //<1 generate_unique_id f
 
-        //>1 unload_iframe f
-        if (settings.unload_pages) {
-            async function unload_iframe() {
-                if (!loading_iframe_placeholder) {
-                    let iframes = sa(ext_id('.iframe') + ', .' + ext_id('first_page_results_wrapper'));
+        if (settings.enable_infinite_scrolling) {
+            //>1 unload_iframe f
+            if (settings.unload_pages) {
+                async function unload_iframe() {
+                    if (!loading_iframe_placeholder) {
+                        let iframes = sa(ext_id('.iframe') + ', .' + ext_id('first_page_results_wrapper'));
 
-                    for (let iframe of iframes) {
-                        if (!x.has_class(iframe, ext_id('none'))) {
-                            var rect = iframe.getBoundingClientRect();
+                        for (let iframe of iframes) {
+                            if (!x.has_class(iframe, ext_id('none'))) {
+                                var rect = iframe.getBoundingClientRect();
 
-                            if (rect.bottom <= - 400) {
-                                let iframe_placeholder = x.create('div', ext_id('iframe_placeholders'));
+                                if (rect.bottom <= - 400) {
+                                    let iframe_placeholder = x.create('div', ext_id('iframe_placeholders'));
 
-                                iframe_placeholder.style.height = iframe.offsetHeight + 'px';
+                                    iframe_placeholder.style.height = iframe.offsetHeight + 'px';
 
-                                if (x.has_class(iframe, 'iframe_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
-                                    iframe_placeholder.dataset.iframe_src = iframe.src;
+                                    if (x.has_class(iframe, 'iframe_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
+                                        iframe_placeholder.dataset.iframe_src = iframe.src;
 
-                                } else if (x.has_class(iframe, 'first_page_results_wrapper_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
-                                    iframe_placeholder.dataset.iframe_src = s('#foot .fl').href;
+                                    } else if (x.has_class(iframe, 'first_page_results_wrapper_pipbbdfondfipmjmdkmggihiknhmcfhd')) {
+                                        iframe_placeholder.dataset.iframe_src = s('#foot .fl').href;
+                                    }
+
+                                    x.replace(iframe, iframe_placeholder)
+
+                                    iframe_placeholder.addEventListener('click', load_page.bind(iframe_placeholder, 'placeholder'));
                                 }
-
-                                x.replace(iframe, iframe_placeholder)
-
-                                iframe_placeholder.addEventListener('click', load_page.bind(iframe_placeholder, 'placeholder'));
                             }
                         }
                     }
                 }
+
+                window.addEventListener('scroll', unload_iframe);
             }
+            //<1 unload_iframe f
 
-            window.addEventListener('scroll', unload_iframe);
+            window.addEventListener('scroll', load_page.bind(null, 'scroll'));
         }
-        //<1 unload_iframe f
-
-        window.addEventListener('scroll', load_page.bind(null, 'scroll'));
 
         return {
             load_site_icons: load_site_icons
@@ -1121,37 +1128,39 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
         //>1 hide paginator and turn off btn if appbar visible t
         function hide_paginator_and_turn_off_btn() { // g (search example: movies)
-            let appbar = s('#appbar');
+            if (settings.enable_infinite_scrolling) {
+                let appbar = s('#appbar');
 
-            if (appbar) {
-                let appbar_height = appbar.offsetHeight;
-                let turn_off_btn = s(ext_id('.turn_off_btn'));
-                let paginator = s('#navcnt');
+                if (appbar) {
+                    let appbar_height = appbar.offsetHeight;
+                    let turn_off_btn = s(ext_id('.turn_off_btn'));
+                    let paginator = s('#navcnt');
 
-                if (paginator, turn_off_btn) {
-                    if (settings.sticky_header) {
-                        var moddifier = 0;
+                    if (paginator, turn_off_btn) {
+                        if (settings.sticky_header) {
+                            var moddifier = 0;
 
-                    } else {
-                        var moddifier = 100;
-                    }
-
-                    if (appbar_height > 100 && cs.get_window_scroll_top() < appbar_height + moddifier) {
-                        if (settings.show_turn_off_btn) {
-                            x.add_class(turn_off_btn, ext_id('none'));
+                        } else {
+                            var moddifier = 100;
                         }
 
-                        if (settings.show_paginator) {
-                            x.remove_class(paginator, ext_id('visible'));
-                        }
+                        if (appbar_height > 100 && cs.get_window_scroll_top() < appbar_height + moddifier) {
+                            if (settings.show_turn_off_btn) {
+                                x.add_class(turn_off_btn, ext_id('none'));
+                            }
 
-                    } else {
-                        if (settings.show_turn_off_btn) {
-                            x.remove_class(turn_off_btn, ext_id('none'));
-                        }
+                            if (settings.show_paginator) {
+                                x.remove_class(paginator, ext_id('visible'));
+                            }
 
-                        if (settings.show_paginator) {
-                            x.add_class(paginator, ext_id('visible'));
+                        } else {
+                            if (settings.show_turn_off_btn) {
+                                x.remove_class(turn_off_btn, ext_id('none'));
+                            }
+
+                            if (settings.show_paginator) {
+                                x.add_class(paginator, ext_id('visible'));
+                            }
                         }
                     }
                 }

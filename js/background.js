@@ -27,14 +27,16 @@ get_settings();
 async function set_default_settings() {
     await x.set({
         'settings': {
+            'enable_infinite_scrolling': true,
             'turned_off': false,
+            'show_paginator': true,
+            'show_page_separators': true,
+            'unload_pages': false,
             'show_site_icons': true,
             'show_server_locations': true,
             'sticky_header': true,
             'compact_header': true,
             'show_scroll_to_top_btn': true,
-            'show_page_separators': true,
-            'show_paginator': true,
             'show_people_also_search_for': true,
             'show_turn_off_btn': true,
             'custom_keywords_color': true,
@@ -51,8 +53,7 @@ async function set_default_settings() {
             'show_download_img_btn_on_img_previews': true,
             'show_save_as_btn_on_img_previews': true,
             'show_copy_img_url_btn_on_img_previews': true,
-            'download_imgs_path': '',
-            'unload_pages': false
+            'download_imgs_path': ''
         }
     });
 
@@ -160,6 +161,10 @@ browser.runtime.onInstalled.addListener(async e => {
 
         if (!('show_copy_img_url_btn_on_img_previews' in o.settings)) { // april 24 2018
             o.settings.show_copy_img_url_btn_on_img_previews = true;
+        }
+
+        if (!('enable_infinite_scrolling' in o.settings)) { // april 24 2018
+            o.settings.enable_infinite_scrolling = true;
         }
 
         x.set(o);
