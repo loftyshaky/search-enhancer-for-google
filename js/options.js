@@ -30,19 +30,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 (() => {
     let els = sa('[data-ih]');
 
-    for (el of els) {
+    for (let el of els) {
         el.innerHTML = x.message(el.dataset.ih); // ih = innerHTML
     }
 
     els = sa('[data-ihh]');
 
-    for (el of els) {
+    for (let el of els) {
         el.href = x.message(el.dataset.ihh); // ihh = innerHTML href
     }
 
     els = sa('[data-t]');
 
-    for (el of els) {
+    for (let el of els) {
         el.title = x.message(el.dataset.t); // t = title 
     }
 })();
@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 //> settings t
 (() => {
+    let reverse_expand_suboptions = ['show_save_as_dialog_on_img_download'];
+
     //>1 change settings (populate storage) t
     async function change_settings() {
         try {
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         let o = await x.get('settings');
         let els = sa('.settings_items, .settings_items_input_e');
 
-        for (el of els) {
+        for (let el of els) {
             let storage_name = el.dataset.storage;
 
             if (el.type === 'checkbox') {
@@ -130,6 +132,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     //>1 expand_subotions f
     function expand_subotions(storage_name, storage_vsalue) {
         let subotions = s('.' + storage_name + '_subotions');
+
+        if (reverse_expand_suboptions.indexOf(storage_name) !== - 1) {
+            storage_vsalue = !storage_vsalue;
+        }
 
         if (subotions) {
             if (storage_vsalue) {

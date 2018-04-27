@@ -52,7 +52,7 @@
   "show_view_img_btn_text": {
     "message": "Показывать кнопку \"Открыть в полном размере\""
   },
-  "show_search_by_image_btn_text": {
+  "show_search_by_img_btn_text": {
     "message": "Показывать кнопку \"Поиск по картинке\""
   },
   "show_download_img_btn_text": {
@@ -61,17 +61,29 @@
   "show_save_as_dialog_on_img_download_text": {
     "message": "Показывать диалог \"Сохранить как\""
   },
+  "show_save_as_btn_text": {
+    "message": "Показывать кнопку \"Сохранить как\""
+  },
+  "show_copy_img_url_btn_text": {
+    "message": "Показывать кнопку \"Скопировать URL картинки\""
+  },
   "show_view_img_btn_on_img_previews_text": {
     "message": "Показывать кнопку \"Открыть в полном размере\" при наведении мыши на превью картинки"
   },
-  "show_download_all_imgs_btn_text": {
-    "message": "Показывать кнопку \"Скачать все картинки\" в меню инструментов"
+  "show_search_by_img_btn_on_img_previews_text": {
+    "message": "Показывать кнопку \"Поиск по картинке\" при наведении мыши на превью картинки"
   },
   "show_download_img_btn_on_img_previews_text": {
     "message": "Показывать кнопку \"Скачать картинку\" при наведении мыши на превью картинки"
   },
-  "show_search_by_image_btn_on_img_previews_text": {
-    "message": "Показывать кнопку \"Поиск по картинке\" при наведении мыши на превью картинки"
+  "show_save_as_btn_on_img_previews_text": {
+    "message": "Показывать кнопку \"Сохранить как\" при наведении мыши на превью картинки"
+  },
+  "show_copy_img_url_btn_on_img_previews_text": {
+    "message": "Показывать кнопку \"Скопировать URL картинки\" при наведении мыши на превью картинки"
+  },
+  "show_download_all_imgs_btn_text": {
+    "message": "Показывать кнопку \"Скачать все картинки\" в меню инструментов"
   },
   "unload_pages_text": {
     "message": "Выгружать страницы вне экрана (снижает потребление RAM)"

@@ -18,6 +18,8 @@
 
 //> debounce f
 
+//> debounce f
+
 //> animation t
 
 //> delay f
@@ -89,6 +91,12 @@ x.remove = el => { // remove child
     }
 };
 
+x.remove_m = els => { // remove multi
+    for (el of els) {
+        el.parentNode.removeChild(el);
+    }
+}
+
 x.before = (el_to_insert_before, el_to_insert) => { // insert before
     el_to_insert_before.parentNode.insertBefore(el_to_insert, el_to_insert_before);
 };
@@ -133,7 +141,7 @@ x.add_class = (el, class_name) => {
 x.add_event_listener_to_multiple_els = (base_element, selector, event, fun) => {
     let els = sab(base_element, selector);
 
-    for (el of els) {
+    for (let el of els) {
         el.addEventListener(event, fun);
     }
 };
@@ -143,7 +151,7 @@ x.add_event_listener_to_multiple_els = (base_element, selector, event, fun) => {
 x.add_event_listener_with_params_to_multiple_els = (base_element, selector, event, fun, fun_args) => {
     let els = sab(base_element, selector);
 
-    for (el of els) {
+    for (let el of els) {
         el.addEventListener(event, fun.bind.apply(fun, [el].concat(fun_args)));
     }
 };
@@ -166,6 +174,34 @@ x.load_css = (doc, filename) => {
     return link;
 };
 //< load_css f
+
+//> debounce f
+x.debounce = (f, wait, immediate, e) => {
+    let timeout;
+
+    return function () {
+        var context = this, args = arguments;
+
+        var later = () => {
+            timeout = null;
+
+            if (!immediate) {
+                f.apply(context, args)
+            };
+        };
+
+        let call_now = immediate && !timeout;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(later, wait);
+
+        if (call_now) {
+            f.apply(context, args)
+        };
+    };
+};
+//< debounce f
 
 //> animation t
 (() => {

@@ -40,13 +40,17 @@ async function set_default_settings() {
             'custom_keywords_color': true,
             'keywords_color': '#dd0000',
             'show_view_img_btn': true,
-            'show_search_by_image_btn': true,
+            'show_search_by_img_btn': true,
             'show_download_img_btn': false,
             'show_save_as_dialog_on_img_download': false,
+            'show_save_as_btn': true,
             'show_download_all_imgs_btn': true,
+            'show_copy_img_url_btn': true,
             'show_view_img_btn_on_img_previews': true,
+            'show_search_by_img_btn_on_img_previews': true,
             'show_download_img_btn_on_img_previews': true,
-            'show_search_by_image_btn_on_img_previews': true,
+            'show_save_as_btn_on_img_previews': true,
+            'show_copy_img_url_btn_on_img_previews': true,
             'download_imgs_path': '',
             'unload_pages': false
         }
@@ -116,18 +120,46 @@ browser.runtime.onInstalled.addListener(async e => {
             o.settings.show_download_all_imgs_btn = true;
         }
 
-        if (!('show_search_by_image_btn' in o.settings)) { // april 24 2018
-            o.settings.show_search_by_image_btn = true;
+        if (!('show_search_by_img_btn' in o.settings)) { // april 24 2018
+            o.settings.show_search_by_img_btn = true;
         }
 
-        if (!('show_search_by_image_btn_on_img_previews' in o.settings)) { // april 24 2018
-            o.settings.show_search_by_image_btn_on_img_previews = true;
+        if (!('show_search_by_img_btn_on_img_previews' in o.settings)) { // april 24 2018
+            o.settings.show_search_by_img_btn_on_img_previews = true;
         }
 
         if ('stick_header' in o.settings) { // april 26 2018
             o.settings.sticky_header = true;
 
             delete o.settings.stick_header;
+        }
+
+        if ('show_search_by_img_btn_on_img_previews' in o.settings) { // april 26 2018
+            o.settings.show_search_by_img_btn_on_img_previews = o.settings.show_search_by_img_btn_on_img_previews;
+
+            delete o.settings.show_search_by_image_btn_on_img_previews;
+        }
+
+        if ('show_search_by_image_btn' in o.settings) { // april 26 2018
+            o.settings.show_search_by_img_btn = o.settings.show_search_by_image_btn;
+
+            delete o.settings.show_search_by_image_btn;
+        }
+
+        if (!('show_save_as_btn' in o.settings)) { // april 24 2018
+            o.settings.show_save_as_btn = true;
+        }
+
+        if (!('show_copy_img_url_btn' in o.settings)) { // april 24 2018
+            o.settings.show_copy_img_url_btn = true;
+        }
+
+        if (!('show_save_as_btn_on_img_previews' in o.settings)) { // april 24 2018
+            o.settings.show_save_as_btn_on_img_previews = true;
+        }
+
+        if (!('show_copy_img_url_btn_on_img_previews' in o.settings)) { // april 24 2018
+            o.settings.show_copy_img_url_btn_on_img_previews = true;
         }
 
         x.set(o);
@@ -176,7 +208,7 @@ browser.runtime.onMessage.addListener((message_o, sender, send_response) => {
             });
         });
 
-    } else if (message_o.message === 'download_img' || message_o.message === 'download_all_imgs') {
+    } else if (message_o.message === 'download_img' || message_o.message === 'save_as' || message_o.message === 'download_all_imgs') {
         let download_item = {};
 
         download_item.url = message_o.img;
