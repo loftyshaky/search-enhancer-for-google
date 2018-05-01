@@ -1243,18 +1243,18 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 e.preventDefault();
 
                 if (mode === 'img_viewer') {
-                    let image_el_id = this.closest('.immersive-container').dataset.itemId;
-                    let image_el = s('.irc_rimask[data-item-id="' + image_el_id + '"]');
-                    let src = sb(image_el, 'img').src;
-                    image_el = s('.rg_ic[src="' + src + '"]') || image_el; // image_el = if Related images
-                    var image_el_wrapper = image_el.closest('.rg_bx') || image_el; // image_el = if Related images
+                    let img_el_id = this.closest('.immersive-container').dataset.itemId;
+                    let img_el = s('.irc_rimask[data-item-id="' + img_el_id + '"]');
+                    let src = sb(img_el, 'img').src;
+                    img_el = s('.rg_ic[src="' + src + '"]') || img_el; // img_el = if Related images
+                    var img_el_wrapper = img_el.closest('.rg_bx') || img_el; // img_el = if Related images
 
                 } else if (mode === 'preview') {
-                    var image_el_wrapper = this.closest('.rg_bx');
+                    var img_el_wrapper = this.closest('.rg_bx');
                 }
 
                 if (mode === 'img_viewer' || mode === 'preview') {
-                    var image_data = sb(image_el_wrapper, '.rg_meta').innerHTML;
+                    var image_data = sb(img_el_wrapper, '.rg_meta').innerHTML;
 
                 } else if (mode === 'download_all') {
                     var image_data = meta_el.innerHTML;
