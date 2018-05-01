@@ -34,13 +34,49 @@
 
 //>1 delete more menu when clicking outside of it t
 
-//>1 catch dom changes t + //>2 hide pagination when on appbar load slides t; //>2 bind create_img_preview_btns to image previews t; //>2 create download_all_imgs_btn in tools menu t; //>2 append "View image" button t; //>2 catch search_by_img_drop_zone adding t; //>2 reset image z-index t;  //>2 remove active class from more button t; //>2 search by image by draggging and droppping image observer t;  //>3 add_or_remove_stick_and_compact_header_css f
+//>1 catch dom changes t
+
+//>2 hide pagination when on appbar load slides t
+
+//>2 bind create_img_preview_btns to image previews t
+
+//>2 create download_all_imgs_btn in tools menu t
+
+//>2 append "View image" button t
+
+//>2 catch search_by_img_drop_zone adding t
+
+//>2 reset image z-index t
+
+//>2 remove active class from more button t;
+
+//>2 search by image by draggging and droppping image observer t
+
+//>3 add_or_remove_stick_and_compact_header_css f
 
 //> loading o
 
 //>1 load page t
 
-//>2 load_page f + //>3 load loading bar t; //>3 append iframe to body t; //>3 check if google thinks you are robot t; //>3 hide people also search block if settings.show_people_also_search_for === false t; //>3 correct scroll position 1 t; //>3 correct scroll position 2 t; //>3 load site icons (execution) t; //>3 update element with namber of pages t; //>3 handle image section t
+//>2 load_page f
+
+//>3 load loading bar t
+
+//>3 append iframe to body t
+
+//>3 check if google thinks you are robot t
+
+//>3 hide people also search block if settings.show_people_also_search_for === false t
+
+//>3 correct scroll position 1 t
+
+//>3 correct scroll position 2 t
+
+//>3 load site icons (execution) t
+
+//>3 update element with namber of pages t; 
+
+//>3 handle image section t
 
 //>2 set_variable_loading_iframe f
 
@@ -70,7 +106,19 @@
 
 //> sticking elements t
 
-//>1 stick or unstick pagination, turn off / on button and header t + //>2 pagination and turn_off_btn t;  //>2 related searches t;  //>2 safe search etc t; //<2 header f; //>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t; //>3 hide tools menu t
+//>1 stick or unstick pagination, turn off / on button and header t
+
+//>2 pagination and turn_off_btn t
+
+//>2 related searches t
+
+//>2 safe search etc t
+
+//<2 header f
+
+//>3 fix bug with image viewer (bug: 4/6/18 4:15 AM) t
+
+//>3 hide tools menu t
 
 //>1 get_header_size f
 
@@ -124,7 +172,6 @@ svg.download = '<svg viewBox="0 0 17 17"><style type="text/css">.st0{fill:none;}
 svg.save_as = '<svg viewBox="0 0 18 18"><style type="text/css">.st0{fill:none;}</style><path d="M17.5,2.2l-1.4-1.7C15.9,0.2,15.5,0,15,0H3C2.5,0,2.1,0.2,1.8,0.5L0.5,2.2C0.2,2.6,0,3,0,3.5V16c0,1.1,0.9,2,2,2h14 c1.1,0,2-0.9,2-2V3.5C18,3,17.8,2.6,17.5,2.2z M9,14.5L3.5,9H7V7h4v2h3.5L9,14.5z M2.1,2l0.8-1h12l0.9,1H2.1z"/><path class="st0" d="M-3-3h24v24H-3V-3z"/></svg>';
 svg.copy = '<svg viewBox="0 0 22 22"><style type="text/css">.st0{fill:none;}</style><path class="st0" d="M-1-1h24v24H-1V-1z"/><path d="M15,0H3C1.9,0,1,0.9,1,2v14h2V2h12V0z M18,4H7C5.9,4,5,4.9,5,6v14c0,1.1,0.9,2,2,2h11c1.1,0,2-0.9,2-2V6C20,4.9,19.1,4,18,4 z M18,20H7V6h11V20z"/></svg>';
 svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</style><path class="st0" d="M-4-4h24v24H-4V-4z"/><path d="M8,4c1.1,0,2-0.9,2-2S9.1,0,8,0S6,0.9,6,2S6.9,4,8,4z M8,6C6.9,6,6,6.9,6,8s0.9,2,2,2s2-0.9,2-2S9.1,6,8,6z M8,12 c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S9.1,12,8,12z"/></svg>';
-
 
 (async () => {
     let o = await x.get('settings');
