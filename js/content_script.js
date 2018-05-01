@@ -1244,7 +1244,9 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
                 if (mode === 'img_viewer') {
                     let image_el_id = this.closest('.immersive-container').dataset.itemId;
-                    let image_el = s('[name="' + image_el_id + '"]') || s('.irc_rimask[data-item-id="' + image_el_id + '"]'); // .irc_rimask[data-item-id = if Related images
+                    let image_el = s('.irc_rimask[data-item-id="' + image_el_id + '"]');
+                    let src = sb(image_el, 'img').src;
+                    image_el = s('.rg_ic[src="' + src + '"]') || image_el; // image_el = if Related images
                     var image_el_wrapper = image_el.closest('.rg_bx') || image_el; // image_el = if Related images
 
                 } else if (mode === 'preview') {
