@@ -1102,9 +1102,9 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         //>1 get_header_size f
         function get_header_size() { // g
             let header_size_o = {};
-            let compare_value = document.documentElement.clientWidth + 29; // gap between all, images etc and login items should be 40px when language of google.com is english
+            let compare_value = document.documentElement.clientWidth + 14; // gap between all, images etc and login items should be 40px when language of google.com is english
             let scroll_top = cs.get_window_scroll_top();
-            let nav_bar_items = sa('#tsf, .gb_nb, #hdtb-msb .hdtb-mitem, #ab_ctls .ab_ctl, #hdtb-tls'); // #tsf = google logo search input; .gb_nb = login items; #hdtb-msb .hdtb-mitem = all, images etc; #ab_ctls .ab_ctl = view saved, safe search; #hdtb-tls = tools
+            let nav_bar_items = sa('#tsf, .gb_ib, #hdtb-msb .hdtb-mitem, #ab_ctls .ab_ctl, #hdtb-tls'); // #tsf = google logo search input; .gb_ib = login items; #hdtb-msb .hdtb-mitem = all, images etc; #ab_ctls .ab_ctl = view saved, safe search; #hdtb-tls = tools
             let all_images_etc_and_safe_search_and_view_saved_items = sa('#hdtb-msb .hdtb-mitem, #hdtb-tls, #ab_ctls .ab_ctl');
             let el_to_hide_index = all_images_etc_and_safe_search_and_view_saved_items.length - 1;
             let is_image_tab = s('#ab_ctls .ab_ctl');
