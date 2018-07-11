@@ -111,9 +111,5 @@
   },
   "donate_link_text": {
     "message": "💖 Support the development of this extension by donating any amount via PayPal"
-  },
-
-  "body_width": {
-    "message": "668px"
   }
 }
