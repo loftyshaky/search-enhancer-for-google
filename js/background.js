@@ -187,7 +187,7 @@ b.change_name_of_image_on_download = (download_item, suggest) => {
 //> on message t
 browser.runtime.onMessage.addListener((message_o, sender, send_response) => {
     if (message_o.message === 'load_flag') {
-        fetch('https://freegeoip.net/json/' + message_o.host).then(response => {
+        fetch('https://freegeoip.app/json/' + message_o.host).then(response => {
             return response.json();
 
         }).then(json => {
