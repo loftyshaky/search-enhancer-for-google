@@ -1104,12 +1104,13 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
             let header_size_o = {};
             let compare_value = document.documentElement.clientWidth + 14; // gap between all, images etc and login items should be 40px when language of google.com is english
             let scroll_top = cs.get_window_scroll_top();
-            let nav_bar_items = sa('#tsf, .gb_ib, #hdtb-msb .hdtb-mitem, #ab_ctls .ab_ctl, #hdtb-tls'); // #tsf = google logo search input; .gb_ib = login items; #hdtb-msb .hdtb-mitem = all, images etc; #ab_ctls .ab_ctl = view saved, safe search; #hdtb-tls = tools
+            let nav_bar_items = sa('#tsf, #gbw > div > div, #hdtb-msb .hdtb-mitem, #ab_ctls .ab_ctl, #hdtb-tls'); // #tsf = google logo search input; #gbw > div > div = login items; #hdtb-msb .hdtb-mitem = all, images etc; #ab_ctls .ab_ctl = view saved, safe search; #hdtb-tls = tools
             let all_images_etc_and_safe_search_and_view_saved_items = sa('#hdtb-msb .hdtb-mitem, #hdtb-tls, #ab_ctls .ab_ctl');
             let el_to_hide_index = all_images_etc_and_safe_search_and_view_saved_items.length - 1;
             let is_image_tab = s('#ab_ctls .ab_ctl');
             let header_els_width = 0;
             let compare_value_modifier = 0;
+            l(nav_bar_items)
 
             for (let item of all_images_etc_and_safe_search_and_view_saved_items) {
                 x.remove_class(item, ext_id('hidden'));
