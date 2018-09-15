@@ -3,8 +3,8 @@
   "message": "Adds infinite scrolling, site icons, server locations, View image button, Download image button and sticks header to top."
   },
 
-  "general_text": {
-    "message": "General"
+  "settings_text": {
+    "message": "Settings"
   },
   "restore_text": {
     "message": "Settings restore"
