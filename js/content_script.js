@@ -1566,7 +1566,14 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     }
 
                     for (let i = 0; i < len; i++) {
-                        if (created_btns_indexes.indexOf(i) === - 1) {
+                        if (modes[i] !== 'save_as') {
+                            var show_img_btn = settings['show_' + modes[i] + '_btn'];
+    
+                        } else {
+                            var show_img_btn = settings.show_download_img_btn && !settings.show_save_as_dialog_on_img_download;
+                        }
+
+                        if (created_btns_indexes.indexOf(i) === - 1 && show_img_btn) {
                             let more_btn = x.create('div', ext_id('more_menu_' + modes[i] + '_btn') + ' ' + ext_id(type_prefix + 'more_menu_btns'));
                             more_btn.textContent = locale[modes[i] + '_btns_text'];
                             x.append(more_menu, more_btn);
