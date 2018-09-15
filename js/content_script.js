@@ -1425,7 +1425,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     }
                 }
 
-                let search_by_img_wrappers = sa('.irc_dsh');
+                let search_by_img_wrappers = sa('.irc_hd > .irc_dsh');
 
                 if (search_by_img_wrappers[0] && !search_by_img_btns_appended && settings.show_search_by_img_btn) {
                     search_by_img_btns_appended = true;
