@@ -16,7 +16,22 @@
     "message": "Links"
   },
 
-  "stick_header_text": {
+  "enable_infinite_scrolling_text": {
+    "message": "Enable infinite scrolling"
+  },
+  "show_turn_off_btn_text": {
+    "message": "Show turn off/on button"
+  },
+  "show_paginator_text": {
+    "message": "Show pagination buttons"
+  },
+  "show_page_separators_text": {
+    "message": "Show page separators"
+  },
+  "unload_pages_text": {
+    "message": "Unload pages that are off-screen (less RAM consumption)"
+  },
+  "sticky_header_text": {
     "message": "Stick header on top of the page"
   },
   "compact_header_text": {
@@ -28,20 +43,11 @@
   "show_server_locations_text": {
     "message": "Show server locations"
   },
-  "show_paginator_text": {
-    "message": "Show pagination buttons"
-  },
   "show_people_also_search_for_text": {
     "message": "Show \"People also search for\" block"
   },
-  "show_turn_off_btn_text": {
-    "message": "Show turn off/on button"
-  },
   "show_scroll_to_top_btn_text": {
     "message": "Show scroll to top button"
-  },
-  "show_page_separators_text": {
-    "message": "Show page separators"
   },
   "custom_keywords_color_text": {
     "message": "Custom keywords color"
@@ -52,14 +58,38 @@
   "show_view_img_btn_text": {
     "message": "Show \"View image\" button"
   },
+  "show_search_by_img_btn_text": {
+    "message": "Show \"Search by image\" button"
+  },
   "show_download_img_btn_text": {
     "message": "Show \"Download image\" button"
   },
   "show_save_as_dialog_on_img_download_text": {
-    "message": "Show \"Save As\" dialog"
+    "message": "Show \"Save as\" dialog"
   },
-  "unload_pages_text": {
-    "message": "Unload pages that are off-screen (less RAM consumption)"
+  "show_save_as_btn_text": {
+    "message": "Show \"Save as\" button"
+  },
+  "show_copy_img_url_btn_text": {
+    "message": "Show \"Copy image URL\" button"
+  },
+  "show_view_img_btn_on_img_previews_text": {
+    "message": "Show \"View image\" button when hovering over image preview"
+  },
+  "show_search_by_img_btn_on_img_previews_text": {
+    "message": "Show \"Search by image\" button when hovering over image preview"
+  },
+  "show_download_img_btn_on_img_previews_text": {
+    "message": "Show \"Download image\" button when hovering over image preview"
+  },
+  "show_save_as_btn_on_img_previews_text": {
+    "message": "Show \"Save as\" button when hovering over image preview"
+  },
+  "show_copy_img_url_btn_on_img_previews_text": {
+    "message": "Show \"Copy image URL\" button when hovering over image preview"
+  },
+  "show_download_all_imgs_btn_text": {
+    "message": "Show \"Download all images\" button in tools menu"
   },
 
   "download_imgs_path_text": {
@@ -81,9 +111,5 @@
   },
   "donate_link_text": {
     "message": "💖 Support the development of this extension by donating any amount via PayPal"
-  },
-
-  "body_width": {
-    "message": "438px"
   }
 }

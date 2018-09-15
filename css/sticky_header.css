@@ -12,7 +12,6 @@
 /*> bottom panel */
 #hdtb-s {
     background-color: #fafafa;
-    border-bottom: solid 1px #ebebeb;
     min-width: 980px;
     position: fixed;
     width: 100%;

@@ -1,0 +1,106 @@
+/*>2 removes google images (letters) from paginator */
+.csb {
+    display: none!important;
+}
+/*<2 removes google images (letters) from paginator */
+
+#center_col, #rcnt { /*required to remove #navcnt out of flow*/
+    position: static!important;
+}
+
+#taw, #fprs, #imagebox_bigimages, .mfr { /* fixes non clickable spelling correction links and images on top caused by #center_col, #rcnt (ex: harry poter, harry potter, cat ) { /*required to remove #navcnt out of flow* position: static!important; }*/
+	position: relative;
+}
+
+#nav {
+	margin: 0!important;
+}
+
+#nav td {
+    display: block!important;
+}
+
+/*>2 replace 'Previous' and 'Next' text t '>' and '<' */
+#pnprev, #pnnext {
+	text-indent: -9999px;
+    line-height: 0;
+}
+
+#pnnext::after, #pnprev::after {
+	text-indent: 0;
+    line-height: initial; 
+}
+
+#pnnext::after {
+	 content: '>';
+}
+
+#pnprev::after {
+	 content: '<';
+}
+/*<2 replace 'Previous' and 'Next' text t '>' and '<' */
+
+#pnprev, #pnnext {
+    line-height: 6px;
+}
+
+#navcnt {
+	position: absolute;
+    right: 0;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+	border-radius: 2px;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	overflow: hidden;
+	visibility: hidden;
+	z-index: 1;
+}
+
+html[dir="rtl"] #navcnt {
+	right: unset;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
+	left: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
+#nav a {
+	text-align: center!important;
+}
+
+#nav td {
+	background-color: #fafafa;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 31px;
+}
+
+#nav td a {
+	width: 31px!important;
+    height: 31px!important;
+    border-top: solid 1px #ebebeb;
+}
+
+#nav td:last-child a {
+	border-bottom: none;
+}
+
+#nav td:first-child a {
+	border-top: none;
+}
+
+.cur {
+	background-color: #4285f4!important;
+	color: white!important;
+	border-top: solid 1px #ebebeb;
+	cursor: default;
+}
+
+#nav td:not(.cur):hover {
+	background-color: #ea4335!important;
+}
+#nav td a:hover {
+	color: white!important;
+	text-decoration: none!important;
+}

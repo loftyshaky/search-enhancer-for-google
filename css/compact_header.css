@@ -47,10 +47,15 @@ html[dir="rtl"] .hdtb-mitem:first-child {
     width: 0;
 }
 
+html[dir="rtl"] #ab_ctls {
+    right: unset;
+    left: auto;
+}
+
 #hdtbMenus {
     width: inherit;
     position: absolute;
-    right: 0px;
+    right: 0;
 }
 
 #hdtbMenus {
@@ -72,6 +77,11 @@ html[dir="rtl"] .hdtb-mitem:first-child {
 .hdtbU {
     margin-left: -772px;
     margin-top: 9px;
+}
+
+html[dir="rtl"] .hdtbU {
+    margin-left: unset;
+    margin-right: -1058px;
 }
 
 #hdtb-mn-gp {

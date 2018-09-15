@@ -16,8 +16,6 @@
 
 //>1 ask for permission to be granted or remove it t
 
-//>1 enable_or_disable_on_determining_filename_event f
-
 op = {};
 
 //> enable transition t
@@ -32,19 +30,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 (() => {
     let els = sa('[data-ih]');
 
-    for (el of els) {
+    for (let el of els) {
         el.innerHTML = x.message(el.dataset.ih); // ih = innerHTML
     }
 
     els = sa('[data-ihh]');
 
-    for (el of els) {
+    for (let el of els) {
         el.href = x.message(el.dataset.ihh); // ihh = innerHTML href
     }
 
     els = sa('[data-t]');
 
-    for (el of els) {
+    for (let el of els) {
         el.title = x.message(el.dataset.t); // t = title 
     }
 })();
@@ -52,6 +50,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 //> settings t
 (() => {
+    let reverse_expand_suboptions = ['show_save_as_dialog_on_img_download'];
+
     //>1 change settings (populate storage) t
     async function change_settings() {
         try {
@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 expand_subotions(storage_name, o.settings[storage_name]);
 
-                enable_or_disable_on_determining_filename_event(o);
-
             } else if (this.type === 'text') {
                 o.settings[storage_name] = this.value;
 
@@ -80,6 +78,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             x.set(o);
+
+            x.send_message_to_background({ message: 'reload_settings_in_background' });
 
         } catch (er) {
             console.error(er);
@@ -92,15 +92,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         let o = await x.get('settings');
         let els = sa('.settings_items, .settings_items_input_e');
 
-        for (el of els) {
+        for (let el of els) {
             let storage_name = el.dataset.storage;
 
             if (el.type === 'checkbox') {
                 el.checked = o.settings[storage_name];
 
                 expand_subotions(storage_name, o.settings[storage_name]);
-
-                enable_or_disable_on_determining_filename_event(o);
 
             } else if (el.type === 'text') {
                 el.value = o.settings[storage_name];
@@ -134,6 +132,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     //>1 expand_subotions f
     function expand_subotions(storage_name, storage_vsalue) {
         let subotions = s('.' + storage_name + '_subotions');
+
+        if (reverse_expand_suboptions.indexOf(storage_name) !== - 1) {
+            storage_vsalue = !storage_vsalue;
+        }
 
         if (subotions) {
             if (storage_vsalue) {
@@ -180,23 +182,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     //<1 ask for permission to be granted or remove it t
 
-    //>1 enable_or_disable_on_determining_filename_event f
-    function enable_or_disable_on_determining_filename_event(o) {
-        if (o.settings.show_download_img_btn) {
-            if (o.settings.show_save_as_dialog_on_img_download) {
-                x.send_message_to_background({ message: 'disable_on_determining_filename_event' });
-
-            } else {
-                x.send_message_to_background({ message: 'enable_on_determining_filename_event' });
-            }
-        }
-    }
-    //<1 enable_or_disable_on_determining_filename_event f
-
     restore_settings_on_load();
 
     x.add_event_listener_to_multiple_els(document, '.settings_items', 'change', change_settings);
     x.add_event_listener_to_multiple_els(document, '.settings_items_input_e', 'input', change_settings);
-    x.add_event_listener_to_multiple_els(document, '.subotions', 'transitionend', x.set_faded_out_to_none);
+    x.add_event_listener_with_params_to_multiple_els(document, '.subotions', 'transitionend', x.set_faded_out_to_none, [false]);
 })();
 //< settings t

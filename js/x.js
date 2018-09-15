@@ -4,8 +4,6 @@
 
 //> dom manipulation t
 
-//> get_parent_with_class f
-
 //> has_class f
 
 //> remove_class f
@@ -17,6 +15,8 @@
 //> add_event_listener_with_params_to_multiple_els f
 
 //> load_css f
+
+//> debounce f
 
 //> debounce f
 
@@ -91,6 +91,12 @@ x.remove = el => { // remove child
     }
 };
 
+x.remove_m = els => { // remove multi
+    for (el of els) {
+        el.parentNode.removeChild(el);
+    }
+}
+
 x.before = (el_to_insert_before, el_to_insert) => { // insert before
     el_to_insert_before.parentNode.insertBefore(el_to_insert, el_to_insert_before);
 };
@@ -107,20 +113,6 @@ x.replace = (el_to_replace, new_el) => {
     el_to_replace.parentNode.replaceChild(new_el, el_to_replace);
 }
 //< dom manipulation t
-
-//> get_parent_with_class f
-x.get_parent_with_class = (el, class_name, breakpoint) => {
-    let count = 0;
-
-    while (el && el.parentNode && !x.has_class(el, class_name) && count !== breakpoint) {
-        el = el.parentNode;
-
-        count++;
-    }
-
-    return el;
-};
-//< get_parent_with_class f
 
 //> has_class f
 x.has_class = (el, class_name) => {
@@ -149,7 +141,7 @@ x.add_class = (el, class_name) => {
 x.add_event_listener_to_multiple_els = (base_element, selector, event, fun) => {
     let els = sab(base_element, selector);
 
-    for (el of els) {
+    for (let el of els) {
         el.addEventListener(event, fun);
     }
 };
@@ -159,7 +151,7 @@ x.add_event_listener_to_multiple_els = (base_element, selector, event, fun) => {
 x.add_event_listener_with_params_to_multiple_els = (base_element, selector, event, fun, fun_args) => {
     let els = sab(base_element, selector);
 
-    for (el of els) {
+    for (let el of els) {
         el.addEventListener(event, fun.bind.apply(fun, [el].concat(fun_args)));
     }
 };
@@ -182,6 +174,34 @@ x.load_css = (doc, filename) => {
     return link;
 };
 //< load_css f
+
+//> debounce f
+x.debounce = (f, wait, immediate, e) => {
+    let timeout;
+
+    return function () {
+        var context = this, args = arguments;
+
+        var later = () => {
+            timeout = null;
+
+            if (!immediate) {
+                f.apply(context, args)
+            };
+        };
+
+        let call_now = immediate && !timeout;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(later, wait);
+
+        if (call_now) {
+            f.apply(context, args)
+        };
+    };
+};
+//< debounce f
 
 //> animation t
 (() => {
@@ -209,6 +229,8 @@ x.load_css = (doc, filename) => {
         if (x.has_class(el, cls.opacity_0)) {
             el.fade_action = 'fading_in';
 
+            await x.delay(0); // fixes problem when scroll jumps when scrolling from top (bug related to scroll to top button)
+
             x.remove_class(el, cls.none);
 
             await x.delay(50);
@@ -217,9 +239,9 @@ x.load_css = (doc, filename) => {
         }
     };
 
-    x.set_faded_out_to_none = function (e) { // g
+    x.set_faded_out_to_none = function (add_ext_id, e) { // g
         if (e.target === this && this.fade_action === 'fading_out') {
-            x.add_class(this, 'none');
+            x.add_class(this, !add_ext_id ? 'none' : ext_id('none'));
         }
     };
 
