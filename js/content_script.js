@@ -1109,8 +1109,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
             let el_to_hide_index = all_images_etc_and_safe_search_and_view_saved_items.length - 1;
             let is_image_tab = s('#ab_ctls .ab_ctl');
             let header_els_width = 0;
-            let compare_value_modifier = 0;
-            l(nav_bar_items)
 
             for (let item of all_images_etc_and_safe_search_and_view_saved_items) {
                 x.remove_class(item, ext_id('hidden'));
