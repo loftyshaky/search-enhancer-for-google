@@ -1439,7 +1439,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
             if (!download_all_imgs_btn) {
                 let tools = s('.hdtb-mn-cont');
-
+l(tools)
                 tools.insertAdjacentHTML('beforeend', '<div class="' + ext_id('download_all_imgs_btn') + ' hdtb-mn-hd" aria-haspopup="true" role="button" tabindex="0"><div class="mn-hd-txt">' + locale.download_all_imgs_btn_text + '</div></div>');
 
                 download_all_imgs_btn = sb(tools, ext_id('.download_all_imgs_btn'));

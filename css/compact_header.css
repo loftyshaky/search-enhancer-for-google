@@ -57,7 +57,7 @@ html[dir="rtl"] #ab_ctls {
 }
 
 #hdtbMenus.hdtb-td-o {
-    top: 76px!important;
+    top: 66px!important;
 }
 
 #hdtbMenus.hdtb-td-o .hdtb-mn-cont {
@@ -110,4 +110,8 @@ html[dir="rtl"] .hdtbU {
 
 #botabar {
 	margin-top: 0!important; /* prevent area after header offsetting when list of titles present and when clicking on tools button (example search: need for speed games) */
+}
+
+#XJDHvf { /* first empty height 0 item at tools menu */
+    display: none!important;
 }
