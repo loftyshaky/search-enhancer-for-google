@@ -107,3 +107,7 @@ html[dir="rtl"] .hdtbU {
 #navcnt {
     position: fixed;
 }
+
+#botabar {
+	margin-top: 0!important; /* prevent area after header offsetting when list of titles present and when clicking on tools button (example search: need for speed games) */
+}
