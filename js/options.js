@@ -1,22 +1,4 @@
-﻿//> enable transition t
-
-//> localization t
-
-//> settings t
-
-//>1 change settings (populate storage) t
-
-//>1 restore_settings_on_load f
-
-//>1 restore defaults t
-
-//>1 set_color_input_and_input_vizualization_color f
-
-//>1 expand_subotions f
-
-//>1 ask for permission to be granted or remove it t
-
-op = {};
+﻿op = {};
 
 //> enable transition t
 document.addEventListener('DOMContentLoaded', async () => {

@@ -1,15 +1,3 @@
-//> get_settings f
-
-//> set default settings t
-
-//> on installed t
-
-//> open options page when clicking on browser action t
-
-//> change name of image on download t
-
-//> on message t
-
 b = {};
 settings = {};
 

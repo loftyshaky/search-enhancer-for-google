@@ -1,37 +1,3 @@
-//> console.log t
-
-//> selecting elements t
-
-//> dom manipulation t
-
-//> has_class f
-
-//> remove_class f
-
-//> add_class f
-
-//> add_event_listener_to_multiple_els f
-
-//> add_event_listener_with_params_to_multiple_els f
-
-//> load_css f
-
-//> debounce f
-
-//> debounce f
-
-//> animation t
-
-//> delay f
-
-//> chrome o 
-
-//>1 storage t
-
-//>1 localization t
-
-//>1 message passing t
-
 x = {};
 
 function ext_id(prefix) {
