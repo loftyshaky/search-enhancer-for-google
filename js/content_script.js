@@ -267,6 +267,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
                     //>2 hide pagination when on appbar load slides t
                     let paginator = sb(target, '#navcnt');
+                    const location_dot = s('#loc');
 
                     if (paginator) {
                         cs.sticking.hide_paginator_and_turn_off_btn();
@@ -293,7 +294,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     //<2 bind create_img_preview_btns to image previews t
 
                     //>2 create download_all_imgs_btn in tools menu t
-                    if (s('#gs_si0') && settings.show_download_img_btn && settings.show_download_all_imgs_btn) { // if google home page or Images page
+                    if (!location_dot && settings.show_download_img_btn && settings.show_download_all_imgs_btn) { // if google home page or Images page
                         cs.do_img_action.create_download_all_imgs_btn();
                     }
                     //<2 create download_all_imgs_btn in tools menu t
@@ -1439,12 +1440,14 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
             if (!download_all_imgs_btn) {
                 let tools = s('.hdtb-mn-cont');
-l(tools)
-                tools.insertAdjacentHTML('beforeend', '<div class="' + ext_id('download_all_imgs_btn') + ' hdtb-mn-hd" aria-haspopup="true" role="button" tabindex="0"><div class="mn-hd-txt">' + locale.download_all_imgs_btn_text + '</div></div>');
 
-                download_all_imgs_btn = sb(tools, ext_id('.download_all_imgs_btn'));
+                if (tools) {
+                    tools.insertAdjacentHTML('beforeend', '<div class="' + ext_id('download_all_imgs_btn') + ' hdtb-mn-hd" aria-haspopup="true" role="button" tabindex="0"><div class="mn-hd-txt">' + locale.download_all_imgs_btn_text + '</div></div>');
 
-                download_all_imgs_btn.addEventListener('mousedown', download_all_imgs);
+                    download_all_imgs_btn = sb(tools, ext_id('.download_all_imgs_btn'));
+
+                    download_all_imgs_btn.addEventListener('mousedown', download_all_imgs);
+                }
             }
         }
         //<1 create download_all_imgs_btn in tools menu t
