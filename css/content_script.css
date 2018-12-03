@@ -487,10 +487,6 @@ html[dir="rtl"] .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd .mn-hd-t
     left: -9999px;
 }
 
-.header_scroll_box_shadow_pipbbdfondfipmjmdkmggihiknhmcfhd {
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-}
-
 .turned_off_pipbbdfondfipmjmdkmggihiknhmcfhd {
     background-color: #f27474;
 }
@@ -503,14 +499,12 @@ html[dir="rtl"] .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd .mn-hd-t
 	top: 169px!important;
 }
 
-.related_searches_sticker_header_sticked_pipbbdfondfipmjmdkmggihiknhmcfhd {
-	position: fixed;
-	top: 175px;
+.no_header_shadow_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	box-shadow: none!important;
 }
 
-.related_searches_sticker_header_unsticked_pipbbdfondfipmjmdkmggihiknhmcfhd {
-    position: fixed;
-    top: 54px!important;
+.not_sticky_header_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	position: absolute!important
 }
 /*< morphs */
 

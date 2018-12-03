@@ -1,12 +1,6 @@
-.sfbgx {
-    position: fixed!important;
-    z-index: 3;
-    height: 64px!important;
-}
-
 #top_nav {
     position: absolute;
-    top: 27px;
+    top: 32px;
     left: 783px;
 }
 
@@ -89,11 +83,12 @@ html[dir="rtl"] .hdtbU {
 }
 
 #searchform {
-    top: 10px!important;
+    position: fixed!important;
+    top: 0!important;
 }
 
 #sfcnt {
-    height: 45px;
+    height: 33px;
 }
 
 #resultStats {
@@ -103,4 +98,12 @@ html[dir="rtl"] .hdtbU {
 
 #hdtb-s, #hdtbMenus {
     transition: none!important;
+}
+
+.turn_off_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
+    position: fixed;
+}
+
+#navcnt {
+    position: fixed;
 }

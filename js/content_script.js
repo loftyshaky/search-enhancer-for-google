@@ -52,7 +52,7 @@
 
 //>2 search by image by draggging and droppping image observer t
 
-//>3 add_or_remove_stick_and_compact_header_css f
+//>3 add_or_remove_compact_header_css f
 
 //> loading o
 
@@ -248,11 +248,15 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         })();
         //<1 show paginator t
 
-        //>1 stick header if settings.sticky_header === true t
-        if (settings.sticky_header) {
-            x.load_css(document, 'sticky_header');
+        //>1 prevent sticking of header t
+        if (!settings.sticky_header) {
+            x.add_class(s('#searchform'), ext_id('not_sticky_header'));
         }
-        //<1 stick header if settings.sticky_header === true t
+        //<1 prevent sticking of header t
+
+        if (settings.sticky_header && settings.compact_header) {
+            x.add_class(document.body, 'minidiv'); //> make header thin as if you scroll to bottom without extension
+        }
 
         //>1 hide people also search block if settings.show_people_also_search_for === false t
         if (!settings.show_people_also_search_for) {
@@ -279,7 +283,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     }
 
                 } else {
-                    if (settings.sticky_header) {
+                    if (settings.compact_header) {
                         x.add_class(s('#navcnt'), ext_id('paginator_when_turn_off_btn_hidden_and_header_sticked'));
 
                     } else {
@@ -357,21 +361,15 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
             }
             //<2 scroll_to_top f
 
-            //>2 if tools is not opened and header is sticky and compact show them; if tools is not opened and header is not compact scroll to top
+            //>2 if tools is not opened and header is compact show them t
             s('#hdtb-tls').addEventListener('click', function () {
                 let tools_menu = s('#hdtbMenus');
 
-                if (tools_menu.getAttribute('aria-expanded') === 'false') {
-                    if (settings.sticky_header && settings.compact_header) {
-
-                        tools_menu.style.display = '';  // not adding 'none' class because it breaks tools disabling
-
-                    } else {
-                        scroll_to_top();
-                    }
+                if (settings.compact_header && tools_menu.getAttribute('aria-expanded') === 'false') {
+                    tools_menu.style.display = '';  // not adding 'none' class because it breaks tools disabling
                 }
             });
-            //<2 if tools is not opened and header is sticky and compact show them; if tools is not opened and header is not compact scroll to top
+            //<2 if tools is not opened and header is compact show them t
         })();
         //<1 scroll to top t
 
@@ -469,7 +467,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
                         //>2 catch search_by_img_drop_zone adding t
                         if (added_node.id === 'qbp') {
-                            add_or_remove_stick_and_compact_header_css(target);
+                            add_or_remove_compact_header_css(target);
 
                             observer_drag_search_by_img.observe(added_node, { attributes: true });
                         }
@@ -503,12 +501,12 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 cs.sticking.searching_by_image_by_draggging_and_droppping = true;
 
                 for (let mutation of mutations) {
-                    add_or_remove_stick_and_compact_header_css(mutation.target);
+                    add_or_remove_compact_header_css(mutation.target);
                 }
             });
 
-            //>3 add_or_remove_stick_and_compact_header_css f
-            function add_or_remove_stick_and_compact_header_css(search_by_img_drop_zone) {
+            //>3 add_or_remove_compact_header_css f
+            function add_or_remove_compact_header_css(search_by_img_drop_zone) {
                 if (!search_by_img_drop_zone.style.display || search_by_img_drop_zone.style.display !== 'none' || x.has_class(search_by_img_drop_zone, 'qbup')) {
                     let all_images_etc = s('#top_nav');
 
@@ -516,17 +514,12 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                         cs.sticking.insert_all_images_etc_at_default_position(all_images_etc);
                     }
 
-                    x.remove(s(ext_id('.sticky_header')));
                     x.remove(s(ext_id('.compact_header')));
 
                     cs.sticking.get_header_size(); // unhide hidden all_images_etc items
 
                 } else {
                     cs.sticking.searching_by_image_by_draggging_and_droppping = false;
-
-                    if (settings.sticky_header) {
-                        x.load_css(document, 'sticky_header');
-                    }
 
                     if (settings.compact_header) {
                         x.load_css(document, 'compact_header');
@@ -535,7 +528,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     cs.sticking.stick_els();
                 }
             }
-            //<3 add_or_remove_stick_and_compact_header_css f
+            //<3 add_or_remove_compact_header_css f
             //<2 search by image by draggging and droppping image observer t
         })();
         //<1 catch dom changes t
@@ -981,6 +974,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         //>1 stick or unstick pagination, turn off / on button and header t
         async function stick_els() {
             await x.delay(0);
+            const header_size_o = cs.sticking.get_header_size();
 
             if (!cs.sticking.searching_by_image_by_draggging_and_droppping) {
                 if (typeof header_right_hand_els_width === 'undefined') {
@@ -990,27 +984,45 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 }
 
                 let scroll_top = cs.get_window_scroll_top();
-                let header_size_o = cs.sticking.get_header_size();
 
                 if (!s('#gs_si0')) { // if not google home page or Images page
+                    //<2 header f
+                    if (settings.sticky_header && settings.compact_header) {
+                        let search_input_form = s('.sfbg.nojsv');
+                        let all_images_etc = s('#top_nav');
+
+                        if (header_size_o.is_compact) {
+                            x.append(search_input_form, all_images_etc);
+
+                            x.load_css(document, 'compact_header');
+
+                        } else {
+                            let bst = s('#bst');
+
+                            x.after(bst, all_images_etc);
+
+                            x.remove(s(ext_id('.compact_header')))
+                        }
+                    }
+                    //<2 header t
+
                     //>2 pagination and turn_off_btn t
                     let turn_off_btn = s(ext_id('.turn_off_btn'));
                     let pagination = s('#navcnt');
-                    let turn_off_btn_modifier = 46;
-                    let pagination_modifier = 93;
+                    const gap_between_header_and_turn_off_btn = 52;
+                    let turn_off_btn_and_related_searches_modifier = gap_between_header_and_turn_off_btn;
+                    let pagination_modifier = gap_between_header_and_turn_off_btn + 47;
 
                     if (scroll_top >= header_size_o.size) {
-                        var stick_size = set_stick_size(header_size_o.size, true);
                         var toggle_f = 'add_class';
 
                     } else {
-                        var stick_size = set_stick_size(header_size_o.size, false);
                         var toggle_f = 'remove_class';
                     }
 
                     if (turn_off_btn) {
-                        turn_off_btn.style.top = stick_size + turn_off_btn_modifier + 'px';
-                        pagination.style.top = stick_size + pagination_modifier + 'px';
+                        turn_off_btn.style.top = header_size_o.size + turn_off_btn_and_related_searches_modifier + 'px';
+                        pagination.style.top = header_size_o.size + pagination_modifier + 'px';
 
                         x[toggle_f](turn_off_btn, ext_id('fixed'));
                         x[toggle_f](pagination, ext_id('fixed'));
@@ -1023,21 +1035,18 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     let appbar = s('#appbar');
 
                     if (sidepanel && related_searches && appbar) {
-                        let sidepanel_height = sidepanel.offsetHeight;
-                        let appbar_height = appbar.offsetHeight;
-                        let related_searches_modifier = 61;
-                        let stick_size_1 = settings.sticky_header ? 0 : header_size_o.size
+                        const sidepanel_width_without_padding = parseFloat(window.getComputedStyle(sidepanel).height);
+                        let sidepanel_height = sidepanel_width_without_padding === 0 ? 0 : sidepanel.offsetHeight;
+                        const related_searches_offset = sidepanel_width_without_padding === 0 && settings.sticky_header && settings.compact_header ? 0 : sidepanel.getBoundingClientRect().top + scroll_top + sidepanel_height - (header_size_o.size + turn_off_btn_and_related_searches_modifier);
 
-                        if (scroll_top >= sidepanel_height + appbar_height + stick_size_1 - related_searches_modifier) {
-                            var stick_size_2 = set_stick_size(header_size_o.size, true);
+                        if (scroll_top >= related_searches_offset && related_searches_offset >= 0) {
                             var toggle_f = 'add_class';
 
                         } else {
-                            var stick_size_2 = set_stick_size(header_size_o.size, false);
                             var toggle_f = 'remove_class';
                         }
 
-                        related_searches.style.top = stick_size_2 + related_searches_modifier + 'px';
+                        related_searches.style.top = header_size_o.size + turn_off_btn_and_related_searches_modifier + 'px';
 
                         x[toggle_f](related_searches, ext_id('fixed'));
                     }
@@ -1045,7 +1054,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 }
 
                 //>2 safe search etc t
-                if (settings.sticky_header || (settings.sticky_header && settings.compact_header && scroll_top === 0)) {
+                if (settings.compact_header && scroll_top === 0) {
                     let ab_ctls = s('#ab_ctls');
 
                     if (header_right_hand_els_width > window.innerWidth) {
@@ -1064,44 +1073,40 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     }
                 }
                 //<2 safe search etc t
-
-                //<2 header f
-                if (settings.compact_header) {
-                    let search_input_form = s('.sfbg.nojsv');
-                    let all_images_etc = s('#top_nav');
-
-                    if (header_size_o.is_compact) {
-                        x.append(search_input_form, all_images_etc);
-
-                        x.load_css(document, 'compact_header');
-
-                    } else {
-                        let bst = s('#bst');
-
-                        x.after(bst, all_images_etc);
-
-                        x.remove(s(ext_id('.compact_header')))
-                    }
-
-                    //>3 hide tools menu t
-                    if (settings.sticky_header && settings.compact_header) {
-                        if (scroll_top !== 0) {
-                            s('#hdtbMenus').style.display = 'none'; // not adding 'none' class because it breaks tools disabling
-
-                        } else {
-                            s('#hdtbMenus').style.display = ''; // not adding 'none' class because it breaks tools disabling
-                        }
-                    }
-                    //<3 hide tools menu t
-                }
-                //<2 header t
             }
+            //>2 remove header shadow and_apply border if not on top t
+            if (settings.sticky_header && settings.compact_header) {
+                let searchbar = s('#hdtb-s');
+
+                if (searchbar) {
+                    const sfbg = s('.sfbg');
+
+                    if (cs.get_window_scroll_top() === 0) {
+                        x.add_class(sfbg, ext_id('no_header_shadow'));
+                    }
+
+                    if (cs.get_window_scroll_top() !== 0) {
+                        x.remove_class(sfbg, ext_id('header_border'));
+                        x.remove_class(sfbg, ext_id('no_header_shadow'));
+                    }
+
+                    if (cs.get_window_scroll_top() === 0 && header_size_o.is_compact) {
+                        x.add_class(sfbg, ext_id('header_border'));
+                    }
+
+                    if (!header_size_o.is_compact) {
+                        x.remove_class(sfbg, ext_id('header_border'));
+                    }
+                }
+            }
+            //<2 remove header shadow and_apply border if not on top t
         }
         //<1 stick or unstick pagination, turn off / on button and header t
 
         //>1 get_header_size f
         function get_header_size() { // g
             let header_size_o = {};
+            const tall_header_height = 123;
             let compare_value = document.documentElement.clientWidth + 14; // gap between all, images etc and login items should be 40px when language of google.com is english
             let scroll_top = cs.get_window_scroll_top();
             let nav_bar_items = sa('#tsf, #gbw > div > div, #hdtb-msb .hdtb-mitem, #ab_ctls .ab_ctl, #hdtb-tls'); // #tsf = google logo search input; #gbw > div > div = login items; #hdtb-msb .hdtb-mitem = all, images etc; #ab_ctls .ab_ctl = view saved, safe search; #hdtb-tls = tools
@@ -1124,8 +1129,14 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 compare_value -= 15;
             }
 
-            if (settings.sticky_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value >= header_els_width))) { // don't resize header when first loaded if ((stick_els_f_runned_once || scroll_top !== 0) && settings.sticky_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value > header_els_width)))
-                header_size_o.size = 65;
+            if (scroll_top >= tall_header_height || (settings.sticky_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value >= header_els_width)))) {
+                if (settings.sticky_header) {
+                    header_size_o.size = 53;
+
+                } else {
+                    header_size_o.size = 0;
+                }
+
                 header_size_o.is_compact = true;
 
             } else {
@@ -1146,12 +1157,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
             return header_size_o;
         }
         //<1 get_header_size f
-
-        //>1 set_stick_size f
-        function set_stick_size(header_size, el_pinned) {
-            return settings.sticky_header || !el_pinned ? header_size : 0;
-        }
-        //<1 set_stick_size f
 
         //>1 get_margin_of_view_saved_or_safe_search f
         function get_margin_of_view_saved_or_safe_search(el) {
@@ -1177,7 +1182,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     let paginator = s('#navcnt');
 
                     if (paginator, turn_off_btn) {
-                        if (settings.sticky_header) {
+                        if (settings.sticky_header && settings.compact_header) {
                             var moddifier = 0;
 
                         } else {
@@ -1222,27 +1227,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         }
         //<1 move_related_searches_el f
 
-        //>1 set_box_shadow_on_searchbar_if_not_on_top t
-        function set_box_shadow_on_searchbar_if_not_on_top() {
-            let searchbar = s('#hdtb-s');
-            let sfbgx = s('.sfbgx');
-
-            if (searchbar) {
-                if (cs.get_window_scroll_top() !== 0) {
-                    if (settings.sticky_header) {
-                        x.add_class(searchbar, ext_id('header_scroll_box_shadow'));
-                    }
-
-                    x.add_class(sfbgx, ext_id('header_scroll_box_shadow'));
-
-                } else {
-                    x.remove_class(searchbar, ext_id('header_scroll_box_shadow'));
-                    x.remove_class(sfbgx, ext_id('header_scroll_box_shadow'));
-                }
-            }
-        };
-        //<1 set_box_shadow_on_searchbar_if_not_on_top t
-
         //>1 insert_all_images_etc_at_default_position f
         function insert_all_images_etc_at_default_position(all_images_etc) { // g
             let bst = s('#bst');
@@ -1253,7 +1237,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         //<1 insert_all_images_etc_at_default_position f
 
         window.addEventListener('scroll', hide_paginator_and_turn_off_btn);
-        window.addEventListener('scroll', set_box_shadow_on_searchbar_if_not_on_top);
 
         return {
             searching_by_image_by_draggging_and_droppping: searching_by_image_by_draggging_and_droppping,
@@ -1568,7 +1551,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                     for (let i = 0; i < len; i++) {
                         if (modes[i] !== 'save_as') {
                             var show_img_btn = settings['show_' + modes[i] + '_btn'];
-    
+
                         } else {
                             var show_img_btn = settings.show_download_img_btn && !settings.show_save_as_dialog_on_img_download;
                         }
