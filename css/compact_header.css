@@ -87,6 +87,10 @@ html[dir="rtl"] .hdtbU {
     top: 0!important;
 }
 
+.sfbg {
+	border-bottom: 1px solid #ebebeb;
+}
+
 #sfcnt {
     height: 33px;
 }
@@ -98,6 +102,10 @@ html[dir="rtl"] .hdtbU {
 
 #hdtb-s, #hdtbMenus {
     transition: none!important;
+}
+
+.sfbg {
+	transition: box-shadow 0.2s ease-out;
 }
 
 .turn_off_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {

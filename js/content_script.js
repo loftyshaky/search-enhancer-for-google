@@ -833,7 +833,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                         let all_images_etc = s('#top_nav');
 
                         if (header_size_o.is_compact) {
-                           x.append(searchform, all_images_etc);
+                            x.append(searchform, all_images_etc);
 
                             x.load_css(document, 'compact_header');
 
@@ -924,19 +924,9 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
                     if (cs.get_window_scroll_top() === 0) {
                         x.add_class(sfbg, ext_id('no_header_shadow'));
-                    }
 
-                    if (cs.get_window_scroll_top() !== 0) {
-                        x.remove_class(sfbg, ext_id('header_border'));
+                    } else if (cs.get_window_scroll_top() !== 0) {
                         x.remove_class(sfbg, ext_id('no_header_shadow'));
-                    }
-
-                    if (cs.get_window_scroll_top() === 0 && header_size_o.is_compact) {
-                        x.add_class(sfbg, ext_id('header_border'));
-                    }
-
-                    if (!header_size_o.is_compact) {
-                        x.remove_class(sfbg, ext_id('header_border'));
                     }
                 }
             }
