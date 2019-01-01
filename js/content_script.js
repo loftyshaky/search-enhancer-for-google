@@ -829,11 +829,11 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 if (!s('#gs_si0')) { // if not google home page or Images page
                     //<2 header f
                     if (settings.sticky_header && settings.compact_header) {
-                        let search_input_form = s('.sfbg.nojsv');
+                        let searchform = s('#searchform');
                         let all_images_etc = s('#top_nav');
 
                         if (header_size_o.is_compact) {
-                            x.append(search_input_form, all_images_etc);
+                           x.append(searchform, all_images_etc);
 
                             x.load_css(document, 'compact_header');
 
