@@ -88,7 +88,10 @@ html[dir="rtl"] .hdtbU {
 }
 
 .sfbg {
-	border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    height: 72px!important;
+    background: white;
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
 }
 
 #sfcnt {
