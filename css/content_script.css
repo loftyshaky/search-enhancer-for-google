@@ -324,8 +324,17 @@ html[dir="rtl"] .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd .mn-hd-t
 #qbp {
 	top: 18px!important;
 }
+
 #nav {
     width: 32px;
+}
+
+#hdtbSum {
+	margin-left: 6px;
+}
+
+#hdtb-msb-vis {
+	margin-left: 0!important;
 }
 
 /*>1 related searches */
