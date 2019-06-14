@@ -46,6 +46,14 @@ html[dir="rtl"] #ab_ctls {
     left: auto;
 }
 
+#hdtbSum {
+	margin-left: 6px;
+}
+
+#hdtb-msb-vis {
+	margin-left: 0!important;
+}
+
 #hdtbMenus {
     width: inherit;
     position: absolute;
