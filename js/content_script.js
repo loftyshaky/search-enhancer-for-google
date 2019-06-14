@@ -877,10 +877,11 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
                     if (sidepanel && related_searches && appbar) {
                         const sidepanel_width_without_padding = parseFloat(window.getComputedStyle(sidepanel).height);
-                        let sidepanel_height = sidepanel_width_without_padding === 0 ? 0 : sidepanel.offsetHeight;
-                        const related_searches_offset = sidepanel_width_without_padding === 0 && settings.sticky_header && settings.compact_header ? 0 : sidepanel.getBoundingClientRect().top + scroll_top + sidepanel_height - (header_size_o.size + turn_off_btn_and_related_searches_modifier);
+                        const sidepanel_height = sidepanel_width_without_padding === 0 ? 0 : sidepanel.offsetHeight;
+                        const appbar_height = appbar.offsetHeight;
+                        const related_searches_offset = sidepanel_width_without_padding === 0 && appbar_height === 0 && settings.sticky_header && settings.compact_header ? 0 : sidepanel.getBoundingClientRect().top + scroll_top + sidepanel_height - (header_size_o.size + turn_off_btn_and_related_searches_modifier);
 
-                        if (scroll_top >= related_searches_offset && related_searches_offset >= 0) {
+                        if (scroll_top >= related_searches_offset) {
                             var toggle_f = 'add_class';
 
                         } else {
