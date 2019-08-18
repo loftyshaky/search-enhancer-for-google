@@ -126,7 +126,8 @@ html[dir="rtl"] .scroll_to_top_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {
     top: 8px;
     content: "";
     display: block;
-    border-top: 1px solid #545454;
+	border-top: 1px solid #545454;
+	height: 1px
 }
 
 .separator_pipbbdfondfipmjmdkmggihiknhmcfhd:before {
