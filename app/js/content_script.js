@@ -938,6 +938,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         //>1 get_header_size f
         function get_header_size() { // g
             let header_size_o = {};
+            const short_header_height = 53;
             const tall_header_height = 123;
             let compare_value = document.documentElement.clientWidth - 8; // gap between all, images etc and login items should be 40px when language of google.com is english
             let scroll_top = cs.get_window_scroll_top();
@@ -946,6 +947,8 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
             let el_to_hide_index = all_images_etc_and_safe_search_and_view_saved_items.length - 1;
             let is_image_tab = s('#ab_ctls .ab_ctl');
             let header_els_width = 0;
+            const img_viewer = s('#irc_bg');
+            let img_viewer_height;
 
             for (let item of all_images_etc_and_safe_search_and_view_saved_items) {
                 x.remove_class(item, ext_id('hidden'));
@@ -961,9 +964,24 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 compare_value -= 15;
             }
 
+            //> set selected image area top value when header is sticky
+            if (img_viewer && settings.sticky_header && settings.compact_header) {
+                img_viewer.style.top = short_header_height + 'px';
+            }
+            //< set selected image area top value when header is sticky
+
+            if (img_viewer) {
+                img_viewer.style.height = '';
+                img_viewer_height = img_viewer.offsetHeight + 1;
+            }
+
             if (scroll_top >= tall_header_height || (settings.sticky_header && settings.compact_header && (scroll_top !== 0 || (scroll_top === 0 && compare_value >= header_els_width)))) {
                 if (settings.sticky_header) {
-                    header_size_o.size = 53;
+                    if (img_viewer && settings.compact_header) {
+                        img_viewer.style.height = img_viewer_height - short_header_height + 'px';
+                    }
+
+                    header_size_o.size = short_header_height;
 
                 } else {
                     header_size_o.size = 0;
@@ -972,7 +990,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 header_size_o.is_compact = true;
 
             } else {
-                header_size_o.size = 123;
+                header_size_o.size = tall_header_height;
                 header_size_o.is_compact = false;
             }
 
