@@ -1084,7 +1084,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
     //> do_img_action o
     cs.do_img_action = (() => {
-        let search_by_img_btns_appended = false;
         let download_all_imgs_current_node_index = 0;
         let origin = window.location.origin;
         let btns_list = {
@@ -1202,20 +1201,6 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                             }
                         }
 
-                    }
-                }
-
-                let search_by_img_wrappers = sa('.irc_hd > .irc_dsh');
-
-                if (search_by_img_wrappers[0] && !search_by_img_btns_appended && settings.show_search_by_img_btn) {
-                    search_by_img_btns_appended = true;
-
-                    for (let search_by_img_wrapper of search_by_img_wrappers) {
-                        search_by_img_wrapper.insertAdjacentHTML('beforeend', '<a class="' + ext_id('search_by_img_btns') + ' o5rIVb irc_hol i3724" tabindex="0" href="javascript:void(0)"><span class="irc_ho">' + locale.search_by_img_btns_text + '</span></a>'); // javascript:void(0) = prevent search by image link from opening
-
-                        let search_by_img_btns = sb(search_by_img_wrapper, ext_id('.search_by_img_btns'));
-
-                        search_by_img_btns.addEventListener('mousedown', do_img_action.bind(search_by_img_btns, 'img_viewer', 'search_by_img', null));
                     }
                 }
             }
