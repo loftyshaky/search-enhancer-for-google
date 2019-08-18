@@ -267,21 +267,20 @@ a.rg_l {
  }
 
 /*>1 image action buttons */ 
-.img_action_trs_pipbbdfondfipmjmdkmggihiknhmcfhd {
-	margin-top: 10px;
-	display: inline-block!important;
+.img_action_btns_w_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	display: flex;
+	white-space: nowrap;
 }
 
-.img_action_trs_pipbbdfondfipmjmdkmggihiknhmcfhd td {
-	height: inherit!important;
+.img_action_btns_w_pipbbdfondfipmjmdkmggihiknhmcfhd svg {
+    height: 16px;
+    width: 16px;
+    margin-top: 2px;
+    margin-left: 2px;
 }
 
-.img_action_trs_pipbbdfondfipmjmdkmggihiknhmcfhd svg {
-    height: calc(100% - 2px)!important;
-}
-
-.search_by_img_btns_pipbbdfondfipmjmdkmggihiknhmcfhd {
-	margin-left: 11px;
+.my_img_action_btns_pipbbdfondfipmjmdkmggihiknhmcfhd {
+	border: none;
 }
 
 .download_all_imgs_btn_pipbbdfondfipmjmdkmggihiknhmcfhd {

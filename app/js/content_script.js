@@ -1087,42 +1087,34 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         let search_by_img_btns_appended = false;
         let download_all_imgs_current_node_index = 0;
         let origin = window.location.origin;
-        let img_preview_btns_list = {
+        let btns_list = {
             mode: ['view_img', 'search_by_img', 'download_img', 'save_as', 'copy_img_url'],
             svg: ['eye', 'search', 'download', 'save_as', 'copy']
         };
-        let btns_list = Object.assign({}, img_preview_btns_list);
-
-        btns_list.mode = btns_list.mode.filter(item => item !== 'search_by_img');
-        btns_list.svg = btns_list.svg.filter(item => item !== 'search');
 
         //>1 do_img_action f
         function do_img_action(mode, send_message_mode, meta_el, e) {
             let mouse_btn = e.button;
 
             if (mouse_btn !== 2) { // if not right-click
-                e.preventDefault();
-
                 if (mode === 'img_viewer') {
                     let img_el_id = this.closest('.immersive-container').dataset.itemId;
-                    let img_el = s('.irc_rimask[data-item-id="' + img_el_id + '"]');
-                    let src = sb(img_el, 'img').src;
-                    img_el = s('.rg_ic[src="' + src + '"]') || img_el; // img_el = if Related images
-                    var img_el_wrapper = img_el.closest('.rg_bx') || img_el; // img_el = if Related images
+                    let img_el = s('[data-item-id="' + img_el_id + '"]');
+                    var img_viewer_img_src = sb(img_el, 'img').src;
 
                 } else if (mode === 'preview') {
                     var img_el_wrapper = this.closest('.rg_bx');
-                }
-
-                if (mode === 'img_viewer' || mode === 'preview') {
                     var image_data = sb(img_el_wrapper, '.rg_meta').innerHTML;
 
                 } else if (mode === 'download_all') {
                     var image_data = meta_el.innerHTML;
                 }
 
-                let json = JSON.parse(image_data);
-                let img = json.ou;
+                if (mode === 'preview' || mode === 'download_all') {
+                    var json = JSON.parse(image_data);
+                }
+
+                let img = img_viewer_img_src || json.ou;
 
                 if (mouse_btn === 0) { // when left-clicking
                     var active = true;
@@ -1185,24 +1177,16 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         let create_btns = x.debounce(() => {
             if (!s(ext_id('.more_menu'))) {
                 if (settings.show_view_img_btn || settings.show_download_img_btn) {
-                    x.remove_m(sa(ext_id('.img_action_trs')));
+                    x.remove_m(sa(ext_id('.img_action_btns_w')));
 
-                    let img_viewer_btn_wrappers = sa('.iAcjwd.irc_but_r tr');
+                    let open_website_btns = sa('.irc_hol');
 
-                    if (img_viewer_btn_wrappers[0]) {
-                        for (let img_viewer_btn_wrapper of img_viewer_btn_wrappers) {
-                            let created_btns_indexes = [];
-                            let img_viewer_btn_wrapper_width = img_viewer_btn_wrapper.offsetWidth - 32 - 10; // 32 = more_btn width; 10 = more_btn_margin
-                            let btns_cumulative_width = 0;
-                            let created_btn;
-                            let img_action_tr = x.create('tr', ext_id('img_action_trs'));
-                            let number_of_enabled_items = 0;
-                            let width_exceeded = false;
+                    if (open_website_btns[0]) {
+                        for (let open_website_btn of open_website_btns) {
+                            let img_action_btns_w = x.create('tr', ext_id('img_action_btns_w'));
                             let len = btns_list.mode.length;
 
-                            x.after(img_viewer_btn_wrapper, img_action_tr);
-
-                            img_action_tr.style.height = img_viewer_btn_wrapper.offsetHeight + 'px'; // set height of img_action_trs to eight of tallest td in image viewer t
+                            x.after(open_website_btn, img_action_btns_w);
 
                             for (let i = 0; i < len; i++) {
                                 if (btns_list.mode[i] !== 'save_as') {
@@ -1213,27 +1197,8 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                                 }
 
                                 if (show_img_btn) {
-                                    if (!width_exceeded) {
-                                        created_btn = create_btn(null, btns_list.mode[i], img_action_tr, btns_list.mode[i] + '_btns', btns_list.svg[i], btns_list.mode[i] + '_btns_text');
-                                    }
-
-                                    btns_cumulative_width += created_btn.offsetWidth + 10; // 10 = margin-right
-
-                                    if (btns_cumulative_width > img_viewer_btn_wrapper_width) {
-                                        width_exceeded = true;
-
-                                    } else {
-                                        created_btns_indexes.push(i);
-                                    }
-
-                                    number_of_enabled_items++;
+                                    create_btn(btns_list.mode[i], img_action_btns_w, btns_list.mode[i] + '_btns', btns_list.svg[i]);
                                 }
-                            }
-
-                            if (number_of_enabled_items !== created_btns_indexes.length) {
-                                x.remove(created_btn);
-
-                                created_btn = create_btn(created_btns_indexes, 'more', img_action_tr, 'more_btns', 'more', 'more_btns_text');
                             }
                         }
 
@@ -1268,7 +1233,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 let previously_created_btn;
                 let number_of_enabled_items = 0;
                 let width_exceeded = false;
-                let len = img_preview_btns_list.mode.length;
+                let len = btns_list.mode.length;
 
                 let img_preview_btns_wrapper = x.create('div', ext_id('img_preview_btns_wrapper'));
                 x.as_first(this, img_preview_btns_wrapper);
@@ -1278,8 +1243,8 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                         previously_created_btn = created_btn;
                     }
 
-                    if (img_preview_btns_list.mode[i] !== 'save_as') {
-                        var show_img_btn = settings['show_' + img_preview_btns_list.mode[i] + '_btn'] && settings['show_' + img_preview_btns_list.mode[i] + '_btn_on_img_previews'];
+                    if (btns_list.mode[i] !== 'save_as') {
+                        var show_img_btn = settings['show_' + btns_list.mode[i] + '_btn'] && settings['show_' + btns_list.mode[i] + '_btn_on_img_previews'];
 
                     } else {
                         var show_img_btn = settings.show_download_img_btn && settings.show_download_img_btn_on_img_previews && !settings.show_save_as_dialog_on_img_download && settings.show_save_as_btn_on_img_previews;
@@ -1287,7 +1252,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
 
                     if (show_img_btn) {
                         if (!width_exceeded) {
-                            created_btn = create_img_preview_btn(null, img_preview_btns_list.mode[i], img_preview_btns_wrapper, 'img_preview_' + img_preview_btns_list.mode[i] + '_btn', img_preview_btns_list.svg[i], img_preview_btns_list.mode[i] + '_btns_text');
+                            created_btn = create_img_preview_btn(null, btns_list.mode[i], img_preview_btns_wrapper, 'img_preview_' + btns_list.mode[i] + '_btn', btns_list.svg[i], btns_list.mode[i] + '_btns_text');
                         }
 
                         if (img_preview_btns_wrapper.offsetWidth > img_width) {
@@ -1314,24 +1279,15 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
         //<1 create_img_preview_btns f
 
         //>1 create_btn f
-        function create_btn(created_btns_indexes, send_message_mode, img_action_tr, btns_class, svg_name, locale_name) {
-            let btn_html = '<td><a class="' + ext_id(btns_class) + ' ' + ext_id('my_img_action_btns') + '" tabindex="0"><span class="RL3J9c Cws1Yc wmCrUb">' + svg[svg_name] + '</span><span class="Tl8XHc">' + locale[locale_name] + '</span></a></td>';
+        function create_btn(send_message_mode, img_action_btns_w, btns_class, svg_name) {
+            let btn_html = '<button class="NDcgDe ' + ext_id(btns_class) + ' ' + ext_id('my_img_action_btns') + '"><span class="aDEWOd" style="margin-left:-1px;margin-right:1px;height:20px;line-height:20px;width:20px">' + svg[svg_name] + '</span></button>';
 
-            img_action_tr.insertAdjacentHTML('beforeend', btn_html);
+            img_action_btns_w.insertAdjacentHTML('beforeend', btn_html);
 
-            let img_viewer_btns_wrapper = img_action_tr.closest('.iAcjwd.irc_but_r');
+            let img_viewer_btns_wrapper = img_action_btns_w.closest('.irc_ab');
             let btn = sb(img_viewer_btns_wrapper, ext_id('.' + btns_class));
 
-            if (send_message_mode !== 'more') {
-                btn.addEventListener('mousedown', do_img_action.bind(btn, 'img_viewer', send_message_mode, null));
-
-            } else {
-                x.remove(sb(btn, '.Tl8XHc')); // remove span inside
-
-                btn.addEventListener('mousedown', create_more_menu.bind(btn, created_btns_indexes, '', 'img_viewer'));
-            }
-
-            return btn
+            btn.addEventListener('mousedown', do_img_action.bind(btn, 'img_viewer', send_message_mode, null));
         }
         //<1 create_btn f
 
@@ -1367,7 +1323,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                 let more_menu = sb(btns_wrapper, ext_id('.' + type_prefix + 'more_menu'));
 
                 if (!more_menu) {
-                    let modes = type_prefix === '' ? btns_list.mode : img_preview_btns_list.mode;
+                    let modes = type_prefix === '' ? btns_list.mode : btns_list.mode;
                     let len = modes.length;
 
                     let more_menu = x.create('div', ext_id(type_prefix + 'more_menu') + ' ' + ext_id('more_menus'));
