@@ -546,19 +546,7 @@ svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</st
                                         //<3 update element with namber of pages t
 
                                         //>3 handle image section t
-                                        let links = sab(iframe.contentDocument, '#imagebox_bigimages a.iu-card-header, #imagebox_bigimages a.Q2MMlc'); // Images for x;  More images for x
-
-                                        for (let link of links) {
-                                            link.setAttribute('target', '_parent');
-                                        }
-
-                                        let el_that_makes_imgs_link_opening_in_iframe = sb(iframe.contentDocument, '#imagebox_bigimages div[data-rtid]');
-
-                                        if (el_that_makes_imgs_link_opening_in_iframe) {
-                                            el_that_makes_imgs_link_opening_in_iframe.removeAttribute('data-rtid');
-                                        }
-
-                                        x.add_event_listener_to_multiple_els(iframe.contentDocument, '#imagebox_bigimages a.bia', 'click', open_img);
+                                        x.add_event_listener_to_multiple_els(iframe.contentDocument, '#iur a.bia', 'click', open_img);
                                         //<3 handle image section t
 
                                         iframe.contentDocument.body.dataset.id = iframe_id;
