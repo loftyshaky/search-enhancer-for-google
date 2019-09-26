@@ -14,8 +14,12 @@ svg.copy = '<svg viewBox="0 0 22 22"><style type="text/css">.st0{fill:none;}</st
 svg.more = '<svg viewBox="0 0 16 16"><style type="text/css">.st0{fill:none;}</style><path class="st0" d="M-4-4h24v24H-4V-4z"/><path d="M8,4c1.1,0,2-0.9,2-2S9.1,0,8,0S6,0.9,6,2S6.9,4,8,4z M8,6C6.9,6,6,6.9,6,8s0.9,2,2,2s2-0.9,2-2S9.1,6,8,6z M8,12 c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S9.1,12,8,12z"/></svg>';
 
 //> fix for https://groups.google.com/forum/#!topic/browservery/gIU_FxhKmP8
-if (location.href.indexOf('&sfr=vfe') > -1) {
-    const new_href = location.href.replace(/&sfr=vfe/, '');
+if (location.href.indexOf('sfr=') > -1) {
+    let new_href = location.href.replace(/sfr=[^&*]+[^]/, '');
+
+    if (new_href[new_href.length - 1] === '&') {
+        new_href = new_href.slice(0, -1);
+    }
 
     location.replace(new_href);
 }
