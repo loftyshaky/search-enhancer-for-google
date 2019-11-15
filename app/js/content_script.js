@@ -225,22 +225,22 @@ if (location.href.indexOf('sfr=') > -1) {
         })();
         //<1 scroll to top t
 
+        //>1 move extra titles (games, movies) and copyright notice ex search: need for speed 2015 t 
+        (() => {
+            let rhs = s('#rhs');
+
+            if (rhs) {
+                x.append(rhs, s('#extrares'));
+            }
+        })();
+        //<1 move extra titles (games, movies) and copyright notice ex search: need for speed 2015 t
+
         //>1 move related searches element on page load t
         (() => {
             let related_searches_el = s('#brs');
             cs.sticking.move_related_searches_el(related_searches_el);
         })();
         //<1 move related searches element on page load t
-
-        //>1 move extra titles (games, movies) and copyright notice ex search: need for speed 2015 t 
-        (() => {
-            let rhs_block = s('#rhs_block');
-
-            if (rhs_block) {
-                x.append(rhs_block, s('#extrares'));
-            }
-        })();
-        //<1 move extra titles (games, movies) and copyright notice ex search: need for speed 2015 t 
 
         //>1 stick els on page load (execution; binding) t
         cs.sticking.stick_els();
@@ -872,14 +872,20 @@ if (location.href.indexOf('sfr=') > -1) {
 
                     //>2 related searches t
                     let related_searches = s('#brs');
-                    let sidepanel = s('#rhs_block');
+                    let sidepanel = s('#rhs');
                     let appbar = s('#appbar');
+                    const sidepanel_children = Array.from(sa('#rhs > *:not(#brs):not(#extrares), #bres > div'));
 
                     if (sidepanel && related_searches && appbar) {
-                        const sidepanel_width_without_padding = parseFloat(window.getComputedStyle(sidepanel).height);
-                        const sidepanel_height = sidepanel_width_without_padding === 0 ? 0 : sidepanel.offsetHeight;
+                        const sidepanel_only_contains_related_searches = sidepanel_children.every(el => el.offsetHeight === 0);
+                        const sidepanel_height = sidepanel_only_contains_related_searches ? 0 : sidepanel_children.reduce((sum, el) => {
+                            const height_plus_margin_bottom = el.offsetHeight + parseInt(window.getComputedStyle(el).marginBottom);
+
+                            return typeof sum === 'number' ? sum + height_plus_margin_bottom : height_plus_margin_bottom;
+                        });
+
                         const appbar_height = appbar.offsetHeight;
-                        const related_searches_offset = sidepanel_width_without_padding === 0 && appbar_height === 0 && settings.sticky_header && settings.compact_header ? 0 : sidepanel.getBoundingClientRect().top + scroll_top + sidepanel_height - (header_size_o.size + turn_off_btn_and_related_searches_modifier);
+                        const related_searches_offset = sidepanel_only_contains_related_searches && appbar_height === 0 && settings.sticky_header && settings.compact_header ? 0 : sidepanel.getBoundingClientRect().top + scroll_top + sidepanel_height - (header_size_o.size + turn_off_btn_and_related_searches_modifier);
 
                         if (scroll_top >= related_searches_offset && (related_searches_offset >= 0 || (settings.sticky_header && settings.compact_header))) {
                             var toggle_f = 'add_class';
@@ -1066,10 +1072,10 @@ if (location.href.indexOf('sfr=') > -1) {
         //>1 move_related_searches_el f
         function move_related_searches_el(related_searches_el) { // g
             if (related_searches_el) {
-                let sidepanel = s('#rhs_block');
+                let sidepanel = s('#rhs');
 
                 if (sidepanel) {
-                    x.after(sidepanel, related_searches_el)
+                    x.append(sidepanel, related_searches_el)
 
                     related_searches_el.offsetWidth;
                 }
