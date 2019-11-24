@@ -1,4 +1,8 @@
-﻿if (new URL(location.href).searchParams.get('tbm') !== 'shop') {
+﻿const is_main_page = location.pathname === '/';
+const tab = new URL(location.href).searchParams.get('tbm');
+const is_images_tab = tab === 'isch';
+
+if (!is_main_page && tab !== 'shop') {
     cs = {};
     svg = {};
     settings = {};
@@ -825,7 +829,7 @@
 
                     let scroll_top = cs.get_window_scroll_top();
 
-                    if (!s('#gs_si0')) { // if not google home page or Images page
+                    if (!is_images_tab) {
                         //<2 header f
                         if (settings.sticky_header && settings.compact_header) {
                             let searchform = s('#searchform');
@@ -950,7 +954,6 @@
                 let nav_bar_items = sa('.logo, .RNNXgb, #gb > div:not(#gbw), #gbw > div > div, #hdtb-msb .hdtb-mitem, .ab_ctl:not(.action-menu), #hdtb-tls'); // .logo = google logo, .RNNXgb = search input; #gb > div:not(#gbw), #gbw > div > div = login items; #hdtb-msb .hdtb-mitem = all, images etc; #ab_ctls .ab_ctl = safe search, collections; #hdtb-tls = tools
                 let all_images_etc_and_safe_search_and_view_saved_items = sa('#hdtb-msb .hdtb-mitem, #hdtb-tls, #ab_ctls .ab_ctl');
                 let el_to_hide_index = all_images_etc_and_safe_search_and_view_saved_items.length - 1;
-                let is_image_tab = s('#ab_ctls .ab_ctl');
                 let header_els_width = 0;
                 const img_viewer = s('#irc_bg');
                 let img_viewer_height;
@@ -965,7 +968,7 @@
                     header_els_width += el_width;
                 }
 
-                if (is_image_tab) { // if images tab
+                if (is_images_tab) { // if images tab
                     compare_value -= 5;
                 }
 
@@ -1000,7 +1003,7 @@
                 }
 
                 if (scroll_top !== 0 && settings.sticky_header && settings.compact_header) {
-                    while (el_to_hide_index !== - 1 && compare_value + (is_image_tab && !x.has_class(all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index], 'ab_ctl') ? 16 : 0) < header_els_width) {
+                    while (el_to_hide_index !== - 1 && compare_value + (is_images_tab && !x.has_class(all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index], 'ab_ctl') ? 16 : 0) < header_els_width) {
                         x.add_class(all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index], ext_id('hidden'));
 
                         header_els_width -= all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index].offsetWidth + get_margin_of_view_saved_or_safe_search(all_images_etc_and_safe_search_and_view_saved_items[el_to_hide_index]);
