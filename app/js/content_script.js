@@ -877,12 +877,13 @@ if (!is_main_page && tab !== 'shop') {
                         let related_searches = s('#brs');
                         let sidepanel = s('#rhs');
                         let appbar = s('#appbar');
-                        const sidepanel_children = Array.from(sa('#rhs > *:not(#brs):not(#extrares), #bres > div'));
+                        const sidepanel_children = Array.from(sa('#rhs > *:not(#brs):not(#extrares), #bres > div, #ofr, .a1DBFd, .N6pxec')); // #ofr = In order to show you the most relevant results, we have omitted some entries very similar to the 10 already displayed.; .a1DBFd = Some results may have been delisted consistent with local information law. Learn more; N6pxec = Create alert button in Videos, News etc.  tab
 
                         if (sidepanel && related_searches && appbar) {
                             const sidepanel_only_contains_related_searches = sidepanel_children.every(el => el.offsetHeight === 0);
                             const sidepanel_height = sidepanel_only_contains_related_searches ? 0 : sidepanel_children.reduce((sum, el) => {
-                                const height_plus_margin_bottom = el.offsetHeight + parseInt(window.getComputedStyle(el).marginBottom);
+                                const style = window.getComputedStyle(el);
+                                const height_plus_margin_bottom = el.offsetHeight + parseInt(style.marginBottom);
 
                                 return typeof sum === 'number' ? sum + height_plus_margin_bottom : height_plus_margin_bottom;
                             });
