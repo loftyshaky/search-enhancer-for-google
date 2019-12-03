@@ -866,9 +866,14 @@ if (!is_main_page && tab !== 'shop') {
 
                         if (turn_off_btn) {
                             turn_off_btn.style.top = header_size_o.size + turn_off_btn_and_related_searches_modifier + 'px';
-                            pagination.style.top = header_size_o.size + pagination_modifier + 'px';
 
                             x[toggle_f](turn_off_btn, ext_id('fixed'));
+                      
+                        }
+
+                        if (settings.show_paginator) {
+                            pagination.style.top = header_size_o.size + pagination_modifier + 'px';
+                            
                             x[toggle_f](pagination, ext_id('fixed'));
                         }
                         //<2 pagination and turn_off_btn t
