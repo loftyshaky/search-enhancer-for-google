@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "baseUrl": "src",
+        "target": "es6",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "strict": true,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "shared/*": [
+                "./ts/shared/*"
+            ],
+            "background/*": [
+                "./ts/background/*"
+            ],
+            "settings/*": [
+                "./ts/settings/*"
+            ],
+            "content_script/*": [
+                "./ts/content_script/*"
+            ],
+        }
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+}
