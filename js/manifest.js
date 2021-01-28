@@ -25,7 +25,7 @@ class Manifest {
             },
             permissions: ['storage'],
             content_scripts: [{
-                run_at: 'document_start',
+                run_at: 'document_end',
                 matches: [
                     '*://www.google.com/*',
                     '*://www.google.ad/*',
