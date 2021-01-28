@@ -3,7 +3,9 @@ import {
     o_inputs,
     o_color,
 } from '@loftyshaky/shared/inputs';
-import { d_settings as d_sections_shared } from '@loftyshaky/shared/settings';
+import { d_settings } from '@loftyshaky/shared/settings';
+import { d_shared } from 'shared/internal';
+import { d_sections } from 'settings/internal';
 
 export class Main {
     private static i0: Main;
@@ -29,18 +31,32 @@ export class Main {
     public sections: any = [
         ...[new o_inputs.Section({
             name: 'settings',
-            inputs: [new o_color.Color({
-                name: 'keyword_color',
-                event_callback: () => undefined,
-                select_palette_color_callback: () => undefined,
-                hide_color_help_callback: () => undefined,
-            })],
+            inputs: [
+                new o_inputs.Checkbox({
+                    name: 'show_favicons',
+                    event_callback: d_sections.Val.i.change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_server_locations',
+                    event_callback: d_sections.Val.i.change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_scroll_to_top_button',
+                    event_callback: d_sections.Val.i.change,
+                }),
+                new o_color.Color({
+                    name: 'keyword_color',
+                    event_callback: d_sections.Val.i.change,
+                    select_palette_color_callback: d_sections.Val.i.save_selected_palette_color,
+                    hide_color_help_callback: d_sections.Visibility.i.hide_color_help,
+                }),
+            ],
         })],
-        ...d_sections_shared.Sections.i.make_shared_sections(
+        ...d_settings.Sections.i.make_shared_sections(
             {
-                download_back_up_callback: (): undefined => undefined,
-                upload_back_up_callback: (): undefined => undefined,
-                restore_defaults_callback: (): undefined => undefined,
+                download_back_up_callback: ext.storage_get,
+                upload_back_up_callback: d_shared.Data.i.restore_back_up,
+                restore_defaults_callback: () => d_shared.Data.i.restore_confirm(),
             },
         ),
         ...[new o_inputs.Section({

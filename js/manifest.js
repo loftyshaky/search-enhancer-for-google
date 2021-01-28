@@ -23,6 +23,7 @@ class Manifest {
                 page: 'settings.html',
                 open_in_tab: true,
             },
+            permissions: ['storage'],
             content_scripts: [{
                 run_at: 'document_start',
                 matches: [
