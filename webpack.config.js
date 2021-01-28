@@ -59,7 +59,7 @@ module.exports = (env, argv) => {
             });
             env_instance.generate({ browser: env.browser });
             locales.merge();
-            reload.reload(
+            /* reload.reload(
                 {
                     hard: false,
                     hard_paths: [
@@ -69,7 +69,7 @@ module.exports = (env, argv) => {
                         'background',
                     ],
                 },
-            );
+            ); */
         },
     });
 
