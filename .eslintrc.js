@@ -2,7 +2,7 @@ const _ = require('lodash');
 
 const min_items = 2;
 const naming_convention_exceptions = {
-    regex: '^(marginBottom|minWidth|maxWidth|scrollTop|backgroundColor|componentDidMount|componentWillUnmount|componentDidUpdate|componentDidCatch|getDerivedStateFromError|enforceActions|recurseEverything|currentWindow|windowTypes|defaultProps|windowId)$',
+    regex: '^(marginBottom|minWidth|maxWidth|scrollTop|backgroundColor|componentDidMount|componentWillUnmount|componentDidUpdate|componentDidCatch|getDerivedStateFromError|enforceActions|recurseEverything|currentWindow|windowTypes|defaultProps|windowId|useAsButton|autoReposition|lockOpacity|showAlways)$',
     match: false,
 };
 
@@ -43,7 +43,7 @@ const rules = {
         ],
         'max-nested-callbacks': [
             'error',
-            4,
+            8,
         ],
         'multiline-ternary': [
             'error',
