@@ -44,7 +44,8 @@ export class Main {
                         && (
                             color_hsv.s <= this.saturation_1
                             || color_hsv.s >= this.saturation_2
-                        );
+                        )
+                        && this.check_if_el_has_immediate_text({ el });
                     },
                     1023,
                 ));
@@ -109,7 +110,7 @@ export class Main {
         () => {
             const children: NodeListOf<ChildNode> = el.childNodes;
 
-            return [...children].some((el_2: ChildNode): boolean => err(
+            return [...children].every((el_2: ChildNode): boolean => err(
                 () => el_2.nodeType === Node.TEXT_NODE,
                 1025,
             ));
