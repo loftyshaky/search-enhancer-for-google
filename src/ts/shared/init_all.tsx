@@ -18,34 +18,44 @@ import {
 export class InitAll {
     private static i0: InitAll;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): InitAll {
+    // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
 
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
+
     public init = (): void => err(() => {
-        this.set_page_title();
-        CssVars.i.set();
+        if (page === 'settings') {
+            this.set_page_title();
+        }
+
+        CssVars.i().set();
 
         const error_root: ShadowRoot = this.create_root({ prefix: 'error' }) as ShadowRoot;
-        const loading_screen_root: ShadowRoot = this.create_root({ prefix: 'loading_screen' }) as ShadowRoot;
-        const settings_root: HTMLDivElement = this.create_root({
-            prefix: 'settings',
-            shadow_root: false,
-        }) as HTMLDivElement;
+        let loading_screen_root: ShadowRoot;
+        let settings_root: HTMLDivElement;
+
+        if (page === 'settings') {
+            loading_screen_root = this.create_root({ prefix: 'loading_screen' }) as ShadowRoot;
+            settings_root = this.create_root({
+                prefix: 'settings',
+                shadow_root: false,
+            }) as HTMLDivElement;
+        }
 
         const render_settings = (): Promise<void> => err_async(async () => {
             const { Body } = await import('settings/components/body');
             const on_render = (): Promise<void> => err_async(async () => {
                 const { d_sections } = await import('settings/internal');
 
-                u_settings.InputsWidth.i.calculate_for_all_sections(
-                    { sections: d_sections.Main.i.sections },
+                u_settings.InputsWidth.i().calculate_for_all_sections(
+                    { sections: d_sections.Main.i().sections },
                 );
-                u_settings.InputsWidth.i.set_max_width();
+                u_settings.InputsWidth.i().set_max_width();
 
-                LoadingScreenVisibility.i.hide();
+                LoadingScreenVisibility.i().hide();
             },
             1013);
 
@@ -78,41 +88,43 @@ export class InitAll {
             <Error app_id={app_id} />,
             error_root,
             (): void => {
-                render(
-                    <CrashHandler><LoadingScreenBody /></CrashHandler>,
-                    loading_screen_root,
-                    (): void => {
-                        const loading_screen_root_el = s<HTMLDivElement>(`.${new Suffix('loading_screen').result}`);
+                if (page === 'settings') {
+                    render(
+                        <CrashHandler><LoadingScreenBody /></CrashHandler>,
+                        loading_screen_root,
+                        (): void => {
+                            const loading_screen_root_el = s<HTMLDivElement>(`.${new Suffix('loading_screen').result}`);
 
-                        if (
-                            n(loading_screen_root_el)
-                            && n(loading_screen_root_el.shadowRoot)
-                        ) {
-                            Theme.i.set({ name: 'light' });
+                            if (
+                                n(loading_screen_root_el)
+                                && n(loading_screen_root_el.shadowRoot)
+                            ) {
+                                Theme.i().set({ name: 'light' });
 
-                            x.css(
-                                'normalize',
-                                loading_screen_root_el.shadowRoot,
-                            );
-                            const loading_screen_css = x.css(
-                                'loading_screen',
-                                loading_screen_root_el.shadowRoot,
-                            );
-
-                            if (n(loading_screen_css)) {
-                                loading_screen_css.addEventListener(
-                                    'load',
-                                    (): void => err(() => {
-                                        LoadingScreenVisibility.i.show();
-
-                                        render_settings();
-                                    },
-                                    1012),
+                                x.css(
+                                    'normalize',
+                                    loading_screen_root_el.shadowRoot,
                                 );
+                                const loading_screen_css = x.css(
+                                    'loading_screen',
+                                    loading_screen_root_el.shadowRoot,
+                                );
+
+                                if (n(loading_screen_css)) {
+                                    loading_screen_css.addEventListener(
+                                        'load',
+                                        (): void => err(() => {
+                                            LoadingScreenVisibility.i().show();
+
+                                            render_settings();
+                                        },
+                                        1012),
+                                    );
+                                }
                             }
-                        }
-                    },
-                );
+                        },
+                    );
+                }
             },
         );
     },

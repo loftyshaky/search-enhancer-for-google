@@ -105,6 +105,13 @@ module.exports = (env, argv) => {
                 'content_script',
                 'index.scss',
             ),
+            icons: path.join(
+                app_root,
+                'src',
+                'scss',
+                'content_script',
+                'icons.scss',
+            ),
         },
     };
 

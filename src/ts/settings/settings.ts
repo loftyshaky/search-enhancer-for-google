@@ -4,4 +4,4 @@ import 'settings/internal';
 
 import { InitAll } from 'shared/init_all';
 
-InitAll.i.init();
+InitAll.i().init();

@@ -7,13 +7,13 @@ import { d_shared } from 'shared/internal';
 
 export const Body = observer(() => {
     useEffect(() => {
-        d_shared.Data.i.set_from_storage();
+        d_shared.Data.i().set_from_storage();
     },
     []);
 
     return (
         <Settings
-            sections={d_sections.Main.i.sections}
+            sections={d_sections.Main.i().sections}
             initial_section='settings'
             change_section_callback={() => undefined}
         />

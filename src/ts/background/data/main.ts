@@ -5,11 +5,13 @@ import { d_color } from '@loftyshaky/shared/inputs';
 export class Main {
     private static i0: Main;
 
-    public static get i() {
-        if (!this.i0) { this.i0 = new this(); }
-
-        return this.i0;
+    public static i(): Main {
+    // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public defaults: any = {
         show_favicons: true,
@@ -17,7 +19,7 @@ export class Main {
         show_scroll_to_top_button: true,
         keyword_color: 2,
         show_color_help: true,
-        colors: d_color.Color.i.default_colors,
+        colors: d_color.Color.i().default_colors,
     }
 
     public update_settings = (

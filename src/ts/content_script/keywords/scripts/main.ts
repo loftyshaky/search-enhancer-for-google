@@ -1,21 +1,22 @@
 import { d_color } from '@loftyshaky/shared/inputs';
+import { s_el_parser } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
 
-    public static get i() {
-        this.i0 = new this();
-
-        return this.i0;
+    public static i(): Main {
+    // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
 
-    public color_keywords = (
-        { keyword_els }: { keyword_els: HTMLElement[] },
-    ): void => err(
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
+
+    public color_keywords = (): void => err(
         () => {
-            [...keyword_els].forEach((keyword_el: HTMLElement): void => err(
+            [...s_el_parser.Main.i().keyword_els].forEach((keyword_el: HTMLElement): void => err(
                 () => {
-                    keyword_el.style.color = d_color.Color.i.access_from_val(
+                    keyword_el.style.color = d_color.Color.i().access_from_val(
                         { val: data.settings.keyword_color },
                     );
                 },

@@ -7,11 +7,11 @@ browser.runtime.onMessage.addListener((msg: t.Msg): Promise<any> => err_async(as
     const msg_str: string = msg.msg;
 
     if (msg_str === 'update_settings') {
-        await data.Main.i.update_settings({
+        await data.Main.i().update_settings({
             settings: msg.settings,
         });
     } else if (msg_str === 'get_defaults') {
-        return data.Main.i.defaults;
+        return data.Main.i().defaults;
     }
 
     return true;

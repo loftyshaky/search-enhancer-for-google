@@ -4,11 +4,13 @@ import { runInAction } from 'mobx';
 export class Data {
     private static i0: Data;
 
-    public static get i() {
-        this.i0 = new this();
-
-        return this.i0;
+    public static i(): Data {
+    // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     private restore = (
         { settings }: { settings?: any } = {},

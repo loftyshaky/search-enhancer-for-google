@@ -8,11 +8,13 @@ import {
 export class Val {
     private static i0: Val;
 
-    public static get i() {
-        this.i0 = new this();
-
-        return this.i0;
+    public static i(): Val {
+    // eslint-disable-next-line no-return-assign
+        return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public change = (
         {
@@ -26,12 +28,12 @@ export class Val {
         let val: any;
 
         if (input.type === 'color') {
-            val = d_color.Color.i.access({
+            val = d_color.Color.i().access({
                 input,
                 i,
             });
         } else {
-            val = d_inputs.Val.i.access({ input });
+            val = d_inputs.Val.i().access({ input });
         }
 
         if (input.type !== 'color' || i === 'main') {
