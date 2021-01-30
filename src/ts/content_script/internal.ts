@@ -1,3 +1,5 @@
+import 'content_script/mutations/scripts';
+
 misplaced_dependency('content_script');
 
 export * as s_roots from 'content_script/roots/scripts';
