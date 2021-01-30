@@ -4,8 +4,6 @@ import {
     action,
 } from 'mobx';
 
-import { s_el_parser } from 'content_script/internal';
-
 export class Main {
     private static i0: Main;
 
@@ -26,8 +24,8 @@ export class Main {
 
     public favicons: { [index: string]: string } = {};
 
-    public generate_favicons = ({ i }: { i: number }): void => err(() => {
-        this.favicons[i] = `https://s2.googleusercontent.com/s2/favicons?domain_url=${s_el_parser.Main.i().hostnames[i]}`;
+    public generate_favicons = ({ hostname }: { hostname: string }): void => err(() => {
+        this.favicons[hostname] = `https://s2.googleusercontent.com/s2/favicons?domain_url=${hostname}`;
     },
     1032);
 }

@@ -10,15 +10,15 @@ export const Icon = observer((props: p_icons.Icon) => {
     useEffect(() => {
         const {
             type,
-            i,
+            hostname,
         } = props;
 
-        (u_icons.Main as any).i()[`generate_${type}`]({ i });
+        (u_icons.Main as any).i()[`generate_${type}`]({ hostname });
     });
 
     const {
         type,
-        i,
+        hostname,
     } = props;
 
     return (
@@ -28,7 +28,7 @@ export const Icon = observer((props: p_icons.Icon) => {
                 type,
             ])}
             alt=''
-            src={u_icons.Main.i().favicons[i]}
+            src={u_icons.Main.i().favicons[hostname]}
         />
     );
 });

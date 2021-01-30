@@ -1,5 +1,7 @@
 import tinycolor from 'tinycolor2';
 
+import { Suffix } from 'shared/internal';
+
 export class Main {
     private static i0: Main;
 
@@ -58,6 +60,8 @@ export class Main {
         const links = sa<HTMLLinkElement>('a');
 
         if (n(links)) {
+            this.title_els = [];
+
             const filtered_links = [...links].filter((el: HTMLLinkElement): boolean => err(
                 () => {
                     const children = sab<HTMLElement>(
@@ -76,7 +80,11 @@ export class Main {
                                     const color_hsv = this.get_el_hsv_color({ el: el_2 });
 
                                     if (
-                                        font_size >= 18
+                                        !x.matches(
+                                            el_2,
+                                            new Suffix('.icons').result,
+                                        )
+                                       && font_size >= 18
                                                 && color_hsv.s >= this.saturation_2
                                                 && el_2.getBoundingClientRect().left <= 300
                                                 && this.check_if_el_has_immediate_text({ el: el_2 })

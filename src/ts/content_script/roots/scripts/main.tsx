@@ -29,36 +29,45 @@ export class Main {
             title_el,
             i,
         ): void => err(() => {
-            const root: HTMLDivElement = x.create(
-                'div',
-                new Suffix(name).result,
-            );
-
-            x.append(
+            const icons_el_already_exist = n(sb(
                 title_el,
-                root,
-            );
+                `.${new Suffix(name).result}`,
+            ));
 
-            root.attachShadow({ mode: 'open' });
+            if (!icons_el_already_exist) {
+                const root: HTMLDivElement = x.create(
+                    'div',
+                    new Suffix(name).result,
+                );
 
-            const Component: any = this.component[name];
+                x.append(
+                    title_el,
+                    root,
+                );
 
-            render(
-                <CrashHandler><Component i={i} /></CrashHandler>,
-                root.shadowRoot,
-                (): void => {
-                    if (n(root.shadowRoot)) {
-                        x.css(
-                            'normalize',
-                            root.shadowRoot,
-                        );
-                        x.css(
-                            name,
-                            root.shadowRoot,
-                        );
-                    }
-                },
-            );
+                root.attachShadow({ mode: 'open' });
+
+                const Component: any = this.component[name];
+
+                render(
+                    <CrashHandler>
+                        <Component hostname={s_el_parser.Main.i().hostnames[i]} />
+                    </CrashHandler>,
+                    root.shadowRoot,
+                    (): void => {
+                        if (n(root.shadowRoot)) {
+                            x.css(
+                                'normalize',
+                                root.shadowRoot,
+                            );
+                            x.css(
+                                name,
+                                root.shadowRoot,
+                            );
+                        }
+                    },
+                );
+            }
         },
         1031));
     },
