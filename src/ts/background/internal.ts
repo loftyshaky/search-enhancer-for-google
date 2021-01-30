@@ -2,6 +2,6 @@ import 'background/msgs';
 
 misplaced_dependency('background');
 
-export * as db from 'background/db';
+export * as data from 'background/data';
 
 export * from 'background/init';

@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import Dexie from 'dexie';
 
 import { d_color } from '@loftyshaky/shared/inputs';
 
@@ -12,8 +11,6 @@ export class Main {
         return this.i0;
     }
 
-    public db: any = new Dexie('google-enhancement-suite');
-
     public defaults: any = {
         show_favicons: true,
         show_server_locations: true,
@@ -22,14 +19,6 @@ export class Main {
         show_color_help: true,
         colors: d_color.Color.i.default_colors,
     }
-
-    public init_db = (): void => err(() => {
-        this.db.version(1).stores({
-            cached_server_icons: 'id++',
-            cached_server_locations: 'id++',
-        });
-    },
-    1004);
 
     public update_settings = (
         { settings }:
