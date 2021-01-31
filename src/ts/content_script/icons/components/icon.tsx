@@ -21,14 +21,16 @@ export const Icon = observer((props: p_icons.Icon) => {
         hostname,
     } = props;
 
-    return (
-        <img
-            className={x.cls([
-                'icon',
-                type,
-            ])}
-            alt=''
-            src={u_icons.Main.i().favicons[hostname]}
-        />
-    );
+    return data.settings[`show_${type}`]
+        ? (
+            <img
+                className={x.cls([
+                    'icon',
+                    type,
+                ])}
+                alt=''
+                src={u_icons.Main.i().favicons[hostname]}
+            />
+        )
+        : <></>;
 });

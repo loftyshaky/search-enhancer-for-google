@@ -1,3 +1,4 @@
+import 'content_script/msgs';
 import 'content_script/mutations/scripts';
 
 misplaced_dependency('content_script');

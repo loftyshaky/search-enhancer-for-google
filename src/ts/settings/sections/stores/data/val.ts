@@ -24,7 +24,7 @@ export class Val {
             input: i_inputs.Input;
             i: i_color.I
         },
-    ): void => err(() => {
+    ): Promise<void> => err_async(async () => {
         let val: any;
 
         if (input.type === 'color') {
@@ -37,7 +37,7 @@ export class Val {
         }
 
         if (input.type !== 'color' || i === 'main') {
-            ext.send_msg_resp({
+            await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings: { [input.name]: val },
             });
@@ -46,11 +46,13 @@ export class Val {
 
             colors[i] = val;
 
-            ext.send_msg_resp({
+            await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings: { colors },
             });
         }
+
+        ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
     1009);
 
@@ -62,11 +64,13 @@ export class Val {
             input: i_inputs.Input;
             i: i_color.I
         },
-    ): void => err(() => {
-        ext.send_msg_resp({
+    ): Promise<void> => err_async(async () => {
+        await ext.send_msg_resp({
             msg: 'update_settings',
             settings: { [input.name]: i },
         });
+
+        ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
     1011);
 }

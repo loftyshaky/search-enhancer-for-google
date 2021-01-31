@@ -1,5 +1,9 @@
 import _ from 'lodash';
-import { runInAction } from 'mobx';
+import {
+    makeObservable,
+    action,
+    runInAction,
+} from 'mobx';
 
 export class Data {
     private static i0: Data;
@@ -9,8 +13,14 @@ export class Data {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() {}
+    private constructor() {
+        makeObservable(
+            this,
+            {
+                override: action,
+            },
+        );
+    }
 
     private restore = (
         { settings }: { settings?: any } = {},
@@ -32,12 +42,14 @@ export class Data {
 
     public restore_confirm = (
         { settings }: { settings?: any } = {},
-    ): void => err(() => {
+    ): Promise<void> => err(async () => {
         // eslint-disable-next-line no-alert
         const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
 
         if (confirmed_restore) {
-            this.restore({ settings });
+            await this.restore({ settings });
+
+            ext.iterate_all_tabs({ msg: 'rerun_actions' });
         }
     },
     1015);
@@ -91,10 +103,12 @@ export class Data {
         );
 
         this.override({ show_color_help });
+
+        ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
     1016);
 
-    private override = ({ show_color_help }: { show_color_help: boolean }): void => err(() => {
+    public override = ({ show_color_help }: { show_color_help: boolean }): void => err(() => {
         if (!show_color_help) {
             data.settings.show_color_help = false;
 
