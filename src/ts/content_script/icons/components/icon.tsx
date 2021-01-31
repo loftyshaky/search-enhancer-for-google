@@ -3,7 +3,6 @@ import React, {
     useRef,
 } from 'react';
 import { observer } from 'mobx-react';
-import { trace } from 'mobx';
 
 import {
     u_icons,
