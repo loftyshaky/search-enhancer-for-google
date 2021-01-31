@@ -10,20 +10,39 @@ import { InitAll } from 'shared/init_all';
 
 const run_actions = async (): Promise<void> => {
     await d_shared.Data.i().set_from_storage();
-
     s_el_parser.Main.i().get_els();
     s_keywords.Main.i().color_keywords();
     s_roots.Main.i().apply_root_parent_cls();
+};
+
+export const run_initial_actions = async (): Promise<void> => {
+    InitAll.i().init();
+
+    await d_shared.Data.i().set_from_storage();
+    s_el_parser.Main.i().get_els();
+    s_keywords.Main.i().color_keywords();
+    s_roots.Main.i().apply_root_parent_cls();
+    s_roots.Main.i().init({
+        name: 'icons',
+        limit: 5,
+    });
+};
+
+export const run_on_load_actions = async (): Promise<void> => {
+    await x.delay(1000);
+
+    s_roots.Main.i().init({
+        name: 'icons',
+        start: 6,
+    });
+};
+
+const run_reload_actions = async (): Promise<void> => {
+    await run_actions();
     s_roots.Main.i().init({ name: 'icons' });
 };
 
 export const run_actions_debounce = _.debounce(
-    run_actions,
+    run_reload_actions,
     500,
 );
-
-export const init = (): void => {
-    InitAll.i().init();
-
-    run_actions();
-};
