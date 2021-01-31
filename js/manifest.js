@@ -31,7 +31,6 @@ class Manifest {
             },
             permissions: ['storage'],
             content_scripts: [{
-                run_at: 'document_idle',
                 matches: [
                     'https://s2.googleusercontent.com/s2/favicons?domain_url=*',
                     '*://www.google.com/*',
