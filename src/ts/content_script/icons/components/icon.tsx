@@ -4,6 +4,8 @@ import React, {
 } from 'react';
 import { observer } from 'mobx-react';
 
+import { svg } from 'shared/svg';
+
 import {
     u_icons,
     p_icons,
@@ -11,13 +13,16 @@ import {
 
 export const Icon = observer((props: p_icons.Icon) => {
     const icon_was_already_set_ref = useRef<boolean>(false);
+
     useEffect(() => {
         const {
             type,
+            i,
             hostname,
+            limit,
         } = props;
 
-        if (!icon_was_already_set_ref.current) {
+        if (!icon_was_already_set_ref.current && limit >= i) {
             icon_was_already_set_ref.current = true;
 
             (u_icons.Main as any).i()[`generate_${type}`]({ hostname });
@@ -29,16 +34,33 @@ export const Icon = observer((props: p_icons.Icon) => {
         hostname,
     } = props;
 
-    return data.settings.show_favicons
+    const src: string = (u_icons.Main.i() as any)[type][hostname];
+
+    return data.settings[`show_${type}`]
         ? (
-            <img
+            <span
                 className={x.cls([
-                    'icon',
+                    'icon_w',
                     type,
                 ])}
-                alt=''
-                src={u_icons.Main.i().favicons[hostname]}
-            />
+                style={{ display: 'flex' }}
+            >
+                {
+                    n(src) && src !== 'placeholder'
+                        ? (
+                            <img
+                                className={x.cls([
+                                    'icon',
+                                    type,
+                                ])}
+                                alt=''
+                                src={src}
+                            />
+                        )
+                        : <svg.Yard />
+                }
+            </span>
+
         )
         : <></>;
 });

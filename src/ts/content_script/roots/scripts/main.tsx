@@ -37,13 +37,28 @@ export class Main {
             title_el,
             i,
         ): void => err(() => {
-            if (i >= start && i <= limit) {
-                const icons_el_already_exist = n(sb(
+            if (i >= start) {
+                const icons_el: HTMLElement | undefined = sb(
                     title_el,
                     `.${new Suffix(name).result}`,
-                ));
+                );
 
-                if (!icons_el_already_exist) {
+                let svg_el;
+
+                if (
+                    n(icons_el)
+                    && icons_el.shadowRoot
+                ) {
+                    svg_el = sb(
+                        icons_el.shadowRoot,
+                        'svg',
+                    );
+                }
+
+                if (
+                    !n(icons_el)
+                    || n(svg_el)
+                ) {
                     const root: HTMLDivElement = x.create(
                         'div',
                         new Suffix(name).result,
@@ -60,7 +75,11 @@ export class Main {
 
                     render(
                         <CrashHandler>
-                            <Component hostname={s_el_parser.Main.i().hostnames[i]} />
+                            <Component
+                                i={i}
+                                hostname={s_el_parser.Main.i().hostnames[i]}
+                                limit={limit}
+                            />
                         </CrashHandler>,
                         root.shadowRoot,
                         (): void => {

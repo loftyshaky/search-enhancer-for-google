@@ -1,14 +1,28 @@
 $icon_size: 16px;
 
-.icons {
+.icons,
+.icon_w {
     display: flex;
+}
+
+.icon_w:not(:first-child) {
+    margin-left: 10px;
+}
+
+.icon_w svg {
+    width: $icon_size;
+    height: $icon_size;
+}
+
+.icon_w.favicons svg {
+    fill: #4550ff;
+}
+
+.icon_w.server_locations svg {
+    fill: #ff4b35;
 }
 
 .icon {
     width: $icon_size;
     height: $icon_size;
-}
-
-.icon:not(:first-child) {
-    margin-left: 10px;
 }

@@ -6,16 +6,19 @@ import {
 } from 'content_script/internal';
 
 export const Icons = (props: p_icons.Icons) => {
-    const { hostname } = props;
+    const {
+        i,
+        hostname,
+        limit,
+    } = props;
 
     return (
-        <div
-            className='icons'
-            style={{ display: 'flex' }}
-        >
+        <div className='icons'>
             <c_icons.Icon
                 type='favicons'
+                i={i}
                 hostname={hostname}
+                limit={limit}
             />
         </div>
     );

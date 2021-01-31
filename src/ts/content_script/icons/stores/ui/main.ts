@@ -29,20 +29,36 @@ export class Main {
         { hostname }: { hostname: string },
     ): Promise<void> => err_async(async () => {
         const google_icon = `https://s2.googleusercontent.com/s2/favicons?domain_url=${hostname}`;
-        const yandex_icon_fallback = `https://favicon.yandex.net/favicon/v2/${hostname}`;
+        const yandex_icon = `https://favicon.yandex.net/favicon/v2/${hostname}`;
 
         this.favicons[hostname] = google_icon;
 
-        const favicon_is_empty: boolean = await ext.send_msg_resp(
+        const google_favicon_is_empty: boolean = await ext.send_msg_resp(
             {
                 msg: 'favicon_is_empty',
                 icon_url: google_icon,
+                provider: 'google',
             },
         );
-        if (favicon_is_empty) {
+
+        if (google_favicon_is_empty) {
             runInAction(() => {
-                this.favicons[hostname] = yandex_icon_fallback;
+                this.favicons[hostname] = yandex_icon;
             });
+
+            const yandex_favicon_is_empty: boolean = await ext.send_msg_resp(
+                {
+                    msg: 'favicon_is_empty',
+                    icon_url: yandex_icon,
+                    provider: 'yandex',
+                },
+            );
+
+            if (yandex_favicon_is_empty) {
+                runInAction(() => {
+                    this.favicons[hostname] = 'placeholder';
+                });
+            }
         }
     },
     1032);
