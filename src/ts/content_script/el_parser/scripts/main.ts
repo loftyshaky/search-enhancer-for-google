@@ -11,12 +11,14 @@ export class Main {
     }
 
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() {}
+    private constructor() { }
 
     private saturation_1 = 0.20;
     private saturation_2 = 0.30;
-    private pseudo = ':not(#searchform  *)';
-    public keyword_els: HTMLElement[]= [];
+    private font_weight_1 = 600;
+    private font_weight_2 = 700;
+    private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
+    public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
     public hostnames: string[] = [];
 
@@ -33,22 +35,14 @@ export class Main {
             if (n(bold_els)) {
                 this.keyword_els = [...bold_els].filter((el: HTMLElement): boolean => err(
                     () => {
-                        const font_weight: number = x.get_numeric_css_val(
-                            el,
-                            'font-weight',
-                        );
-
                         const color_hsv = this.get_el_hsv_color({ el });
 
                         return (
-                            font_weight >= 600
-                            || font_weight <= 700
-                        )
-                        && (
                             color_hsv.s <= this.saturation_1
                             || color_hsv.s >= this.saturation_2
                         )
-                        && this.check_if_el_has_immediate_text({ el });
+                            && this.text_is_bold({ el })
+                            && this.check_if_el_has_immediate_text({ el });
                     },
                     1023,
                 ));
@@ -58,7 +52,7 @@ export class Main {
     );
 
     private get_title_els_and_hostnames = (): void => err(() => {
-        const links = sa<HTMLLinkElement>('a');
+        const links = sa<HTMLLinkElement>(`a${this.pseudo}`);
 
         if (n(links)) {
             this.title_els = [];
@@ -67,7 +61,7 @@ export class Main {
                 () => {
                     const children = sab<HTMLElement>(
                         el,
-                        '*',
+                        `*${this.pseudo}`,
                     );
 
                     if (n(children)) {
@@ -85,10 +79,11 @@ export class Main {
                                             el_2,
                                             new Suffix('.icons').result,
                                         )
-                                       && font_size >= 18
-                                                && color_hsv.s >= this.saturation_2
-                                                && el_2.getBoundingClientRect().left <= 300
-                                                && this.check_if_el_has_immediate_text({ el: el_2 })
+                                        && font_size >= 18
+                                        && color_hsv.s >= this.saturation_2
+                                        && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
+                                        && el_2.getBoundingClientRect().left <= 300
+                                        && this.check_if_el_has_immediate_text({ el: el_2 })
                                     ) {
                                         this.title_els.push(el_2);
 
@@ -136,4 +131,17 @@ export class Main {
         return tinycolor(color_hex).toHsv();
     },
     1026);
+
+    private text_is_bold = ({ el }: { el: HTMLElement }): boolean => err(() => {
+        const font_weight: number = x.get_numeric_css_val(
+            el,
+            'font-weight',
+        );
+
+        return (
+            font_weight >= 600
+            && font_weight <= 700
+        );
+    },
+    1040);
 }

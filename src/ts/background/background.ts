@@ -3,3 +3,4 @@ import 'shared/internal';
 import { init } from 'background/internal';
 
 init();
+

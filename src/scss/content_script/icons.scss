@@ -1,5 +1,12 @@
+$icon_size: 16px;
+
 .icons {
     display: flex;
+}
+
+.icon {
+    width: $icon_size;
+    height: $icon_size;
 }
 
 .icon:not(:first-child) {

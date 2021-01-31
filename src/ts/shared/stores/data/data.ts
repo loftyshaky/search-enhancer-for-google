@@ -3,6 +3,7 @@ import {
     makeObservable,
     action,
     runInAction,
+    toJS,
 } from 'mobx';
 
 export class Data {
@@ -82,7 +83,12 @@ export class Data {
             await ext.storage_set(default_settings);
         }
 
-        this.set({ settings });
+        if (!_.isEqual(
+            toJS(data.settings),
+            settings,
+        )) {
+            this.set({ settings });
+        }
     },
     1008);
 
