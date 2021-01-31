@@ -9,7 +9,10 @@ export const Icons = (props: p_icons.Icons) => {
     const { hostname } = props;
 
     return (
-        <div className='icons'>
+        <div
+            className='icons'
+            style={{ display: 'flex' }}
+        >
             <c_icons.Icon
                 type='favicons'
                 hostname={hostname}
