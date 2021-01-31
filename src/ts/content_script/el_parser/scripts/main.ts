@@ -15,6 +15,7 @@ export class Main {
 
     private saturation_1 = 0.20;
     private saturation_2 = 0.30;
+    private pseudo = ':not(#searchform  *)';
     public keyword_els: HTMLElement[]= [];
     public title_els: HTMLElement[] = [];
     public hostnames: string[] = [];
@@ -27,7 +28,7 @@ export class Main {
 
     private get_keyword_els = (): void => err(
         () => {
-            const bold_els = sa<HTMLElement>('em, b, strong');
+            const bold_els = sa<HTMLElement>(`em${this.pseudo}, strong${this.pseudo}, b${this.pseudo}`);
 
             if (n(bold_els)) {
                 this.keyword_els = [...bold_els].filter((el: HTMLElement): boolean => err(
