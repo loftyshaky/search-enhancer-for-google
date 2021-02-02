@@ -22,7 +22,11 @@ export const Icon = observer((props: p_icons.Icon) => {
             limit,
         } = props;
 
-        if (!icon_was_already_set_ref.current && limit >= i) {
+        if (
+            data.settings[`show_${type}`]
+            && !icon_was_already_set_ref.current
+            && limit >= i
+        ) {
             icon_was_already_set_ref.current = true;
 
             (u_icons.Main as any).i()[`generate_${type}`]({ hostname });

@@ -1,5 +1,5 @@
 import { Suffix } from 'shared/internal';
-import { run_actions_debounce } from 'content_script/internal';
+import { s_actions } from 'content_script/internal';
 
 const observer = new MutationObserver((mutations: any): void => err(() => {
     mutations.forEach((mutation: any): void => err(
@@ -8,7 +8,7 @@ const observer = new MutationObserver((mutations: any): void => err(() => {
                 new Suffix('icons').result,
                 new Suffix('root_parent').result,
             ].includes(mutation.target.className)) {
-                run_actions_debounce();
+                s_actions.Main.i().run_reload_actions_debounce();
             }
         },
         1036,
