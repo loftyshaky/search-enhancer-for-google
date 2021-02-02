@@ -15,6 +15,12 @@ export const Icons = (props: p_icons.Icons) => {
     return (
         <div className='icons'>
             <c_icons.Icon
+                type='server_locations'
+                i={i}
+                hostname={hostname}
+                limit={limit}
+            />
+            <c_icons.Icon
                 type='favicons'
                 i={i}
                 hostname={hostname}

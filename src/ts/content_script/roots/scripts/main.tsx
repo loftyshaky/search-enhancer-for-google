@@ -71,30 +71,46 @@ export class Main {
 
                     root.attachShadow({ mode: 'open' });
 
-                    const Component: any = this.component[name];
-
-                    render(
-                        <CrashHandler>
-                            <Component
-                                i={i}
-                                hostname={s_el_parser.Main.i().hostnames[i]}
-                                limit={limit}
-                            />
-                        </CrashHandler>,
-                        root.shadowRoot,
-                        (): void => {
-                            if (n(root.shadowRoot)) {
-                                x.css(
-                                    'normalize',
-                                    root.shadowRoot,
-                                );
-                                x.css(
-                                    name,
-                                    root.shadowRoot,
-                                );
-                            }
-                        },
+                    const content = x.create(
+                        'div',
+                        'content',
                     );
+                    x.append(
+                        root.shadowRoot,
+                        content,
+                    );
+
+                    if (n(root.shadowRoot)) {
+                        x.css(
+                            'normalize',
+                            root.shadowRoot,
+                        );
+                        const css = x.css(
+                            name,
+                            root.shadowRoot,
+                        );
+
+                        const Component: any = this.component[name];
+
+                        if (n(css)) {
+                            css.addEventListener(
+                                'load',
+                                (): void => err(() => {
+                                    render(
+                                        <CrashHandler>
+                                            <Component
+                                                i={i}
+                                                hostname={s_el_parser.Main.i().hostnames[i]}
+                                                limit={limit}
+                                            />
+                                        </CrashHandler>,
+                                        content,
+                                    );
+                                },
+                                1043),
+                            );
+                        }
+                    }
                 }
             }
         },

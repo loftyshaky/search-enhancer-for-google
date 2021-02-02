@@ -1,5 +1,7 @@
+import { i_icons } from 'content_script/internal';
+
 export interface Icon {
-    type: string;
+    type: i_icons.IconType;
     i: number;
     hostname: string;
     limit: number;

@@ -20,6 +20,7 @@ class Manifest {
                 'font_face.css',
                 'error.css',
                 'icons.css',
+                'flags/*',
             ],
             background: {
                 scripts: ['background.js'],

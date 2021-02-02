@@ -46,6 +46,16 @@ module.exports = (env, argv) => {
         MiniCssExtractPlugin,
         // FixStyleOnlyEntriesPlugin,
         CopyWebpackPlugin,
+        copy_patters: [
+            'FLAGS ICONS LICENSE.txt',
+            {
+                from: path.join(
+                    'src',
+                    'flags',
+                ),
+                to: 'flags',
+            },
+        ],
         callback_begin: () => {
             task_scheduler.unlock_dist({
                 package_name: 'Extension Reloader',

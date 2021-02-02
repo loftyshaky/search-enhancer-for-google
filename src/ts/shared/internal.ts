@@ -5,3 +5,4 @@ export * from 'shared/css_vars';
 export * from 'shared/init_all';
 
 export * as d_shared from 'shared/stores/data';
+export * as i_icons from 'shared/icons/interfaces';

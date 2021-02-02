@@ -43,7 +43,6 @@ export const Icon = observer((props: p_icons.Icon) => {
                     'icon_w',
                     type,
                 ])}
-                style={{ display: 'flex' }}
             >
                 {
                     n(src) && src !== 'placeholder'
@@ -54,6 +53,10 @@ export const Icon = observer((props: p_icons.Icon) => {
                                     type,
                                 ])}
                                 alt=''
+                                title={u_icons.Main.i().server_data({
+                                    type,
+                                    hostname,
+                                })}
                                 src={src}
                             />
                         )

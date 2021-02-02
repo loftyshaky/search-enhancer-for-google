@@ -1,3 +1,5 @@
+import { i_icons } from 'shared/internal';
+
 export class Main {
     private static i0: Main;
 
@@ -43,4 +45,31 @@ export class Main {
         return this.empty_favicons[provider] === base64;
     },
     1039);
+
+    public get_server_info = async (
+        { hostname }: { hostname: string },
+    ): Promise<i_icons.ServerInfo> => err_async(async () => {
+        try {
+            const response: any = await fetch(`https://freegeoip.app/json/${hostname}`);
+            const json: any = await response.json();
+
+            return {
+                ip: json.ip,
+                country_code: json.country_code.toLowerCase(),
+                country_name: json.country_name,
+            };
+        } catch (error_obj) {
+            show_err_ribbon(
+                error_obj,
+                1044,
+            );
+
+            return {
+                ip: '',
+                country_code: '',
+                country_name: '',
+            };
+        }
+    },
+    1042);
 }

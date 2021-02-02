@@ -9,4 +9,5 @@ export * as s_keywords from 'content_script/keywords/scripts';
 export * as c_icons from 'content_script/icons/components';
 export * as p_icons from 'content_script/icons/components/prop_types';
 export * as u_icons from 'content_script/icons/stores/ui';
+export * as i_icons from 'content_script/icons/interfaces';
 export * from 'content_script/init';
