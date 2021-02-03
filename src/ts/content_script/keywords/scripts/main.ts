@@ -1,4 +1,5 @@
 import { d_color } from '@loftyshaky/shared/inputs';
+import { Suffix } from 'shared/internal';
 import { s_el_parser } from 'content_script/internal';
 
 export class Main {
@@ -14,14 +15,25 @@ export class Main {
 
     public color_keywords = (): void => err(
         () => {
+            const cls = new Suffix('keyword').result;
+
             [...s_el_parser.Main.i().keyword_els].forEach((keyword_el: HTMLElement): void => err(
                 () => {
-                    keyword_el.style.color = d_color.Color.i().access_from_val(
-                        { val: data.settings.keyword_color },
+                    x.add_cls(
+                        keyword_el,
+                        cls,
                     );
                 },
                 1028,
             ));
+
+            x.dynamic_css(
+                document.head,
+                cls,
+                `.${cls} { color: ${d_color.Color.i().access_from_val(
+                    { val: data.settings.keyword_color },
+                )}!important }`,
+            );
         },
         1027,
     );

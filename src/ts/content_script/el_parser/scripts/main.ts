@@ -31,6 +31,16 @@ export class Main {
             const bold_els = sa<HTMLElement>(`em${this.pseudo}, strong${this.pseudo}, b${this.pseudo}`);
 
             if (n(bold_els)) {
+                this.keyword_els.forEach((keyword_el: HTMLElement): void => err(
+                    () => {
+                        x.remove_cls(
+                            keyword_el,
+                            new Suffix('keyword').result,
+                        );
+                    },
+                    1052,
+                ));
+
                 this.keyword_els = [...bold_els].filter((el: HTMLElement): boolean => err(
                     () => {
                         const color_hsv = this.get_el_hsv_color({ el });
