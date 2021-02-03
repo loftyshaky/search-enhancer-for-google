@@ -50,6 +50,9 @@ export class Main {
                     event_callback: d_sections.Val.i().change,
                     select_palette_color_callback: d_sections.Val.i().save_selected_palette_color,
                     hide_color_help_callback: d_sections.Visibility.i().hide_color_help,
+                    restore_default_color_callback: (
+                        d_sections.Val.i().restore_default_color_callback
+                    ),
                 }),
             ],
         })],

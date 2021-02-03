@@ -1,5 +1,6 @@
 import {
     d_inputs,
+    o_color,
     d_color,
     i_inputs,
     i_color,
@@ -73,4 +74,16 @@ export class Val {
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
     1011);
+
+    public restore_default_color_callback = (
+        { input }: { input: o_color.Color },
+    ): Promise<void> => err_async(async () => {
+        await ext.send_msg_resp({
+            msg: 'update_settings',
+            settings: { [input.name]: input.default_val },
+        });
+
+        ext.iterate_all_tabs({ msg: 'rerun_actions' });
+    },
+    1050);
 }
