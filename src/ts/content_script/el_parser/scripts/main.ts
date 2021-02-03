@@ -15,8 +15,6 @@ export class Main {
 
     private saturation_1 = 0.20;
     private saturation_2 = 0.30;
-    private font_weight_1 = 600;
-    private font_weight_2 = 700;
     private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
     public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
