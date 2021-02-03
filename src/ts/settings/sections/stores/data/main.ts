@@ -53,6 +53,9 @@ export class Main {
                     restore_default_color_callback: (
                         d_sections.Val.i().restore_default_color_callback
                     ),
+                    restore_default_palette_callback: (
+                        d_sections.Val.i().restore_default_palette_callback
+                    ),
                 }),
             ],
         })],

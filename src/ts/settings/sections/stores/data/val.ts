@@ -86,4 +86,16 @@ export class Val {
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
     1050);
+
+    public restore_default_palette_callback = (
+        { default_colors }: { default_colors: any },
+    ): Promise<void> => err_async(async () => {
+        await ext.send_msg_resp({
+            msg: 'update_settings',
+            settings: { colors: default_colors },
+        });
+
+        ext.iterate_all_tabs({ msg: 'rerun_actions' });
+    },
+    1051);
 }
