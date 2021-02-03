@@ -75,12 +75,12 @@ export class Val {
     },
     1011);
 
-    public restore_default_color_callback = (
+    public remove_color_callback = (
         { input }: { input: o_color.Color },
     ): Promise<void> => err_async(async () => {
         await ext.send_msg_resp({
             msg: 'update_settings',
-            settings: { [input.name]: input.default_val },
+            settings: { [input.name]: '' },
         });
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
