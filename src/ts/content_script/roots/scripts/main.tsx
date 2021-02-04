@@ -5,6 +5,7 @@ import { CrashHandler } from '@loftyshaky/shared';
 import { Suffix } from 'shared/internal';
 
 import {
+    s_roots,
     s_el_parser,
     c_icons,
 } from 'content_script/internal';
@@ -33,6 +34,8 @@ export class Main {
         start?: number;
         limit?: number
     }): void => err(() => {
+        s_roots.Position.i().position_title_el();
+
         s_el_parser.Main.i().title_els.forEach((
             title_el,
             i,

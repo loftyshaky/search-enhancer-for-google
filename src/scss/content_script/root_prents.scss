@@ -1,3 +1,11 @@
 .root_parent_#{$app_id} {
     position: relative;
 }
+
+.offset_1_#{$app_id} {
+    margin-left: $icon_size + $gap;
+}
+
+.offset_2_#{$app_id} {
+    margin-left: ($icon_size * 2) + ($gap * 2);
+}
