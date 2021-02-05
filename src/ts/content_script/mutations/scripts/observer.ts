@@ -7,7 +7,10 @@ const observer = new MutationObserver((mutations: any): void => err(() => {
             if (![
                 new Suffix('icons').result,
                 new Suffix('root_parent').result,
-            ].includes(mutation.target.className)) {
+            ].includes(mutation.target.className)
+                && n(mutation.addedNodes[0])
+                && mutation.addedNodes[0].className !== new Suffix('iframe').result
+            ) {
                 s_actions.Main.i().run_reload_actions_debounce();
             }
         },

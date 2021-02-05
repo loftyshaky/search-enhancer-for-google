@@ -32,6 +32,8 @@ export class Main {
     public run_initial_actions = (): Promise<void> => err_async(async () => {
         InitAll.i().init();
 
+        s_el_parser.Main.i().get_next_page_href();
+
         await this.run_actions();
         s_roots.Main.i().init({
             name: 'icons',
@@ -52,7 +54,7 @@ export class Main {
     },
     1047);
 
-    private run_reload_actions = (): Promise<void> => err_async(async () => {
+    public run_reload_actions = (): Promise<void> => err_async(async () => {
         if (this.already_run_initial_and_on_load_action) {
             await this.run_actions();
             s_roots.Main.i().init({ name: 'icons' });

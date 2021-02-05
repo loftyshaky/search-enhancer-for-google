@@ -19,7 +19,9 @@ class Manifest {
                 'normalize.css',
                 'font_face.css',
                 'error.css',
+                'content_script_css.css',
                 'icons.css',
+                'iframe_inner.css',
                 'flags/*',
             ],
             background: {

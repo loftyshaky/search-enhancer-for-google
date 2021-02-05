@@ -12,7 +12,10 @@ export class CssVars {
     private constructor() {}
 
     public set = (): void => err(() => {
-        const roots = page === 'settings'
+        const roots = [
+            'settings',
+            'content_script',
+        ].includes(page)
             ? [document.documentElement]
             : [];
 

@@ -1,0 +1,13 @@
+.none {
+    display: none !important;
+}
+
+.hidden_#{$app_id} {
+    position: fixed !important;
+    visibility: hidden !important;
+    top: 99999px !important;
+}
+
+.opacity_0_#{$app_id} {
+    opacity: 0 !important;
+}

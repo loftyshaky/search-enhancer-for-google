@@ -1,6 +1,9 @@
 import { d_color } from '@loftyshaky/shared/inputs';
 import { Suffix } from 'shared/internal';
-import { s_el_parser } from 'content_script/internal';
+import {
+    s_el_parser,
+    s_infinite_scroll,
+} from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -26,14 +29,23 @@ export class Main {
                 },
                 1028,
             ));
+            [
+                document,
+                ...s_infinite_scroll.Iframe.i().iframes,
+            ].forEach((base_el: Document | HTMLIFrameElement): void => err(() => {
+                const head: HTMLHeadElement = base_el.nodeType === 9
+                    ? (base_el as Document).head
+                    : (base_el as HTMLIFrameElement).contentDocument!.head;
 
-            x.dynamic_css(
-                document.head,
-                cls,
-                `.${cls} { color: ${d_color.Color.i().access_from_val(
-                    { val: data.settings.keyword_color },
-                )}!important }`,
-            );
+                x.dynamic_css(
+                    head,
+                    cls,
+                    `.${cls} { color: ${d_color.Color.i().access_from_val(
+                        { val: data.settings.keyword_color },
+                    )}!important }`,
+                );
+            },
+            1069));
         },
         1027,
     );

@@ -1,0 +1,12 @@
+@import "../shared/index";
+@import "mods";
+
+body {
+    overflow: auto;
+}
+
+#cnt,
+#rso {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}

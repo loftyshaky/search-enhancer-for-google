@@ -122,6 +122,13 @@ module.exports = (env, argv) => {
                 'content_script',
                 'icons.scss',
             ),
+            iframe_inner: path.join(
+                app_root,
+                'src',
+                'scss',
+                'content_script',
+                'iframe_inner.scss',
+            ),
         },
     };
 
