@@ -87,10 +87,10 @@ export class Main {
 
                     return (
                         color_hsv.s <= this.saturation_1
-                            || color_hsv.s >= this.saturation_2
+                        || color_hsv.s >= this.saturation_2
                     )
-                            && this.text_is_bold({ el })
-                            && this.check_if_el_has_immediate_text({ el });
+                        && this.text_is_bold({ el })
+                        && this.check_if_el_has_immediate_text({ el });
                 },
                 1023,
             ));
@@ -100,10 +100,10 @@ export class Main {
 
     private get_title_els_and_hostnames = (): void => err(() => {
         const links: HTMLLinkElement[] = this.get_els_of_all_frames({ selector: `a${this.pseudo}` });
-
+        const filtered_links: HTMLLinkElement[] = [];
         this.title_els = [];
 
-        const filtered_links = links.filter((el: HTMLLinkElement): boolean => err(
+        links.forEach((el: HTMLLinkElement): boolean => err(
             () => {
                 const children = sab<HTMLElement>(
                     el,
@@ -111,8 +111,8 @@ export class Main {
                 );
 
                 if (n(children)) {
-                    return ([...children] as HTMLElement[]).some(
-                        (el_2: HTMLElement): boolean => err(
+                    ([...children] as HTMLElement[]).forEach(
+                        (el_2: HTMLElement): void => err(
                             () => {
                                 const font_size: number = x.get_numeric_css_val(
                                     el_2,
@@ -126,20 +126,17 @@ export class Main {
                                 if (
                                     !x.matches(
                                         el_2,
-                                        new Suffix('.icons').result,
+                                        `.${new Suffix('icons').result}`,
                                     )
-                                        && font_size >= 18
-                                        && color_hsv.s >= this.saturation_2
-                                        && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
-                                        && el_2.getBoundingClientRect().left <= 300
-                                        && this.check_if_el_has_immediate_text({ el: el_2 })
+                                    && font_size >= 18
+                                    && color_hsv.s >= this.saturation_2
+                                    && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
+                                    && el_2.getBoundingClientRect().left <= 300
+                                    && this.check_if_el_has_immediate_text({ el: el_2 })
                                 ) {
+                                    filtered_links.push(el);
                                     this.title_els.push(el_2);
-
-                                    return true;
                                 }
-
-                                return false;
                             },
                             1021,
                         ),
@@ -210,7 +207,11 @@ export class Main {
             const children: NodeListOf<ChildNode> = el.childNodes;
 
             return [...children].every((el_2: ChildNode): boolean => err(
-                () => el_2.nodeType === Node.TEXT_NODE,
+                () => el_2.nodeType === Node.TEXT_NODE
+                      || x.matches(
+                          el_2 as any,
+                          `.${new Suffix('icons').result}`,
+                      ),
                 1025,
             ));
         },
