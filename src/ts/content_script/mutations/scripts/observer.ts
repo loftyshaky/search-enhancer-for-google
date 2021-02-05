@@ -4,12 +4,20 @@ import { s_actions } from 'content_script/internal';
 const observer = new MutationObserver((mutations: any): void => err(() => {
     mutations.forEach((mutation: any): void => err(
         () => {
-            if (![
-                new Suffix('icons').result,
-                new Suffix('root_parent').result,
-            ].includes(mutation.target.className)
+            if (
+                !x.matches(
+                    mutation.target,
+                    `.${new Suffix('root_parent').result}`,
+                )
+                && !x.matches(
+                    mutation.target,
+                    `.${new Suffix('icons').result}`,
+                )
                 && n(mutation.addedNodes[0])
-                && mutation.addedNodes[0].className !== new Suffix('iframe').result
+                && !x.matches(
+                    mutation.addedNodes[0],
+                    `.${new Suffix('icons').result}`,
+                )
             ) {
                 s_actions.Main.i().run_reload_actions_debounce();
             }

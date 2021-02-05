@@ -46,22 +46,7 @@ export class Main {
                     `.${new Suffix(name).result}`,
                 );
 
-                let svg_el;
-
-                if (
-                    n(icons_el)
-                    && icons_el.shadowRoot
-                ) {
-                    svg_el = sb(
-                        icons_el.shadowRoot,
-                        'svg',
-                    );
-                }
-
-                if (
-                    !n(icons_el)
-                    || n(svg_el)
-                ) {
+                if (!n(icons_el)) {
                     const root: HTMLDivElement = x.create(
                         'div',
                         new Suffix(name).result,

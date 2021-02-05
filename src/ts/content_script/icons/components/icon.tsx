@@ -49,7 +49,8 @@ export const Icon = observer((props: p_icons.Icon) => {
                 ])}
             >
                 {
-                    n(src) && src !== 'placeholder'
+                    n(src)
+                    && src !== 'placeholder'
                         ? (
                             <img
                                 className={x.cls([
