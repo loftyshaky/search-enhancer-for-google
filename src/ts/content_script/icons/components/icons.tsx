@@ -8,7 +8,6 @@ import {
 export const Icons = (props: p_icons.Icons) => {
     const {
         i,
-        hostname,
         limit,
     } = props;
 
@@ -17,13 +16,11 @@ export const Icons = (props: p_icons.Icons) => {
             <c_icons.Icon
                 type='server_locations'
                 i={i}
-                hostname={hostname}
                 limit={limit}
             />
             <c_icons.Icon
                 type='favicons'
                 i={i}
-                hostname={hostname}
                 limit={limit}
             />
         </div>

@@ -88,7 +88,6 @@ export class Main {
                                         <CrashHandler>
                                             <Component
                                                 i={i}
-                                                hostname={s_el_parser.Main.i().hostnames[i]}
                                                 limit={limit}
                                             />
                                         </CrashHandler>,

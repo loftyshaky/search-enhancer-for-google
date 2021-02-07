@@ -22,6 +22,7 @@ export class Main {
     public title_els: HTMLElement[] = [];
     public footer_el: HTMLElement | undefined = undefined;
     public hostnames: string[] = [];
+    public hrefs: string[] = [];
     public next_page_href: string | undefined;
     public loaded_all_pages: boolean = false;
 
@@ -151,6 +152,10 @@ export class Main {
         this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(
             () => new URL(el.href).hostname,
             1029,
+        ));
+        this.hrefs = filtered_links.map((el: HTMLLinkElement): string => err(
+            () => el.href,
+            1070,
         ));
     },
     1019);

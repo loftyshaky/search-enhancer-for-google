@@ -21,7 +21,7 @@ browser.runtime.onMessage.addListener((msg: t.Msg): Promise<any> => err_async(as
             provider: msg.provider,
         });
     } else if (msg_str === 'get_server_info') {
-        return icons.Main.i().get_server_info({ hostname: msg.hostname });
+        return icons.Main.i().get_server_info({ url: msg.url });
     }
 
     return true;

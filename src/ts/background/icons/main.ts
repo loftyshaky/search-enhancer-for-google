@@ -47,10 +47,10 @@ export class Main {
     1039);
 
     public get_server_info = async (
-        { hostname }: { hostname: string },
+        { url }: { url: string },
     ): Promise<i_icons.ServerInfo> => err_async(async () => {
         try {
-            const response: any = await fetch(`https://freegeoip.app/json/${hostname}`);
+            const response: any = await fetch(`https://freegeoip.app/json/${url}`);
             const json: any = await response.json();
 
             return {

@@ -18,7 +18,6 @@ export const Icon = observer((props: p_icons.Icon) => {
         const {
             type,
             i,
-            hostname,
             limit,
         } = props;
 
@@ -29,16 +28,25 @@ export const Icon = observer((props: p_icons.Icon) => {
         ) {
             icon_was_already_set_ref.current = true;
 
-            (u_icons.Main as any).i()[`generate_${type}`]({ hostname });
+            const url: string = u_icons.Main.i().get_url({
+                i,
+                type,
+            });
+
+            (u_icons.Main as any).i()[`generate_${type}`]({ url });
         }
     });
 
     const {
         type,
-        hostname,
+        i,
     } = props;
 
-    const src: string = (u_icons.Main.i() as any)[type][hostname];
+    const url: string = u_icons.Main.i().get_url({
+        i,
+        type,
+    });
+    const src: string = (u_icons.Main.i() as any)[type][url];
 
     return data.settings[`show_${type}`]
         ? (
@@ -60,7 +68,7 @@ export const Icon = observer((props: p_icons.Icon) => {
                                 alt=''
                                 title={u_icons.Main.i().server_data({
                                     type,
-                                    hostname,
+                                    url,
                                 })}
                                 src={src}
                             />
