@@ -44,6 +44,7 @@ export class InitAll {
         let loading_screen_root: ShadowRoot;
         let settings_root: HTMLDivElement;
         let spinner_root: ShadowRoot;
+        let side_panel_root: ShadowRoot;
 
         if (page === 'settings') {
             loading_screen_root = this.create_root({ prefix: 'loading_screen' }) as ShadowRoot;
@@ -53,6 +54,7 @@ export class InitAll {
             }) as HTMLDivElement;
         } else if (page === 'content_script') {
             spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
+            side_panel_root = this.create_root({ prefix: 'side_panel' }) as ShadowRoot;
         }
 
         const render_settings = (): Promise<void> => err_async(async () => {
@@ -110,6 +112,22 @@ export class InitAll {
         },
         1072);
 
+        const render_side_panel = (): Promise<void> => err_async(async () => {
+            const { c_side_panel } = await import('content_script/internal');
+
+            render(
+                <CrashHandler><c_side_panel.Body /></CrashHandler>,
+                side_panel_root,
+                (): void => {
+                    x.css(
+                        'side_panel',
+                        side_panel_root,
+                    );
+                },
+            );
+        },
+        1074);
+
         render(
             <Error app_id={app_id} />,
             error_root,
@@ -152,6 +170,7 @@ export class InitAll {
                     );
                 } else if (page === 'content_script') {
                     render_spinner();
+                    render_side_panel();
                 }
             },
         );

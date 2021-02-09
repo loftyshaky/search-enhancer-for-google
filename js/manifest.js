@@ -23,6 +23,7 @@ class Manifest {
                 'icons.css',
                 'iframe_inner.css',
                 'spinner.css',
+                'side_panel.css',
                 'flags/*',
                 'chunks/*',
             ],

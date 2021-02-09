@@ -13,5 +13,11 @@
     },
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
+    },
+    "current_indicator_text": {
+        "message": "Текущая страница"
+    },
+    "total_indicator_text": {
+        "message": "Общее число загруженных страниц"
     }
 }

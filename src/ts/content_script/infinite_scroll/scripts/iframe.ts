@@ -1,12 +1,15 @@
 import {
     makeObservable,
     observable,
+    action,
+    runInAction,
 } from 'mobx';
 
 import { Suffix } from 'shared/internal';
 import {
     s_el_parser,
     s_actions,
+    u_side_panel,
 } from 'content_script/internal';
 
 export class Iframe {
@@ -22,6 +25,7 @@ export class Iframe {
             this,
             {
                 inserting_iframe: observable,
+                insert: action,
             },
         );
     }
@@ -103,7 +107,12 @@ export class Iframe {
                                         this.resize_iframe({ cur_iframe_i: this.cur_iframe_i });
 
                                         this.cur_iframe_i += 1;
-                                        this.inserting_iframe = false;
+
+                                        u_side_panel.Page.i().set_total();
+
+                                        runInAction(() => {
+                                            this.inserting_iframe = false;
+                                        });
                                     },
                                     1062),
                                 );

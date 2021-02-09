@@ -1,0 +1,34 @@
+@import "../../../node_modules/@loftyshaky/shared/scss/vars";
+@import "../../../node_modules/@loftyshaky/shared/scss/mixins";
+@import "../shared/index";
+@import "mods";
+
+.side_panel {
+    position: fixed;
+    top: 147px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.side_panel_item {
+    cursor: help;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 9px;
+    color: white;
+}
+
+.side_panel_item:not(:last-child) {
+    @include border_bottom;
+    border-color: white;
+}
+
+.side_panel_item.current {
+    background-color: #6280ff;
+}
+
+.side_panel_item.total {
+    background-color: #5bbeff;
+}

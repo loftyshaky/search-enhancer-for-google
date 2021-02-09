@@ -13,5 +13,11 @@
     },
     "keyword_color_label_text": {
         "message": "Keyword color"
+    },
+    "current_indicator_text": {
+        "message": "Current page"
+    },
+    "total_indicator_text": {
+        "message": "Total number of loaded pages"
     }
 }

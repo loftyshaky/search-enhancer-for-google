@@ -15,4 +15,7 @@ export * as c_icons from 'content_script/icons/components';
 export * as p_icons from 'content_script/icons/components/prop_types';
 export * as u_icons from 'content_script/icons/stores/ui';
 export * as i_icons from 'content_script/icons/interfaces';
+export * as u_side_panel from 'content_script/side_panel/stores/ui';
+export * as c_side_panel from 'content_script/side_panel/components';
+export * as p_side_panel from 'content_script/side_panel/components/prop_types';
 export * from 'content_script/init';
