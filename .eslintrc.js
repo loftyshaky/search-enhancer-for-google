@@ -15,6 +15,7 @@ const rules = {
         'prefer-arrow-callback': 'off',
         'func-names': 'off',
         'no-param-reassign': 'off',
+        'class-methods-use-this': 'off',
         camelcase: 'off',
         indent: [
             'error',
