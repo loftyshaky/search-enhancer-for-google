@@ -1,0 +1,103 @@
+@import "../shared/index";
+@import "mods";
+
+#spinner {
+    position: relative;
+    height: 13px;
+    margin-left: 426px;
+    margin-bottom: 28px;
+}
+
+/*> css from spinner generator */
+.spinner {
+    position: absolute;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+    width: 13px;
+    height: 13px;
+    animation-name: bounce_spinner;
+    -webkit-animation-name: bounce_spinner;
+    animation-duration: 0.715s;
+    -webkit-animation-duration: 0.715s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-direction: normal;
+    -webkit-animation-direction: normal;
+    transform: scale(0.3);
+    -webkit-transform: scale(0.3);
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+}
+
+#spinner_0 {
+    left: 0;
+    animation-delay: 0.286s;
+    -webkit-animation-delay: 0.286s;
+}
+
+#spinner_1 {
+    left: 13px;
+    animation-delay: 0.3525s;
+    -webkit-animation-delay: 0.3525s;
+}
+
+#spinner_2 {
+    left: 27px;
+    animation-delay: 0.429s;
+    -webkit-animation-delay: 0.429s;
+}
+
+#spinner_3 {
+    left: 40px;
+    animation-delay: 0.4955s;
+    -webkit-animation-delay: 0.4955s;
+}
+
+#spinner_4 {
+    left: 54px;
+    animation-delay: 0.572s;
+    -webkit-animation-delay: 0.572s;
+}
+
+#spinner_5 {
+    left: 67px;
+    animation-delay: 0.6385s;
+    -webkit-animation-delay: 0.6385s;
+}
+
+#spinner_6 {
+    left: 81px;
+    animation-delay: 0.715s;
+    -webkit-animation-delay: 0.715s;
+}
+
+#spinner_7 {
+    left: 94px;
+    animation-delay: 0.7815s;
+    -webkit-animation-delay: 0.7815s;
+}
+
+@keyframes bounce_spinner {
+    0% {
+        transform: scale(1);
+        background-color: rgb(66, 134, 244);
+    }
+
+    100% {
+        transform: scale(0.3);
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+@-webkit-keyframes bounce_spinner {
+    0% {
+        -webkit-transform: scale(1);
+        background-color: rgb(66, 134, 244);
+    }
+
+    100% {
+        -webkit-transform: scale(0.3);
+        background-color: rgb(255, 255, 255);
+    }
+}
+/*< css from spinner generator */

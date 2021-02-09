@@ -18,6 +18,11 @@ const observer = new MutationObserver((mutations: any): void => err(() => {
                     mutation.addedNodes[0],
                     `.${new Suffix('icons').result}`,
                 )
+                && n(mutation.addedNodes[0])
+                && !x.matches(
+                    mutation.addedNodes[0],
+                    `.${new Suffix('spinner').result}`,
+                )
             ) {
                 s_actions.Main.i().run_reload_actions_debounce();
             }

@@ -22,7 +22,9 @@ class Manifest {
                 'content_script_css.css',
                 'icons.css',
                 'iframe_inner.css',
+                'spinner.css',
                 'flags/*',
+                'chunks/*',
             ],
             background: {
                 scripts: ['background.js'],
@@ -225,7 +227,12 @@ class Manifest {
                     '*://www.google.co.zw/*',
                     '*://www.google.cat/*',
                 ],
-                js: ['content_script.js'],
+                js: [
+                    'content_script.js',
+                    'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
+                    'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
+                    'chunks/src_ts_content_script_internal_ts.js',
+                ],
                 css: ['content_script_css.css'],
             }],
         };

@@ -3,8 +3,9 @@ import {
     s_infinite_scroll,
 } from 'content_script/internal';
 
-export const init = (): void => {
-    s_actions.Main.i().run_initial_actions();
+export const init = async (): Promise<void> => {
+    await s_actions.Main.i().run_initial_actions();
+    s_infinite_scroll.Spinner.i().append_to_footer();
 
     window.addEventListener(
         'load',

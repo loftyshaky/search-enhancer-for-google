@@ -129,6 +129,13 @@ module.exports = (env, argv) => {
                 'content_script',
                 'iframe_inner.scss',
             ),
+            spinner: path.join(
+                app_root,
+                'src',
+                'scss',
+                'content_script',
+                'spinner.scss',
+            ),
         },
     };
 

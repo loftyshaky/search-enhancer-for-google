@@ -2,7 +2,7 @@ import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
 import { Suffix } from 'shared/internal';
-import { s_infinite_scroll } from 'content_script/internal';
+import { s_infinite_scroll, s_el_parser } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;

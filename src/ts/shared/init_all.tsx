@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { browser } from 'webextension-polyfill-ts';
 
 import {
     CrashHandler,
@@ -15,6 +16,9 @@ import {
     CssVars,
 } from 'shared/internal';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
+declare let __webpack_public_path__: string;
+
 export class InitAll {
     private static i0: InitAll;
 
@@ -27,6 +31,9 @@ export class InitAll {
     private constructor() {}
 
     public init = (): void => err(() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        __webpack_public_path__ = browser.runtime.getURL('');
+
         if (page === 'settings') {
             this.set_page_title();
         }
@@ -36,6 +43,7 @@ export class InitAll {
         const error_root: ShadowRoot = this.create_root({ prefix: 'error' }) as ShadowRoot;
         let loading_screen_root: ShadowRoot;
         let settings_root: HTMLDivElement;
+        let spinner_root: ShadowRoot;
 
         if (page === 'settings') {
             loading_screen_root = this.create_root({ prefix: 'loading_screen' }) as ShadowRoot;
@@ -43,6 +51,8 @@ export class InitAll {
                 prefix: 'settings',
                 shadow_root: false,
             }) as HTMLDivElement;
+        } else if (page === 'content_script') {
+            spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
         }
 
         const render_settings = (): Promise<void> => err_async(async () => {
@@ -84,6 +94,22 @@ export class InitAll {
         },
         1003);
 
+        const render_spinner = (): Promise<void> => err_async(async () => {
+            const { c_infinite_scroll } = await import('content_script/internal');
+
+            render(
+                <CrashHandler><c_infinite_scroll.Spinner /></CrashHandler>,
+                spinner_root,
+                (): void => {
+                    x.css(
+                        'spinner',
+                        spinner_root,
+                    );
+                },
+            );
+        },
+        1072);
+
         render(
             <Error app_id={app_id} />,
             error_root,
@@ -124,6 +150,8 @@ export class InitAll {
                             }
                         },
                     );
+                } else if (page === 'content_script') {
+                    render_spinner();
                 }
             },
         );

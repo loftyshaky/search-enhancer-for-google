@@ -1,3 +1,8 @@
+import {
+    makeObservable,
+    observable,
+} from 'mobx';
+
 import { Suffix } from 'shared/internal';
 import {
     s_el_parser,
@@ -12,13 +17,19 @@ export class Iframe {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() { }
+    private constructor() {
+        makeObservable(
+            this,
+            {
+                inserting_iframe: observable,
+            },
+        );
+    }
 
     public iframes: HTMLIFrameElement[] = [];
     public last_iframe: HTMLIFrameElement | undefined;
     private cur_iframe_i: number= 0;
-    private inserting_iframe: boolean = false;
+    public inserting_iframe: boolean = false;
     private search_results_w_selector: string = '#search';
 
     public insert = (): void => err(() => {
@@ -27,6 +38,11 @@ export class Iframe {
             && n(s_el_parser.Main.i().next_page_href)
         ) {
             this.inserting_iframe = true;
+
+            const loading_first_iframe: boolean = !n(this.last_iframe);
+            const el_to_append_iframe_to = loading_first_iframe
+                ? s<HTMLElement>(`.${new Suffix('spinner').result}`)
+                : this.last_iframe;
 
             this.last_iframe = x.create(
                 'iframe',
@@ -41,8 +57,10 @@ export class Iframe {
 
             this.last_iframe.src = s_el_parser.Main.i().next_page_href!;
 
-            x.before(
-                s_el_parser.Main.i().footer_el,
+            x[loading_first_iframe
+                ? 'before'
+                : 'after'](
+                el_to_append_iframe_to,
                 this.last_iframe,
             );
 
