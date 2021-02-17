@@ -12,13 +12,21 @@ export const Body = observer(() => (
         'left',
     ])}
     >
-        <c_side_panel.Page
-            name='current'
-            val={u_side_panel.Page.i().current}
-        />
-        <c_side_panel.Page
-            name='total'
-            val={u_side_panel.Page.i().total}
-        />
+        {
+            data.settings.show_page_indicator
+                ? (
+                    <>
+                        <c_side_panel.Page
+                            name='current'
+                            val={u_side_panel.Page.i().current}
+                        />
+                        <c_side_panel.Page
+                            name='total'
+                            val={u_side_panel.Page.i().total}
+                        />
+                    </>
+                )
+                : undefined
+        }
     </div>
 ));
