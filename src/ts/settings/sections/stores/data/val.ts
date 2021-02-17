@@ -5,6 +5,7 @@ import {
     i_inputs,
     i_color,
 } from '@loftyshaky/shared/inputs';
+import { d_sections } from 'settings/internal';
 
 export class Val {
     private static i0: Val;
@@ -52,6 +53,11 @@ export class Val {
                 settings: { colors },
             });
         }
+
+        d_inputs.NestedInput.i().set_parent_disbled_vals({
+            input,
+            sections: d_sections.Main.i().sections,
+        });
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
