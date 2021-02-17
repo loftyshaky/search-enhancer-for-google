@@ -4,7 +4,6 @@ import {
     o_color,
 } from '@loftyshaky/shared/inputs';
 import { d_settings } from '@loftyshaky/shared/settings';
-import { d_shared } from 'shared/internal';
 import { d_sections } from 'settings/internal';
 
 export class Main {
@@ -81,8 +80,8 @@ export class Main {
         ...d_settings.Sections.i().make_shared_sections(
             {
                 download_back_up_callback: ext.storage_get,
-                upload_back_up_callback: d_shared.Data.i().restore_back_up,
-                restore_defaults_callback: () => d_shared.Data.i().restore_confirm(),
+                upload_back_up_callback: d_sections.Restore.i().restore_back_up,
+                restore_defaults_callback: () => d_sections.Restore.i().restore_confirm(),
             },
         ),
         ...[new o_inputs.Section({

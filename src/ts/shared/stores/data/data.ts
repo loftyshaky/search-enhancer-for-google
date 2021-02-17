@@ -1,7 +1,5 @@
 import _ from 'lodash';
 import {
-    makeObservable,
-    action,
     runInAction,
     toJS,
 } from 'mobx';
@@ -13,47 +11,6 @@ export class Data {
     // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
-
-    private constructor() {
-        makeObservable(
-            this,
-            {
-                override: action,
-            },
-        );
-    }
-
-    private restore = (
-        { settings }: { settings?: any } = {},
-    ): Promise<void> => err_async(async () => {
-        const { show_color_help } = data.settings;
-
-        await this.set({ settings });
-
-        await ext.send_msg_resp(
-            {
-                msg: 'update_settings',
-                settings,
-            },
-        );
-
-        this.override({ show_color_help });
-    },
-    1014);
-
-    public restore_confirm = (
-        { settings }: { settings?: any } = {},
-    ): Promise<void> => err(async () => {
-        // eslint-disable-next-line no-alert
-        const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
-
-        if (confirmed_restore) {
-            await this.restore({ settings });
-
-            ext.iterate_all_tabs({ msg: 'rerun_actions' });
-        }
-    },
-    1015);
 
     private set = (
         { settings }: { settings?: any } = {},
@@ -91,40 +48,4 @@ export class Data {
         }
     },
     1008);
-
-    public restore_back_up = (
-        { data_obj }: { data_obj: any },
-    ): Promise<void> => err_async(async () => {
-        const { show_color_help } = data.settings;
-
-        const data_obj_clone: any = _.cloneDeep(data_obj);
-
-        await this.set({ settings: data_obj });
-
-        await ext.send_msg_resp(
-            {
-                msg: 'update_settings',
-                settings: data_obj_clone,
-            },
-        );
-
-        this.override({ show_color_help });
-
-        ext.iterate_all_tabs({ msg: 'rerun_actions' });
-    },
-    1016);
-
-    public override = ({ show_color_help }: { show_color_help: boolean }): void => err(() => {
-        if (!show_color_help) {
-            data.settings.show_color_help = false;
-
-            ext.send_msg_resp(
-                {
-                    msg: 'update_settings',
-                    settings: { show_color_help: false },
-                },
-            );
-        }
-    },
-    1017);
 }
