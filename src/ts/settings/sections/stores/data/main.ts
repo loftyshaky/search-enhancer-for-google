@@ -42,7 +42,7 @@ export class Main {
                     event_callback: d_sections.Val.i().change,
                 }),
                 new o_inputs.Checkbox({
-                    name: 'show_total_current_indicator',
+                    name: 'show_page_indicator',
                     parent: 'enable_infinite_scrolling',
                     event_callback: d_sections.Val.i().change,
                 }),
