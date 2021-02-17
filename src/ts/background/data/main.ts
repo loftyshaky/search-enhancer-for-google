@@ -14,6 +14,10 @@ export class Main {
     private constructor() {}
 
     public defaults: any = {
+        enable_infinite_scrolling: true,
+        show_turn_off_on_btn: true,
+        show_total_current_indicator: true,
+        show_page_separators: true,
         show_favicons: true,
         show_server_locations: true,
         show_scroll_to_top_button: true,

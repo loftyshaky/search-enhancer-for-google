@@ -2,6 +2,18 @@
     "description": {
         "message": ""
     },
+    "enable_infinite_scrolling_label_text": {
+        "message": "Включить бесконечную загрузку страниц"
+    },
+    "show_turn_off_on_btn_label_text": {
+        "message": "Показывать кнопку включения/выключения"
+    },
+    "show_total_current_indicator_label_text": {
+        "message": "Показывать индикатор общего числа загруженных страниц/текущей страницы"
+    },
+    "show_page_separators_label_text": {
+        "message": "Показывать разделители страниц"
+    },
     "show_favicons_label_text": {
         "message": "Показывать иконки сайтов"
     },

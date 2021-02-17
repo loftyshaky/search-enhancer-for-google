@@ -2,6 +2,18 @@
     "description": {
         "message": ""
     },
+    "enable_infinite_scrolling_label_text": {
+        "message": "Enable infinite scrolling"
+    },
+    "show_turn_off_on_btn_label_text": {
+        "message": "Show turn off/on button"
+    },
+    "show_total_current_indicator_label_text": {
+        "message": "Show total total number of loaded pages/current page indicator"
+    },
+    "show_page_separators_label_text": {
+        "message": "Show page separators"
+    },
     "show_favicons_label_text": {
         "message": "Show favicons"
     },

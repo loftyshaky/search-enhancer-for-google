@@ -34,6 +34,25 @@ export class Main {
             name: 'settings',
             inputs: [
                 new o_inputs.Checkbox({
+                    name: 'enable_infinite_scrolling',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_turn_off_on_btn',
+                    parent: 'enable_infinite_scrolling',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_total_current_indicator',
+                    parent: 'enable_infinite_scrolling',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_page_separators',
+                    parent: 'show_total_current_indicator',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
                     name: 'show_favicons',
                     event_callback: d_sections.Val.i().change,
                 }),
