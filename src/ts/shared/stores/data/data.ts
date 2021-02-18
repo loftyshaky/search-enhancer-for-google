@@ -4,6 +4,8 @@ import {
     toJS,
 } from 'mobx';
 
+import { s_actions } from 'content_script/internal';
+
 export class Data {
     private static i0: Data;
 
@@ -11,6 +13,8 @@ export class Data {
     // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
+
+    public allow_rerun_actions = true;
 
     private set = (
         { settings }: { settings?: any } = {},
@@ -41,6 +45,8 @@ export class Data {
         },
     ): void => err(() => {
         data.settings[key] = val;
+
+        this.allow_rerun_actions = false;
 
         ext.send_msg_resp({
             msg: 'update_settings',

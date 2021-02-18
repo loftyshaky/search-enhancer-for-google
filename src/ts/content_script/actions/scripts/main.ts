@@ -55,9 +55,14 @@ export class Main {
     1047);
 
     public run_reload_actions = (): Promise<void> => err_async(async () => {
-        if (this.already_run_initial_and_on_load_action) {
+        if (
+            this.already_run_initial_and_on_load_action
+            && d_shared.Data.i().allow_rerun_actions
+        ) {
             await this.run_actions();
             s_roots.Main.i().init({ name: 'icons' });
+        } else {
+            d_shared.Data.i().allow_rerun_actions = true;
         }
     },
     1048);
