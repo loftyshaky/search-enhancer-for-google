@@ -9,15 +9,16 @@
     top: var(--offset_from_header);
     overflow: hidden;
     text-align: center;
+    width: fit-content;
 }
 
 .side_panel .btn {
     @include btn;
-    display: block;
-    padding-top: 7px;
-    padding-bottom: 6px;
-    padding-left: 7px;
-    padding-right: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100%;
     background-color: #b349ca;
 }
 
