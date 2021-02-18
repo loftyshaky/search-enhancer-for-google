@@ -4,8 +4,6 @@ import {
     toJS,
 } from 'mobx';
 
-import { s_actions } from 'content_script/internal';
-
 export class Data {
     private static i0: Data;
 
