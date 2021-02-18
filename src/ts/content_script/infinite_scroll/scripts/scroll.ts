@@ -20,7 +20,7 @@ export class Scroll {
                 || !data.settings.show_enable_btn
 
             ) && (document.body.scrollHeight - document.documentElement.scrollTop)
-            <= (Viewport.i().get_dim({ dim: 'height' }))
+            <= (Viewport.i().get_dim({ dim: 'height' }) + 600)
         ) {
             s_infinite_scroll.Iframe.i().insert();
         }
