@@ -2,7 +2,7 @@ import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
 import { Suffix } from 'shared/internal';
-import { s_infinite_scroll, s_el_parser } from 'content_script/internal';
+import { s_infinite_scroll } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -21,6 +21,8 @@ export class Main {
     public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
     public footer_el: HTMLElement | undefined = undefined;
+    public related_searches_el: HTMLElement | undefined = undefined;
+    public pagination_el: HTMLElement | undefined = undefined;
     public hostnames: string[] = [];
     public hrefs: string[] = [];
     public next_page_href: string | undefined;
@@ -30,6 +32,8 @@ export class Main {
         this.get_keyword_els();
         this.get_title_els_and_hostnames();
         this.get_footer_el();
+        this.get_related_searches_el();
+        this.get_pagination_el();
     },
     1018);
 
@@ -165,6 +169,20 @@ export class Main {
             this.footer_el = s<HTMLElement>('[role="contentinfo"]');
         },
         1053,
+    );
+
+    private get_related_searches_el = (): void => err(
+        () => {
+            this.related_searches_el = s<HTMLElement>('#brs, #bres');
+        },
+        1081,
+    );
+
+    private get_pagination_el = (): void => err(
+        () => {
+            this.pagination_el = s<HTMLElement>('#xjs');
+        },
+        1083,
     );
 
     public get_next_page_href = (): void => err(() => {

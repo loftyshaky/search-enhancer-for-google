@@ -15,12 +15,14 @@ export class Main {
 
     public defaults: any = {
         enable_infinite_scrolling: true,
-        show_turn_off_on_btn: true,
+        show_enable_btn: true,
+        show_jump_to_related_searches_btn: true,
         show_page_indicator: true,
         show_page_separators: true,
         show_favicons: true,
         show_server_locations: true,
         show_scroll_to_top_button: true,
+        infinite_scrolling_enabled: true,
         keyword_color: 2,
         show_color_help: true,
         colors: d_color.Color.i().default_colors,

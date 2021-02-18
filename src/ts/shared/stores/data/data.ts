@@ -31,6 +31,25 @@ export class Data {
     },
     1007);
 
+    public change = (
+        {
+            key,
+            val,
+        }: {
+            key: string;
+            val: any
+        },
+    ): void => err(() => {
+        data.settings[key] = val;
+
+        ext.send_msg_resp({
+            msg: 'update_settings',
+            settings: { [key]: val },
+            rerun_actions: true,
+        });
+    },
+    1080);
+
     public set_from_storage = (): Promise<void> => err_async(async () => {
         const settings = await ext.storage_get();
 

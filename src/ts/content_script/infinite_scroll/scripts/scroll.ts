@@ -14,7 +14,12 @@ export class Scroll {
 
     public observe = (): void => err(() => {
         if (
-            (document.body.scrollHeight - document.documentElement.scrollTop)
+            data.settings.enable_infinite_scrolling
+            && (
+                data.settings.infinite_scrolling_enabled
+                || !data.settings.show_enable_btn
+
+            ) && (document.body.scrollHeight - document.documentElement.scrollTop)
             <= (Viewport.i().get_dim({ dim: 'height' }))
         ) {
             s_infinite_scroll.Iframe.i().insert();

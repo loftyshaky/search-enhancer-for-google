@@ -2,3 +2,9 @@
     transition: var(--transition);
     transition-property: opacity;
 }
+
+
+.enable_btn {
+    transition: var(--transition);
+    transition-property: background-color;
+}

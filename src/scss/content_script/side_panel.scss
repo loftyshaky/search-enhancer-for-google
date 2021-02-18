@@ -1,13 +1,37 @@
 @import "../../../node_modules/@loftyshaky/shared/scss/vars";
 @import "../../../node_modules/@loftyshaky/shared/scss/mixins";
 @import "../shared/index";
+@import "transitions";
 @import "mods";
 
 .side_panel {
     position: fixed;
-    top: 147px;
+    top: var(--offset_from_header);
     overflow: hidden;
     text-align: center;
+}
+
+.side_panel .btn {
+    @include btn;
+    display: block;
+    padding-top: 7px;
+    padding-bottom: 6px;
+    padding-left: 7px;
+    padding-right: 6px;
+    background-color: #b349ca;
+}
+
+.side_panel .btn.enabled {
+    background-color: #38c353;
+}
+
+.side_panel .btn.disabled {
+    background-color: #d83737;
+}
+
+.side_panel .btn svg {
+    @include text_btn_svg;
+    fill: white;
 }
 
 .side_panel_item {

@@ -5,8 +5,11 @@
     "enable_infinite_scrolling_label_text": {
         "message": "Enable infinite scrolling"
     },
-    "show_turn_off_on_btn_label_text": {
-        "message": "Show turn off/on button"
+    "show_enable_btn_label_text": {
+        "message": "Show enable/disable button"
+    },
+    "show_jump_to_related_searches_btn_label_text": {
+        "message": "Show jump to related searches/pagination buttons"
     },
     "show_page_indicator_label_text": {
         "message": "Show total total number of loaded pages/current page indicator"
@@ -26,10 +29,16 @@
     "keyword_color_label_text": {
         "message": "Keyword color"
     },
-    "current_indicator_text": {
+    "enable_btn_title": {
+        "message": "Enable/disable infinite scrolling"
+    },
+    "jump_to_related_searches_title": {
+        "message": "Jump to related searches/pagination buttons"
+    },
+    "current_indicator_title": {
         "message": "Current page"
     },
-    "total_indicator_text": {
+    "total_indicator_title": {
         "message": "Total number of loaded pages"
     }
 }

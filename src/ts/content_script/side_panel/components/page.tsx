@@ -12,7 +12,7 @@ export const Page = observer((props: p_side_panel.Page) => {
                 'side_panel_item',
                 name,
             ])}
-            title={ext.msg(`${name}_indicator_text`)}
+            title={ext.msg(`${name}_indicator_title`)}
         >
             {val}
         </div>

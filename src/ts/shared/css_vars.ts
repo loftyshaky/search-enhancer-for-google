@@ -25,6 +25,14 @@ export class CssVars {
                 transition_duration: '200',
             },
         );
+
+        CssVarsShared.i().set_var(
+            {
+                roots,
+                name: 'offset_from_header',
+                val: '147px',
+            },
+        );
     },
     1011);
 }

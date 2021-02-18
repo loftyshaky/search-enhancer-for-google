@@ -13,6 +13,10 @@ browser.runtime.onMessage.addListener((msg: t.Msg): Promise<any> => err_async(as
         await data.Main.i().update_settings({
             settings: msg.settings,
         });
+
+        if (n(msg.rerun_actions)) {
+            ext.iterate_all_tabs({ msg: 'rerun_actions' });
+        }
     } else if (msg_str === 'get_defaults') {
         return data.Main.i().defaults;
     } else if (msg_str === 'favicon_is_empty') {

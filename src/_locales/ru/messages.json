@@ -5,8 +5,11 @@
     "enable_infinite_scrolling_label_text": {
         "message": "Включить бесконечную загрузку страниц"
     },
-    "show_turn_off_on_btn_label_text": {
+    "show_enable_btn_label_text": {
         "message": "Показывать кнопку включения/выключения"
+    },
+    "show_jump_to_related_searches_btn_label_text": {
+        "message": "Показывать кнопку \"Перейти к похожим запросам/кнопкам нумерации страниц\""
     },
     "show_page_indicator_label_text": {
         "message": "Показывать индикатор общего числа загруженных страниц/текущей страницы"
@@ -26,10 +29,16 @@
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
     },
-    "current_indicator_text": {
+    "enable_btn_title": {
+        "message": "Включить/выключить бесконечную загрузку страниц"
+    },
+    "jump_to_related_searches_title": {
+        "message": "Перейти к похожим запросам/кнопкам нумерации страниц"
+    },
+    "current_indicator_title": {
         "message": "Текущая страница"
     },
-    "total_indicator_text": {
+    "total_indicator_title": {
         "message": "Общее число загруженных страниц"
     }
 }

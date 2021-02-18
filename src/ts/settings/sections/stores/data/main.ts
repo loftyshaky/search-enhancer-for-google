@@ -37,7 +37,12 @@ export class Main {
                     event_callback: d_sections.Val.i().change,
                 }),
                 new o_inputs.Checkbox({
-                    name: 'show_turn_off_on_btn',
+                    name: 'show_enable_btn',
+                    parent: 'enable_infinite_scrolling',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_jump_to_related_searches_btn',
                     parent: 'enable_infinite_scrolling',
                     event_callback: d_sections.Val.i().change,
                 }),

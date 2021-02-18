@@ -8,6 +8,7 @@ import {
     LoadingScreenVisibility,
     LoadingScreenBody,
     Theme,
+    NoTr,
 } from '@loftyshaky/shared';
 import { u_settings } from '@loftyshaky/shared/settings';
 import {
@@ -119,10 +120,22 @@ export class InitAll {
                 <CrashHandler><c_side_panel.Body /></CrashHandler>,
                 side_panel_root,
                 (): void => {
-                    x.css(
+                    NoTr.i().enable({ el: side_panel_root });
+
+                    const side_panel_css = x.css(
                         'side_panel',
                         side_panel_root,
                     );
+
+                    if (n(side_panel_css)) {
+                        side_panel_css.addEventListener(
+                            'load',
+                            (): void => err(() => {
+                                NoTr.i().disable({ el: side_panel_root });
+                            },
+                            1079),
+                        );
+                    }
                 },
             );
         },
