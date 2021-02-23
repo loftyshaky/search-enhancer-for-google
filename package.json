@@ -52,6 +52,7 @@
         "@simonwep/pickr": "^1.8.0",
         "@svgr/webpack": "^5.5.0",
         "advanced-extension-reloader-watch-2": "0.0.1",
+        "dexie": "^3.0.3",
         "install": "^0.13.0",
         "lodash": "^4.17.20",
         "mobx": "^6.0.4",
