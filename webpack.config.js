@@ -55,6 +55,10 @@ module.exports = (env, argv) => {
                 ),
                 to: 'flags',
             },
+            path.join(
+                'src',
+                'IpToCountry.csv',
+            ),
         ],
         callback_begin: () => {
             task_scheduler.unlock_dist({
