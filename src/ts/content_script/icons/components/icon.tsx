@@ -47,6 +47,10 @@ export const Icon = observer((props: p_icons.Icon) => {
         type,
     });
     const src: string = (u_icons.Main.i() as any)[type][url];
+    const show_icon: boolean = u_icons.Main.i().get_show_icon_bool({
+        type,
+        url,
+    });
 
     return data.settings[`show_${type}`]
         ? (
@@ -56,27 +60,31 @@ export const Icon = observer((props: p_icons.Icon) => {
                     type,
                 ])}
             >
+                <img
+                    className={x.cls([
+                        'icon',
+                        type,
+                        u_icons.Main.i().icon_visibility_cls({ show_icon }),
+                    ])}
+                    alt=''
+                    title={u_icons.Main.i().server_data({
+                        type,
+                        url,
+                    })}
+                    src={src}
+                    onLoad={(): void => {
+                        u_icons.Main.i().set_favicons_loaded_to_true({
+                            type,
+                            url,
+                        });
+                    }}
+                />
                 {
-                    n(src)
-                    && src !== 'placeholder'
-                        ? (
-                            <img
-                                className={x.cls([
-                                    'icon',
-                                    type,
-                                ])}
-                                alt=''
-                                title={u_icons.Main.i().server_data({
-                                    type,
-                                    url,
-                                })}
-                                src={src}
-                            />
-                        )
+                    show_icon
+                        ? undefined
                         : <svg.Yard />
                 }
             </span>
-
         )
         : <></>;
 });

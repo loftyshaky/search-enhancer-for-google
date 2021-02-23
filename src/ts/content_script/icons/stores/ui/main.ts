@@ -26,15 +26,18 @@ export class Main {
             this,
             {
                 favicons: observable,
+                favicons_loaded: observable,
                 server_locations: observable,
                 server_ips: observable,
                 server_countries: observable,
                 generate_favicons: action,
+                set_favicons_loaded_to_true: action,
             },
         );
     }
 
     public favicons: { [index: string]: string } = {};
+    public favicons_loaded: { [index: string]: boolean } = {};
     public server_locations: { [index: string]: string } = {};
     public server_ips: { [index: string]: string } = {};
     public server_countries: { [index: string]: string } = {};
@@ -83,6 +86,7 @@ export class Main {
             const google_icon = `https://s2.googleusercontent.com/s2/favicons?domain_url=${url}`;
             const yandex_icon = `https://favicon.yandex.net/favicon/v2/${url}`;
 
+            this.favicons_loaded[url] = false;
             this.favicons[url] = google_icon;
 
             const google_favicon_is_empty: boolean = await ext.send_msg_resp(
@@ -95,6 +99,7 @@ export class Main {
 
             if (google_favicon_is_empty) {
                 runInAction(() => {
+                    this.favicons_loaded[url] = false;
                     this.favicons[url] = yandex_icon;
                 });
 
@@ -155,7 +160,7 @@ export class Main {
             type,
         }: {
             i: number;
-            type: 'favicons' | 'server_locations';
+            type: i_icons.IconType;
         },
     ): string => err(() => (
         s_el_parser.Main.i()[type === 'favicons'
@@ -163,4 +168,50 @@ export class Main {
             : 'hostnames'][i]
     ),
     1071);
+
+    public set_favicons_loaded_to_true = (
+        {
+            type,
+            url,
+        }: {
+            type: i_icons.IconType;
+            url: string;
+        },
+    ): void => err(() => {
+        if (type === 'favicons') {
+            this.favicons_loaded[url] = true;
+        }
+    },
+    1088);
+
+    public get_show_icon_bool = ({
+        type,
+        url,
+    }: {
+        type: i_icons.IconType;
+        url: string
+    }): boolean => err(() => {
+        const src: string = this[type][url];
+        const favicons_loaded: boolean = this.favicons_loaded[url];
+
+        return Boolean(
+            n(src)
+            && src !== 'placeholder'
+            && (
+                (
+                    type === 'favicons'
+                    && favicons_loaded
+                )
+                || type === 'server_locations'
+            ),
+        );
+    },
+    1089);
+
+    public icon_visibility_cls = ({ show_icon }: { show_icon: boolean}): string => err(() => (
+        show_icon
+            ? ''
+            : 'none'
+    ),
+    1090);
 }
