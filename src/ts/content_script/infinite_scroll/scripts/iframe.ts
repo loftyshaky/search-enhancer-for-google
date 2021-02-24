@@ -158,7 +158,9 @@ export class Iframe {
                 this.resize_iframe({ cur_iframe_i });
             });
 
-            resize_observer.observe(search_results_w);
+            if (n(search_results_w)) {
+                resize_observer.observe(search_results_w);
+            }
         }
     },
     1059);

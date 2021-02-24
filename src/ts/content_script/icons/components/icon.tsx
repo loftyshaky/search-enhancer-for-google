@@ -54,31 +54,39 @@ export const Icon = observer((props: p_icons.Icon) => {
 
     return data.settings[`show_${type}`]
         ? (
+
             <span
                 className={x.cls([
                     'icon_w',
                     type,
                 ])}
             >
-                <img
-                    className={x.cls([
-                        'icon',
-                        type,
-                        u_icons.Main.i().icon_visibility_cls({ show_icon }),
-                    ])}
-                    alt=''
-                    title={u_icons.Main.i().server_data({
-                        type,
-                        url,
-                    })}
-                    src={src}
-                    onLoad={(): void => {
-                        u_icons.Main.i().set_favicons_loaded_to_true({
-                            type,
-                            url,
-                        });
-                    }}
-                />
+                {
+                    src === 'placeholder'
+                        ? undefined
+                        : (
+                            <img
+                                className={x.cls([
+                                    'icon',
+                                    type,
+                                    u_icons.Main.i().icon_visibility_cls({ show_icon }),
+                                ])}
+                                alt=''
+                                title={u_icons.Main.i().server_data({
+                                    type,
+                                    url,
+                                })}
+                                src={src}
+                                onLoad={(): void => {
+                                    u_icons.Main.i().set_favicons_loaded_to_true({
+                                        type,
+                                        url,
+                                    });
+                                }}
+                            />
+                        )
+
+                }
                 {
                     show_icon
                         ? undefined

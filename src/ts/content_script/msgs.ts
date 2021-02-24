@@ -7,8 +7,6 @@ browser.runtime.onMessage.addListener((msg: t.Msg): any => err(() => {
     const msg_str: string = msg.msg;
 
     if (msg_str === 'rerun_actions') {
-        s_actions.Main.i().already_run_initial_and_on_load_action = true;
-
         s_actions.Main.i().run_reload_actions_debounce();
     }
 },

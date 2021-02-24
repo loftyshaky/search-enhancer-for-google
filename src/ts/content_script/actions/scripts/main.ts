@@ -19,8 +19,6 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public already_run_initial_and_on_load_action = false;
-
     private run_actions = (): Promise<void> => err_async(async () => {
         await d_shared.Data.i().set_from_storage();
         s_el_parser.Main.i().get_els();
@@ -49,16 +47,11 @@ export class Main {
             name: 'icons',
             start: 11,
         });
-
-        this.already_run_initial_and_on_load_action = true;
     },
     1047);
 
     public run_reload_actions = (): Promise<void> => err_async(async () => {
-        if (
-            this.already_run_initial_and_on_load_action
-            && d_shared.Data.i().allow_rerun_actions
-        ) {
+        if (d_shared.Data.i().allow_rerun_actions) {
             await this.run_actions();
             s_roots.Main.i().init({ name: 'icons' });
         } else {
