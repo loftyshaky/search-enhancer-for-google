@@ -65,7 +65,7 @@ export class Main {
                     event_callback: d_sections.Val.i().change,
                 }),
                 new o_inputs.Checkbox({
-                    name: 'show_scroll_to_top_button',
+                    name: 'show_scroll_to_top_btn',
                     event_callback: d_sections.Val.i().change,
                 }),
                 new o_color.Color({

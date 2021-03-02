@@ -21,7 +21,7 @@ export class Main {
         show_page_separators: true,
         show_favicons: true,
         show_server_locations: true,
-        show_scroll_to_top_button: true,
+        show_scroll_to_top_btn: true,
         infinite_scrolling_enabled: true,
         keyword_color: 2,
         show_color_help: true,
