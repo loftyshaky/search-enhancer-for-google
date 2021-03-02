@@ -85,8 +85,6 @@ export class Main {
         if (data.settings.show_favicons) {
             const google_icon = `https://s2.googleusercontent.com/s2/favicons?domain_url=${url}`;
             const yandex_icon = `https://favicon.yandex.net/favicon/v2/${url}`;
-
-            this.favicons_loaded[url] = false;
             this.favicons[url] = google_icon;
 
             const google_favicon_is_empty: boolean = await ext.send_msg_resp(

@@ -18,13 +18,11 @@ export const Icon = observer((props: p_icons.Icon) => {
         const {
             type,
             i,
-            limit,
         } = props;
 
         if (
             data.settings[`show_${type}`]
             && !icon_was_already_set_ref.current
-            && limit >= i
         ) {
             icon_was_already_set_ref.current = true;
 
@@ -46,11 +44,14 @@ export const Icon = observer((props: p_icons.Icon) => {
         i,
         type,
     });
-    const src: string = (u_icons.Main.i() as any)[type][url];
+    const src: string = u_icons.Main.i()[type][url];
     const show_icon: boolean = u_icons.Main.i().get_show_icon_bool({
         type,
         url,
     });
+
+    // eslint-disable-next-line no-unused-expressions
+    u_icons.Main.i().favicons_loaded[url];
 
     return data.settings[`show_${type}`]
         ? (

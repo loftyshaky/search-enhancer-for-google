@@ -138,6 +138,8 @@ export class Main {
                                     && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
                                     && el_2.getBoundingClientRect().left <= 300
                                     && this.check_if_el_has_immediate_text({ el: el_2 })
+                                    && n(el.href)
+                                    && el.href
                                 ) {
                                     filtered_links.push(el);
                                     this.title_els.push(el_2);

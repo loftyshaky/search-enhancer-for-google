@@ -33,10 +33,7 @@ export class Main {
         s_el_parser.Main.i().get_next_page_href();
 
         await this.run_actions();
-        s_roots.Main.i().init({
-            name: 'icons',
-            limit: 10,
-        });
+        s_roots.Main.i().init({ name: 'icons' });
     },
     1046);
 

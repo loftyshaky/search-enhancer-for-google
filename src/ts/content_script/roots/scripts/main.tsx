@@ -28,11 +28,9 @@ export class Main {
     public init = ({
         name,
         start = 0,
-        limit = Infinity,
     }: {
         name: string;
         start?: number;
-        limit?: number
     }): void => err(() => {
         s_roots.Position.i().position_title_el();
 
@@ -88,7 +86,6 @@ export class Main {
                                         <CrashHandler>
                                             <Component
                                                 i={i}
-                                                limit={limit}
                                             />
                                         </CrashHandler>,
                                         content,
