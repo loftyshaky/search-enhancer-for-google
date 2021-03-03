@@ -66,6 +66,8 @@ export class Main {
                 }),
                 new o_inputs.Checkbox({
                     name: 'show_scroll_to_top_btn',
+                    include_help: true,
+                    alt_help_msg: ext.msg('scroll_to_top_title'),
                     event_callback: d_sections.Val.i().change,
                 }),
                 new o_color.Color({

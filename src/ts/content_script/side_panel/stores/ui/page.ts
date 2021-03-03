@@ -5,7 +5,10 @@ import {
 } from 'mobx';
 
 import { Viewport } from '@loftyshaky/shared';
-import { s_infinite_scroll } from 'content_script/internal';
+import {
+    s_infinite_scroll,
+    u_side_panel,
+} from 'content_script/internal';
 
 export class Page {
     private static i0: Page;
@@ -57,6 +60,13 @@ export class Page {
             this.current = current_iframe_i === -1
                 ? 1
                 : current_iframe_i + 2;
+        }
+
+        if (
+            u_side_panel.RelatedSearches.i().last_related_searches_position
+            !== u_side_panel.Scroll.i().get_current_position()
+        ) {
+            u_side_panel.RelatedSearches.i().reset_position();
         }
     },
     1076);

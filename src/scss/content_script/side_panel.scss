@@ -4,6 +4,8 @@
 @import "transitions";
 @import "mods";
 
+$btn_size: 30px;
+
 .side_panel {
     position: fixed;
     top: var(--offset_from_header);
@@ -17,7 +19,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: $btn_size;
+    min-width: $btn_size;
     width: 100%;
     background-color: #b349ca;
 }
@@ -28,6 +31,14 @@
 
 .side_panel .btn.disabled {
     background-color: #d83737;
+}
+
+.side_panel .btn.position_remembered {
+    background-color: #ca7742;
+}
+
+.side_panel .btn.position_overridden {
+    background-color: #7fc33b;
 }
 
 .side_panel .btn svg {

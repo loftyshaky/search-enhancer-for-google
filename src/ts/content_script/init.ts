@@ -20,4 +20,8 @@ export const init = async (): Promise<void> => {
         'scroll',
         u_side_panel.Page.i().set_current,
     );
+    document.addEventListener(
+        'mouseup',
+        u_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout,
+    );
 };

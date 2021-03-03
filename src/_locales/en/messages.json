@@ -32,6 +32,9 @@
     "enable_btn_title": {
         "message": "Enable/disable infinite scrolling"
     },
+    "scroll_to_top_title": {
+        "message": "Left-click to go to top.\n\nRight-click to go to bottom.\n\nWhen you go to top or bottom Google Enhancement Suite remembers your position. To return to this position middle-click.\n\nYou can also remember your position without going to top or bottom. To do this, middle-click, if Google Enhancement Suite doesn't have a position remembered, or click and hold middle button for 0.35 second if it does."
+    },
     "jump_to_related_searches_title": {
         "message": "Jump to related searches/pagination buttons"
     },
