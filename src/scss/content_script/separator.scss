@@ -1,0 +1,11 @@
+@import "../../../node_modules/@loftyshaky/shared/scss/vars";
+@import "../../../node_modules/@loftyshaky/shared/scss/mixins";
+@import "../../../node_modules/@loftyshaky/shared/scss/text";
+@import "../../../node_modules/@loftyshaky/shared/scss/mods";
+@import "vars";
+
+.separator {
+    color: $black;
+    font-size: $font_size;
+    margin-bottom: 43px;
+}

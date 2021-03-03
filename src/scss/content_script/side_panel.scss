@@ -2,11 +2,13 @@
 @import "../../../node_modules/@loftyshaky/shared/scss/mixins";
 @import "../shared/index";
 @import "transitions";
+@import "vars";
 @import "mods";
 
-$btn_size: 30px;
+$btn_size: 31px;
 
 .side_panel {
+    font-family: u6Pgzb39sNF, sans-serif;
     position: fixed;
     top: var(--offset_from_header);
     overflow: hidden;
@@ -48,8 +50,8 @@ $btn_size: 30px;
 
 .side_panel_item {
     cursor: help;
-    font-size: 18px;
-    padding-top: 5px;
+    font-size: $font_size;
+    padding-top: 4px;
     padding-bottom: 3px;
     padding-left: 10px;
     padding-right: 9px;

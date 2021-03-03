@@ -2,7 +2,10 @@ import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
 import { Suffix } from 'shared/internal';
-import { s_infinite_scroll } from 'content_script/internal';
+import {
+    u_infinite_scroll,
+    s_infinite_scroll,
+} from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -154,6 +157,8 @@ export class Main {
             },
             1020,
         ));
+
+        u_infinite_scroll.Separator.i().set_offset_left({ title_el: this.title_els[0] });
 
         this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(
             () => new URL(el.href).hostname,

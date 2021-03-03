@@ -22,6 +22,7 @@ class Manifest {
                 'error.css',
                 'content_script_css.css',
                 'icons.css',
+                'separator.css',
                 'iframe_inner.css',
                 'spinner.css',
                 'side_panel.css',

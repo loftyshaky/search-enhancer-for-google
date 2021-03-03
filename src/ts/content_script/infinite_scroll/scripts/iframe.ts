@@ -9,6 +9,7 @@ import { Suffix } from 'shared/internal';
 import {
     s_el_parser,
     s_actions,
+    s_roots,
     u_side_panel,
 } from 'content_script/internal';
 
@@ -72,7 +73,6 @@ export class Iframe {
                 'load',
                 (): void => err(() => {
                     this.hide_everything_from_iframe_except_search_results();
-                    this.observe_iframe_resizing({ cur_iframe_i: this.cur_iframe_i });
 
                     s_el_parser.Main.i().get_next_page_href();
 
@@ -80,6 +80,15 @@ export class Iframe {
                         const iframe_doc: Document | null = this.last_iframe.contentDocument;
 
                         if (n(iframe_doc)) {
+                            s_roots.Main.i().append_root({
+                                name: 'separator',
+                                parent: iframe_doc.body,
+                                i: this.cur_iframe_i + 2,
+                                append_f_name: 'as_first',
+                            });
+
+                            this.observe_iframe_resizing({ cur_iframe_i: this.cur_iframe_i });
+
                             x.css(
                                 'content_script_css',
                                 iframe_doc.head,
@@ -149,6 +158,29 @@ export class Iframe {
         const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
         if (n(iframe_doc)) {
+            const separator_root = sb<HTMLIFrameElement>(
+                iframe_doc.body,
+                `.${new Suffix('separator').result}`,
+            );
+
+            if (
+                n(separator_root)
+                && n(separator_root.shadowRoot)
+            ) {
+                const mutation_observer = new MutationObserver((): void => {
+                    this.resize_iframe({ cur_iframe_i });
+                });
+
+                mutation_observer.observe(
+                    separator_root.shadowRoot,
+                    {
+                        childList: true,
+                        subtree: true,
+                        attributes: true,
+                    },
+                );
+            }
+
             const search_results_w = sb<HTMLElement>(
                 iframe_doc.body!,
                 this.search_results_w_selector,
@@ -173,6 +205,7 @@ export class Iframe {
 
         if (n(iframe_doc)) {
             cur_iframe.style.height = '';
+
             // eslint-disable-next-line no-unused-expressions
             cur_iframe.offsetWidth;
             cur_iframe.style.height = `${iframe_doc.body.scrollHeight}px`;

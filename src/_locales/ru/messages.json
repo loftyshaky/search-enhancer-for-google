@@ -52,5 +52,8 @@
     },
     "total_indicator_title": {
         "message": "Общее число загруженных страниц"
+    },
+    "page_text": {
+        "message": "Страница"
     }
 }

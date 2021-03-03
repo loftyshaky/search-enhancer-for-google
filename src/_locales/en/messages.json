@@ -52,5 +52,8 @@
     },
     "total_indicator_title": {
         "message": "Total number of loaded pages"
+    },
+    "page_text": {
+        "message": "Page"
     }
 }
