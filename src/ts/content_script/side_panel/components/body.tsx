@@ -12,7 +12,7 @@ export const Body = observer(() => (
         className={
             x.cls([
                 'side_panel',
-                'left',
+                data.settings.side_panel_position,
             ])
         }
         role='none'
