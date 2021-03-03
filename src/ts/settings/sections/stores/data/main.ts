@@ -28,10 +28,34 @@ export class Main {
         return this.i0 || (this.i0 = new this());
     }
 
+    private options: any = {
+        side_panel_position: [
+            new o_inputs.Option({ name: 'left' }),
+            new o_inputs.Option({ name: 'right' }),
+        ],
+    }
+
     public sections: any = [
         ...[new o_inputs.Section({
             name: 'settings',
             inputs: [
+                new o_inputs.Select({
+                    name: 'side_panel_position',
+                    options: this.options,
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_color.Color({
+                    name: 'keyword_color',
+                    event_callback: d_sections.Val.i().change,
+                    select_palette_color_callback: d_sections.Val.i().save_selected_palette_color,
+                    hide_color_help_callback: d_sections.Visibility.i().hide_color_help,
+                    remove_color_callback: (
+                        d_sections.Val.i().remove_color_callback
+                    ),
+                    restore_default_palette_callback: (
+                        d_sections.Val.i().restore_default_palette_callback
+                    ),
+                }),
                 new o_inputs.Checkbox({
                     name: 'enable_infinite_scrolling',
                     event_callback: d_sections.Val.i().change,
@@ -69,18 +93,6 @@ export class Main {
                     include_help: true,
                     alt_help_msg: ext.msg('scroll_to_top_title'),
                     event_callback: d_sections.Val.i().change,
-                }),
-                new o_color.Color({
-                    name: 'keyword_color',
-                    event_callback: d_sections.Val.i().change,
-                    select_palette_color_callback: d_sections.Val.i().save_selected_palette_color,
-                    hide_color_help_callback: d_sections.Visibility.i().hide_color_help,
-                    remove_color_callback: (
-                        d_sections.Val.i().remove_color_callback
-                    ),
-                    restore_default_palette_callback: (
-                        d_sections.Val.i().restore_default_palette_callback
-                    ),
                 }),
             ],
         })],

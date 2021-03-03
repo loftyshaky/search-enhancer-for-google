@@ -2,6 +2,9 @@
     "description": {
         "message": ""
     },
+    "side_panel_position_label_text": {
+        "message": "Side panel position"
+    },
     "enable_infinite_scrolling_label_text": {
         "message": "Enable infinite scrolling"
     },
@@ -28,6 +31,12 @@
     },
     "keyword_color_label_text": {
         "message": "Keyword color"
+    },
+    "left_option_text": {
+        "message": "Left"
+    },
+    "right_option_text": {
+        "message": "Right"
     },
     "enable_btn_title": {
         "message": "Enable/disable infinite scrolling"

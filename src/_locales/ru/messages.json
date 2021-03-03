@@ -2,6 +2,9 @@
     "description": {
         "message": ""
     },
+    "side_panel_position_label_text": {
+        "message": "Позиция боковой панели"
+    },
     "enable_infinite_scrolling_label_text": {
         "message": "Включить бесконечную загрузку страниц"
     },
@@ -28,6 +31,12 @@
     },
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
+    },
+    "left_option_text": {
+        "message": "Слева"
+    },
+    "right_option_text": {
+        "message": "Справа"
     },
     "enable_btn_title": {
         "message": "Включить/выключить бесконечную загрузку страниц"
