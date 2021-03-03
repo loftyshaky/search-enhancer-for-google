@@ -18,15 +18,15 @@ export class InfiniteScrollingState {
         makeObservable(
             this,
             {
-                state_cls: computed,
+                disabled_cls: computed,
                 change: action,
             },
         );
     }
 
-    get state_cls() {
+    get disabled_cls() {
         return data.settings.infinite_scrolling_enabled
-            ? 'enabled'
+            ? ''
             : 'disabled';
     }
 

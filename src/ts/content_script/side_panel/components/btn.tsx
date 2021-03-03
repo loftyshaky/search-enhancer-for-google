@@ -13,7 +13,7 @@ const component: any = {
 export const Btn = observer((props: p_side_panel.Btn) => {
     const {
         name,
-        state_cls,
+        disabled_cls,
         position_remembered_cls,
         position_overridden_cls,
         on_click,
@@ -30,7 +30,7 @@ export const Btn = observer((props: p_side_panel.Btn) => {
                 'side_panel_item',
                 'btn',
                 name,
-                state_cls,
+                disabled_cls,
                 position_remembered_cls,
                 position_overridden_cls,
             ])}

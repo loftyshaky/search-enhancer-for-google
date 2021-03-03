@@ -26,7 +26,7 @@ export const Body = observer(() => (
                 ? (
                     <c_side_panel.Btn
                         name='enable_btn'
-                        state_cls={u_side_panel.InfiniteScrollingState.i().state_cls}
+                        disabled_cls={u_side_panel.InfiniteScrollingState.i().disabled_cls}
                         on_click={u_side_panel.InfiniteScrollingState.i().change}
                     />
                 )
