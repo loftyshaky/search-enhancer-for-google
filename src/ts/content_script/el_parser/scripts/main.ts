@@ -158,7 +158,9 @@ export class Main {
             1020,
         ));
 
-        u_infinite_scroll.Separator.i().set_offset_left({ title_el: this.title_els[0] });
+        if (n(this.title_els[0])) {
+            u_infinite_scroll.Separator.i().set_offset_left({ title_el: this.title_els[0] });
+        }
 
         this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(
             () => new URL(el.href).hostname,
