@@ -42,7 +42,10 @@ export class RelatedSearches {
     }
 
     public remember_position = (): void => err(() => {
-        this.remembered_position = u_side_panel.Scroll.i().get_current_position();
+        const current_position: number = u_side_panel.Scroll.i().get_current_position();
+
+        this.remembered_position = current_position;
+        u_side_panel.Scroll.i().remembered_position = current_position;
     },
     1097);
 
