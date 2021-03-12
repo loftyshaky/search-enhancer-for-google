@@ -238,7 +238,7 @@ export class Main {
         () => {
             const children: NodeListOf<ChildNode> = el.childNodes;
 
-            return [...children].every((el_2: ChildNode): boolean => err(
+            return [...children].some((el_2: ChildNode): boolean => err(
                 () => el_2.nodeType === Node.TEXT_NODE
                       || x.matches(
                           el_2 as any,
