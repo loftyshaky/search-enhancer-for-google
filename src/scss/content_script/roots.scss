@@ -3,3 +3,10 @@
     left: -$gap;
     transform: translateX(-100%);
 }
+
+
+.img_action_bar_#{$app_id} {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

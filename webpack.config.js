@@ -154,6 +154,13 @@ module.exports = (env, argv) => {
                 'content_script',
                 'side_panel.scss',
             ),
+            img_action_bar: path.join(
+                app_root,
+                'src',
+                'scss',
+                'content_script',
+                'img_action_bar.scss',
+            ),
         },
     };
 

@@ -26,6 +26,7 @@ class Manifest {
                 'iframe_inner.css',
                 'spinner.css',
                 'side_panel.css',
+                'img_action_bar.css',
                 'flags/*',
                 'chunks/*',
             ],

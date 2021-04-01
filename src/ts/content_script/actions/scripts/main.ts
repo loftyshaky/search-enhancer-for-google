@@ -4,6 +4,7 @@ import {
     s_el_parser,
     s_roots,
     s_keywords,
+    u_img_action_bar,
 } from 'content_script/internal';
 
 import { InitAll } from 'shared/init_all';
@@ -54,6 +55,9 @@ export class Main {
         } else {
             d_shared.Data.i().allow_rerun_actions = true;
         }
+
+        s_roots.Main.i().init({ name: 'img_action_bar' });
+        u_img_action_bar.Position.i().observe_img_margin_change();
     },
     1048);
 

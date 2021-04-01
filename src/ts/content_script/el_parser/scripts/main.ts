@@ -26,6 +26,7 @@ export class Main {
     public footer_el: HTMLElement | undefined = undefined;
     public related_searches_el: HTMLElement | undefined = undefined;
     public pagination_el: HTMLElement | undefined = undefined;
+    public img_viewer: HTMLLinkElement | undefined = undefined;
     public hostnames: string[] = [];
     public hrefs: string[] = [];
     public next_page_href: string | undefined;
@@ -37,6 +38,7 @@ export class Main {
         this.get_footer_el();
         this.get_related_searches_el();
         this.get_pagination_el();
+        this.get_img_viewer();
     },
     1018);
 
@@ -192,6 +194,21 @@ export class Main {
             this.pagination_el = s<HTMLElement>('#xjs');
         },
         1083,
+    );
+
+    private get_img_viewer = (): void => err(
+        () => {
+            this.img_viewer = s<HTMLLinkElement>('a[rlhc]');
+        },
+        1103,
+    );
+
+    public get_img_in_img_viewer = (): HTMLImageElement | undefined => err(
+        () => sb<HTMLImageElement>(
+            this.img_viewer,
+            'img',
+        ),
+        1106,
     );
 
     public get_next_page_href = (): void => err(() => {

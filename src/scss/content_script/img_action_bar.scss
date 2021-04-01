@@ -1,0 +1,49 @@
+@import "../../../node_modules/@loftyshaky/shared/scss/mixins";
+@import "../../../node_modules/@loftyshaky/shared/scss/mods";
+@import "vars";
+
+.content {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.img_action_bar {
+    @include border_left;
+    @include border_top;
+    display: flex;
+    overflow: hidden;
+    border-top-left-radius: $bar_border_radius;
+    border-color: white;
+}
+
+.btn {
+    @include input_basic;
+    height: $btn_size;
+    width: $btn_size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: #4285f4;
+}
+
+.btn:hover {
+    background-color: #0f9d58;
+}
+
+.btn:active {
+    background-color: #db4437;
+}
+
+.btn:not(:last-child) {
+    @include border_right;
+    border-color: white;
+}
+
+.btn svg {
+    height: $icon_size;
+    width: $icon_size;
+    fill: white;
+}

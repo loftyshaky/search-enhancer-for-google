@@ -55,5 +55,20 @@
     },
     "page_text": {
         "message": "Page"
+    },
+    "view_img_title": {
+        "message": "View image"
+    },
+    "search_by_img_title": {
+        "message": "View image"
+    },
+    "download_img_title": {
+        "message": "Download image"
+    },
+    "save_img_as_title": {
+        "message": "Save image as"
+    },
+    "copy_img_url_title": {
+        "message": "Copy image URL"
     }
 }

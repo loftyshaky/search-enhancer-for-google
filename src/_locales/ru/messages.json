@@ -55,5 +55,20 @@
     },
     "page_text": {
         "message": "Страница"
+    },
+    "view_img_title": {
+        "message": "Открыть в полном размере"
+    },
+    "search_by_img_title": {
+        "message": "Поиск по картинке"
+    },
+    "download_img_title": {
+        "message": "Скачать изображение"
+    },
+    "save_img_as_title": {
+        "message": "Сохранить изображение как"
+    },
+    "copy_img_url_title": {
+        "message": "Скопировать URL изображения"
     }
 }
