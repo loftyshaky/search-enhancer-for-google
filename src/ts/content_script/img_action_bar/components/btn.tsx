@@ -19,15 +19,17 @@ export const Btn = observer((props: p_img_action_bar.Btn) => {
     const { btn } = props;
     const Component: any = component[btn.name];
 
-    return (
-        <button
-            className='btn'
-            type='button'
-            title={ext.msg(`${btn.name}_title`)}
-            onMouseDown={btn.event_callback}
-            onContextMenu={prevent_default}
-        >
-            <Component />
-        </button>
-    );
+    return data.settings[`show_${btn.name}_btn`]
+        ? (
+            <button
+                className='btn'
+                type='button'
+                title={ext.msg(`${btn.name}_title`)}
+                onMouseDown={btn.event_callback}
+                onContextMenu={prevent_default}
+            >
+                <Component />
+            </button>
+        )
+        : null;
 });
