@@ -32,6 +32,24 @@
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
     },
+    "show_view_img_btn_label_text": {
+        "message": "Показывать кнопку \"Открыть в полном размере\""
+    },
+    "show_search_by_img_btn_label_text": {
+        "message": "Показывать кнопку \"Поиск по картинке\""
+    },
+    "show_download_img_btn_label_text": {
+        "message": "Показывать кнопку \"Скачать изображение\""
+    },
+    "show_save_img_as_btn_label_text": {
+        "message": "Показывать кнопку \"Сохранить изображение как\""
+    },
+    "image_downloads_directory_label_text": {
+        "message": "Папка загрузок для изображений"
+    },
+    "show_copy_img_url_btn_label_text": {
+        "message": "Показывать кнопку \"Скопировать URL изображения\""
+    },
     "left_option_text": {
         "message": "Слева"
     },

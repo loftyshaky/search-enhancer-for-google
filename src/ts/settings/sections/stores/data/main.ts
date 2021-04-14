@@ -94,6 +94,32 @@ export class Main {
                     alt_help_msg: ext.msg('scroll_to_top_title'),
                     event_callback: d_sections.Val.i().change,
                 }),
+                new o_inputs.Checkbox({
+                    name: 'show_view_img_btn',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_search_by_img_btn',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_download_img_btn',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_save_img_as_btn',
+                    event_callback: d_sections.Val.i().change,
+                }),
+                new o_inputs.Text({
+                    name: 'image_downloads_directory',
+                    include_help: true,
+                    event_callback: () => null,
+                    warn_state_checker: () => null,
+                }),
+                new o_inputs.Checkbox({
+                    name: 'show_copy_img_url_btn',
+                    event_callback: d_sections.Val.i().change,
+                }),
             ],
         })],
         ...d_settings.Sections.i().make_shared_sections(
