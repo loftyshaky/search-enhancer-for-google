@@ -22,6 +22,7 @@ export * as i_side_panel from 'content_script/side_panel/interfaces';
 export * as o_img_action_bar from 'content_script/img_action_bar/stores/obj';
 export * as d_img_action_bar from 'content_script/img_action_bar/stores/data';
 export * as u_img_action_bar from 'content_script/img_action_bar/stores/ui';
+export * as s_img_action_bar from 'content_script/img_action_bar/scripts';
 export * as c_img_action_bar from 'content_script/img_action_bar/components';
 export * as p_img_action_bar from 'content_script/img_action_bar/components/prop_types';
 export * from 'content_script/init';

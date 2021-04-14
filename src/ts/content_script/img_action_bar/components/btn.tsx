@@ -25,7 +25,7 @@ export const Btn = observer((props: p_img_action_bar.Btn) => {
                 className='btn'
                 type='button'
                 title={ext.msg(`${btn.name}_title`)}
-                onMouseDown={btn.event_callback}
+                onMouseDown={(): void => { btn.event_callback({ type: btn.name }); }}
                 onContextMenu={prevent_default}
             >
                 <Component />

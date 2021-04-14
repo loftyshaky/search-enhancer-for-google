@@ -4,6 +4,7 @@ import { t } from '@loftyshaky/shared';
 import {
     s_data,
     s_icons,
+    s_img_action,
 } from 'background/internal';
 
 browser.runtime.onMessage.addListener((msg: t.Msg): Promise<any> => err_async(async () => {
@@ -26,6 +27,11 @@ browser.runtime.onMessage.addListener((msg: t.Msg): Promise<any> => err_async(as
         });
     } else if (msg_str === 'get_server_info') {
         return s_icons.Main.i().get_server_info({ url: msg.url });
+    } else if (msg_str === 'run_img_action') {
+        return s_img_action.Main.i().run({
+            type: msg.type,
+            img_url: msg.img_url,
+        });
     }
 
     return true;
