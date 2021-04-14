@@ -2,6 +2,12 @@
     "description": {
         "message": ""
     },
+    "all_section_text": {
+        "message": "All"
+    },
+    "images_section_text": {
+        "message": "Images"
+    },
     "side_panel_position_label_text": {
         "message": "Side panel position"
     },

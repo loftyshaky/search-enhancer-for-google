@@ -2,6 +2,12 @@
     "description": {
         "message": ""
     },
+    "all_section_text": {
+        "message": "Все"
+    },
+    "images_section_text": {
+        "message": "Картинки"
+    },
     "side_panel_position_label_text": {
         "message": "Позиция боковой панели"
     },
