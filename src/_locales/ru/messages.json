@@ -38,6 +38,9 @@
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
     },
+    "always_show_img_action_bar_label_text": {
+        "message": "Всегда показывать кнопки"
+    },
     "show_view_img_btn_label_text": {
         "message": "Показывать кнопку \"Открыть в полном размере\""
     },

@@ -38,6 +38,9 @@
     "keyword_color_label_text": {
         "message": "Keyword color"
     },
+    "always_show_img_action_bar_label_text": {
+        "message": "Always show buttons"
+    },
     "show_view_img_btn_label_text": {
         "message": "Show \"View image\" button"
     },

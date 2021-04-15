@@ -25,6 +25,7 @@ export class Main {
         show_scroll_to_top_btn: true,
         infinite_scrolling_enabled: true,
         keyword_color: 2,
+        always_show_img_action_bar: true,
         show_view_img_btn: true,
         show_search_by_img_btn: true,
         show_download_img_btn: true,

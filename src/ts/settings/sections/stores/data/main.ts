@@ -107,6 +107,10 @@ export class Main {
                 name: 'images',
                 inputs: [
                     new o_inputs.Checkbox({
+                        name: 'always_show_img_action_bar',
+                        event_callback: d_sections.Val.i().change,
+                    }),
+                    new o_inputs.Checkbox({
                         name: 'show_view_img_btn',
                         event_callback: d_sections.Val.i().change,
                     }),

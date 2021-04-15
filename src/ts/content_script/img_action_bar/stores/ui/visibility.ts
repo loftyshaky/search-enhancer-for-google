@@ -45,7 +45,8 @@ export class Visibility {
     1108);
 
     public get visibility_cls() {
-        return this.is_visible
+        return data.settings.always_show_img_action_bar
+               || this.is_visible
             ? ''
             : 'hidden';
     }
