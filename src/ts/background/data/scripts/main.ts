@@ -30,7 +30,7 @@ export class Main {
         show_search_by_img_btn: true,
         show_download_img_btn: true,
         show_save_img_as_btn: true,
-        image_downloads_directory: '',
+        img_downloads_dir: '',
         show_copy_img_url_btn: true,
         show_color_help: true,
         colors: d_color.Color.i().default_colors,

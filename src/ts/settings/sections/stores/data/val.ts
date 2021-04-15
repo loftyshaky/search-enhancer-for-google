@@ -90,7 +90,7 @@ export class Val {
     1009);
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean => err(() => {
-        if (input.name === 'image_downloads_directory') {
+        if (input.name === 'img_downloads_dir') {
             const val: string = d_inputs.Val.i().access({ input });
             const dim: string = '/';
             const windows_forbidden_chars = [

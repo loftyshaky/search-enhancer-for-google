@@ -5,7 +5,7 @@
     "all_section_text": {
         "message": "Все"
     },
-    "images_section_text": {
+    "imgs_section_text": {
         "message": "Картинки"
     },
     "side_panel_position_label_text": {
@@ -53,7 +53,7 @@
     "show_save_img_as_btn_label_text": {
         "message": "Показывать кнопку \"Сохранить изображение как\""
     },
-    "image_downloads_directory_label_text": {
+    "img_downloads_dir_label_text": {
         "message": "Папка загрузок для изображений"
     },
     "show_copy_img_url_btn_label_text": {

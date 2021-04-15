@@ -18,9 +18,9 @@ export class Main {
                 arr: this.i0.sections.all.inputs,
                 section: 'all',
             });
-            this.i0.sections.images.inputs = Utils.i().to_object({
-                arr: this.i0.sections.images.inputs,
-                section: 'images',
+            this.i0.sections.imgs.inputs = Utils.i().to_object({
+                arr: this.i0.sections.imgs.inputs,
+                section: 'imgs',
             });
             this.i0.sections.links.inputs = Utils.i().to_object({
                 arr: this.i0.sections.links.inputs,
@@ -104,7 +104,7 @@ export class Main {
                 ],
             }),
             new o_inputs.Section({
-                name: 'images',
+                name: 'imgs',
                 inputs: [
                     new o_inputs.Checkbox({
                         name: 'always_show_img_action_bar',
@@ -127,7 +127,7 @@ export class Main {
                         event_callback: d_sections.Val.i().change,
                     }),
                     new o_inputs.Text({
-                        name: 'image_downloads_directory',
+                        name: 'img_downloads_dir',
                         include_help: true,
                         event_callback: d_sections.Val.i().change,
                         warn_state_checker: d_sections.Val.i().validate_input,
