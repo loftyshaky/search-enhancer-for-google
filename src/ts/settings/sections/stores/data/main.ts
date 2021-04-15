@@ -129,8 +129,9 @@ export class Main {
                     new o_inputs.Text({
                         name: 'image_downloads_directory',
                         include_help: true,
-                        event_callback: () => null,
-                        warn_state_checker: () => null,
+                        event_callback: d_sections.Val.i().change,
+                        warn_state_checker: d_sections.Val.i().validate_input,
+                        remove_val_callback: d_sections.Val.i().remove_val,
                     }),
                     new o_inputs.Checkbox({
                         name: 'show_copy_img_url_btn',
