@@ -16,18 +16,18 @@ export class Action {
         if (n(img_el)) {
             const img_url: string = img_el.src;
 
-            if (type === 'view_img') {
-                this.send_msg({
-                    type,
-                    img_url,
-                });
-            } else if (type === 'search_by_img') {
+            if (type === 'search_by_img') {
                 this.send_msg({
                     type,
                     img_url: `https://www.google.com/searchbyimage?&image_url=${img_url}`,
                 });
             } else if (type === 'copy_img_url') {
                 this.copy_img_url({ img_url });
+            } else {
+                this.send_msg({
+                    type,
+                    img_url,
+                });
             }
         }
     },
