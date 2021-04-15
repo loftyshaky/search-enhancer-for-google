@@ -38,7 +38,10 @@ class Manifest {
                 page: 'settings.html',
                 open_in_tab: true,
             },
-            permissions: ['storage'],
+            permissions: [
+                'storage',
+                'downloads',
+            ],
             content_scripts: [{
                 matches: [
                     'https://s2.googleusercontent.com/s2/favicons?domain_url=*',
