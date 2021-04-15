@@ -31,7 +31,10 @@ class Manifest {
                 'chunks/*',
             ],
             background: {
-                scripts: ['background.js'],
+                scripts: [
+                    'env.js',
+                    'background.js',
+                ],
                 persistent: false,
             },
             options_ui: {
