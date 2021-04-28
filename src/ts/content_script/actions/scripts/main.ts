@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { d_shared } from 'shared/internal';
 import {
+    s_location,
     s_el_parser,
     s_roots,
     s_keywords,
@@ -23,18 +24,25 @@ export class Main {
     private run_actions = (): Promise<void> => err_async(async () => {
         await d_shared.Data.i().set_from_storage();
         s_el_parser.Main.i().get_els();
-        s_keywords.Main.i().color_keywords();
+
+        if (s_location.Location.i().is_search_results_page) {
+            s_keywords.Main.i().color_keywords();
+        }
+
         s_roots.Main.i().apply_root_parent_cls();
     },
     1045);
 
     public run_initial_actions = (): Promise<void> => err_async(async () => {
-        InitAll.i().init();
-
         s_el_parser.Main.i().get_next_page_href();
 
         await this.run_actions();
-        s_roots.Main.i().init({ name: 'icons' });
+
+        if (s_location.Location.i().is_search_results_page) {
+            InitAll.i().init();
+
+            s_roots.Main.i().init({ name: 'icons' });
+        }
     },
     1046);
 
@@ -65,9 +73,12 @@ export class Main {
     500);
 
     public run_reload_actions_2 = (): void => err(() => {
-        s_el_parser.Main.i().get_img_viewer();
-        s_roots.Main.i().init({ name: 'img_action_bar' });
-        u_img_action_bar.Position.i().observe_img_margin_change();
+        if (s_location.Location.i().is_imgs_page) {
+            s_el_parser.Main.i().get_img_viewer();
+            s_roots.Main.i().init({ name: 'img_action_bar' });
+            u_img_action_bar.Position.i().observe_img_margin_change();
+        }
+
         this.run_reload_actions_debounce();
     },
     1118)

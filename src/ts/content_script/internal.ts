@@ -3,6 +3,7 @@ import 'content_script/mutations/scripts';
 
 misplaced_dependency('content_script');
 
+export * as s_location from 'content_script/location/scripts';
 export * as s_roots from 'content_script/roots/scripts';
 export * as s_actions from 'content_script/actions/scripts';
 export * as s_el_parser from 'content_script/el_parser/scripts';
