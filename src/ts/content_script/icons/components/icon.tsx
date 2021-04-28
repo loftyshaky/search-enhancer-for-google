@@ -51,9 +51,9 @@ export const Icon = observer((props: p_icons.Icon) => {
     });
 
     // eslint-disable-next-line no-unused-expressions
-    u_icons.Main.i().favicons_loaded[url];
+    u_icons.Main.i().favicons_loaded[url]; u_icons.Main.i().server_locations_loaded[url];
 
-    return data.settings[`show_${type}`]
+    return u_icons.Main.i().show_icon_w({ type })
         ? (
 
             <span
@@ -89,9 +89,13 @@ export const Icon = observer((props: p_icons.Icon) => {
 
                 }
                 {
-                    show_icon
-                        ? undefined
-                        : <svg.Yard />
+                    u_icons.Main.i().show_placeholder({
+                        type,
+                        show_icon,
+                    })
+                        ? <svg.Yard />
+                        : undefined
+
                 }
             </span>
         )

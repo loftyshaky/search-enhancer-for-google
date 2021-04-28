@@ -8,7 +8,7 @@ $icon_size: 16px;
     display: flex;
 }
 
-.icon_w {
+.icon_w:not(:first-child) {
     margin-left: 10px;
 }
 

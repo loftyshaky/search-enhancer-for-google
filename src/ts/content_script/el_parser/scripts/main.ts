@@ -3,6 +3,7 @@ import tinycolor from 'tinycolor2';
 
 import { Suffix } from 'shared/internal';
 import {
+    s_location,
     u_infinite_scroll,
     s_infinite_scroll,
 } from 'content_script/internal';
@@ -137,14 +138,29 @@ export class Main {
                                     !x.matches(
                                         el_2,
                                         `.${new Suffix('icons').result}`,
+                                    ) && (
+                                        x.matches(
+                                            el_2,
+                                            `.${new Suffix('root_parent').result}`,
+                                        ) || (
+                                            s_location.Main.i().is_news_page
+                                            && el_2.offsetHeight <= 40
+                                            && el_2.firstElementChild
+                                            && x.matches(
+                                                (el_2.firstElementChild as HTMLElement),
+                                                'g-img',
+                                            )
+                                        ) || (
+                                            !s_location.Main.i().is_non_standard_search_results
+                                            && font_size >= 18
+                                            && color_hsv.s >= this.saturation_2
+                                            && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
+                                            && el_2.getBoundingClientRect().left <= 300
+                                            && this.check_if_el_has_immediate_text({ el: el_2 })
+                                            && n(el.href)
+                                            && el.href
+                                        )
                                     )
-                                    && font_size >= 18
-                                    && color_hsv.s >= this.saturation_2
-                                    && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
-                                    && el_2.getBoundingClientRect().left <= 300
-                                    && this.check_if_el_has_immediate_text({ el: el_2 })
-                                    && n(el.href)
-                                    && el.href
                                 ) {
                                     filtered_links.push(el);
                                     this.title_els.push(el_2);
@@ -162,6 +178,12 @@ export class Main {
 
         if (n(this.title_els[0])) {
             u_infinite_scroll.Separator.i().set_offset_left({ title_el: this.title_els[0] });
+        } else if (s_location.Main.i().is_shopping_page) {
+            const shopping_cards = s<HTMLElement>('[data-docid]');
+
+            if (n(shopping_cards)) {
+                u_infinite_scroll.Separator.i().set_offset_left({ title_el: shopping_cards });
+            }
         }
 
         this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(

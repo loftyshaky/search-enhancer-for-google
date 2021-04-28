@@ -3,6 +3,8 @@ import {
     computed,
 } from 'mobx';
 
+import { s_location } from 'content_script/internal';
+
 export class Separator {
     private static i0: Separator;
 
@@ -26,6 +28,30 @@ export class Separator {
         return data.settings.show_page_separators
             ? ''
             : 'none';
+    }
+
+    get video_cls() {
+        return s_location.Main.i().is_video_page
+            ? 'video'
+            : '';
+    }
+
+    get books_cls() {
+        return s_location.Main.i().is_books_page
+            ? 'books'
+            : '';
+    }
+
+    get news_cls() {
+        return s_location.Main.i().is_news_page
+            ? 'news'
+            : '';
+    }
+
+    get shopping_cls() {
+        return s_location.Main.i().is_shopping_page
+            ? 'shopping'
+            : '';
     }
 
     public set_offset_left = ({ title_el }: { title_el: HTMLElement }): void => err(() => {

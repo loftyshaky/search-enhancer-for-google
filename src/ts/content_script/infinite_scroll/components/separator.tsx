@@ -14,6 +14,10 @@ export const Separator = observer((props: p_infinite_scroll.Separator) => {
             className={x.cls([
                 'separator',
                 u_infinite_scroll.Separator.i().none_cls,
+                u_infinite_scroll.Separator.i().video_cls,
+                u_infinite_scroll.Separator.i().books_cls,
+                u_infinite_scroll.Separator.i().news_cls,
+                u_infinite_scroll.Separator.i().shopping_cls,
             ])}
             style={{ marginLeft: u_infinite_scroll.Separator.i().offset_left }}
         >

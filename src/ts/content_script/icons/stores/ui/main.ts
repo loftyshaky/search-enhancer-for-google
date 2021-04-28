@@ -9,6 +9,7 @@ import { browser } from 'webextension-polyfill-ts';
 
 import { i_icons as i_icons_shared } from 'shared/internal';
 import {
+    s_location,
     s_el_parser,
     i_icons,
 } from 'content_script/internal';
@@ -28,6 +29,7 @@ export class Main {
                 favicons: observable,
                 favicons_loaded: observable,
                 server_locations: observable,
+                server_locations_loaded: observable,
                 server_ips: observable,
                 server_countries: observable,
                 generate_favicons: action,
@@ -39,6 +41,7 @@ export class Main {
     public favicons: { [index: string]: string } = {};
     public favicons_loaded: { [index: string]: boolean } = {};
     public server_locations: { [index: string]: string } = {};
+    public server_locations_loaded: { [index: string]: boolean } = {};
     public server_ips: { [index: string]: string } = {};
     public server_countries: { [index: string]: string } = {};
 
@@ -199,6 +202,7 @@ export class Main {
                 (
                     type === 'favicons'
                     && favicons_loaded
+                    && !s_location.Main.i().is_news_page
                 )
                 || type === 'server_locations'
             ),
@@ -206,10 +210,39 @@ export class Main {
     },
     1089);
 
-    public icon_visibility_cls = ({ show_icon }: { show_icon: boolean}): string => err(() => (
+    public icon_visibility_cls = ({ show_icon }: { show_icon: boolean }): string => err(() => (
         show_icon
             ? ''
             : 'none'
     ),
     1090);
+
+    public show_placeholder = ({
+        type,
+        show_icon,
+    }: {
+        type: i_icons.IconType;
+        show_icon: boolean
+    }): boolean => err(() => (
+        !show_icon && (
+            type === 'server_locations'
+            || (
+                type === 'favicons'
+                && !s_location.Main.i().is_news_page
+            )
+        )
+    ),
+    1121);
+
+    public show_icon_w = computedFn(
+        function (
+            this: Main,
+            { type }: { type: i_icons.IconType },
+        ): string {
+            return (
+                type === 'favicons'
+                && s_location.Main.i().is_news_page
+            ) || data.settings[`show_${type}`];
+        },
+    );
 }

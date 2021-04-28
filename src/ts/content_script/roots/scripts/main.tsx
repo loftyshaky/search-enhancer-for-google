@@ -5,6 +5,7 @@ import { CrashHandler } from '@loftyshaky/shared';
 import { Suffix } from 'shared/internal';
 
 import {
+    s_location,
     s_roots,
     s_el_parser,
     c_icons,
@@ -55,7 +56,9 @@ export class Main {
                             name,
                             parent: title_el,
                             i,
-                            append_f_name: 'append',
+                            append_f_name: s_location.Main.i().is_news_page
+                                ? 'as_first'
+                                : 'append',
                         });
                     }
                 }
@@ -111,6 +114,15 @@ export class Main {
             new Suffix(name).result,
         );
 
+        if (name === 'icons') {
+            if (s_location.Main.i().is_news_page) {
+                x.add_cls(
+                    root,
+                    new Suffix('news').result,
+                );
+            }
+        }
+
         s_roots.Position.i().position_root({
             title_el: parent,
             root,
@@ -164,14 +176,28 @@ export class Main {
     },
     1100);
 
-    public apply_root_parent_cls = (): void => err(() => {
+    public apply_root_parent_cls_to_title_els = (): void => err(() => {
         s_el_parser.Main.i().title_els.forEach((title_el): void => err(() => {
-            x.add_cls(
-                title_el,
-                new Suffix('root_parent').result,
-            );
+            this.apply_root_parent_cls_to_title_el({ title_el });
         },
         1034));
     },
     1033);
+
+    public apply_root_parent_cls_to_title_el = (
+        { title_el }: {title_el: HTMLElement},
+    ): void => err(() => {
+        x.add_cls(
+            title_el,
+            new Suffix('root_parent').result,
+        );
+
+        if (s_location.Main.i().is_news_page) {
+            x.add_cls(
+                title_el,
+                new Suffix('news').result,
+            );
+        }
+    },
+    1120);
 }

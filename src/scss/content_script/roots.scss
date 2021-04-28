@@ -1,9 +1,13 @@
-.icons_#{$app_id} {
+.icons_#{$app_id}:not(.news_#{$app_id}) {
     position: absolute;
     left: -$gap;
     transform: translateX(-100%);
 }
 
+.icons_#{$app_id}.news_#{$app_id} {
+    display: inline-flex;
+    vertical-align: top;
+}
 
 .img_action_bar_#{$app_id} {
     position: absolute;

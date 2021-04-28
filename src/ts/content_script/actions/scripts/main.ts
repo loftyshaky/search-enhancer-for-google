@@ -25,11 +25,11 @@ export class Main {
         await d_shared.Data.i().set_from_storage();
         s_el_parser.Main.i().get_els();
 
-        if (!s_location.Main.i().is_imgs_page) {
+        if (s_location.Main.i().is_search_results) {
             s_keywords.Main.i().color_keywords();
         }
 
-        s_roots.Main.i().apply_root_parent_cls();
+        s_roots.Main.i().apply_root_parent_cls_to_title_els();
     },
     1045);
 
@@ -38,7 +38,7 @@ export class Main {
 
         await this.run_actions();
 
-        if (!s_location.Main.i().is_imgs_page) {
+        if (s_location.Main.i().is_search_results) {
             InitAll.i().init();
 
             s_roots.Main.i().init({ name: 'icons' });

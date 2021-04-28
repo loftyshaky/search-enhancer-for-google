@@ -1,5 +1,8 @@
 import { Suffix } from 'shared/internal';
-import { s_el_parser } from 'content_script/internal';
+import {
+    s_el_parser,
+    s_roots,
+} from 'content_script/internal';
 
 export class Position {
     private static i0: Position;
@@ -17,10 +20,7 @@ export class Position {
 
     public position_title_el = (): void => err(() => { // needed because in some cases icons go outside container. ex: https://www.google.com/search?q=infinite+scroll&oq=infinite&aqs=chrome.4.69i57j46j0j46j0j69i61j69i60l2.7170j0j1&sourceid=chrome&ie=UTF-8
         s_el_parser.Main.i().title_els.forEach((title_el): void => err(() => {
-            x.add_cls(
-                title_el,
-                new Suffix('root_parent').result,
-            );
+            s_roots.Main.i().apply_root_parent_cls_to_title_el({ title_el });
             if (
                 data.settings.show_favicons
                     && data.settings.show_server_locations

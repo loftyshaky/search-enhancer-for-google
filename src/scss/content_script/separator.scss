@@ -7,5 +7,21 @@
 .separator {
     color: $black;
     font-size: $font_size;
-    margin-bottom: 43px;
+    margin-bottom: 44px;
+}
+
+.separator.video {
+    margin-bottom: 31px;
+}
+
+.separator.books {
+    margin-bottom: 17px;
+}
+
+.separator.news {
+    margin-bottom: 19px;
+}
+
+.separator.shopping {
+    margin-bottom: 7px;
 }
