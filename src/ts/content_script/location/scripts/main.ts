@@ -29,10 +29,4 @@ export class Location {
 
     public is_imgs_page = this.search_string_is_present
                           && this.tbm === 'isch';
-
-    public is_search_results_page = this.is_all_page
-                              || this.is_news_page
-                              || this.is_shopping_page
-                              || this.is_video_page
-                              || this.is_books_page
 }

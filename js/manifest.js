@@ -237,6 +237,7 @@ class Manifest {
                     '*://www.google.co.zw/*',
                     '*://www.google.cat/*',
                 ],
+                include_globs: ['*search?*'],
                 js: [
                     'content_script.js',
                     'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',

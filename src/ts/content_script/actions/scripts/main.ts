@@ -25,7 +25,7 @@ export class Main {
         await d_shared.Data.i().set_from_storage();
         s_el_parser.Main.i().get_els();
 
-        if (s_location.Location.i().is_search_results_page) {
+        if (!s_location.Location.i().is_imgs_page) {
             s_keywords.Main.i().color_keywords();
         }
 
@@ -38,7 +38,7 @@ export class Main {
 
         await this.run_actions();
 
-        if (s_location.Location.i().is_search_results_page) {
+        if (!s_location.Location.i().is_imgs_page) {
             InitAll.i().init();
 
             s_roots.Main.i().init({ name: 'icons' });
