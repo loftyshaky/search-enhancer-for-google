@@ -20,15 +20,15 @@ export class Position {
         makeObservable(
             this,
             {
-                margin_bottom: observable,
-                margin_right: observable,
+                bottom: observable,
+                right: observable,
                 set_margin: action,
             },
         );
     }
 
-    public margin_bottom: string = '';
-    public margin_right: string = '';
+    public bottom: string = '';
+    public right: string = '';
 
     public observe_img_margin_change = (): void => err(() => {
         const img_in_img_viewer: HTMLImageElement | undefined = (
@@ -62,8 +62,8 @@ export class Position {
                 'margin-right',
             );
 
-            this.margin_bottom = `${margin_bottom}px`;
-            this.margin_right = `${margin_right + img_viewer.offsetLeft}px`;
+            this.bottom = `${margin_bottom}px`;
+            this.right = `${margin_right + img_viewer.offsetLeft}px`;
         }
     },
     1107);

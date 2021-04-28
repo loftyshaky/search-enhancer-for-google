@@ -13,6 +13,7 @@ $img_action_bar_buttons_opacity: 0.65;
 .img_action_bar {
     @include border_left;
     @include border_top;
+    position: relative;
     display: flex;
     overflow: hidden;
     border-top-left-radius: $bar_border_radius;

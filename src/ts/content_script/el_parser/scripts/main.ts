@@ -196,9 +196,27 @@ export class Main {
         1083,
     );
 
-    private get_img_viewer = (): void => err(
+    public get_img_viewer = (): void => err(
         () => {
-            this.img_viewer = s<HTMLLinkElement>('a[rlhc]');
+            const links = sa<HTMLLinkElement>('a[role="link"]');
+
+            if (n(links)) {
+                this.img_viewer = [...links].find(
+                    (link: HTMLLinkElement): boolean => err(() => {
+                        const img = sb<HTMLImageElement>(
+                            link,
+                            'img',
+                        );
+
+                        if (n(img)) {
+                            return Boolean(img.offsetWidth);
+                        }
+
+                        return false;
+                    },
+                    1068),
+                );
+            }
         },
         1103,
     );

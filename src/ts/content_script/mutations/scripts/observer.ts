@@ -28,7 +28,7 @@ const observer = new MutationObserver((mutations: any): void => err(() => {
                     )
                 )
             ) {
-                s_actions.Main.i().run_reload_actions_debounce();
+                s_actions.Main.i().run_reload_actions_2();
             }
         },
         1036,

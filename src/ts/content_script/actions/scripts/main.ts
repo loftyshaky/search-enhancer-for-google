@@ -55,15 +55,20 @@ export class Main {
         } else {
             d_shared.Data.i().allow_rerun_actions = true;
         }
-
-        s_roots.Main.i().init({ name: 'img_action_bar' });
-        u_img_action_bar.Position.i().observe_img_margin_change();
     },
     1048);
 
-    public run_reload_actions_debounce = _.debounce((): void => err(() => {
+    private run_reload_actions_debounce = _.debounce((): void => err(() => {
         this.run_reload_actions();
     },
     1049),
     500);
+
+    public run_reload_actions_2 = (): void => err(() => {
+        s_el_parser.Main.i().get_img_viewer();
+        s_roots.Main.i().init({ name: 'img_action_bar' });
+        u_img_action_bar.Position.i().observe_img_margin_change();
+        this.run_reload_actions_debounce();
+    },
+    1118)
 }

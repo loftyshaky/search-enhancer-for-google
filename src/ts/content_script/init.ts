@@ -2,6 +2,7 @@ import {
     s_actions,
     s_infinite_scroll,
     u_side_panel,
+    u_img_action_bar,
 } from 'content_script/internal';
 
 export const init = async (): Promise<void> => {
@@ -23,5 +24,9 @@ export const init = async (): Promise<void> => {
     document.addEventListener(
         'mouseup',
         u_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout,
+    );
+    document.addEventListener(
+        'mousemove',
+        u_img_action_bar.Visibility.i().change,
     );
 };

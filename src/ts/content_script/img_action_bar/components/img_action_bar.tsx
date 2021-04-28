@@ -1,10 +1,6 @@
-import React, {
-    useEffect,
-    useRef,
-} from 'react';
+import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 import {
-    s_el_parser,
     o_img_action_bar,
     d_img_action_bar,
     u_img_action_bar,
@@ -14,46 +10,6 @@ import {
 export const ImgActionBar = observer(() => {
     const img_action_bar_ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const img_in_img_viewer: HTMLImageElement | undefined = (
-            s_el_parser.Main.i().get_img_in_img_viewer()
-        );
-
-        if (
-            n(img_in_img_viewer)
-            && n(img_action_bar_ref.current)
-        ) {
-            img_in_img_viewer.addEventListener(
-                'mouseenter',
-                (e: any): void => {
-                    u_img_action_bar.Visibility.i().set(
-                        { is_visible: true },
-                        e,
-                    );
-                },
-            );
-            img_in_img_viewer.addEventListener(
-                'mouseleave',
-                (e: any): void => {
-                    u_img_action_bar.Visibility.i().set(
-                        { is_visible: false },
-                        e,
-                    );
-                },
-            );
-            img_action_bar_ref.current.addEventListener(
-                'mouseleave',
-                (e: any): void => {
-                    u_img_action_bar.Visibility.i().set(
-                        { is_visible: false },
-                        e,
-                    );
-                },
-            );
-        }
-    },
-    []);
-
     return (
         <div
             className={x.cls([
@@ -61,8 +17,8 @@ export const ImgActionBar = observer(() => {
                 u_img_action_bar.Visibility.i().visibility_cls,
             ])}
             style={{
-                marginBottom: u_img_action_bar.Position.i().margin_bottom,
-                marginRight: u_img_action_bar.Position.i().margin_right,
+                bottom: u_img_action_bar.Position.i().bottom,
+                right: u_img_action_bar.Position.i().right,
             }}
             ref={img_action_bar_ref}
         >
