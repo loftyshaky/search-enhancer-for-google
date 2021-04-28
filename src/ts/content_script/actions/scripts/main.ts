@@ -25,7 +25,7 @@ export class Main {
         await d_shared.Data.i().set_from_storage();
         s_el_parser.Main.i().get_els();
 
-        if (!s_location.Location.i().is_imgs_page) {
+        if (!s_location.Main.i().is_imgs_page) {
             s_keywords.Main.i().color_keywords();
         }
 
@@ -38,7 +38,7 @@ export class Main {
 
         await this.run_actions();
 
-        if (!s_location.Location.i().is_imgs_page) {
+        if (!s_location.Main.i().is_imgs_page) {
             InitAll.i().init();
 
             s_roots.Main.i().init({ name: 'icons' });
@@ -73,7 +73,7 @@ export class Main {
     500);
 
     public run_reload_actions_2 = (): void => err(() => {
-        if (s_location.Location.i().is_imgs_page) {
+        if (s_location.Main.i().is_imgs_page) {
             s_el_parser.Main.i().get_img_viewer();
             s_roots.Main.i().init({ name: 'img_action_bar' });
             u_img_action_bar.Position.i().observe_img_margin_change();
