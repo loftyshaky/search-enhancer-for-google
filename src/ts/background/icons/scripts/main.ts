@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { browser } from 'webextension-polyfill-ts';
+// import { browser } from 'webextension-polyfill-ts';
 
 import { i_icons } from 'shared/internal';
 import {
@@ -58,7 +58,7 @@ export class Main {
     ): Promise<i_icons.ServerInfo> => err_async(async () => {
         try {
             const region_name: any = new (Intl as any).DisplayNames(
-                [browser.i18n.getUILanguage()],
+                ['en-US'/* browser.i18n.getUILanguage() */],
                 { type: 'region' },
             );
             const response: any = await fetch(`https://dns.google/resolve?name=${url}`);
