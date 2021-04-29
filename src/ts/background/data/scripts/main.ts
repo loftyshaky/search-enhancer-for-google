@@ -14,7 +14,7 @@ export class Main {
     private constructor() { }
 
     public defaults: any = {
-        side_panel_position: 'left',
+        side_panel_position: 'right',
         enable_infinite_scrolling: true,
         show_enable_btn: true,
         show_jump_to_related_searches_btn: true,
