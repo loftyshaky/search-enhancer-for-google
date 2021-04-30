@@ -153,7 +153,8 @@ export class Main {
             });
         }
     },
-    1041);
+    1041,
+    { silent: true });
 
     public get_url = (
         {
