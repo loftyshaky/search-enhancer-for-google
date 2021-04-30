@@ -123,11 +123,6 @@ export class Main {
             }
         }
 
-        s_roots.Position.i().position_root({
-            title_el: parent,
-            root,
-        });
-
         x[append_f_name](
             parent,
             root,

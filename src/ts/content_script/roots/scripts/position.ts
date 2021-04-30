@@ -59,23 +59,4 @@ export class Position {
         1057));
     },
     1056);
-
-    public position_root = (
-        {
-            title_el,
-            root,
-        }: {
-            title_el: HTMLElement;
-            root: HTMLElement;
-        },
-    ): void => err(() => {
-        root.style.top = `${(x.get_numeric_css_val(
-            title_el,
-            'height',
-        ) / 2) - x.get_numeric_css_val(
-            title_el,
-            'padding-top',
-        )}px`;
-    },
-    1102);
 }

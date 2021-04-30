@@ -1,5 +1,6 @@
 .icons_#{$app_id}:not(.news_#{$app_id}) {
     position: absolute;
+    top: 10px;
     left: -$gap;
     transform: translateX(-100%);
 }
