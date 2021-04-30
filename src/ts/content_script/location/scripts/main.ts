@@ -36,6 +36,11 @@ export class Main {
                                         || this.is_news_page
                                         || this.is_shopping_page;
 
+    public is_icons_search_results: boolean = this.is_all_page
+                                              || this.is_video_page
+                                              || this.is_news_page
+                                              || this.is_shopping_page;
+
     public is_non_standard_search_results: boolean = this.is_news_page
                                                     || this.is_shopping_page;
 }

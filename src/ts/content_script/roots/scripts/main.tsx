@@ -12,6 +12,7 @@ import {
     u_img_action_bar,
     c_infinite_scroll,
     c_img_action_bar,
+    s_infinite_scroll,
 } from 'content_script/internal';
 
 export class Main {
@@ -41,29 +42,76 @@ export class Main {
         if (name === 'icons') {
             s_roots.Position.i().position_title_el();
 
-            s_el_parser.Main.i().title_els.forEach((
-                title_el,
-                i,
-            ): void => err(() => {
-                if (i >= start) {
-                    const icons_el: HTMLElement | undefined = sb(
-                        title_el,
-                        `.${new Suffix(name).result}`,
+            if (s_el_parser.Main.i().title_els.length === 0) {
+                const remove_icons = (
+                    { icon_roots }: { icon_roots: any },
+                ): void => err(() => {
+                    const titles: HTMLElement[] = [...icon_roots].map(
+                        (icon_root: HTMLDivElement): HTMLElement => err(() => (
+                            icon_root.parentElement!
+                        ),
+                        1122),
                     );
 
-                    if (!n(icons_el)) {
-                        this.append_root({
-                            name,
-                            parent: title_el,
-                            i,
-                            append_f_name: s_location.Main.i().is_news_page
-                                ? 'as_first'
-                                : 'append',
-                        });
-                    }
+                    x.remove(icon_roots);
+
+                    x.remove_cls(
+                        titles,
+                        s_roots.Position.i().offset_1_cls,
+                    );
+                    x.remove_cls(
+                        titles,
+                        s_roots.Position.i().offset_2_cls,
+                    );
+                },
+                1102);
+
+                s_infinite_scroll.Iframe.i().iframes.forEach(
+                    (iframe: HTMLIFrameElement) => err(() => {
+                        if (n(iframe.contentDocument)) {
+                            const icon_roots = sab<HTMLDivElement>(
+                                iframe.contentDocument,
+                                `.${new Suffix(name).result}`,
+                            );
+
+                            if (n(icon_roots)) {
+                                remove_icons({ icon_roots });
+                            }
+                        }
+                    },
+                    1123),
+                );
+
+                const icon_roots = sa<HTMLDivElement>(`.${new Suffix(name).result}`);
+
+                if (n(icon_roots)) {
+                    remove_icons({ icon_roots });
                 }
-            },
-            1031));
+            } else {
+                s_el_parser.Main.i().title_els.forEach((
+                    title_el,
+                    i,
+                ): void => err(() => {
+                    if (i >= start) {
+                        const icons_el: HTMLElement | undefined = sb(
+                            title_el,
+                            `.${new Suffix(name).result}`,
+                        );
+
+                        if (!n(icons_el)) {
+                            this.append_root({
+                                name,
+                                parent: title_el,
+                                i,
+                                append_f_name: s_location.Main.i().is_news_page
+                                    ? 'as_first'
+                                    : 'append',
+                            });
+                        }
+                    }
+                },
+                1031));
+            }
         } else if (
             name === 'img_action_bar'
             && n(s_el_parser.Main.i().img_viewer)

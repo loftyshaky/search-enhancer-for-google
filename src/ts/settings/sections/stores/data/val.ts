@@ -90,8 +90,9 @@ export class Val {
     1009);
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean => err(() => {
+        const val: string = d_inputs.Val.i().access({ input });
+
         if (input.name === 'img_downloads_dir') {
-            const val: string = d_inputs.Val.i().access({ input });
             const dim: string = '/';
             const windows_forbidden_chars = [
                 ':',
@@ -132,6 +133,8 @@ export class Val {
             ) {
                 return true;
             }
+        } else {
+            return !/^1$|^0$|^(0\.[0-9]{1,2}|1\.00?)$/.test(val);
         }
 
         return false;

@@ -19,8 +19,6 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() { }
 
-    private saturation_1 = 0.20;
-    private saturation_2 = 0.30;
     private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
     public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
@@ -96,12 +94,9 @@ export class Main {
                         key: 'color',
                     });
 
-                    return (
-                        color_hsv.s <= this.saturation_1
-                        || color_hsv.s >= this.saturation_2
-                    )
-                        && this.text_is_bold({ el })
-                        && this.check_if_el_has_immediate_text({ el });
+                    return color_hsv.s <= data.settings.keyword_max_saturation
+                           && this.text_is_bold({ el })
+                           && this.check_if_el_has_immediate_text({ el });
                 },
                 1023,
             ));
@@ -133,27 +128,32 @@ export class Main {
                                     el: el_2,
                                     key: 'color',
                                 });
+                                const news_icon_selector: string = 'g-img';
 
                                 if (
                                     !x.matches(
                                         el_2,
                                         `.${new Suffix('icons').result}`,
                                     ) && (
-                                        x.matches(
-                                            el_2,
-                                            `.${new Suffix('root_parent').result}`,
-                                        ) || (
+                                        (
                                             s_location.Main.i().is_news_page
                                             && el_2.offsetHeight <= 40
                                             && el_2.firstElementChild
-                                            && x.matches(
-                                                (el_2.firstElementChild as HTMLElement),
-                                                'g-img',
+                                            && (
+                                                x.matches(
+                                                    (el_2.firstElementChild as HTMLElement),
+                                                    news_icon_selector,
+                                                )
+                                                || x.matches(
+                                                    // eslint-disable-next-line max-len
+                                                    (el_2.firstElementChild.nextElementSibling as HTMLElement),
+                                                    news_icon_selector,
+                                                )
                                             )
                                         ) || (
                                             !s_location.Main.i().is_non_standard_search_results
                                             && font_size >= 18
-                                            && color_hsv.s >= this.saturation_2
+                                            && color_hsv.s >= data.settings.link_min_saturation
                                             && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
                                             && el_2.getBoundingClientRect().left <= 300
                                             && this.check_if_el_has_immediate_text({ el: el_2 })

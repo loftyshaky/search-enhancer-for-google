@@ -32,6 +32,8 @@ export class Main {
         show_save_img_as_btn: true,
         img_downloads_dir: '',
         show_copy_img_url_btn: true,
+        link_min_saturation: '0.5',
+        keyword_max_saturation: '0.3',
         show_color_help: true,
         colors: d_color.Color.i().default_colors,
         last_ip_to_country_csv_char_count: 0,

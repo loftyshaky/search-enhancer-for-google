@@ -139,6 +139,24 @@ export class Main {
                     }),
                 ],
             }),
+            new o_inputs.Section({
+                name: 'theme',
+                include_help: true,
+                inputs: [
+                    new o_inputs.Text({
+                        name: 'link_min_saturation',
+                        event_callback: d_sections.Val.i().change,
+                        warn_state_checker: d_sections.Val.i().validate_input,
+                        remove_val_callback: d_sections.Val.i().remove_val,
+                    }),
+                    new o_inputs.Text({
+                        name: 'keyword_max_saturation',
+                        event_callback: d_sections.Val.i().change,
+                        warn_state_checker: d_sections.Val.i().validate_input,
+                        remove_val_callback: d_sections.Val.i().remove_val,
+                    }),
+                ],
+            }),
         ],
         ...d_settings.Sections.i().make_shared_sections(
             {

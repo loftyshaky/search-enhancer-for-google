@@ -29,7 +29,9 @@ export class Main {
             s_keywords.Main.i().color_keywords();
         }
 
-        s_roots.Main.i().apply_root_parent_cls_to_title_els();
+        if (s_location.Main.i().is_icons_search_results) {
+            s_roots.Main.i().apply_root_parent_cls_to_title_els();
+        }
     },
     1045);
 
@@ -38,26 +40,31 @@ export class Main {
 
         await this.run_actions();
 
-        if (s_location.Main.i().is_search_results) {
-            InitAll.i().init();
+        InitAll.i().init();
 
+        if (s_location.Main.i().is_icons_search_results) {
             s_roots.Main.i().init({ name: 'icons' });
         }
     },
     1046);
 
     public run_on_load_actions = (): Promise<void> => err_async(async () => {
-        await x.delay(1000);
+        if (s_location.Main.i().is_icons_search_results) {
+            await x.delay(1000);
 
-        s_roots.Main.i().init({
-            name: 'icons',
-            start: 11,
-        });
+            s_roots.Main.i().init({
+                name: 'icons',
+                start: 11,
+            });
+        }
     },
     1047);
 
     public run_reload_actions = (): Promise<void> => err_async(async () => {
-        if (d_shared.Data.i().allow_rerun_actions) {
+        if (
+            d_shared.Data.i().allow_rerun_actions
+            && s_location.Main.i().is_icons_search_results
+        ) {
             await this.run_actions();
             s_roots.Main.i().init({ name: 'icons' });
         } else {
