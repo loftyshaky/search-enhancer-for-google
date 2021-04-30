@@ -50,28 +50,10 @@ export class Action {
     },
     1111);
 
-    private copy_img_url = ({ img_url }: { img_url: string }): void => err(() => {
-        const input = x.create(
-            'input',
-            '',
-        );
-
-        input.style.position = 'fixed';
-        input.style.opacity = '0';
-
-        x.append(
-            document.body,
-            input,
-        );
-
-        input.value = img_url;
-
-        input.focus();
-        input.select();
-
-        document.execCommand('copy');
-
-        x.remove(input);
+    private copy_img_url = (
+        { img_url }: { img_url: string },
+    ): Promise<void> => err(async () => {
+        await navigator.clipboard.writeText(img_url);
     },
     1112);
 }
