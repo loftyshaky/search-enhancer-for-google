@@ -1,5 +1,6 @@
 .root_parent_#{$app_id} {
     position: relative;
+    white-space: nowrap;
 }
 
 .root_parent_#{$app_id}.offset_1_#{$app_id}:not(.news_#{$app_id}) {
