@@ -94,7 +94,10 @@ export class Main {
                         key: 'color',
                     });
 
-                    return color_hsv.s <= data.settings.keyword_max_saturation
+                    return (
+                        color_hsv.s <= data.settings.keyword_max_saturation
+                        || color_hsv.s >= data.settings.link_min_saturation // additional search results under search result (in blue). Ex: https://www.google.com/search?q=javascript+stack+overflow+declare+variable
+                    )
                            && this.text_is_bold({ el })
                            && this.check_if_el_has_immediate_text({ el });
                 },
