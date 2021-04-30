@@ -22,6 +22,10 @@ export class Main {
                 arr: this.i0.sections.imgs.inputs,
                 section: 'imgs',
             });
+            this.i0.sections.theme.inputs = Utils.i().to_object({
+                arr: this.i0.sections.theme.inputs,
+                section: 'theme',
+            });
             this.i0.sections.links.inputs = Utils.i().to_object({
                 arr: this.i0.sections.links.inputs,
                 section: 'links',
