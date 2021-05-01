@@ -40,7 +40,9 @@ export class Main {
 
         await this.run_actions();
 
-        InitAll.i().init();
+        if (s_location.Main.i().is_search_results) {
+            InitAll.i().init();
+        }
 
         if (s_location.Main.i().is_icons_search_results) {
             s_roots.Main.i().init({ name: 'icons' });
