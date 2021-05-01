@@ -138,6 +138,10 @@ export class Main {
                         remove_val_callback: d_sections.Val.i().remove_val,
                     }),
                     new o_inputs.Checkbox({
+                        name: 'show_copy_img_btn',
+                        event_callback: d_sections.Val.i().change,
+                    }),
+                    new o_inputs.Checkbox({
                         name: 'show_copy_img_url_btn',
                         event_callback: d_sections.Val.i().change,
                     }),

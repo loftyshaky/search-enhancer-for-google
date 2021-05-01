@@ -31,6 +31,7 @@ export class Main {
         show_download_img_btn: true,
         show_save_img_as_btn: true,
         img_downloads_dir: '',
+        show_copy_img_btn: true,
         show_copy_img_url_btn: true,
         link_min_saturation: '0.5',
         keyword_max_saturation: '0.3',

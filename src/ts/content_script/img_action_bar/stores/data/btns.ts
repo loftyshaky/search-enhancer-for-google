@@ -40,6 +40,11 @@ export class Btns {
             event_callback: s_img_action_bar.Action.i().run,
         }),
         new o_img_action_bar.Btn({
+            name: 'copy_img',
+            svg_name: 'Collections',
+            event_callback: s_img_action_bar.Action.i().run,
+        }),
+        new o_img_action_bar.Btn({
             name: 'copy_img_url',
             svg_name: 'ContentCopy',
             event_callback: s_img_action_bar.Action.i().run,

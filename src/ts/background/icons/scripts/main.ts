@@ -1,11 +1,11 @@
 import _ from 'lodash';
 // import { browser } from 'webextension-polyfill-ts';
 
-import { i_icons } from 'shared/internal';
 import {
     s_db,
-    i_ip_to_country,
-} from 'background/internal';
+    i_icons,
+} from 'shared/internal';
+import { i_ip_to_country } from 'background/internal';
 
 export class Main {
     private static i0: Main;
@@ -23,18 +23,6 @@ export class Main {
         yandex: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4AWIAAYAAAwAABQABggWTzwAAAABJRU5ErkJggg==',
     }
 
-    private convert_blob_to_base64 = (
-        { blob }: { blob: Blob },
-    ): Promise<string> => new Promise((resolve, reject) => err_async(async () => {
-        const reader: any = new FileReader();
-        reader.onerror = reject;
-        reader.onload = () => {
-            resolve(reader.result);
-        };
-        reader.readAsDataURL(blob);
-    },
-    1038));
-
     public favicon_is_empty = (
         {
             icon_url,
@@ -47,7 +35,7 @@ export class Main {
         const response = await fetch(icon_url);
         const blob: Blob = await response.blob();
 
-        const base64: string = await this.convert_blob_to_base64({ blob });
+        const base64: string = await x.convert_blob_to_base64({ blob });
 
         return this.empty_favicons[provider] === base64;
     },

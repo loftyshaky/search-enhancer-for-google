@@ -60,13 +60,16 @@
         "message": "Show \"Download image\" button"
     },
     "show_save_img_as_btn_label_text": {
-        "message": "Show \"Save image as\" button"
+        "message": "Show \"Save image as...\" button"
     },
     "img_downloads_dir_label_text": {
         "message": "Image downloads folder"
     },
+    "show_copy_img_btn_label_text": {
+        "message": "Show \"Copy image\" button"
+    },
     "show_copy_img_url_btn_label_text": {
-        "message": "Show \"Copy image URL\" button"
+        "message": "Show \"Copy image address\" button"
     },
     "left_option_text": {
         "message": "Left"
@@ -105,9 +108,12 @@
         "message": "Download image"
     },
     "save_img_as_title": {
-        "message": "Save image as"
+        "message": "Save image as..."
+    },
+    "copy_img_title": {
+        "message": "Copy image"
     },
     "copy_img_url_title": {
-        "message": "Copy image URL"
+        "message": "Copy image address"
     }
 }

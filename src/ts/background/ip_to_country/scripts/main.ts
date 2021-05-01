@@ -1,9 +1,7 @@
 import _ from 'lodash';
 
-import {
-    s_db,
-    i_ip_to_country,
-} from 'background/internal';
+import { s_db } from 'shared/internal';
+import { i_ip_to_country } from 'background/internal';
 
 export class Main {
     private static i0: Main;

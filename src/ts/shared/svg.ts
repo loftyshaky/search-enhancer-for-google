@@ -7,6 +7,7 @@ import ContentCopy from '../../svg/content_copy.svg';
 import Download from '../../svg/download.svg';
 import Search from '../../svg/search.svg';
 import Visibility from '../../svg/visibility.svg';
+import Collections from '../../svg/collections.svg';
 
 export const svg: { [index: string]: any } = {
     Yard,
@@ -18,4 +19,5 @@ export const svg: { [index: string]: any } = {
     Download,
     Search,
     Visibility,
+    Collections,
 };

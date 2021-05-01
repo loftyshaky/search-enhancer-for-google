@@ -57,16 +57,19 @@
         "message": "Показывать кнопку \"Поиск по картинке\""
     },
     "show_download_img_btn_label_text": {
-        "message": "Показывать кнопку \"Скачать изображение\""
+        "message": "Показывать кнопку \"Скачать картинку\""
     },
     "show_save_img_as_btn_label_text": {
-        "message": "Показывать кнопку \"Сохранить изображение как\""
+        "message": "Показывать кнопку \"Сохранить картинку как...\""
     },
     "img_downloads_dir_label_text": {
         "message": "Папка загрузок для изображений"
     },
     "show_copy_img_url_btn_label_text": {
-        "message": "Показывать кнопку \"Скопировать URL изображения\""
+        "message": "Показывать кнопку \"Копировать URL картинки\""
+    },
+    "show_copy_img_btn_label_text": {
+        "message": "Показывать кнопку \"Копировать картинку\""
     },
     "left_option_text": {
         "message": "Слева"
@@ -102,12 +105,15 @@
         "message": "Поиск по картинке"
     },
     "download_img_title": {
-        "message": "Скачать изображение"
+        "message": "Скачать картинку"
     },
     "save_img_as_title": {
-        "message": "Сохранить изображение как"
+        "message": "Сохранить картинку как..."
     },
     "copy_img_url_title": {
-        "message": "Скопировать URL изображения"
+        "message": "Копировать URL картинки"
+    },
+    "copy_img_title": {
+        "message": "Копировать картинку"
     }
 }

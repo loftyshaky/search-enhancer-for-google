@@ -15,6 +15,7 @@ export class Main {
 
     public init_db = (): void => err(() => {
         this.db.version(1).stores({
+            user_data: 'id++',
             ip_to_country: 'id++, ip_from',
         });
 

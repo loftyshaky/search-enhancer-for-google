@@ -8,6 +8,8 @@ export class Action {
         return this.i0 || (this.i0 = new this());
     }
 
+    private msg_name: string = 'run_img_action';
+
     public run = (
         { type }: { type: string },
     ): void => err(() => {
@@ -22,7 +24,9 @@ export class Action {
                     img_url: `https://www.google.com/searchbyimage?&image_url=${img_url}`,
                 });
             } else if (type === 'copy_img_url') {
-                this.copy_img_url({ img_url });
+                x.copy_text(img_url);
+            } else if (type === 'copy_img') {
+                x.copy_img(img_url);
             } else {
                 this.send_msg({
                     type,
@@ -43,7 +47,7 @@ export class Action {
         },
     ): void => err(() => {
         ext.send_msg({
-            msg: 'run_img_action',
+            msg: this.msg_name,
             type,
             img_url,
         });

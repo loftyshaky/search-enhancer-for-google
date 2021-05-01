@@ -1,6 +1,6 @@
+import { s_db } from 'shared/internal';
 import {
     s_data,
-    s_db,
     s_ip_to_country,
 } from 'background/internal';
 
