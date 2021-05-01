@@ -139,6 +139,7 @@ export class Main {
                     }),
                     new o_inputs.Checkbox({
                         name: 'show_copy_img_btn',
+                        include_help: true,
                         event_callback: d_sections.Val.i().change,
                     }),
                     new o_inputs.Checkbox({

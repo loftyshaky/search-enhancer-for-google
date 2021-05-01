@@ -80,6 +80,9 @@
     "theme_help_text": {
         "message": "If you use a custom Google Search theme and some features of the Google Enhancement Suite are not working, you'll need to change settings on this page. Why? Because in some cases Google Enhancement Suite checks HTML elements' HSV value to get elements it needs. For example, if your custom theme uses hsv(215, 38%, 90%) as a color for links in search results, the extension will not find link elements (as result, site and server locations icons will not appear), because it expects saturation of links to be 50% or higher. To fix this you will need to set the value of the \"Link min saturation\" input to 0.38 or lower."
     },
+    "show_copy_img_btn_help_text": {
+        "message": "Not all apps will accept images copied with this button. In these cases you will need to copy images the usual way - via browser context menu."
+    },
     "enable_btn_title": {
         "message": "Enable/disable infinite scrolling"
     },
