@@ -35,7 +35,7 @@ export class Main {
         const response = await fetch(icon_url);
         const blob: Blob = await response.blob();
 
-        const base64: string = await x.convert_blob_to_base64({ blob });
+        const base64: string = await x.convert_blob_to_base64(blob);
 
         return this.empty_favicons[provider] === base64;
     },

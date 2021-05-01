@@ -8,8 +8,6 @@ export class Action {
         return this.i0 || (this.i0 = new this());
     }
 
-    private msg_name: string = 'run_img_action';
-
     public run = (
         { type }: { type: string },
     ): void => err(() => {
@@ -47,17 +45,10 @@ export class Action {
         },
     ): void => err(() => {
         ext.send_msg({
-            msg: this.msg_name,
+            msg: 'run_img_action',
             type,
             img_url,
         });
     },
     1111);
-
-    private copy_img_url = (
-        { img_url }: { img_url: string },
-    ): Promise<void> => err(async () => {
-        await navigator.clipboard.writeText(img_url);
-    },
-    1112);
 }
