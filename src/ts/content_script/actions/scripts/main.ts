@@ -61,12 +61,12 @@ export class Main {
     1047);
 
     public run_reload_actions = (): Promise<void> => err_async(async () => {
-        if (
-            d_shared.Data.i().allow_rerun_actions
-            && s_location.Main.i().is_icons_search_results
-        ) {
+        if (d_shared.Data.i().allow_rerun_actions) {
             await this.run_actions();
-            s_roots.Main.i().init({ name: 'icons' });
+
+            if (s_location.Main.i().is_icons_search_results) {
+                s_roots.Main.i().init({ name: 'icons' });
+            }
         } else {
             d_shared.Data.i().allow_rerun_actions = true;
         }
