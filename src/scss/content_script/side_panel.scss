@@ -1,12 +1,14 @@
 @import "../../../node_modules/@loftyshaky/shared/scss/vars";
+@import "../../../node_modules/@loftyshaky/shared/scss/text";
 @import "../../../node_modules/@loftyshaky/shared/scss/mixins";
 @import "../shared/index";
 @import "transitions";
 @import "vars";
 @import "mods";
 
+$side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
+
 .side_panel {
-    font-family: u6Pgzb39sNF, sans-serif;
     position: fixed;
     top: var(--offset_from_header);
     overflow: hidden;
@@ -67,4 +69,17 @@
 
 .side_panel_item.total {
     background-color: #5bbeff;
+}
+
+.side_panel.left {
+    box-shadow: $side_panel_box_shadow;
+    border-top-right-radius: $bar_border_radius;
+    border-bottom-right-radius: $bar_border_radius;
+}
+
+.side_panel.right {
+    box-shadow: $side_panel_box_shadow;
+    right: 0;
+    border-top-left-radius: $bar_border_radius;
+    border-bottom-left-radius: $bar_border_radius;
 }

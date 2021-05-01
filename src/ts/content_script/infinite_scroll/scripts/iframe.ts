@@ -11,6 +11,7 @@ import {
     s_actions,
     s_roots,
     u_side_panel,
+    u_infinite_scroll,
 } from 'content_script/internal';
 
 export class Iframe {
@@ -36,10 +37,12 @@ export class Iframe {
     private cur_iframe_i: number= 0;
     public inserting_iframe: boolean = false;
     private search_results_w_selector: string = '#search';
+    private captcha_error_occurred_once: boolean = false;
 
     public insert = (): void => err(() => {
         if (
-            !this.inserting_iframe
+            !this.captcha_error_occurred_once
+            && !this.inserting_iframe
             && n(s_el_parser.Main.i().next_page_href)
         ) {
             this.inserting_iframe = true;
@@ -72,59 +75,97 @@ export class Iframe {
             this.last_iframe.addEventListener(
                 'load',
                 (): void => err(() => {
-                    this.hide_everything_from_iframe_except_search_results();
+                    this.captcha_error_occurred_once = (
+                        n(this.last_iframe)
+                        && n(this.last_iframe.contentDocument)
+                        && n(this.last_iframe.contentDocument.body.textContent)
+                        && this.last_iframe.contentDocument.body.textContent.length <= 2000
+                    );
 
-                    s_el_parser.Main.i().get_next_page_href();
+                    if (this.captcha_error_occurred_once) {
+                        this.captcha_error_occurred_once = true;
 
-                    if (this.last_iframe) {
-                        const iframe_doc: Document | null = this.last_iframe.contentDocument;
+                        show_err_ribbon(
+                            err_obj('A captcha error occurred.'),
+                            1128,
+                            { silent: true },
+                        );
 
-                        if (n(iframe_doc)) {
-                            s_roots.Main.i().append_root({
-                                name: 'separator',
-                                parent: iframe_doc.body,
-                                i: this.cur_iframe_i + 2,
-                                append_f_name: 'as_first',
-                            });
+                        runInAction(() => {
+                            this.inserting_iframe = false;
+                        });
 
-                            this.observe_iframe_resizing({ cur_iframe_i: this.cur_iframe_i });
+                        u_infinite_scroll.LoadEndMsg.i().change_type(
+                            { type: 'error' },
+                        );
+                        u_infinite_scroll.LoadEndMsg.i().change_visibility(
+                            { is_visible: true },
+                        );
+                    } else {
+                        this.hide_everything_from_iframe_except_search_results();
 
-                            x.css(
-                                'content_script_css',
-                                iframe_doc.head,
-                            );
-                            const css = x.css(
-                                'iframe_inner',
-                                iframe_doc.head,
-                            );
+                        s_el_parser.Main.i().get_next_page_href();
 
-                            if (n(css)) {
-                                css.addEventListener(
-                                    'load',
-                                    (): void => err(() => {
-                                        x.remove_cls(
-                                            this.last_iframe,
-                                            new Suffix('hidden').result,
-                                        );
-                                        x.remove_cls(
-                                            this.last_iframe,
-                                            new Suffix('opacity_0').result,
-                                        );
+                        if (this.last_iframe) {
+                            const iframe_doc: Document | null = this.last_iframe.contentDocument;
 
-                                        s_actions.Main.i().run_reload_actions();
+                            if (n(iframe_doc)) {
+                                s_roots.Main.i().append_root({
+                                    name: 'separator',
+                                    parent: iframe_doc.body,
+                                    i: this.cur_iframe_i + 2,
+                                    append_f_name: 'as_first',
+                                });
 
-                                        this.resize_iframe({ cur_iframe_i: this.cur_iframe_i });
+                                this.observe_iframe_resizing({ cur_iframe_i: this.cur_iframe_i });
 
-                                        this.cur_iframe_i += 1;
-
-                                        u_side_panel.Page.i().set_total();
-
-                                        runInAction(() => {
-                                            this.inserting_iframe = false;
-                                        });
-                                    },
-                                    1062),
+                                x.css(
+                                    'content_script_css',
+                                    iframe_doc.head,
                                 );
+                                const css = x.css(
+                                    'iframe_inner',
+                                    iframe_doc.head,
+                                );
+
+                                if (n(css)) {
+                                    css.addEventListener(
+                                        'load',
+                                        (): void => err(() => {
+                                            x.remove_cls(
+                                                this.last_iframe,
+                                                new Suffix('hidden').result,
+                                            );
+                                            x.remove_cls(
+                                                this.last_iframe,
+                                                new Suffix('opacity_0').result,
+                                            );
+
+                                            s_actions.Main.i().run_reload_actions();
+
+                                            this.resize_iframe({ cur_iframe_i: this.cur_iframe_i });
+
+                                            this.cur_iframe_i += 1;
+
+                                            u_side_panel.Page.i().set_total();
+
+                                            const is_last_page: boolean = (
+                                                !n(s_el_parser.Main.i().next_page_href)
+                                            );
+
+                                            if (is_last_page) {
+                                                u_infinite_scroll.LoadEndMsg.i().change_visibility(
+                                                    { is_visible: true },
+                                                );
+                                            }
+
+                                            runInAction(() => {
+                                                this.inserting_iframe = false;
+                                            });
+                                        },
+                                        1062),
+                                    );
+                                }
                             }
                         }
                     }

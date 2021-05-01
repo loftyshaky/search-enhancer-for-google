@@ -26,6 +26,7 @@ class Manifest {
                     'separator.css',
                     'iframe_inner.css',
                     'spinner.css',
+                    'load_end_msg.css',
                     'side_panel.css',
                     'img_action_bar.css',
                     'flags/*',

@@ -12,6 +12,7 @@ export * as s_infinite_scroll from 'content_script/infinite_scroll/scripts';
 export * as u_infinite_scroll from 'content_script/infinite_scroll/stores/ui';
 export * as c_infinite_scroll from 'content_script/infinite_scroll/components';
 export * as p_infinite_scroll from 'content_script/infinite_scroll/components/prop_types';
+export * as i_infinite_scroll from 'content_script/infinite_scroll/interfaces';
 export * as c_icons from 'content_script/icons/components';
 export * as p_icons from 'content_script/icons/components/prop_types';
 export * as u_icons from 'content_script/icons/stores/ui';

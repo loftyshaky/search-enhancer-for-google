@@ -1,5 +1,6 @@
 import {
     makeObservable,
+    observable,
     computed,
 } from 'mobx';
 
@@ -17,6 +18,7 @@ export class Separator {
         makeObservable(
             this,
             {
+                offset_left: observable,
                 none_cls: computed,
             },
         );

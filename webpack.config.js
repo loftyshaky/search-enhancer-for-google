@@ -147,6 +147,13 @@ module.exports = (env, argv) => {
                 'content_script',
                 'spinner.scss',
             ),
+            load_end_msg: path.join(
+                app_root,
+                'src',
+                'scss',
+                'content_script',
+                'load_end_msg.scss',
+            ),
             side_panel: path.join(
                 app_root,
                 'src',

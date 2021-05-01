@@ -33,7 +33,8 @@ export class Main {
             s_roots.Main.i().apply_root_parent_cls_to_title_els();
         }
     },
-    1045);
+    1045,
+    { silent: true });
 
     public run_initial_actions = (): Promise<void> => err_async(async () => {
         s_el_parser.Main.i().get_next_page_href();

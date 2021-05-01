@@ -2,10 +2,10 @@ import { s_el_parser } from 'content_script/internal';
 
 import { Suffix } from 'shared/internal';
 
-export class Spinner {
-    private static i0: Spinner;
+export class FooterEls {
+    private static i0: FooterEls;
 
-    public static i(): Spinner {
+    public static i(): FooterEls {
     // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
@@ -14,6 +14,10 @@ export class Spinner {
         x.before(
             s_el_parser.Main.i().footer_el,
             s<HTMLElement>(`.${new Suffix('spinner').result}`),
+        );
+        x.before(
+            s_el_parser.Main.i().footer_el,
+            s<HTMLElement>(`.${new Suffix('load_end_msg').result}`),
         );
     },
     1073);

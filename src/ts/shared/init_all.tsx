@@ -45,6 +45,7 @@ export class InitAll {
         let loading_screen_root: ShadowRoot;
         let settings_root: HTMLDivElement;
         let spinner_root: ShadowRoot;
+        let load_end_msg_root: ShadowRoot;
         let side_panel_root: ShadowRoot;
 
         if (page === 'settings') {
@@ -55,6 +56,7 @@ export class InitAll {
             }) as HTMLDivElement;
         } else if (page === 'content_script') {
             spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
+            load_end_msg_root = this.create_root({ prefix: 'load_end_msg' }) as ShadowRoot;
             side_panel_root = this.create_root({ prefix: 'side_panel' }) as ShadowRoot;
         }
 
@@ -112,6 +114,22 @@ export class InitAll {
             );
         },
         1072);
+
+        const render_last_end_msg = (): Promise<void> => err_async(async () => {
+            const { c_infinite_scroll } = await import('content_script/internal');
+
+            render(
+                <CrashHandler><c_infinite_scroll.LoadEndMsg /></CrashHandler>,
+                load_end_msg_root,
+                (): void => {
+                    x.css(
+                        'load_end_msg',
+                        load_end_msg_root,
+                    );
+                },
+            );
+        },
+        1125);
 
         const render_side_panel = (): Promise<void> => err_async(async () => {
             const { c_side_panel } = await import('content_script/internal');
@@ -183,6 +201,7 @@ export class InitAll {
                     );
                 } else if (page === 'content_script') {
                     render_spinner();
+                    render_last_end_msg();
                     render_side_panel();
                 }
             },

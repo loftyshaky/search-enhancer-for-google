@@ -118,5 +118,11 @@
     },
     "copy_img_url_title": {
         "message": "Copy image address"
+    },
+    "load_end_msg_last_page_text": {
+        "message": "Last page."
+    },
+    "load_end_msg_error_text": {
+        "message": "An error occured. Google thinks you're a robot. Reload the page and solve the captcha."
     }
 }

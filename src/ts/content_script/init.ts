@@ -9,7 +9,7 @@ import {
 export const init = async (): Promise<void> => {
     s_db.Main.i().init_db();
     await s_actions.Main.i().run_initial_actions();
-    s_infinite_scroll.Spinner.i().append_to_footer();
+    s_infinite_scroll.FooterEls.i().append_to_footer();
 
     window.addEventListener(
         'load',

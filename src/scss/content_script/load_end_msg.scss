@@ -1,0 +1,11 @@
+@import "../../../node_modules/@loftyshaky/shared/scss/text";
+@import "../../../node_modules/@loftyshaky/shared/scss/mods";
+
+.load_end_msg {
+    position: relative;
+    bottom: 6px;
+    font-size: 18px;
+    width: 580px;
+    color: red;
+    font-weight: bold;
+}

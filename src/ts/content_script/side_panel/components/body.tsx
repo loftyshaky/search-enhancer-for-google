@@ -11,6 +11,7 @@ export const Body = observer(() => (
     <div
         className={
             x.cls([
+                'content',
                 'side_panel',
                 data.settings.side_panel_position,
             ])

@@ -1,7 +1,5 @@
 @import 'vars';
 
-$side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
-
 .none {
     display: none !important;
 }
@@ -10,19 +8,6 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
     position: fixed !important;
     visibility: hidden !important;
     top: 99999px !important;
-}
-
-.side_panel.left {
-    box-shadow: $side_panel_box_shadow;
-    border-top-right-radius: $bar_border_radius;
-    border-bottom-right-radius: $bar_border_radius;
-}
-
-.side_panel.right {
-    box-shadow: $side_panel_box_shadow;
-    right: 0;
-    border-top-left-radius: $bar_border_radius;
-    border-bottom-left-radius: $bar_border_radius;
 }
 
 .opacity_0_#{$app_id} {
