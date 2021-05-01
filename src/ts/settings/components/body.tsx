@@ -22,11 +22,13 @@ export const Body = observer(() => {
     return (
         <Settings
             sections={d_sections.Main.i().sections}
-            initial_section='all'
+            initial_section={d_sections.Main.i().current_section}
             change_section_callback={(): void => {
                 d_inputs.NestedInput.i().set_all_parents_disbled_vals({
                     sections: d_sections.Main.i().sections,
                 });
+
+                d_sections.Main.i().change_section_val();
             }}
         />
     );

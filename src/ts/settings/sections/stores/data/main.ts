@@ -1,3 +1,8 @@
+import {
+    makeObservable,
+    computed,
+} from 'mobx';
+
 import { Utils } from '@loftyshaky/shared';
 import {
     o_inputs,
@@ -34,6 +39,21 @@ export class Main {
 
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
+    }
+
+    private constructor() {
+        makeObservable(
+            this,
+            {
+                current_section: computed,
+            },
+        );
+    }
+
+    public get current_section() {
+        return n(data.settings.current_section)
+            ? data.settings.current_section
+            : 'all';
     }
 
     private options: any = {
@@ -200,5 +220,13 @@ export class Main {
                 }),
             ],
         })],
-    ]
+    ];
+
+    public change_section_val = (): void => err(() => {
+        ext.send_msg({
+            msg: 'update_settings',
+            settings: { current_section: d_settings.Sections.i().current_section },
+        });
+    },
+    1124);
 }
