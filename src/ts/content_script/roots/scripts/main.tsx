@@ -46,23 +46,7 @@ export class Main {
                 const remove_icons = (
                     { icon_roots }: { icon_roots: any },
                 ): void => err(() => {
-                    const titles: HTMLElement[] = [...icon_roots].map(
-                        (icon_root: HTMLDivElement): HTMLElement => err(() => (
-                            icon_root.parentElement!
-                        ),
-                        1122),
-                    );
-
                     x.remove(icon_roots);
-
-                    x.remove_cls(
-                        titles,
-                        s_roots.Position.i().offset_1_cls,
-                    );
-                    x.remove_cls(
-                        titles,
-                        s_roots.Position.i().offset_2_cls,
-                    );
                 },
                 1102);
 

@@ -2,9 +2,13 @@ import {
     makeObservable,
     observable,
     computed,
+    action,
 } from 'mobx';
 
-import { s_location } from 'content_script/internal';
+import {
+    s_location,
+    s_el_parser,
+} from 'content_script/internal';
 
 export class Separator {
     private static i0: Separator;
@@ -20,6 +24,7 @@ export class Separator {
             {
                 offset_left: observable,
                 none_cls: computed,
+                set_offset_left: action,
             },
         );
     }
@@ -56,9 +61,11 @@ export class Separator {
             : '';
     }
 
-    public set_offset_left = ({ title_el }: { title_el: HTMLElement }): void => err(() => {
-        if (this.offset_left === 0) {
-            this.offset_left = title_el.getBoundingClientRect().left;
+    public set_offset_left = (): void => err(() => {
+        if (n(s_el_parser.Main.i().search_result_body)) {
+            this.offset_left = (
+                s_el_parser.Main.i().search_result_body!.getBoundingClientRect().left
+            );
         }
     },
     1101);

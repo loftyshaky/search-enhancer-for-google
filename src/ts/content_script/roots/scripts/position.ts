@@ -19,8 +19,18 @@ export class Position {
     public offset_2_cls: string = new Suffix('offset_2').result;
 
     public position_title_el = (): void => err(() => { // needed because in some cases icons go outside container. ex: https://www.google.com/search?q=infinite+scroll&oq=infinite&aqs=chrome.4.69i57j46j0j46j0j69i61j69i60l2.7170j0j1&sourceid=chrome&ie=UTF-8
+        x.remove_cls(
+            s_el_parser.Main.i().title_els,
+            s_roots.Position.i().offset_1_cls,
+        );
+        x.remove_cls(
+            s_el_parser.Main.i().title_els,
+            s_roots.Position.i().offset_2_cls,
+        );
+
         s_el_parser.Main.i().title_els.forEach((title_el): void => err(() => {
             s_roots.Main.i().apply_root_parent_cls_to_title_el({ title_el });
+
             if (
                 data.settings.show_favicons
                 && data.settings.show_server_locations
@@ -29,14 +39,7 @@ export class Position {
                     title_el,
                     this.offset_2_cls,
                 );
-            } else {
-                x.remove_cls(
-                    title_el,
-                    this.offset_2_cls,
-                );
-            }
-
-            if (
+            } else if (
                 (
                     data.settings.show_favicons
                         && !data.settings.show_server_locations
@@ -46,11 +49,6 @@ export class Position {
                 )
             ) {
                 x.add_cls(
-                    title_el,
-                    this.offset_1_cls,
-                );
-            } else {
-                x.remove_cls(
                     title_el,
                     this.offset_1_cls,
                 );

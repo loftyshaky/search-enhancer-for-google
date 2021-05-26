@@ -4,7 +4,6 @@ import tinycolor from 'tinycolor2';
 import { Suffix } from 'shared/internal';
 import {
     s_location,
-    u_infinite_scroll,
     s_infinite_scroll,
 } from 'content_script/internal';
 
@@ -30,6 +29,7 @@ export class Main {
     public hrefs: string[] = [];
     public next_page_href: string | undefined;
     public loaded_all_pages: boolean = false;
+    public search_result_body: HTMLElement | undefined = undefined;
 
     public get_els = (): void => err(() => {
         this.get_keyword_els();
@@ -38,6 +38,7 @@ export class Main {
         this.get_related_searches_el();
         this.get_pagination_el();
         this.get_img_viewer();
+        this.get_search_result_body();
     },
     1018);
 
@@ -179,16 +180,6 @@ export class Main {
             1020,
         ));
 
-        if (n(this.title_els[0])) {
-            u_infinite_scroll.Separator.i().set_offset_left({ title_el: this.title_els[0] });
-        } else if (s_location.Main.i().is_shopping_page) {
-            const shopping_cards = s<HTMLElement>('[data-docid]');
-
-            if (n(shopping_cards)) {
-                u_infinite_scroll.Separator.i().set_offset_left({ title_el: shopping_cards });
-            }
-        }
-
         this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(
             () => new URL(el.href).hostname,
             1029,
@@ -251,6 +242,13 @@ export class Main {
             this.img_viewer,
             'img',
         ),
+        1106,
+    );
+
+    public get_search_result_body = (): void => err(
+        () => {
+            this.search_result_body = s<HTMLElement>('#rso');
+        },
         1106,
     );
 

@@ -6,6 +6,7 @@ import {
     s_roots,
     s_keywords,
     u_img_action_bar,
+    u_infinite_scroll,
 } from 'content_script/internal';
 
 import { InitAll } from 'shared/init_all';
@@ -32,6 +33,8 @@ export class Main {
         if (s_location.Main.i().is_icons_search_results) {
             s_roots.Main.i().apply_root_parent_cls_to_title_els();
         }
+
+        u_infinite_scroll.Separator.i().set_offset_left();
     },
     1045,
     { silent: true });
