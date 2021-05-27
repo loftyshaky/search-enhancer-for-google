@@ -5,6 +5,7 @@ import {
 } from 'mobx';
 
 import { d_shared } from 'shared/internal';
+import { s_infinite_scroll } from 'content_script/internal';
 
 export class InfiniteScrollingState {
     private static i0: InfiniteScrollingState;
@@ -31,10 +32,15 @@ export class InfiniteScrollingState {
     }
 
     public change = (): void => err(() => {
+        const new_state: boolean = !data.settings.infinite_scrolling_enabled;
         d_shared.Data.i().change({
             key: 'infinite_scrolling_enabled',
-            val: !data.settings.infinite_scrolling_enabled,
+            val: new_state,
         });
+
+        if (new_state) {
+            s_infinite_scroll.Scroll.i().observe();
+        }
     },
     1078);
 }
