@@ -95,6 +95,9 @@
     "jump_to_related_searches_title": {
         "message": "Click to jump to related searches/pagination buttons. Click again or middle-click the scroll to top button to return to the previous position."
     },
+    "rate_chrome_link_href": {
+        "message": "http://bit.ly/google-enhancement-suite-rate"
+    },
     "current_indicator_title": {
         "message": "Current page"
     },

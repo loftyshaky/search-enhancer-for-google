@@ -95,6 +95,9 @@
     "jump_to_related_searches_title": {
         "message": "Кликните, чтобы перейти к похожим запросам/кнопкам нумерации страниц. Кликните снова или кликните средней кнопкой мыши кнопку \"Вверх\" чтобы вернуться назад."
     },
+    "rate_chrome_link_href": {
+        "message": "http://bit.ly/google-enhancement-suite-rate-ru"
+    },
     "current_indicator_title": {
         "message": "Текущая страница"
     },
