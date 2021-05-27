@@ -9,6 +9,7 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
+    public imgs_param_val = 'isch';
     private tbm: string | null = new URLSearchParams(window.location.href).get('tbm');
     private search_string_is_present: boolean = window.location.href.includes('search?');
 
@@ -28,7 +29,7 @@ export class Main {
                               && this.tbm === 'shop';
 
     public is_imgs_page: boolean = this.search_string_is_present
-                          && this.tbm === 'isch';
+                          && this.tbm === this.imgs_param_val;
 
     public is_search_results: boolean = this.is_all_page
                                         || this.is_video_page

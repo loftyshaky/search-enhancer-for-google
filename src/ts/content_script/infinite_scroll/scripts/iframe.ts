@@ -10,6 +10,7 @@ import {
     s_el_parser,
     s_actions,
     s_roots,
+    s_infinite_scroll,
     u_side_panel,
     u_infinite_scroll,
 } from 'content_script/internal';
@@ -152,6 +153,8 @@ export class Iframe {
                                             const is_last_page: boolean = (
                                                 !n(s_el_parser.Main.i().next_page_href)
                                             );
+
+                                            s_infinite_scroll.ImgLinks.i().bind_all();
 
                                             if (is_last_page) {
                                                 u_infinite_scroll.LoadEndMsg.i().change_visibility(
