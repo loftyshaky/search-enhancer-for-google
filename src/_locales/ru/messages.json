@@ -125,10 +125,10 @@
     "copy_img_title": {
         "message": "Копировать картинку"
     },
-    "load_end_msg_last_page_text": {
-        "message": "Произошла ошибка. Google думает что вы робот. Перезагрузите страницу и решите каптчу."
-    },
     "load_end_msg_error_text": {
-        "message": "Последняя страница."
+        "message": "Последняя страница"
+    },
+    "load_end_msg_last_page_text": {
+        "message": "Произошла ошибка. Google думает что вы робот. Перезагрузите страницу и решите каптчу.\u200E"
     }
 }

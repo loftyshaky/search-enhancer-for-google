@@ -2,11 +2,13 @@ import { s_db } from 'shared/internal';
 import {
     s_actions,
     s_infinite_scroll,
+    s_text_dir,
     u_side_panel,
     u_img_action_bar,
 } from 'content_script/internal';
 
 export const init = async (): Promise<void> => {
+    s_text_dir.Main.i().get();
     s_db.Main.i().init_db();
     await s_actions.Main.i().run_initial_actions();
     s_infinite_scroll.FooterEls.i().append_to_footer();

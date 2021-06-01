@@ -4,8 +4,10 @@ import {
     action,
 } from 'mobx';
 
+import { Viewport } from '@loftyshaky/shared';
 import {
     s_el_parser,
+    s_text_dir,
 } from 'content_script/internal';
 
 export class Position {
@@ -63,7 +65,11 @@ export class Position {
             );
 
             this.bottom = `${margin_bottom}px`;
-            this.right = `${margin_right + img_viewer.offsetLeft}px`;
+            this.right = `${
+                s_text_dir.Main.i().dir === 'ltr'
+                    ? margin_right + img_viewer.offsetLeft
+                    : -(margin_right + img_viewer.offsetLeft)
+            }px`;
         }
     },
     1107);

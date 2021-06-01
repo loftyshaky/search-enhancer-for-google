@@ -10,7 +10,7 @@ export const LoadEndMsg = observer(() => (
             u_infinite_scroll.LoadEndMsg.i().type,
             u_infinite_scroll.LoadEndMsg.i().visibility_cls,
         ])}
-        style={{ marginLeft: u_infinite_scroll.Separator.i().offset_left }}
+        style={{ marginInlineStart: u_infinite_scroll.Separator.i().offset_left }}
     >
         {ext.msg(`load_end_msg_${u_infinite_scroll.LoadEndMsg.i().type}_text`)}
     </div>

@@ -73,13 +73,13 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
 .side_panel.left {
     box-shadow: $side_panel_box_shadow;
-    border-top-right-radius: $bar_border_radius;
-    border-bottom-right-radius: $bar_border_radius;
+    border-start-end-radius: $bar_border_radius;
+    border-end-end-radius: $bar_border_radius;
 }
 
 .side_panel.right {
     box-shadow: $side_panel_box_shadow;
-    right: 0;
-    border-top-left-radius: $bar_border_radius;
-    border-bottom-left-radius: $bar_border_radius;
+    inset-inline-end: 0;
+    border-start-start-radius: $bar_border_radius;
+    border-end-start-radius: $bar_border_radius;
 }

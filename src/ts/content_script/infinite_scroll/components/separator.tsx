@@ -19,7 +19,7 @@ export const Separator = observer((props: p_infinite_scroll.Separator) => {
                 u_infinite_scroll.Separator.i().news_cls,
                 u_infinite_scroll.Separator.i().shopping_cls,
             ])}
-            style={{ marginLeft: u_infinite_scroll.Separator.i().offset_left }}
+            style={{ marginInlineStart: u_infinite_scroll.Separator.i().offset_left }}
         >
             {`${ext.msg('page_text')} ${i}`}
         </div>

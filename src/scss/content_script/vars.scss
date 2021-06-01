@@ -3,3 +3,5 @@ $btn_size: 31px;
 $icon_size: 16px;
 $gap: 10px;
 $bar_border_radius: 5px;
+$icon_offset_1: $icon_size + $gap;
+$icon_offset_2: ($icon_size * 2) + ($gap * 2);

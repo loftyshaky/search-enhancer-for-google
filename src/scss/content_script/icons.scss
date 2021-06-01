@@ -3,13 +3,17 @@
 
 $icon_size: 16px;
 
+.content {
+    inset-inline-end: 0;
+}
+
 .icons,
 .icon_w {
     display: flex;
 }
 
 .icon_w:not(:first-child) {
-    margin-left: 10px;
+    margin-inline-start: 10px;
 }
 
 .icon_w svg {

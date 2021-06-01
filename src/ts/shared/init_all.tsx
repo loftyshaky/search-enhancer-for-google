@@ -55,6 +55,12 @@ export class InitAll {
                 shadow_root: false,
             }) as HTMLDivElement;
         } else if (page === 'content_script') {
+            x.css(
+                'font_face',
+                document.head,
+                new Suffix('font_face_link').result,
+            );
+
             spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
             load_end_msg_root = this.create_root({ prefix: 'load_end_msg' }) as ShadowRoot;
             side_panel_root = this.create_root({ prefix: 'side_panel' }) as ShadowRoot;

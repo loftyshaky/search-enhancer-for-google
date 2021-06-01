@@ -5,9 +5,11 @@ import {
     action,
 } from 'mobx';
 
+import { Viewport } from '@loftyshaky/shared';
 import {
     s_location,
     s_el_parser,
+    s_text_dir,
 } from 'content_script/internal';
 
 export class Separator {
@@ -63,9 +65,13 @@ export class Separator {
 
     public set_offset_left = (): void => err(() => {
         if (n(s_el_parser.Main.i().search_result_body)) {
-            this.offset_left = (
-                s_el_parser.Main.i().search_result_body!.getBoundingClientRect().left
-            );
+            const rect: any = s_el_parser.Main.i().search_result_body!.getBoundingClientRect();
+
+            if (s_text_dir.Main.i().dir === 'ltr') {
+                this.offset_left = rect.left;
+            } else if (s_text_dir.Main.i().dir === 'rtl') {
+                this.offset_left = Viewport.i().get_dim({ dim: 'width' }) - rect.right;
+            }
         }
     },
     1101);

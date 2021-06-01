@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
+import { Viewport } from '@loftyshaky/shared';
 import { Suffix } from 'shared/internal';
 import {
     s_location,
     s_infinite_scroll,
+    s_text_dir,
 } from 'content_script/internal';
 
 export class Main {
@@ -112,6 +114,7 @@ export class Main {
         const links: HTMLLinkElement[] = this.get_els_of_all_frames({ selector: `a${this.pseudo}` });
         const filtered_links: HTMLLinkElement[] = [];
         this.title_els = [];
+        const viewport_width: number = Viewport.i().get_dim({ dim: 'width' });
 
         links.forEach((el: HTMLLinkElement): boolean => err(
             () => {
@@ -159,8 +162,30 @@ export class Main {
                                             && font_size >= 18
                                             && color_hsv.s >= data.settings.link_min_saturation
                                             && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
-                                            && el_2.getBoundingClientRect().left <= 300
-                                            && this.check_if_el_has_immediate_text({ el: el_2 })
+                                            && (
+                                                (
+                                                    s_text_dir.Main.i().dir === 'ltr'
+                                                    && el_2.getBoundingClientRect().left <= 300
+                                                )
+                                                || (
+                                                    s_text_dir.Main.i().dir === 'rtl'
+                                                    && (
+                                                        viewport_width
+                                                        - el_2.getBoundingClientRect().right <= 300
+                                                    )
+                                                )
+                                            )
+                                            && (
+                                                (
+                                                    !s_location.Main.i().is_news_page
+                                                    && /H[0-6]/.test(el_2.tagName)
+                                                ) || (
+                                                    s_location.Main.i().is_news_page
+                                                    && this.check_if_el_has_immediate_text(
+                                                        { el: el_2 },
+                                                    )
+                                                )
+                                            )
                                             && n(el.href)
                                             && el.href
                                         )

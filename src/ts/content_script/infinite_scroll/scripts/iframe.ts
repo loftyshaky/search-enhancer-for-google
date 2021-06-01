@@ -111,6 +111,12 @@ export class Iframe {
                             const iframe_doc: Document | null = this.last_iframe.contentDocument;
 
                             if (n(iframe_doc)) {
+                                x.css(
+                                    'font_face',
+                                    iframe_doc.head,
+                                    new Suffix('font_face_link').result,
+                                );
+
                                 s_roots.Main.i().append_root({
                                     name: 'separator',
                                     parent: iframe_doc.body,

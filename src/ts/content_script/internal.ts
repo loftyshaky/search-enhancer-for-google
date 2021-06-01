@@ -8,6 +8,7 @@ export * as s_roots from 'content_script/roots/scripts';
 export * as s_actions from 'content_script/actions/scripts';
 export * as s_el_parser from 'content_script/el_parser/scripts';
 export * as s_keywords from 'content_script/keywords/scripts';
+export * as s_text_dir from 'content_script/text_dir/scripts';
 export * as s_infinite_scroll from 'content_script/infinite_scroll/scripts';
 export * as u_infinite_scroll from 'content_script/infinite_scroll/stores/ui';
 export * as c_infinite_scroll from 'content_script/infinite_scroll/components';
