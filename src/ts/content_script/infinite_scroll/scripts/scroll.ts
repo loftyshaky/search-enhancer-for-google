@@ -1,5 +1,9 @@
 import { Viewport } from '@loftyshaky/shared';
-import { s_infinite_scroll } from 'content_script/internal';
+import {
+    s_el_parser,
+    s_infinite_scroll,
+    u_infinite_scroll,
+} from 'content_script/internal';
 
 export class Scroll {
     private static i0: Scroll;
@@ -23,6 +27,10 @@ export class Scroll {
             <= (Viewport.i().get_dim({ dim: 'height' }) + 600)
         ) {
             s_infinite_scroll.Iframe.i().insert();
+        } else if (!n(s_el_parser.Main.i().next_page_href)) {
+            u_infinite_scroll.LoadEndMsg.i().change_visibility(
+                { is_visible: true },
+            );
         }
     },
     1064);
