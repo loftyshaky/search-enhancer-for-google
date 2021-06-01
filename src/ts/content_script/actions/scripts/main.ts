@@ -42,6 +42,12 @@ export class Main {
     public run_initial_actions = (): Promise<void> => err_async(async () => {
         s_el_parser.Main.i().get_next_page_href();
 
+        if (!n(s_el_parser.Main.i().next_page_href)) {
+            u_infinite_scroll.LoadEndMsg.i().change_visibility(
+                { is_visible: true },
+            );
+        }
+
         await this.run_actions();
 
         if (s_location.Main.i().is_search_results) {
