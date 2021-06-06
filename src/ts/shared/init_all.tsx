@@ -9,6 +9,7 @@ import {
     LoadingScreenBody,
     Theme,
     NoTr,
+    TabIndex,
 } from '@loftyshaky/shared';
 import { u_settings } from '@loftyshaky/shared/settings';
 import {
@@ -77,6 +78,8 @@ export class InitAll {
                 u_settings.InputsWidth.i().set_max_width();
 
                 LoadingScreenVisibility.i().hide();
+
+                TabIndex.i().bind_set_input_type_f();
             },
             1013);
 

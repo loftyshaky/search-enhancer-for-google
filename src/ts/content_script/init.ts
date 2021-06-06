@@ -1,4 +1,8 @@
-import { s_db } from 'shared/internal';
+import { TabIndex } from '@loftyshaky/shared';
+import {
+    app_id,
+    s_db,
+} from 'shared/internal';
 import {
     s_actions,
     s_infinite_scroll,
@@ -12,6 +16,11 @@ export const init = async (): Promise<void> => {
     s_db.Main.i().init_db();
     await s_actions.Main.i().run_initial_actions();
     s_infinite_scroll.FooterEls.i().append_to_footer();
+
+    TabIndex.i().bind_set_input_type_f({
+        parent: document.body,
+        app_id,
+    });
 
     window.addEventListener(
         'load',

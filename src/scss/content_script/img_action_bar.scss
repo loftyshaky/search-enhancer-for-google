@@ -1,6 +1,8 @@
 @import "../../../node_modules/@loftyshaky/shared/scss/mixins";
 @import "../../../node_modules/@loftyshaky/shared/scss/mods";
+@import "../../../node_modules/@loftyshaky/shared/scss/crash_handler";
 @import "vars";
+@import 'focus';
 
 $img_action_bar_buttons_opacity: 0.65;
 
