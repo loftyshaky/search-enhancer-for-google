@@ -20,6 +20,7 @@ export const Btn = observer((props: p_side_panel.Btn) => {
         on_mouse_down,
         on_mouse_up,
         on_context_menu,
+        on_keydown,
     } = props;
 
     const Component: any = component[name];
@@ -40,6 +41,7 @@ export const Btn = observer((props: p_side_panel.Btn) => {
             onMouseDown={on_mouse_down}
             onMouseUp={on_mouse_up}
             onContextMenu={on_context_menu}
+            onKeyDown={on_keydown}
         >
             <Component />
         </button>

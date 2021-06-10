@@ -80,31 +80,41 @@ export class Scroll {
     1093);
 
     public remember_scrolling_position_0_35_seconds = (
+        { keyboard_call }: { keyboard_call: boolean },
         e: MouseEvent,
     ): void => err(() => {
-        e.preventDefault();
+        if (n(e.preventDefault)) {
+            e.preventDefault();
+        }
 
         if (e.button === 1) {
             this.remember_scrolling_position_0_35_seconds_timeout = (
-                window.setTimeout(async () => {
-                    this.remember_position();
+                window.setTimeout(
+                    async () => {
+                        this.remember_position();
 
-                    this.middle_button_holded_more_than_0_35_seconds = true;
-                    runInAction((): void => {
-                        this.position_overridden = true;
-                    });
+                        if (!keyboard_call) {
+                            this.middle_button_holded_more_than_0_35_seconds = true;
+                        }
 
-                    await x.delay(
-                        +CssVars.i().get({
-                            name: 'transition_duration',
-                        }) + 200,
-                    );
+                        runInAction((): void => {
+                            this.position_overridden = true;
+                        });
 
-                    runInAction((): void => {
-                        this.position_overridden = false;
-                    });
-                },
-                350)
+                        await x.delay(
+                            +CssVars.i().get({
+                                name: 'transition_duration',
+                            }) + 200,
+                        );
+
+                        runInAction((): void => {
+                            this.position_overridden = false;
+                        });
+                    },
+                    keyboard_call
+                        ? 0
+                        : 350,
+                )
             );
         }
     },

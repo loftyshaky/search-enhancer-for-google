@@ -9,4 +9,5 @@ export interface Btn {
     on_mouse_down?: t.CallbackVariadicVoid;
     on_mouse_up?: t.CallbackVariadicVoid;
     on_context_menu?: t.CallbackVariadicVoid;
+    on_keydown?: t.CallbackVariadicVoid;
 }
