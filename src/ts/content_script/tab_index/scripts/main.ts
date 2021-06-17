@@ -24,10 +24,10 @@ export class Main {
 
         if (e.code === 'Enter') {
             if (type === 'scroll_to_top') {
-                if (e.shiftKey) {
+                if (e.ctrlKey) {
                     e_2.button = 2;
                 } else if (
-                    e.ctrlKey
+                    e.shiftKey
                     || e.altKey
                 ) {
                     e_2.button = 1;
