@@ -22,7 +22,7 @@ export class CssVars {
         CssVarsShared.i().set_transition_vars(
             {
                 roots,
-                transition_duration: '200',
+                transition_duration: data.settings.transition_duration,
             },
         );
 

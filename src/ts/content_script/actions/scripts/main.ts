@@ -89,7 +89,7 @@ export class Main {
         this.run_reload_actions();
     },
     1049),
-    500);
+    200);
 
     public run_reload_actions_2 = (): void => err(() => {
         if (s_location.Main.i().is_imgs_page) {

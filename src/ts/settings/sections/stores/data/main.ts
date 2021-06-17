@@ -174,15 +174,15 @@ export class Main {
                 inputs: [
                     new o_inputs.Text({
                         name: 'link_min_saturation',
+                        text_type: 'number',
                         event_callback: d_sections.Val.i().change,
                         warn_state_checker: d_sections.Val.i().validate_input,
-                        remove_val_callback: d_sections.Val.i().remove_val,
                     }),
                     new o_inputs.Text({
                         name: 'keyword_max_saturation',
+                        text_type: 'number',
                         event_callback: d_sections.Val.i().change,
                         warn_state_checker: d_sections.Val.i().validate_input,
-                        remove_val_callback: d_sections.Val.i().remove_val,
                     }),
                 ],
             }),
@@ -192,7 +192,7 @@ export class Main {
                 download_back_up_callback: ext.storage_get,
                 upload_back_up_callback: d_sections.Restore.i().restore_back_up,
                 restore_defaults_callback: () => d_sections.Restore.i().restore_confirm(),
-                options_page_theme_callback: d_sections.Val.i().change,
+                input_change_val_callback: d_sections.Val.i().change,
                 admin_inputs: [
                     new o_inputs.Checkbox({
                         name: 'allow_favicons_from_google',

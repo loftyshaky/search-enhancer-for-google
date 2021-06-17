@@ -37,6 +37,7 @@ export class Main {
         link_min_saturation: '0.5',
         keyword_max_saturation: '0.3',
         options_page_theme: 'light',
+        transition_duration: 200,
         favicon_providers: {
             google: true,
             yandex: true,

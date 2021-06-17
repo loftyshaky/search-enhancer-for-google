@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
     browser,
     Runtime,
@@ -11,6 +12,7 @@ import {
     i_color,
 } from '@loftyshaky/shared/inputs';
 import { s_settings } from '@loftyshaky/shared/settings';
+import { CssVars } from 'shared/internal';
 import { d_sections } from 'settings/internal';
 
 export class Val {
@@ -35,7 +37,7 @@ export class Val {
     },
     1115);
 
-    public change = (
+    public change = _.debounce((
         {
             input,
             i,
@@ -72,8 +74,11 @@ export class Val {
         }
 
         if (input.type === 'text') {
-            if (!this.validate_input({ input })) {
-                set_val();
+            if (
+                !this.validate_input({ input })
+                || !d_inputs.Val.i().validate_input({ input })
+            ) {
+                await set_val();
             }
         } else if (input.type !== 'color' || i === 'main') {
             s_settings.Theme.i().change({
@@ -81,7 +86,7 @@ export class Val {
                 val,
             });
 
-            set_val();
+            await set_val();
         } else if (n(i)) {
             const { colors } = data.settings;
 
@@ -98,9 +103,12 @@ export class Val {
             sections: d_sections.Main.i().sections,
         });
 
+        CssVars.i().set();
+
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
-    1009);
+    1009),
+    200);
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean => err(() => {
         const val: string = d_inputs.Val.i().access({ input });
