@@ -11,7 +11,7 @@ class Manifest {
     }) => {
         const manifest = {
             manifest_version: 3,
-            name: 'Google Enhancement Suite',
+            name: '__MSG_name__',
             description: '__MSG_description__',
             offline_enabled: true,
             key: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnT4SrilXDXfaqqoM3ur3ueyIlfUxIf8WnBgs+RKCNSvx4YpqJcHY8/q8dVPGBY8J8kfyGKWQvsTmeFen06AAc/3bhLtFcMQ1r3U8IG6iNjv/2A1fN0n2kFQBnMAYPz3rfiVccs49DzaqbO8h2MeGCHBP5vuFXIqbWkXu9JkLmx5MuEESGBe+6WhSsjXyJEL/tYBKQA1xyQ3BlwhKt32CnW1B2WaqU5Rw4PlKkBPyQykVr4My4z6r6mTKfBhozThN6xfwdJyY6CTQ0UTcG57uNmd8T5lHwnx2VrbZFvEoPbAEHKzErZ+kWd871oA1fVqWzWSExErCWXSTEWsA3873KwIDAQAB',
