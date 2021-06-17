@@ -251,9 +251,10 @@ export class Main {
                             link,
                             'img',
                         );
-
                         if (n(img)) {
-                            return Boolean(img.offsetWidth);
+                            return Boolean(img.offsetWidth)
+                                   && n(img.style)
+                                   && n(img.style.height);
                         }
 
                         return false;
