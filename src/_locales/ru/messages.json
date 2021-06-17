@@ -11,6 +11,9 @@
     "theme_section_text": {
         "message": "Тема"
     },
+    "favicons_section_text": {
+        "message": "Фавиконы"
+    },
     "side_panel_position_label_text": {
         "message": "Позиция боковой панели"
     },
@@ -40,6 +43,15 @@
     },
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
+    },
+    "allow_favicons_from_google_label_text": {
+        "message": "Разрешить получать фавиконы с помощью Google"
+    },
+    "allow_favicons_from_yandex_label_text": {
+        "message": "Разрешить получать фавиконы с помощью Yandex"
+    },
+    "allow_favicons_from_duckduckgo_label_text": {
+        "message": "Разрешить получать фавиконы с помощью DuckDuckGo"
     },
     "link_min_saturation_label_text": {
         "message": "Минимальная насыщенность ссылок"

@@ -10,6 +10,7 @@ import {
     i_inputs,
     i_color,
 } from '@loftyshaky/shared/inputs';
+import { s_settings } from '@loftyshaky/shared/settings';
 import { d_sections } from 'settings/internal';
 
 export class Val {
@@ -45,6 +46,19 @@ export class Val {
     ): Promise<void> => err_async(async () => {
         let val: any;
 
+        const set_val = (): Promise<void> => err(async () => {
+            d_inputs.Val.i().set({
+                val,
+                input,
+            });
+
+            await ext.send_msg_resp({
+                msg: 'update_settings',
+                settings: data.settings,
+            });
+        },
+        1134);
+
         if (
             input.type === 'color'
             && n(i)
@@ -59,16 +73,15 @@ export class Val {
 
         if (input.type === 'text') {
             if (!this.validate_input({ input })) {
-                await ext.send_msg_resp({
-                    msg: 'update_settings',
-                    settings: { [input.name]: val },
-                });
+                set_val();
             }
         } else if (input.type !== 'color' || i === 'main') {
-            await ext.send_msg_resp({
-                msg: 'update_settings',
-                settings: { [input.name]: val },
+            s_settings.Theme.i().change({
+                input,
+                val,
             });
+
+            set_val();
         } else if (n(i)) {
             const { colors } = data.settings;
 

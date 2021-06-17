@@ -51,7 +51,7 @@ export const Icon = observer((props: p_icons.Icon) => {
     });
 
     // eslint-disable-next-line no-unused-expressions
-    u_icons.Main.i().favicons_loaded[url]; u_icons.Main.i().server_locations_loaded[url];
+    u_icons.Main.i().favicons[url]; u_icons.Main.i().server_locations[url];
 
     return u_icons.Main.i().show_icon_w({ type })
         ? (
@@ -78,12 +78,6 @@ export const Icon = observer((props: p_icons.Icon) => {
                                     url,
                                 })}
                                 src={src}
-                                onLoad={(): void => {
-                                    u_icons.Main.i().set_favicons_loaded_to_true({
-                                        type,
-                                        url,
-                                    });
-                                }}
                             />
                         )
 

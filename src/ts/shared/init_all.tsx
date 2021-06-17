@@ -16,6 +16,7 @@ import {
     app_id,
     Suffix,
     CssVars,
+    d_shared,
 } from 'shared/internal';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
@@ -32,9 +33,11 @@ export class InitAll {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public init = (): void => err(() => {
+    public init = (): Promise<void> => err_async(async () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         __webpack_public_path__ = browser.runtime.getURL('');
+
+        await d_shared.Data.i().set_from_storage();
 
         if (page === 'settings') {
             this.set_page_title();
@@ -183,7 +186,7 @@ export class InitAll {
                                 n(loading_screen_root_el)
                                 && n(loading_screen_root_el.shadowRoot)
                             ) {
-                                Theme.i().set({ name: 'light' });
+                                Theme.i().set({ name: data.settings.options_page_theme });
 
                                 x.css(
                                     'normalize',

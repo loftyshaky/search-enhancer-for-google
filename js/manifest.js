@@ -55,6 +55,8 @@ class Manifest {
             content_scripts: [{
                 matches: [
                     'https://s2.googleusercontent.com/s2/favicons?domain_url=*',
+                    'https://favicon.yandex.net/favicon/v2/*',
+                    'https://icons.duckduckgo.com/ip2/*',
                     '*://www.google.com/*',
                     '*://www.google.ad/*',
                     '*://www.google.ae/*',

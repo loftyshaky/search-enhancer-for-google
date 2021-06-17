@@ -27,21 +27,17 @@ export class Main {
             this,
             {
                 favicons: observable,
-                favicons_loaded: observable,
                 server_locations: observable,
-                server_locations_loaded: observable,
                 server_ips: observable,
                 server_countries: observable,
                 generate_favicons: action,
-                set_favicons_loaded_to_true: action,
+                generate_server_locations: action,
             },
         );
     }
 
     public favicons: { [index: string]: string } = {};
-    public favicons_loaded: { [index: string]: boolean } = {};
     public server_locations: { [index: string]: string } = {};
-    public server_locations_loaded: { [index: string]: boolean } = {};
     public server_ips: { [index: string]: string } = {};
     public server_countries: { [index: string]: string } = {};
 
@@ -86,37 +82,19 @@ export class Main {
         { url }: { url: string },
     ): Promise<void> => err_async(async () => {
         if (data.settings.show_favicons) {
-            const google_icon = `https://s2.googleusercontent.com/s2/favicons?domain_url=${url}`;
-            const yandex_icon = `https://favicon.yandex.net/favicon/v2/${url}`;
-            this.favicons[url] = google_icon;
+            this.favicons[url] = 'placeholder';
 
-            const google_favicon_is_empty: boolean = await ext.send_msg_resp(
+            const favicon_url: string = await ext.send_msg_resp(
                 {
-                    msg: 'favicon_is_empty',
-                    icon_url: google_icon,
-                    provider: 'google',
+                    msg: 'get_favicon_url',
+                    url,
                 },
             );
 
-            if (google_favicon_is_empty) {
+            if (n(favicon_url)) {
                 runInAction(() => {
-                    this.favicons_loaded[url] = false;
-                    this.favicons[url] = yandex_icon;
+                    this.favicons[url] = favicon_url;
                 });
-
-                const yandex_favicon_is_empty: boolean = await ext.send_msg_resp(
-                    {
-                        msg: 'favicon_is_empty',
-                        icon_url: yandex_icon,
-                        provider: 'yandex',
-                    },
-                );
-
-                if (yandex_favicon_is_empty) {
-                    runInAction(() => {
-                        this.favicons[url] = 'placeholder';
-                    });
-                }
             }
         }
     },
@@ -126,6 +104,8 @@ export class Main {
         { url }: { url: string },
     ): Promise<void> => err_async(async () => {
         if (data.settings.show_server_locations) {
+            this.server_locations[url] = 'placeholder';
+
             const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp(
                 {
                     msg: 'get_server_info',
@@ -171,21 +151,6 @@ export class Main {
     ),
     1071);
 
-    public set_favicons_loaded_to_true = (
-        {
-            type,
-            url,
-        }: {
-            type: i_icons.IconType;
-            url: string;
-        },
-    ): void => err(() => {
-        if (type === 'favicons') {
-            this.favicons_loaded[url] = true;
-        }
-    },
-    1088);
-
     public get_show_icon_bool = ({
         type,
         url,
@@ -194,7 +159,6 @@ export class Main {
         url: string
     }): boolean => err(() => {
         const src: string = this[type][url];
-        const favicons_loaded: boolean = this.favicons_loaded[url];
 
         return Boolean(
             n(src)
@@ -202,7 +166,6 @@ export class Main {
             && (
                 (
                     type === 'favicons'
-                    && favicons_loaded
                     && !s_location.Main.i().is_news_page
                 )
                 || type === 'server_locations'

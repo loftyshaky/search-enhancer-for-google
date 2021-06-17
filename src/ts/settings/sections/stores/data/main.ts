@@ -192,6 +192,24 @@ export class Main {
                 download_back_up_callback: ext.storage_get,
                 upload_back_up_callback: d_sections.Restore.i().restore_back_up,
                 restore_defaults_callback: () => d_sections.Restore.i().restore_confirm(),
+                options_page_theme_callback: d_sections.Val.i().change,
+                admin_inputs: [
+                    new o_inputs.Checkbox({
+                        name: 'allow_favicons_from_google',
+                        val_accessor: 'settings.favicon_providers.google',
+                        event_callback: d_sections.Val.i().change,
+                    }),
+                    new o_inputs.Checkbox({
+                        name: 'allow_favicons_from_yandex',
+                        val_accessor: 'settings.favicon_providers.yandex',
+                        event_callback: d_sections.Val.i().change,
+                    }),
+                    new o_inputs.Checkbox({
+                        name: 'allow_favicons_from_duckduckgo',
+                        val_accessor: 'settings.favicon_providers.duckduckgo',
+                        event_callback: d_sections.Val.i().change,
+                    }),
+                ],
             },
         ),
         ...[new o_inputs.Section({

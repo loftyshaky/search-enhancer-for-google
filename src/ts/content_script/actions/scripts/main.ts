@@ -51,7 +51,7 @@ export class Main {
         await this.run_actions();
 
         if (s_location.Main.i().is_search_results) {
-            InitAll.i().init();
+            await InitAll.i().init();
         }
 
         if (s_location.Main.i().is_icons_search_results) {

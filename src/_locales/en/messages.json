@@ -11,6 +11,9 @@
     "theme_section_text": {
         "message": "Theme"
     },
+    "favicons_section_text": {
+        "message": "Favicons"
+    },
     "side_panel_position_label_text": {
         "message": "Side panel position"
     },
@@ -40,6 +43,15 @@
     },
     "keyword_color_label_text": {
         "message": "Keyword color"
+    },
+    "allow_favicons_from_google_label_text": {
+        "message": "Allow favicons from Google"
+    },
+    "allow_favicons_from_yandex_label_text": {
+        "message": "Allow favicons from Yandex"
+    },
+    "allow_favicons_from_duckduckgo_label_text": {
+        "message": "Allow favicons from DuckDuckGo"
     },
     "link_min_saturation_label_text": {
         "message": "Link min saturation"

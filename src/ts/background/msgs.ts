@@ -20,10 +20,9 @@ browser.runtime.onMessage.addListener((msg: t.Msg): Promise<any> => err_async(as
         }
     } else if (msg_str === 'get_defaults') {
         return s_data.Main.i().defaults;
-    } else if (msg_str === 'favicon_is_empty') {
-        return s_icons.Main.i().favicon_is_empty({
-            icon_url: msg.icon_url,
-            provider: msg.provider,
+    } else if (msg_str === 'get_favicon_url') {
+        return s_icons.Main.i().get_favicon_url({
+            url: msg.url,
         });
     } else if (msg_str === 'get_server_info') {
         return s_icons.Main.i().get_server_info({ url: msg.url });
