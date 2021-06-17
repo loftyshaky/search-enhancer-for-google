@@ -241,6 +241,8 @@ export class Main {
     ];
 
     public change_section_val = (): void => err(() => {
+        data.settings.current_section = d_settings.Sections.i().current_section;
+
         ext.send_msg({
             msg: 'update_settings',
             settings: { current_section: d_settings.Sections.i().current_section },
