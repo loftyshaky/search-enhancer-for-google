@@ -4,6 +4,7 @@ import tinycolor from 'tinycolor2';
 import { Viewport } from '@loftyshaky/shared';
 import { Suffix } from 'shared/internal';
 import {
+    s_roots,
     s_location,
     s_infinite_scroll,
     s_text_dir,
@@ -111,6 +112,8 @@ export class Main {
     );
 
     private get_title_els_and_hostnames = (): void => err(() => {
+        s_roots.Position.i().remove_offset_classes();
+
         const links: HTMLLinkElement[] = this.get_els_of_all_frames({ selector: `a${this.pseudo}` });
         const filtered_links: HTMLLinkElement[] = [];
         this.title_els = [];
