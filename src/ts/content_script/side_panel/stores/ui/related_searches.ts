@@ -55,7 +55,9 @@ export class RelatedSearches {
     1098);
 
     public jump_to = (e: any): void => err(() => {
-        e.preventDefault();
+        if (n(e)) {
+            e.preventDefault();
+        }
 
         if (this.remembered_position === 'none') {
             let el_to_jump_to: HTMLElement | undefined;
