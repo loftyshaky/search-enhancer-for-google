@@ -37,13 +37,15 @@ export class Main {
                     ? (base_el as Document).head
                     : (base_el as HTMLIFrameElement).contentDocument!.head;
 
-                x.dynamic_css(
-                    head,
-                    cls,
-                    `.${cls} { color: ${d_color.Color.i().access_from_val(
-                        { val: data.settings.keyword_color },
-                    )}!important }`,
-                );
+                if (n(head)) {
+                    x.dynamic_css(
+                        head,
+                        cls,
+                        `.${cls} { color: ${d_color.Color.i().access_from_val(
+                            { val: data.settings.keyword_color },
+                        )}!important }`,
+                    );
+                }
             },
             1069,
             { silent: true }));
