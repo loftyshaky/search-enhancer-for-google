@@ -23,10 +23,6 @@ export const init = async (): Promise<void> => {
     });
 
     window.addEventListener(
-        'load',
-        s_actions.Main.i().run_on_load_actions,
-    );
-    window.addEventListener(
         'scroll',
         s_infinite_scroll.Scroll.i().observe,
     );
