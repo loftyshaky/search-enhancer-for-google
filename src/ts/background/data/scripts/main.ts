@@ -15,7 +15,12 @@ export class Main {
 
     public defaults: any = {
         current_section: 'all',
+        options_page_theme: 'light',
+        transition_duration: 200,
+        show_color_help: true,
+        colors: d_color.Color.i().default_colors,
         side_panel_position: 'right',
+        keyword_color: 2,
         enable_infinite_scrolling: true,
         show_enable_btn: true,
         show_jump_to_related_searches_btn: true,
@@ -24,8 +29,6 @@ export class Main {
         show_favicons: true,
         show_server_locations: true,
         show_scroll_to_top_btn: true,
-        infinite_scrolling_enabled: true,
-        keyword_color: 2,
         always_show_img_action_bar: true,
         show_view_img_btn: true,
         show_search_by_img_btn: true,
@@ -36,15 +39,12 @@ export class Main {
         show_copy_img_url_btn: true,
         link_min_saturation: '0.5',
         keyword_max_saturation: '0.3',
-        options_page_theme: 'light',
-        transition_duration: 200,
         favicon_providers: {
             google: true,
             yandex: true,
             duckduckgo: true,
         },
-        show_color_help: true,
-        colors: d_color.Color.i().default_colors,
+        infinite_scrolling_enabled: true,
         last_ip_to_country_csv_char_count: 0,
     }
 
