@@ -12,27 +12,18 @@ export const ImgActionBar = observer(() => {
 
     return (
         <div
-            className={x.cls([
-                'img_action_bar',
-                u_img_action_bar.Visibility.i().visibility_cls,
-            ])}
+            className={x.cls(['img_action_bar', u_img_action_bar.Visibility.i().visibility_cls])}
             style={{
                 bottom: u_img_action_bar.Position.i().bottom,
                 right: u_img_action_bar.Position.i().right,
             }}
             ref={img_action_bar_ref}
         >
-            {
-                Object.values(d_img_action_bar.Btns.i().btns as o_img_action_bar.Btn[]).map((
-                    btn: o_img_action_bar.Btn,
-                    i: number,
-                ): JSX.Element => (
-                    <c_img_action_bar.Btn
-                        key={i}
-                        btn={btn}
-                    />
-                ))
-            }
+            {Object.values(d_img_action_bar.Btns.i().btns as o_img_action_bar.Btn[]).map(
+                (btn: o_img_action_bar.Btn, i: number): JSX.Element => (
+                    <c_img_action_bar.Btn key={i} btn={btn} />
+                ),
+            )}
         </div>
     );
 });

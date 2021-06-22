@@ -8,10 +8,7 @@ export const Page = observer((props: p_side_panel.Page) => {
 
     return (
         <div
-            className={x.cls([
-                'side_panel_item',
-                name,
-            ])}
+            className={x.cls(['side_panel_item', name])}
             title={ext.msg(`${name}_indicator_title`)}
         >
             {val}

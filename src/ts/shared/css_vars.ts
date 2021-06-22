@@ -11,28 +11,21 @@ export class CssVars {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public set = (): void => err(() => {
-        const roots = [
-            'settings',
-            'content_script',
-        ].includes(page)
-            ? [document.documentElement]
-            : [];
+    public set = (): void =>
+        err(() => {
+            const roots = ['settings', 'content_script'].includes(page)
+                ? [document.documentElement]
+                : [];
 
-        CssVarsShared.i().set_transition_vars(
-            {
+            CssVarsShared.i().set_transition_vars({
                 roots,
                 transition_duration: data.settings.transition_duration,
-            },
-        );
+            });
 
-        CssVarsShared.i().set_var(
-            {
+            CssVarsShared.i().set_var({
                 roots,
                 name: 'offset_from_header',
                 val: '147px',
-            },
-        );
-    },
-    'ges_1120');
+            });
+        }, 'ges_1120');
 }

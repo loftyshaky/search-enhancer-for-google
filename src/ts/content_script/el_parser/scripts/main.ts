@@ -3,12 +3,7 @@ import tinycolor from 'tinycolor2';
 
 import { Viewport } from '@loftyshaky/shared';
 import { Suffix } from 'shared/internal';
-import {
-    s_roots,
-    s_location,
-    s_infinite_scroll,
-    s_text_dir,
-} from 'content_script/internal';
+import { s_roots, s_location, s_infinite_scroll, s_text_dir } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -19,7 +14,7 @@ export class Main {
     }
 
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() { }
+    private constructor() {}
 
     private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
     public keyword_els: HTMLElement[] = [];
@@ -34,106 +29,91 @@ export class Main {
     public loaded_all_pages: boolean = false;
     public search_result_body: HTMLElement | undefined = undefined;
 
-    public get_els = (): void => err(() => {
-        this.get_keyword_els();
-        this.get_title_els_and_hostnames();
-        this.get_footer_el();
-        this.get_related_searches_el();
-        this.get_pagination_el();
-        this.get_img_viewer();
-        this.get_search_result_body();
-    },
-    'ges_1017');
+    public get_els = (): void =>
+        err(() => {
+            this.get_keyword_els();
+            this.get_title_els_and_hostnames();
+            this.get_footer_el();
+            this.get_related_searches_el();
+            this.get_pagination_el();
+            this.get_img_viewer();
+            this.get_search_result_body();
+        }, 'ges_1017');
 
-    private get_els_of_all_frames = (
-        { selector }: { selector: string },
-    ): any[] => err(() => {
-        const base_els: (Document | HTMLIFrameElement)[] = [
-            document,
-            ...s_infinite_scroll.Iframe.i().iframes,
-        ];
-        let all_els: HTMLElement[] = [];
+    private get_els_of_all_frames = ({ selector }: { selector: string }): any[] =>
+        err(() => {
+            const base_els: (Document | HTMLIFrameElement)[] = [
+                document,
+                ...s_infinite_scroll.Iframe.i().iframes,
+            ];
+            let all_els: HTMLElement[] = [];
 
-        base_els.forEach(
-            (base_el: Document | HTMLIFrameElement): void => err(() => {
-                const els = sab<HTMLElement>(
-                    base_el.nodeType === 9
-                        ? base_el
-                        : (base_el as HTMLIFrameElement).contentDocument!,
-                    selector,
-                );
-
-                if (n(els)) {
-                    all_els = [
-                        ...all_els,
-                        ...els,
-                    ];
-                }
-            },
-            'ges_1018'),
-        );
-
-        return all_els;
-    },
-    'ges_1019');
-
-    private get_keyword_els = (): void => err(
-        () => {
-            const bold_els: HTMLElement[] = this.get_els_of_all_frames({ selector: `em${this.pseudo}, strong${this.pseudo}, b${this.pseudo}` });
-
-            this.keyword_els.forEach((keyword_el: HTMLElement): void => err(
-                () => {
-                    x.remove_cls(
-                        keyword_el,
-                        new Suffix('keyword').result,
+            base_els.forEach((base_el: Document | HTMLIFrameElement): void =>
+                err(() => {
+                    const els = sab<HTMLElement>(
+                        base_el.nodeType === 9
+                            ? base_el
+                            : (base_el as HTMLIFrameElement).contentDocument!,
+                        selector,
                     );
-                },
-                'ges_1020',
-            ));
 
-            this.keyword_els = bold_els.filter((el: HTMLElement): boolean => err(
-                () => {
+                    if (n(els)) {
+                        all_els = [...all_els, ...els];
+                    }
+                }, 'ges_1018'),
+            );
+
+            return all_els;
+        }, 'ges_1019');
+
+    private get_keyword_els = (): void =>
+        err(() => {
+            const bold_els: HTMLElement[] = this.get_els_of_all_frames({
+                selector: `em${this.pseudo}, strong${this.pseudo}, b${this.pseudo}`,
+            });
+
+            this.keyword_els.forEach((keyword_el: HTMLElement): void =>
+                err(() => {
+                    x.remove_cls(keyword_el, new Suffix('keyword').result);
+                }, 'ges_1020'),
+            );
+
+            this.keyword_els = bold_els.filter((el: HTMLElement): boolean =>
+                err(() => {
                     const color_hsv = this.get_el_hsv_color({
                         el,
                         key: 'color',
                     });
 
                     return (
-                        color_hsv.s <= data.settings.keyword_max_saturation
-                        || color_hsv.s >= data.settings.link_min_saturation // additional search results under search result (in blue). Ex: https://www.google.com/search?q=javascript+stack+overflow+declare+variable
-                    )
-                           && this.text_is_bold({ el })
-                           && this.check_if_el_has_immediate_text({ el });
-                },
-                'ges_1021',
-            ));
-        },
-        'ges_1022',
-    );
+                        (color_hsv.s <= data.settings.keyword_max_saturation ||
+                            color_hsv.s >= data.settings.link_min_saturation) && // additional search results under search result (in blue). Ex: https://www.google.com/search?q=javascript+stack+overflow+declare+variable
+                        this.text_is_bold({ el }) &&
+                        this.check_if_el_has_immediate_text({ el })
+                    );
+                }, 'ges_1021'),
+            );
+        }, 'ges_1022');
 
-    private get_title_els_and_hostnames = (): void => err(() => {
-        s_roots.Position.i().remove_offset_classes();
+    private get_title_els_and_hostnames = (): void =>
+        err(() => {
+            s_roots.Position.i().remove_offset_classes();
 
-        const links: HTMLLinkElement[] = this.get_els_of_all_frames({ selector: `a${this.pseudo}` });
-        const filtered_links: HTMLLinkElement[] = [];
-        this.title_els = [];
-        const viewport_width: number = Viewport.i().get_dim({ dim: 'width' });
+            const links: HTMLLinkElement[] = this.get_els_of_all_frames({
+                selector: `a${this.pseudo}`,
+            });
+            const filtered_links: HTMLLinkElement[] = [];
+            this.title_els = [];
+            const viewport_width: number = Viewport.i().get_dim({ dim: 'width' });
 
-        links.forEach((el: HTMLLinkElement): boolean => err(
-            () => {
-                const children = sab<HTMLElement>(
-                    el,
-                    `*${this.pseudo}`,
-                );
+            links.forEach((el: HTMLLinkElement): boolean =>
+                err(() => {
+                    const children = sab<HTMLElement>(el, `*${this.pseudo}`);
 
-                if (n(children)) {
-                    ([...children] as HTMLElement[]).forEach(
-                        (el_2: HTMLElement): void => err(
-                            () => {
-                                const font_size: number = x.get_numeric_css_val(
-                                    el_2,
-                                    'font-size',
-                                );
+                    if (n(children)) {
+                        ([...children] as HTMLElement[]).forEach((el_2: HTMLElement): void =>
+                            err(() => {
+                                const font_size: number = x.get_numeric_css_val(el_2, 'font-size');
                                 const color_hsv = this.get_el_hsv_color({
                                     el: el_2,
                                     key: 'color',
@@ -141,248 +121,175 @@ export class Main {
                                 const news_icon_selector: string = 'g-img';
 
                                 if (
-                                    !x.matches(
-                                        el_2,
-                                        `.${new Suffix('icons').result}`,
-                                    ) && (
-                                        (
-                                            s_location.Main.i().is_news_page
-                                            && el_2.offsetHeight <= 40
-                                            && el_2.firstElementChild
-                                            && (
-                                                x.matches(
-                                                    (el_2.firstElementChild as HTMLElement),
-                                                    news_icon_selector,
-                                                )
-                                                || x.matches(
-                                                    // eslint-disable-next-line max-len
-                                                    (el_2.firstElementChild.nextElementSibling as HTMLElement),
-                                                    news_icon_selector,
-                                                )
-                                            )
-                                        ) || (
-                                            !s_location.Main.i().is_non_standard_search_results
-                                            && font_size >= 18
-                                            && color_hsv.s >= data.settings.link_min_saturation
-                                            && !this.text_is_bold({ el: el_2 }) // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
-                                            && (
-                                                (
-                                                    s_text_dir.Main.i().dir === 'ltr'
-                                                    && el_2.getBoundingClientRect().left <= 300
-                                                )
-                                                || (
-                                                    s_text_dir.Main.i().dir === 'rtl'
-                                                    && (
-                                                        viewport_width
-                                                        - el_2.getBoundingClientRect().right <= 300
-                                                    )
-                                                )
-                                            )
-                                            && (
-                                                (
-                                                    !s_location.Main.i().is_news_page
-                                                    && /H[0-6]/.test(el_2.tagName)
-                                                ) || (
-                                                    s_location.Main.i().is_news_page
-                                                    && this.check_if_el_has_immediate_text(
-                                                        { el: el_2 },
-                                                    )
-                                                )
-                                            )
-                                            && n(el.href)
-                                            && el.href
-                                        )
-                                    )
+                                    !x.matches(el_2, `.${new Suffix('icons').result}`) &&
+                                    ((s_location.Main.i().is_news_page &&
+                                        el_2.offsetHeight <= 40 &&
+                                        el_2.firstElementChild &&
+                                        (x.matches(
+                                            el_2.firstElementChild as HTMLElement,
+                                            news_icon_selector,
+                                        ) ||
+                                            x.matches(
+                                                // eslint-disable-next-line max-len
+                                                el_2.firstElementChild
+                                                    .nextElementSibling as HTMLElement,
+                                                news_icon_selector,
+                                            ))) ||
+                                        (!s_location.Main.i().is_non_standard_search_results &&
+                                            font_size >= 18 &&
+                                            color_hsv.s >= data.settings.link_min_saturation &&
+                                            !this.text_is_bold({ el: el_2 }) && // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
+                                            ((s_text_dir.Main.i().dir === 'ltr' &&
+                                                el_2.getBoundingClientRect().left <= 300) ||
+                                                (s_text_dir.Main.i().dir === 'rtl' &&
+                                                    viewport_width -
+                                                        el_2.getBoundingClientRect().right <=
+                                                        300)) &&
+                                            ((!s_location.Main.i().is_news_page &&
+                                                /H[0-6]/.test(el_2.tagName)) ||
+                                                (s_location.Main.i().is_news_page &&
+                                                    this.check_if_el_has_immediate_text({
+                                                        el: el_2,
+                                                    }))) &&
+                                            n(el.href) &&
+                                            el.href))
                                 ) {
                                     filtered_links.push(el);
                                     this.title_els.push(el_2);
                                 }
-                            },
-                            'ges_1023',
-                        ),
-                    );
-                }
+                            }, 'ges_1023'),
+                        );
+                    }
 
-                return false;
-            },
-            'ges_1024',
-        ));
+                    return false;
+                }, 'ges_1024'),
+            );
 
-        this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(
-            () => new URL(el.href).hostname,
-            'ges_1025',
-        ));
-        this.hrefs = filtered_links.map((el: HTMLLinkElement): string => err(
-            () => el.href,
-            'ges_1026',
-        ));
-    },
-    'ges_1027');
+            this.hostnames = filtered_links.map((el: HTMLLinkElement): string =>
+                err(() => new URL(el.href).hostname, 'ges_1025'),
+            );
+            this.hrefs = filtered_links.map((el: HTMLLinkElement): string =>
+                err(() => el.href, 'ges_1026'),
+            );
+        }, 'ges_1027');
 
-    private get_footer_el = (): void => err(
-        () => {
+    private get_footer_el = (): void =>
+        err(() => {
             this.footer_el = s<HTMLElement>('[role="contentinfo"]');
-        },
-        'ges_1028',
-    );
+        }, 'ges_1028');
 
-    private get_related_searches_el = (): void => err(
-        () => {
+    private get_related_searches_el = (): void =>
+        err(() => {
             this.related_searches_el = s<HTMLElement>('#brs, #bres');
-        },
-        'ges_1029',
-    );
+        }, 'ges_1029');
 
-    private get_pagination_el = (): void => err(
-        () => {
+    private get_pagination_el = (): void =>
+        err(() => {
             this.pagination_el = s<HTMLElement>('#xjs');
-        },
-        'ges_1030',
-    );
+        }, 'ges_1030');
 
-    public get_img_viewer = (): void => err(
-        () => {
+    public get_img_viewer = (): void =>
+        err(() => {
             const links = sa<HTMLLinkElement>('a[role="link"]');
 
             if (n(links)) {
-                this.img_viewer = [...links].find(
-                    (link: HTMLLinkElement): boolean => err(() => {
-                        const img = sb<HTMLImageElement>(
-                            link,
-                            'img',
-                        );
+                this.img_viewer = [...links].find((link: HTMLLinkElement): boolean =>
+                    err(() => {
+                        const img = sb<HTMLImageElement>(link, 'img');
                         if (n(img)) {
-                            return Boolean(img.offsetWidth)
-                                   && n(img.style)
-                                   && n(img.style.height);
+                            return Boolean(img.offsetWidth) && n(img.style) && n(img.style.height);
                         }
 
                         return false;
-                    },
-                    'ges_1031'),
+                    }, 'ges_1031'),
                 );
             }
-        },
-        'ges_1032',
-    );
+        }, 'ges_1032');
 
-    public get_img_in_img_viewer = (): HTMLImageElement | undefined => err(
-        () => sb<HTMLImageElement>(
-            this.img_viewer,
-            'img',
-        ),
-        'ges_1033',
-    );
+    public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
+        err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1033');
 
-    public get_search_result_body = (): void => err(
-        () => {
+    public get_search_result_body = (): void =>
+        err(() => {
             this.search_result_body = s<HTMLElement>('#rso');
-        },
-        'ges_1034',
-    );
+        }, 'ges_1034');
 
-    public get_next_page_href = (): void => err(() => {
-        if (!this.loaded_all_pages) {
-            const iframe_doc: Document | undefined = s_infinite_scroll.Iframe.i().get_iframe_doc();
-            const page_btn_els = sab<HTMLLinkElement>(
-                iframe_doc || document,
-                '[href*="start="]',
-            );
+    public get_next_page_href = (): void =>
+        err(() => {
+            if (!this.loaded_all_pages) {
+                const iframe_doc: Document | undefined =
+                    s_infinite_scroll.Iframe.i().get_iframe_doc();
+                const page_btn_els = sab<HTMLLinkElement>(
+                    iframe_doc || document,
+                    '[href*="start="]',
+                );
 
-            if (n(page_btn_els)) {
-                const next_page_el = _.last(page_btn_els);
+                if (n(page_btn_els)) {
+                    const next_page_el = _.last(page_btn_els);
 
-                if (n(next_page_el)) {
-                    const omnibox_start_val: number = this.get_page_val(
-                        { next_page_href: window.location.href },
-                    );
-                    const next_start_val: number = this.get_page_val(
-                        { next_page_href: next_page_el.href },
-                    );
-                    const previous_start_val: number = this.get_page_val(
-                        { next_page_href: this.next_page_href },
-                    );
+                    if (n(next_page_el)) {
+                        const omnibox_start_val: number = this.get_page_val({
+                            next_page_href: window.location.href,
+                        });
+                        const next_start_val: number = this.get_page_val({
+                            next_page_href: next_page_el.href,
+                        });
+                        const previous_start_val: number = this.get_page_val({
+                            next_page_href: this.next_page_href,
+                        });
 
-                    if (
-                        next_start_val > omnibox_start_val
-                        && (
-                            !n(this.next_page_href)
-                            || next_start_val > previous_start_val
-                        )
-                    ) {
-                        this.next_page_href = next_page_el.href;
-                    } else {
-                        this.loaded_all_pages = true;
-                        this.next_page_href = undefined;
+                        if (
+                            next_start_val > omnibox_start_val &&
+                            (!n(this.next_page_href) || next_start_val > previous_start_val)
+                        ) {
+                            this.next_page_href = next_page_el.href;
+                        } else {
+                            this.loaded_all_pages = true;
+                            this.next_page_href = undefined;
+                        }
                     }
                 }
             }
-        }
-    },
-    'ges_1035');
+        }, 'ges_1035');
 
-    private check_if_el_has_immediate_text = ({ el }: { el: HTMLElement }): boolean => err(
-        () => {
+    private check_if_el_has_immediate_text = ({ el }: { el: HTMLElement }): boolean =>
+        err(() => {
             const children: NodeListOf<ChildNode> = el.childNodes;
 
-            return [...children].some((el_2: ChildNode): boolean => err(
-                () => el_2.nodeType === Node.TEXT_NODE
-                      || x.matches(
-                          el_2 as any,
-                          `.${new Suffix('icons').result}`,
-                      ),
-                'ges_1036',
-            ));
-        },
-        'ges_1037',
-    );
+            return [...children].some((el_2: ChildNode): boolean =>
+                err(
+                    () =>
+                        el_2.nodeType === Node.TEXT_NODE ||
+                        x.matches(el_2 as any, `.${new Suffix('icons').result}`),
+                    'ges_1036',
+                ),
+            );
+        }, 'ges_1037');
 
-    private get_el_hsv_color = (
-        {
-            el,
-            key,
-        }: {
-            el: HTMLElement;
-            key: string
-        },
-    ): any => err(() => {
-        const color_hex: string = x.get_css_val(
-            el,
-            key,
-        );
+    private get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): any =>
+        err(() => {
+            const color_hex: string = x.get_css_val(el, key);
 
-        return tinycolor(color_hex).toHsv();
-    },
-    'ges_1038');
+            return tinycolor(color_hex).toHsv();
+        }, 'ges_1038');
 
-    private text_is_bold = ({ el }: { el: HTMLElement }): boolean => err(() => {
-        const font_weight: number = x.get_numeric_css_val(
-            el,
-            'font-weight',
-        );
+    private text_is_bold = ({ el }: { el: HTMLElement }): boolean =>
+        err(() => {
+            const font_weight: number = x.get_numeric_css_val(el, 'font-weight');
 
-        return (
-            font_weight >= 600
-            && font_weight <= 700
-        );
-    },
-    'ges_1039');
+            return font_weight >= 600 && font_weight <= 700;
+        }, 'ges_1039');
 
-    private get_page_val = (
-        { next_page_href }: { next_page_href: string | undefined },
-    ): number => err(() => {
-        if (n(next_page_href)) {
-            const match: RegExpMatchArray | null = next_page_href.match(/start=\d*/);
+    private get_page_val = ({ next_page_href }: { next_page_href: string | undefined }): number =>
+        err(() => {
+            if (n(next_page_href)) {
+                const match: RegExpMatchArray | null = next_page_href.match(/start=\d*/);
 
-            if (n(match)) {
-                return +match[0].replace(
-                    /start=/,
-                    '',
-                );
+                if (n(match)) {
+                    return +match[0].replace(/start=/, '');
+                }
             }
-        }
 
-        return 0;
-    },
-    'ges_1040');
+            return 0;
+        }, 'ges_1040');
 }

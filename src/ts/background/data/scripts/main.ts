@@ -11,7 +11,7 @@ export class Main {
     }
 
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() { }
+    private constructor() {}
 
     public defaults: any = {
         current_section: 'all',
@@ -46,26 +46,21 @@ export class Main {
         },
         infinite_scrolling_enabled: true,
         last_ip_to_country_csv_char_count: 0,
-    }
+    };
 
-    public update_settings = (
-        { settings }:
-        { settings?: any } = {},
-    ): Promise<void> => err_async(async () => {
-        const settings_final: any = n(settings)
-            ? settings
-            : this.defaults;
+    public update_settings = ({ settings }: { settings?: any } = {}): Promise<void> =>
+        err_async(async () => {
+            const settings_final: any = n(settings) ? settings : this.defaults;
 
-        await ext.storage_set(settings_final);
-    },
-    'ges_1001');
+            await ext.storage_set(settings_final);
+        }, 'ges_1001');
 
-    public set_from_storage = (): Promise<void> => err_async(async () => {
-        const settings = await ext.storage_get();
+    public set_from_storage = (): Promise<void> =>
+        err_async(async () => {
+            const settings = await ext.storage_get();
 
-        if (_.isEmpty(settings)) {
-            this.update_settings();
-        }
-    },
-    'ges_1002');
+            if (_.isEmpty(settings)) {
+                this.update_settings();
+            }
+        }, 'ges_1002');
 }

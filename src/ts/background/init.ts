@@ -1,8 +1,5 @@
 import { s_db } from 'shared/internal';
-import {
-    s_data,
-    s_ip_to_country,
-} from 'background/internal';
+import { s_data, s_ip_to_country } from 'background/internal';
 
 export const init = async (): Promise<void> => {
     await s_data.Main.i().set_from_storage();

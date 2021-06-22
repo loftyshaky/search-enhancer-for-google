@@ -1,8 +1,5 @@
 import { Utils } from '@loftyshaky/shared';
-import {
-    o_img_action_bar,
-    s_img_action_bar,
-} from 'content_script/internal';
+import { o_img_action_bar, s_img_action_bar } from 'content_script/internal';
 
 export class Btns {
     private static i0: Btns;
@@ -49,5 +46,5 @@ export class Btns {
             svg_name: 'ContentCopy',
             event_callback: s_img_action_bar.Action.i().run,
         }),
-    ]
+    ];
 }

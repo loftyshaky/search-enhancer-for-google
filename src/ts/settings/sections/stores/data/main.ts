@@ -1,13 +1,7 @@
-import {
-    makeObservable,
-    computed,
-} from 'mobx';
+import { makeObservable, computed } from 'mobx';
 
 import { Utils } from '@loftyshaky/shared';
-import {
-    o_inputs,
-    o_color,
-} from '@loftyshaky/shared/inputs';
+import { o_inputs, o_color } from '@loftyshaky/shared/inputs';
 import { d_settings } from '@loftyshaky/shared/settings';
 import { d_sections } from 'settings/internal';
 
@@ -42,18 +36,13 @@ export class Main {
     }
 
     private constructor() {
-        makeObservable(
-            this,
-            {
-                current_section: computed,
-            },
-        );
+        makeObservable(this, {
+            current_section: computed,
+        });
     }
 
     public get current_section() {
-        return n(data.settings.current_section)
-            ? data.settings.current_section
-            : 'all';
+        return n(data.settings.current_section) ? data.settings.current_section : 'all';
     }
 
     private options: any = {
@@ -61,7 +50,7 @@ export class Main {
             new o_inputs.Option({ name: 'left' }),
             new o_inputs.Option({ name: 'right' }),
         ],
-    }
+    };
 
     public sections: any = [
         ...[
@@ -76,16 +65,12 @@ export class Main {
                     new o_color.Color({
                         name: 'keyword_color',
                         event_callback: d_sections.Val.i().change,
-                        select_palette_color_callback: (
-                            d_sections.Val.i().save_selected_palette_color
-                        ),
+                        select_palette_color_callback:
+                            d_sections.Val.i().save_selected_palette_color,
                         hide_color_help_callback: d_sections.Visibility.i().hide_color_help,
-                        remove_color_callback: (
-                            d_sections.Val.i().remove_color_callback
-                        ),
-                        restore_default_palette_callback: (
-                            d_sections.Val.i().restore_default_palette_callback
-                        ),
+                        remove_color_callback: d_sections.Val.i().remove_color_callback,
+                        restore_default_palette_callback:
+                            d_sections.Val.i().restore_default_palette_callback,
                     }),
                     new o_inputs.Checkbox({
                         name: 'enable_infinite_scrolling',
@@ -187,66 +172,66 @@ export class Main {
                 ],
             }),
         ],
-        ...d_settings.Sections.i().make_shared_sections(
-            {
-                download_back_up_callback: ext.storage_get,
-                upload_back_up_callback: d_sections.Restore.i().restore_back_up,
-                restore_defaults_callback: () => d_sections.Restore.i().restore_confirm(),
-                input_change_val_callback: d_sections.Val.i().change,
-                admin_inputs: [
-                    new o_inputs.Checkbox({
-                        name: 'allow_favicons_from_google',
-                        val_accessor: 'settings.favicon_providers.google',
-                        event_callback: d_sections.Val.i().change,
-                    }),
-                    new o_inputs.Checkbox({
-                        name: 'allow_favicons_from_yandex',
-                        val_accessor: 'settings.favicon_providers.yandex',
-                        event_callback: d_sections.Val.i().change,
-                    }),
-                    new o_inputs.Checkbox({
-                        name: 'allow_favicons_from_duckduckgo',
-                        val_accessor: 'settings.favicon_providers.duckduckgo',
-                        event_callback: d_sections.Val.i().change,
-                    }),
-                ],
-            },
-        ),
-        ...[new o_inputs.Section({
-            name: 'links',
-            inputs: [
-                new o_inputs.Link({
-                    name: 'privacy_policy',
-                    href: 'http://bit.ly/cws-privacy-policy',
+        ...d_settings.Sections.i().make_shared_sections({
+            download_back_up_callback: ext.storage_get,
+            upload_back_up_callback: d_sections.Restore.i().restore_back_up,
+            restore_defaults_callback: () => d_sections.Restore.i().restore_confirm(),
+            input_change_val_callback: d_sections.Val.i().change,
+            admin_inputs: [
+                new o_inputs.Checkbox({
+                    name: 'allow_favicons_from_google',
+                    val_accessor: 'settings.favicon_providers.google',
+                    event_callback: d_sections.Val.i().change,
                 }),
-                new o_inputs.Link({
-                    name: 'rate',
-                    browser: env.browser,
-                    force_resolve: true,
+                new o_inputs.Checkbox({
+                    name: 'allow_favicons_from_yandex',
+                    val_accessor: 'settings.favicon_providers.yandex',
+                    event_callback: d_sections.Val.i().change,
                 }),
-                new o_inputs.Link({
-                    name: 'help_translating',
-                    href: 'https://bit.ly/help-translating',
-                }),
-                new o_inputs.Link({
-                    name: 'facebook_page',
-                    href: 'http://bit.ly/browservery',
-                }),
-                new o_inputs.Link({
-                    name: 'support_page',
-                    href: 'http://bit.ly/browservery-support',
+                new o_inputs.Checkbox({
+                    name: 'allow_favicons_from_duckduckgo',
+                    val_accessor: 'settings.favicon_providers.duckduckgo',
+                    event_callback: d_sections.Val.i().change,
                 }),
             ],
-        })],
+        }),
+        ...[
+            new o_inputs.Section({
+                name: 'links',
+                inputs: [
+                    new o_inputs.Link({
+                        name: 'privacy_policy',
+                        href: 'http://bit.ly/cws-privacy-policy',
+                    }),
+                    new o_inputs.Link({
+                        name: 'rate',
+                        browser: env.browser,
+                        force_resolve: true,
+                    }),
+                    new o_inputs.Link({
+                        name: 'help_translating',
+                        href: 'https://bit.ly/help-translating',
+                    }),
+                    new o_inputs.Link({
+                        name: 'facebook_page',
+                        href: 'http://bit.ly/browservery',
+                    }),
+                    new o_inputs.Link({
+                        name: 'support_page',
+                        href: 'http://bit.ly/browservery-support',
+                    }),
+                ],
+            }),
+        ],
     ];
 
-    public change_section_val = (): void => err(() => {
-        data.settings.current_section = d_settings.Sections.i().current_section;
+    public change_section_val = (): void =>
+        err(() => {
+            data.settings.current_section = d_settings.Sections.i().current_section;
 
-        ext.send_msg({
-            msg: 'update_settings',
-            settings: { current_section: d_settings.Sections.i().current_section },
-        });
-    },
-    'ges_1103');
+            ext.send_msg({
+                msg: 'update_settings',
+                settings: { current_section: d_settings.Sections.i().current_section },
+            });
+        }, 'ges_1103');
 }

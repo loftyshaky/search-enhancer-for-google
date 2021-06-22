@@ -9,14 +9,14 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public dir: string = 'ltr'
+    public dir: string = 'ltr';
 
-    public get = (): void => err(() => {
-        const { dir } = document;
+    public get = (): void =>
+        err(() => {
+            const { dir } = document;
 
-        if (dir !== '') {
-            this.dir = dir;
-        }
-    },
-    'ges_1102');
+            if (dir !== '') {
+                this.dir = dir;
+            }
+        }, 'ges_1102');
 }

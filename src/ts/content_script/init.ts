@@ -1,8 +1,5 @@
 import { TabIndex } from '@loftyshaky/shared';
-import {
-    app_id,
-    s_db,
-} from 'shared/internal';
+import { app_id, s_db } from 'shared/internal';
 import {
     s_actions,
     s_infinite_scroll,
@@ -22,20 +19,11 @@ export const init = async (): Promise<void> => {
         app_id,
     });
 
-    window.addEventListener(
-        'scroll',
-        s_infinite_scroll.Scroll.i().observe,
-    );
-    window.addEventListener(
-        'scroll',
-        u_side_panel.Page.i().set_current,
-    );
+    window.addEventListener('scroll', s_infinite_scroll.Scroll.i().observe);
+    window.addEventListener('scroll', u_side_panel.Page.i().set_current);
     document.addEventListener(
         'mouseup',
         u_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout,
     );
-    document.addEventListener(
-        'mousemove',
-        u_img_action_bar.Visibility.i().change,
-    );
+    document.addEventListener('mousemove', u_img_action_bar.Visibility.i().change);
 };

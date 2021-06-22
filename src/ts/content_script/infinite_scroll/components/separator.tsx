@@ -1,10 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    u_infinite_scroll,
-    p_infinite_scroll,
-} from 'content_script/internal';
+import { u_infinite_scroll, p_infinite_scroll } from 'content_script/internal';
 
 export const Separator = observer((props: p_infinite_scroll.Separator) => {
     const { i } = props;

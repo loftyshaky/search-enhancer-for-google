@@ -6,10 +6,5 @@ export const SpinnerItem = (props: p_infinite_scroll.SpinnerItem) => {
     const { i } = props;
     const name: string = 'spinner';
 
-    return (
-        <div
-            id={`${name}_${i}`}
-            className={name}
-        />
-    );
+    return <div id={`${name}_${i}`} className={name} />;
 };

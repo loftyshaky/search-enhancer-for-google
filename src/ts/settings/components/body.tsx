@@ -14,8 +14,7 @@ export const Body = observer(() => {
         }
 
         run();
-    },
-    []);
+    }, []);
 
     return (
         <Settings

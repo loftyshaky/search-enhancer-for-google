@@ -1,130 +1,105 @@
 import _ from 'lodash';
-import {
-    makeObservable,
-    action,
-    runInAction,
-    toJS,
-} from 'mobx';
+import { makeObservable, action, runInAction, toJS } from 'mobx';
 
 export class Restore {
     private static i0: Restore;
 
     public static i(): Restore {
-    // eslint-disable-next-line no-return-assign
+        // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
 
     private constructor() {
-        makeObservable(
-            this,
-            {
-                override: action,
-            },
-        );
+        makeObservable(this, {
+            override: action,
+        });
     }
 
-    private restore = (
-        { settings }: { settings?: any } = {},
-    ): Promise<void> => err_async(async () => {
-        const { show_color_help } = data.settings;
+    private restore = ({ settings }: { settings?: any } = {}): Promise<void> =>
+        err_async(async () => {
+            const { show_color_help } = data.settings;
 
-        await this.set({ settings });
+            await this.set({ settings });
 
-        await ext.send_msg_resp(
-            {
+            await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings,
-            },
-        );
+            });
 
-        this.override({ show_color_help });
-    },
-    'ges_1104');
+            this.override({ show_color_help });
+        }, 'ges_1104');
 
-    public restore_confirm = (
-        { settings }: { settings?: any } = {},
-    ): Promise<void> => err_async(async () => {
-        // eslint-disable-next-line no-alert
-        const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
+    public restore_confirm = ({ settings }: { settings?: any } = {}): Promise<void> =>
+        err_async(async () => {
+            // eslint-disable-next-line no-alert
+            const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
 
-        if (confirmed_restore) {
-            await this.restore({ settings });
+            if (confirmed_restore) {
+                await this.restore({ settings });
 
-            ext.iterate_all_tabs({ msg: 'rerun_actions' });
-        }
-    },
-    'ges_1105');
+                ext.iterate_all_tabs({ msg: 'rerun_actions' });
+            }
+        }, 'ges_1105');
 
-    private set = (
-        { settings }: { settings?: any } = {},
-    ): Promise<void> => err_async(async () => {
-        let settings_final: any;
+    private set = ({ settings }: { settings?: any } = {}): Promise<void> =>
+        err_async(async () => {
+            let settings_final: any;
 
-        if (_.isEmpty(settings)) {
-            const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+            if (_.isEmpty(settings)) {
+                const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-            settings_final = default_settings;
-        } else {
-            settings_final = settings;
-        }
+                settings_final = default_settings;
+            } else {
+                settings_final = settings;
+            }
 
-        runInAction((): void => {
-            data.settings = settings_final;
-        });
-    },
-    'ges_1106');
+            runInAction((): void => {
+                data.settings = settings_final;
+            });
+        }, 'ges_1106');
 
-    public set_from_storage = (): Promise<void> => err_async(async () => {
-        const settings = await ext.storage_get();
+    public set_from_storage = (): Promise<void> =>
+        err_async(async () => {
+            const settings = await ext.storage_get();
 
-        if (_.isEmpty(settings)) {
-            const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+            if (_.isEmpty(settings)) {
+                const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-            await ext.storage_set(default_settings);
-        }
+                await ext.storage_set(default_settings);
+            }
 
-        if (!_.isEqual(
-            toJS(data.settings),
-            settings,
-        )) {
-            this.set({ settings });
-        }
-    },
-    'ges_1107');
+            if (!_.isEqual(toJS(data.settings), settings)) {
+                this.set({ settings });
+            }
+        }, 'ges_1107');
 
-    public restore_back_up = (
-        { data_obj }: { data_obj: any },
-    ): Promise<void> => err_async(async () => {
-        const { show_color_help } = data.settings;
+    public restore_back_up = ({ data_obj }: { data_obj: any }): Promise<void> =>
+        err_async(async () => {
+            const { show_color_help } = data.settings;
 
-        const data_obj_clone: any = _.cloneDeep(data_obj);
+            const data_obj_clone: any = _.cloneDeep(data_obj);
 
-        await this.set({ settings: data_obj });
+            await this.set({ settings: data_obj });
 
-        await ext.send_msg_resp(
-            {
+            await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings: data_obj_clone,
-            },
-        );
+            });
 
-        this.override({ show_color_help });
+            this.override({ show_color_help });
 
-        ext.iterate_all_tabs({ msg: 'rerun_actions' });
-    },
-    'ges_1108');
+            ext.iterate_all_tabs({ msg: 'rerun_actions' });
+        }, 'ges_1108');
 
-    public override = ({ show_color_help }: { show_color_help: boolean }): void => err(() => {
-        if (!show_color_help) {
-            data.settings.show_color_help = false;
+    public override = ({ show_color_help }: { show_color_help: boolean }): void =>
+        err(() => {
+            if (!show_color_help) {
+                data.settings.show_color_help = false;
 
-            ext.send_msg_resp(
-                {
+                ext.send_msg_resp({
                     msg: 'update_settings',
                     settings: { show_color_help: false },
-                },
-            );
-        }
-    },
-    'ges_1109');
+                });
+            }
+        }, 'ges_1109');
 }

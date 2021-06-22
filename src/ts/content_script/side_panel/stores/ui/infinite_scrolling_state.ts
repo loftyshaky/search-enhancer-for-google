@@ -1,8 +1,4 @@
-import {
-    makeObservable,
-    computed,
-    action,
-} from 'mobx';
+import { makeObservable, computed, action } from 'mobx';
 
 import { d_shared } from 'shared/internal';
 import { s_infinite_scroll } from 'content_script/internal';
@@ -16,31 +12,26 @@ export class InfiniteScrollingState {
     }
 
     private constructor() {
-        makeObservable(
-            this,
-            {
-                disabled_cls: computed,
-                change: action,
-            },
-        );
+        makeObservable(this, {
+            disabled_cls: computed,
+            change: action,
+        });
     }
 
     get disabled_cls() {
-        return data.settings.infinite_scrolling_enabled
-            ? ''
-            : 'disabled';
+        return data.settings.infinite_scrolling_enabled ? '' : 'disabled';
     }
 
-    public change = (): void => err(() => {
-        const new_state: boolean = !data.settings.infinite_scrolling_enabled;
-        d_shared.Data.i().change({
-            key: 'infinite_scrolling_enabled',
-            val: new_state,
-        });
+    public change = (): void =>
+        err(() => {
+            const new_state: boolean = !data.settings.infinite_scrolling_enabled;
+            d_shared.Data.i().change({
+                key: 'infinite_scrolling_enabled',
+                val: new_state,
+            });
 
-        if (new_state) {
-            s_infinite_scroll.Scroll.i().observe();
-        }
-    },
-    'ges_1087');
+            if (new_state) {
+                s_infinite_scroll.Scroll.i().observe();
+            }
+        }, 'ges_1087');
 }
