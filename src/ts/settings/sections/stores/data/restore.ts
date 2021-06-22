@@ -43,7 +43,7 @@ export class Restore {
 
     public restore_confirm = (
         { settings }: { settings?: any } = {},
-    ): Promise<void> => err(async () => {
+    ): Promise<void> => err_async(async () => {
         // eslint-disable-next-line no-alert
         const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
 

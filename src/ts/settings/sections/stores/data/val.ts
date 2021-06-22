@@ -30,7 +30,7 @@ export class Val {
 
     private os: string = '';
 
-    public get_os = (): Promise<void> => err(async () => {
+    public get_os = (): Promise<void> => err_async(async () => {
         const platform_info: Runtime.PlatformInfo = await browser.runtime.getPlatformInfo();
 
         this.os = platform_info.os;
@@ -48,7 +48,7 @@ export class Val {
     ): Promise<void> => err_async(async () => {
         let val: any;
 
-        const set_val = (): Promise<void> => err(async () => {
+        const set_val = (): Promise<void> => err_async(async () => {
             d_inputs.Val.i().set({
                 val,
                 input,
