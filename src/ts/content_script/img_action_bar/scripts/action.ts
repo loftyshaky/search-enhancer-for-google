@@ -33,7 +33,7 @@ export class Action {
             }
         }
     },
-    1109);
+    'ges_1047');
 
     private send_msg = (
         {
@@ -50,5 +50,5 @@ export class Action {
             img_url,
         });
     },
-    1111);
+    'ges_1048');
 }

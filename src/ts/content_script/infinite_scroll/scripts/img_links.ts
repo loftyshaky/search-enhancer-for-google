@@ -31,12 +31,12 @@ export class ImgLinks {
             );
         }
     },
-    1130);
+    'ges_1062');
 
     private open_img_link = function (this: HTMLLinkElement): void {
         err(() => {
             window.top.location.href = this.href;
         },
-        1129);
+        'ges_1063');
     };
 }

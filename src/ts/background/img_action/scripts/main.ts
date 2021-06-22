@@ -56,7 +56,7 @@ export class Main {
 
                     (browser.downloads as any).onDeterminingFilename.removeListener(suggest_dir);
                 },
-                1117);
+                'ges_1007');
 
                 (browser.downloads as any).onDeterminingFilename.addListener(suggest_dir);
             }
@@ -64,5 +64,5 @@ export class Main {
             await browser.downloads.download(download_item);
         }
     },
-    1110));
+    'ges_1008'));
 }

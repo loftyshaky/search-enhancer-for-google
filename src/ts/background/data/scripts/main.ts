@@ -58,7 +58,7 @@ export class Main {
 
         await ext.storage_set(settings_final);
     },
-    1006);
+    'ges_1001');
 
     public set_from_storage = (): Promise<void> => err_async(async () => {
         const settings = await ext.storage_get();
@@ -67,5 +67,5 @@ export class Main {
             this.update_settings();
         }
     },
-    1010);
+    'ges_1002');
 }

@@ -48,7 +48,7 @@ export class Main {
                 ): void => err(() => {
                     x.remove(icon_roots);
                 },
-                1102);
+                'ges_1074');
 
                 s_infinite_scroll.Iframe.i().iframes.forEach(
                     (iframe: HTMLIFrameElement) => err(() => {
@@ -63,7 +63,7 @@ export class Main {
                             }
                         }
                     },
-                    1123),
+                    'ges_1075'),
                 );
 
                 const icon_roots = sa<HTMLDivElement>(`.${new Suffix(name).result}`);
@@ -94,7 +94,7 @@ export class Main {
                         }
                     }
                 },
-                1031));
+                'ges_1076'));
             }
         } else if (
             name === 'img_action_bar'
@@ -110,7 +110,7 @@ export class Main {
 
                 u_img_action_bar.Position.i().set_margin();
             },
-            1105);
+            'ges_1077');
 
             const next_el: Element | null = s_el_parser.Main.i().img_viewer!.nextElementSibling;
 
@@ -128,7 +128,7 @@ export class Main {
             }
         }
     },
-    1030);
+    'ges_1078');
 
     public append_root = ({
         name,
@@ -196,20 +196,20 @@ export class Main {
                             content,
                         );
                     },
-                    1043),
+                    'ges_1079'),
                 );
             }
         }
     },
-    1100);
+    'ges_1080');
 
     public apply_root_parent_cls_to_title_els = (): void => err(() => {
         s_el_parser.Main.i().title_els.forEach((title_el): void => err(() => {
             this.apply_root_parent_cls_to_title_el({ title_el });
         },
-        1034));
+        'ges_1081'));
     },
-    1033);
+    'ges_1082');
 
     public apply_root_parent_cls_to_title_el = (
         { title_el }: {title_el: HTMLElement},
@@ -226,5 +226,5 @@ export class Main {
             );
         }
     },
-    1120);
+    'ges_1083');
 }

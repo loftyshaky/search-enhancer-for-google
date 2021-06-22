@@ -31,10 +31,10 @@ const observer = new MutationObserver((mutations: any): void => err(() => {
                 s_actions.Main.i().run_reload_actions_2();
             }
         },
-        1036,
+        'ges_1072',
     ));
 },
-1035));
+'ges_1073'));
 
 observer.observe(
     document.body,

@@ -27,7 +27,7 @@ export class Main {
                         cls,
                     );
                 },
-                1028,
+                'ges_1068',
             ));
             [
                 document,
@@ -47,10 +47,10 @@ export class Main {
                     );
                 }
             },
-            1069,
+            'ges_1069',
             { silent: true }));
         },
-        1027,
+        'ges_1070',
         { silent: true },
     );
 }

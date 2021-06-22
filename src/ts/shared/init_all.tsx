@@ -84,7 +84,7 @@ export class InitAll {
 
                 TabIndex.i().bind_set_input_type_f();
             },
-            1013);
+            'ges_1122');
 
             render(
                 <CrashHandler><Body /></CrashHandler>,
@@ -109,7 +109,7 @@ export class InitAll {
                 },
             );
         },
-        1003);
+        'ges_1123');
 
         const render_spinner = (): Promise<void> => err_async(async () => {
             const { c_infinite_scroll } = await import('content_script/internal');
@@ -125,7 +125,7 @@ export class InitAll {
                 },
             );
         },
-        1072);
+        'ges_1124');
 
         const render_last_end_msg = (): Promise<void> => err_async(async () => {
             const { c_infinite_scroll } = await import('content_script/internal');
@@ -141,7 +141,7 @@ export class InitAll {
                 },
             );
         },
-        1125);
+        'ges_1125');
 
         const render_side_panel = (): Promise<void> => err_async(async () => {
             const { c_side_panel } = await import('content_script/internal');
@@ -163,13 +163,13 @@ export class InitAll {
                             (): void => err(() => {
                                 NoTr.i().disable({ el: side_panel_root });
                             },
-                            1079),
+                            'ges_1126'),
                         );
                     }
                 },
             );
         },
-        1074);
+        'ges_1127');
 
         render(
             <Error app_id={app_id} />,
@@ -205,7 +205,7 @@ export class InitAll {
 
                                             render_settings();
                                         },
-                                        1012),
+                                        'ges_1128'),
                                     );
                                 }
                             }
@@ -219,7 +219,7 @@ export class InitAll {
             },
         );
     },
-    1000);
+    'ges_1129');
 
     private create_root = (
         {
@@ -249,7 +249,7 @@ export class InitAll {
 
         return root;
     },
-    1001);
+    'ges_1130');
 
     private set_page_title = (): void => err(() => {
         const title_el = s<HTMLTitleElement>('title');
@@ -258,5 +258,5 @@ export class InitAll {
             title_el.textContent = ext.msg(`${page}_title_text`);
         }
     },
-    1002);
+    'ges_1131');
 }

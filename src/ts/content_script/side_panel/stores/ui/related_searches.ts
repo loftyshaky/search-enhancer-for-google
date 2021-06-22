@@ -47,12 +47,12 @@ export class RelatedSearches {
         this.remembered_position = current_position;
         u_side_panel.Scroll.i().remembered_position = current_position;
     },
-    1097);
+    'ges_1091');
 
     public reset_position = (): void => err(() => {
         this.remembered_position = 'none';
     },
-    1098);
+    'ges_1092');
 
     public jump_to = (e: any): void => err(() => {
         if (n(e)) {
@@ -88,5 +88,5 @@ export class RelatedSearches {
             this.reset_position();
         }
     },
-    1082);
+    'ges_1093');
 }

@@ -47,9 +47,9 @@ export class Position {
                 );
             }
         },
-        1057));
+        'ges_1084'));
     },
-    1056);
+    'ges_1085');
 
     public remove_offset_classes = (): void => err(() => { // needed because in some cases icons go outside container. ex: https://www.google.com/search?q=infinite+scroll&oq=infinite&aqs=chrome.4.69i57j46j0j46j0j69i61j69i60l2.7170j0j1&sourceid=chrome&ie=UTF-8
         x.remove_cls(
@@ -61,5 +61,5 @@ export class Position {
             s_roots.Position.i().offset_2_cls,
         );
     },
-    1135);
+    'ges_1086');
 }

@@ -98,7 +98,7 @@ export class Main {
             }
         }
     },
-    1032);
+    'ges_1041');
 
     public generate_server_locations = async (
         { url }: { url: string },
@@ -133,7 +133,7 @@ export class Main {
             });
         }
     },
-    1041,
+    'ges_1042',
     { silent: true });
 
     public get_url = (
@@ -149,7 +149,7 @@ export class Main {
             ? 'hrefs'
             : 'hostnames'][i]
     ),
-    1071);
+    'ges_1043');
 
     public get_show_icon_bool = ({
         type,
@@ -172,14 +172,14 @@ export class Main {
             ),
         );
     },
-    1089);
+    'ges_1044');
 
     public icon_visibility_cls = ({ show_icon }: { show_icon: boolean }): string => err(() => (
         show_icon
             ? ''
             : 'none'
     ),
-    1090);
+    'ges_1045');
 
     public show_placeholder = ({
         type,
@@ -196,7 +196,7 @@ export class Main {
             )
         )
     ),
-    1121);
+    'ges_1046');
 
     public show_icon_w = computedFn(
         function (

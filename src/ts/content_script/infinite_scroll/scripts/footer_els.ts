@@ -20,5 +20,5 @@ export class FooterEls {
             s<HTMLElement>(`.${new Suffix('load_end_msg').result}`),
         );
     },
-    1073);
+    'ges_1052');
 }

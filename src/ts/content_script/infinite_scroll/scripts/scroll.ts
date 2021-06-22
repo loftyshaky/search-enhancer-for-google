@@ -33,5 +33,5 @@ export class Scroll {
             );
         }
     },
-    1064);
+    'ges_1064');
 }

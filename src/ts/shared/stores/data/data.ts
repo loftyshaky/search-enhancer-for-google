@@ -31,7 +31,7 @@ export class Data {
             data.settings = settings_final;
         });
     },
-    1007);
+    'ges_1132');
 
     public change = (
         {
@@ -52,7 +52,7 @@ export class Data {
             rerun_actions: true,
         });
     },
-    1080);
+    'ges_1133');
 
     public set_from_storage = (): Promise<void> => err_async(async () => {
         const settings = await ext.storage_get();
@@ -70,5 +70,5 @@ export class Data {
             this.set({ settings });
         }
     },
-    1008);
+    'ges_1134');
 }

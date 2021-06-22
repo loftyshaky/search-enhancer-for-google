@@ -54,7 +54,7 @@ export class Scroll {
     public scroll_to_position = ({ position }: {position: number}): void => err(() => {
         document.documentElement.scrollTop = position;
     },
-    1099);
+    'ges_1094');
 
     public get_current_position = (): number => err(() => {
         const doc = document.documentElement;
@@ -67,17 +67,17 @@ export class Scroll {
                 || 0
         );
     },
-    1096);
+    'ges_1095');
 
     public remember_position = (): void => err(() => {
         this.remembered_position = this.get_current_position();
     },
-    1092);
+    'ges_1096');
 
     public reset_position = (): void => err(() => {
         this.remembered_position = 'none';
     },
-    1093);
+    'ges_1097');
 
     public remember_scrolling_position_0_35_seconds = (
         { keyboard_call }: { keyboard_call: boolean },
@@ -118,12 +118,12 @@ export class Scroll {
             );
         }
     },
-    1094);
+    'ges_1098');
 
     public stop_remember_scrolling_position_0_35_seconds_timeout = (): void => err(() => {
         clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout);
     },
-    1095);
+    'ges_1099');
 
     public scroll = (e: MouseEvent): void => err(() => {
         if (this.middle_button_holded_more_than_0_35_seconds) {
@@ -157,5 +157,5 @@ export class Scroll {
             }
         }
     },
-    1091);
+    'ges_1100');
 }

@@ -51,7 +51,7 @@ export class Visibility {
             }
         }
     },
-    1108);
+    'ges_1051');
 
     public get visibility_cls() {
         return data.settings.always_show_img_action_bar

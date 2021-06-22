@@ -52,7 +52,7 @@ export class Main {
 
         return icon_url;
     },
-    1039);
+    'ges_1003');
 
     private get_favicon_url_inner = (
         {
@@ -79,7 +79,7 @@ export class Main {
 
         return base64;
     },
-    1133);
+    'ges_1004');
 
     public get_server_info = async (
         { url }: { url: string },
@@ -107,7 +107,7 @@ export class Main {
         } catch (error_obj) {
             show_err_ribbon(
                 error_obj,
-                1044,
+                'ges_1005',
             );
 
             return {
@@ -117,5 +117,5 @@ export class Main {
             };
         }
     },
-    1042);
+    'ges_1006');
 }

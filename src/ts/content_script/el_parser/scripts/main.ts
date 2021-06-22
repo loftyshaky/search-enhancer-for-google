@@ -43,7 +43,7 @@ export class Main {
         this.get_img_viewer();
         this.get_search_result_body();
     },
-    1018);
+    'ges_1017');
 
     private get_els_of_all_frames = (
         { selector }: { selector: string },
@@ -70,12 +70,12 @@ export class Main {
                     ];
                 }
             },
-            1068),
+            'ges_1018'),
         );
 
         return all_els;
     },
-    1067);
+    'ges_1019');
 
     private get_keyword_els = (): void => err(
         () => {
@@ -88,7 +88,7 @@ export class Main {
                         new Suffix('keyword').result,
                     );
                 },
-                1052,
+                'ges_1020',
             ));
 
             this.keyword_els = bold_els.filter((el: HTMLElement): boolean => err(
@@ -105,10 +105,10 @@ export class Main {
                            && this.text_is_bold({ el })
                            && this.check_if_el_has_immediate_text({ el });
                 },
-                1023,
+                'ges_1021',
             ));
         },
-        1022,
+        'ges_1022',
     );
 
     private get_title_els_and_hostnames = (): void => err(() => {
@@ -198,46 +198,46 @@ export class Main {
                                     this.title_els.push(el_2);
                                 }
                             },
-                            1021,
+                            'ges_1023',
                         ),
                     );
                 }
 
                 return false;
             },
-            1020,
+            'ges_1024',
         ));
 
         this.hostnames = filtered_links.map((el: HTMLLinkElement): string => err(
             () => new URL(el.href).hostname,
-            1029,
+            'ges_1025',
         ));
         this.hrefs = filtered_links.map((el: HTMLLinkElement): string => err(
             () => el.href,
-            1070,
+            'ges_1026',
         ));
     },
-    1019);
+    'ges_1027');
 
     private get_footer_el = (): void => err(
         () => {
             this.footer_el = s<HTMLElement>('[role="contentinfo"]');
         },
-        1053,
+        'ges_1028',
     );
 
     private get_related_searches_el = (): void => err(
         () => {
             this.related_searches_el = s<HTMLElement>('#brs, #bres');
         },
-        1081,
+        'ges_1029',
     );
 
     private get_pagination_el = (): void => err(
         () => {
             this.pagination_el = s<HTMLElement>('#xjs');
         },
-        1083,
+        'ges_1030',
     );
 
     public get_img_viewer = (): void => err(
@@ -259,11 +259,11 @@ export class Main {
 
                         return false;
                     },
-                    1068),
+                    'ges_1031'),
                 );
             }
         },
-        1103,
+        'ges_1032',
     );
 
     public get_img_in_img_viewer = (): HTMLImageElement | undefined => err(
@@ -271,14 +271,14 @@ export class Main {
             this.img_viewer,
             'img',
         ),
-        1106,
+        'ges_1033',
     );
 
     public get_search_result_body = (): void => err(
         () => {
             this.search_result_body = s<HTMLElement>('#rso');
         },
-        1106,
+        'ges_1034',
     );
 
     public get_next_page_href = (): void => err(() => {
@@ -319,7 +319,7 @@ export class Main {
             }
         }
     },
-    1055);
+    'ges_1035');
 
     private check_if_el_has_immediate_text = ({ el }: { el: HTMLElement }): boolean => err(
         () => {
@@ -331,10 +331,10 @@ export class Main {
                           el_2 as any,
                           `.${new Suffix('icons').result}`,
                       ),
-                1025,
+                'ges_1036',
             ));
         },
-        1024,
+        'ges_1037',
     );
 
     private get_el_hsv_color = (
@@ -353,7 +353,7 @@ export class Main {
 
         return tinycolor(color_hex).toHsv();
     },
-    1026);
+    'ges_1038');
 
     private text_is_bold = ({ el }: { el: HTMLElement }): boolean => err(() => {
         const font_weight: number = x.get_numeric_css_val(
@@ -366,7 +366,7 @@ export class Main {
             && font_weight <= 700
         );
     },
-    1040);
+    'ges_1039');
 
     private get_page_val = (
         { next_page_href }: { next_page_href: string | undefined },
@@ -384,5 +384,5 @@ export class Main {
 
         return 0;
     },
-    1065);
+    'ges_1040');
 }

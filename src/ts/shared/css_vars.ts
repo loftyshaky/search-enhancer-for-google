@@ -34,5 +34,5 @@ export class CssVars {
             },
         );
     },
-    1011);
+    'ges_1120');
 }

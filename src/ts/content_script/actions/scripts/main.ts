@@ -36,7 +36,7 @@ export class Main {
             await InitAll.i().init();
         }
     },
-    1046);
+    'ges_1013');
 
     public run_reload_actions = (): Promise<void> => err_async(async () => {
         if (d_shared.Data.i().allow_rerun_actions) {
@@ -60,12 +60,12 @@ export class Main {
             d_shared.Data.i().allow_rerun_actions = true;
         }
     },
-    1048);
+    'ges_1014');
 
     private run_reload_actions_debounce = _.debounce((): void => err(() => {
         this.run_reload_actions();
     },
-    1049),
+    'ges_1015'),
     200);
 
     public run_reload_actions_2 = (): void => err(() => {
@@ -77,5 +77,5 @@ export class Main {
 
         this.run_reload_actions_debounce();
     },
-    1118)
+    'ges_1016')
 }

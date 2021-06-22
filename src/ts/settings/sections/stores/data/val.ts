@@ -35,7 +35,7 @@ export class Val {
 
         this.os = platform_info.os;
     },
-    1115);
+    'ges_1110');
 
     public change = _.debounce((
         {
@@ -59,7 +59,7 @@ export class Val {
                 settings: data.settings,
             });
         },
-        1134);
+        'ges_1111');
 
         if (
             input.type === 'color'
@@ -107,7 +107,7 @@ export class Val {
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
-    1009),
+    'ges_1112'),
     200);
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean => err(() => {
@@ -130,7 +130,7 @@ export class Val {
                     (char: string): boolean => err(() => (
                         val.includes(char)
                     ),
-                    1114),
+                    'ges_1113'),
                 );
 
                 if (dir_path_has_forbidden_characters) {
@@ -160,7 +160,7 @@ export class Val {
 
         return false;
     },
-    1113);
+    'ges_1114');
 
     public remove_val = (
         {
@@ -171,7 +171,7 @@ export class Val {
     ): Promise<void> => err_async(async () => {
         this.change({ input });
     },
-    1116);
+    'ges_1115');
 
     public save_selected_palette_color = (
         {
@@ -189,7 +189,7 @@ export class Val {
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
-    1011);
+    'ges_1116');
 
     public remove_color_callback = (
         { input }: { input: o_color.Color },
@@ -201,7 +201,7 @@ export class Val {
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
-    1050);
+    'ges_1117');
 
     public restore_default_palette_callback = (
         { default_colors }: { default_colors: any },
@@ -213,5 +213,5 @@ export class Val {
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
-    1051);
+    'ges_1118');
 }

@@ -52,7 +52,7 @@ export class Page {
                            && rect.top <= (page_height - this.offset)
                            && rect.bottom >= (page_height - this.offset);
                 },
-                1077,
+                'ges_1088',
             ),
         );
 
@@ -69,12 +69,12 @@ export class Page {
             u_side_panel.RelatedSearches.i().reset_position();
         }
     },
-    1076);
+    'ges_1089');
 
     public set_total = (): void => err(() => {
         const iframe_count: number = s_infinite_scroll.Iframe.i().iframes.length;
 
         this.total = iframe_count + 1;
     },
-    1075);
+    'ges_1090');
 }

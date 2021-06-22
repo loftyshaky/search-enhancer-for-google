@@ -43,7 +43,7 @@ export class Position {
             resize_observer.observe(img_in_img_viewer);
         }
     },
-    1004);
+    'ges_1049');
 
     public set_margin = (): void => err(() => {
         const { img_viewer } = s_el_parser.Main.i();
@@ -72,5 +72,5 @@ export class Position {
             }px`;
         }
     },
-    1107);
+    'ges_1050');
 }

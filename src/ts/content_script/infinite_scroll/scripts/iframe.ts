@@ -88,7 +88,7 @@ export class Iframe {
 
                         show_err_ribbon(
                             err_obj('A captcha error occurred.'),
-                            1128,
+                            'ges_1053',
                             { silent: true },
                         );
 
@@ -172,18 +172,18 @@ export class Iframe {
                                                 this.inserting_iframe = false;
                                             });
                                         },
-                                        1062),
+                                        'ges_1054'),
                                     );
                                 }
                             }
                         }
                     }
                 },
-                1062),
+                'ges_1055'),
             );
         }
     },
-    1058);
+    'ges_1056');
 
     public get_iframe_doc = (
         { cur_iframe_i }: { cur_iframe_i?: number } = {},
@@ -200,7 +200,7 @@ export class Iframe {
 
         return undefined;
     },
-    1063);
+    'ges_1057');
 
     private observe_iframe_resizing = (
         { cur_iframe_i }: { cur_iframe_i: number },
@@ -245,7 +245,7 @@ export class Iframe {
             }
         }
     },
-    1059);
+    'ges_1058');
 
     private resize_iframe = (
         { cur_iframe_i }: { cur_iframe_i: number },
@@ -261,7 +261,7 @@ export class Iframe {
             cur_iframe.style.height = `${iframe_doc.body.scrollHeight}px`;
         }
     },
-    1066);
+    'ges_1059');
 
     private hide_everything_from_iframe_except_search_results = (): void => err(() => {
         const iframe_doc: Document | undefined = this.get_iframe_doc();
@@ -292,10 +292,10 @@ export class Iframe {
                             );
                         }
                     },
-                    1061,
+                    'ges_1060',
                 ));
             }
         }
     },
-    1060);
+    'ges_1061');
 }

@@ -39,7 +39,7 @@ export class Restore {
 
         this.override({ show_color_help });
     },
-    1014);
+    'ges_1104');
 
     public restore_confirm = (
         { settings }: { settings?: any } = {},
@@ -53,7 +53,7 @@ export class Restore {
             ext.iterate_all_tabs({ msg: 'rerun_actions' });
         }
     },
-    1015);
+    'ges_1105');
 
     private set = (
         { settings }: { settings?: any } = {},
@@ -72,7 +72,7 @@ export class Restore {
             data.settings = settings_final;
         });
     },
-    1007);
+    'ges_1106');
 
     public set_from_storage = (): Promise<void> => err_async(async () => {
         const settings = await ext.storage_get();
@@ -90,7 +90,7 @@ export class Restore {
             this.set({ settings });
         }
     },
-    1008);
+    'ges_1107');
 
     public restore_back_up = (
         { data_obj }: { data_obj: any },
@@ -112,7 +112,7 @@ export class Restore {
 
         ext.iterate_all_tabs({ msg: 'rerun_actions' });
     },
-    1016);
+    'ges_1108');
 
     public override = ({ show_color_help }: { show_color_help: boolean }): void => err(() => {
         if (!show_color_help) {
@@ -126,5 +126,5 @@ export class Restore {
             );
         }
     },
-    1017);
+    'ges_1109');
 }
