@@ -1,5 +1,5 @@
-@import "../shared/index";
-@import "vars";
+@import '../shared/index';
+@import 'vars';
 
 .icons_#{$app_id}:not(.news_#{$app_id}) {
     position: absolute;
@@ -8,11 +8,15 @@
     transform: translateX(-100%);
 }
 
-html[dir="rtl"] .root_parent_#{$app_id}.offset_1_#{$app_id} .icons_#{$app_id}:not(.news_#{$app_id}) {
+html[dir='rtl']
+    .root_parent_#{$app_id}.offset_1_#{$app_id}
+    .icons_#{$app_id}:not(.news_#{$app_id}) {
     margin-left: calc(100% + #{$gap + $icon_offset_1});
 }
 
-html[dir="rtl"] .root_parent_#{$app_id}.offset_2_#{$app_id} .icons_#{$app_id}:not(.news_#{$app_id}) {
+html[dir='rtl']
+    .root_parent_#{$app_id}.offset_2_#{$app_id}
+    .icons_#{$app_id}:not(.news_#{$app_id}) {
     margin-left: calc(100% + #{$gap + $icon_offset_2});
 }
 

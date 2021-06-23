@@ -1,12 +1,12 @@
-@import "../../../node_modules/@loftyshaky/shared/scss/vars";
-@import "../../../node_modules/@loftyshaky/shared/scss/text";
-@import "../../../node_modules/@loftyshaky/shared/scss/mixins";
-@import "../../../node_modules/@loftyshaky/shared/scss/crash_handler";
-@import "../shared/index";
-@import "transitions";
+@import '../../../node_modules/@loftyshaky/shared/scss/vars';
+@import '../../../node_modules/@loftyshaky/shared/scss/text';
+@import '../../../node_modules/@loftyshaky/shared/scss/mixins';
+@import '../../../node_modules/@loftyshaky/shared/scss/crash_handler';
+@import '../shared/index';
+@import 'transitions';
 @import 'focus';
-@import "vars";
-@import "mods";
+@import 'vars';
+@import 'mods';
 
 $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 

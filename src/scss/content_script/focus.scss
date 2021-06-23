@@ -1,4 +1,4 @@
-@import "../../../node_modules/@loftyshaky/shared/scss/vars";
+@import '../../../node_modules/@loftyshaky/shared/scss/vars';
 @import '../shared/index';
 
 :host-context(.keyboard_#{$app_id}) .btn:focus {
