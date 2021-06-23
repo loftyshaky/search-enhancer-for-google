@@ -13,7 +13,7 @@
         "prod": "webpack --mode=production --env browser=chrome",
         "deve": "webpack --watch --mode=development --env browser=edge",
         "prode": "webpack --mode=production --env browser=edge",
-        "format": "prettier --config .prettierrc.js webpack.config.js js/**/*.js src/ts/**/*.ts --write"
+        "format": "prettier --config .prettierrc.js webpack.config.js js/**/*.js src/**/*.ts src/scss/**/*.scss src/_locales/**/*.json src/html/**/*.html --write"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.165",
