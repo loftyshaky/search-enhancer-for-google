@@ -14,8 +14,8 @@ export * as d_img_action_bar from 'content_script/img_action_bar/data';
 
 export * as u_icons from 'content_script/icons/ui';
 export * as u_img_action_bar from 'content_script/img_action_bar/ui';
-export * as u_infinite_scroll from 'content_script/infinite_scroll/stores/ui';
-export * as u_side_panel from 'content_script/side_panel/stores/ui';
+export * as u_infinite_scroll from 'content_script/infinite_scroll/ui';
+export * as u_side_panel from 'content_script/side_panel/ui';
 
 export * as s_actions from 'content_script/actions/scripts';
 export * as s_el_parser from 'content_script/el_parser/scripts';
