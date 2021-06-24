@@ -64,7 +64,7 @@ export class Iframe {
                     this.last_iframe,
                 );
 
-                this.last_iframe.addEventListener('load', (): void =>
+                x.bind(this.last_iframe, 'load', (): void =>
                     err(() => {
                         const change_visibility = (): void =>
                             err(() => {
@@ -125,7 +125,7 @@ export class Iframe {
                                     const css = x.css('iframe_inner', iframe_doc.head);
 
                                     if (n(css)) {
-                                        css.addEventListener('load', (): void =>
+                                        x.bind(css, 'load', (): void =>
                                             err(() => {
                                                 x.remove_cls(
                                                     this.last_iframe,

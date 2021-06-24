@@ -19,11 +19,12 @@ export const init = async (): Promise<void> => {
         app_id,
     });
 
-    window.addEventListener('scroll', s_infinite_scroll.Scroll.i().observe);
-    window.addEventListener('scroll', u_side_panel.Page.i().set_current);
-    document.addEventListener(
+    x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);
+    x.bind(window, 'scroll', u_side_panel.Page.i().set_current);
+    x.bind(
+        document,
         'mouseup',
         u_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout,
     );
-    document.addEventListener('mousemove', u_img_action_bar.Visibility.i().change);
+    x.bind(document, 'mousemove', u_img_action_bar.Visibility.i().change);
 };

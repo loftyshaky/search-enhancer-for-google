@@ -148,7 +148,7 @@ export class Main {
                 const css = x.css(name, root.shadowRoot);
 
                 if (n(css)) {
-                    css.addEventListener('load', (): void =>
+                    x.bind(css, 'load', (): void =>
                         err(() => {
                             const Component: any = this.component[name];
 

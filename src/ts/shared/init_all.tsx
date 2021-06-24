@@ -90,7 +90,7 @@ export class InitAll {
                             const settings_css = x.css('settings_css', document.head);
 
                             if (n(settings_css)) {
-                                settings_css.addEventListener('load', on_render);
+                                x.bind(settings_css, 'load', on_render);
                             }
                         },
                     );
@@ -141,7 +141,7 @@ export class InitAll {
                             const side_panel_css = x.css('side_panel', side_panel_root);
 
                             if (n(side_panel_css)) {
-                                side_panel_css.addEventListener('load', (): void =>
+                                x.bind(side_panel_css, 'load', (): void =>
                                     err(() => {
                                         NoTr.i().disable({ el: side_panel_root });
                                     }, 'ges_1126'),
@@ -173,7 +173,7 @@ export class InitAll {
                                 );
 
                                 if (n(loading_screen_css)) {
-                                    loading_screen_css.addEventListener('load', (): void =>
+                                    x.bind(loading_screen_css, 'load', (): void =>
                                         err(() => {
                                             LoadingScreenVisibility.i().show();
 
