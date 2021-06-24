@@ -5,7 +5,7 @@ import { svg } from 'shared/svg';
 
 import { u_icons, p_icons } from 'content_script/internal';
 
-export const Icon = observer((props: p_icons.Icon) => {
+export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
     const icon_was_already_set_ref = useRef<boolean>(false);
 
     useEffect(() => {

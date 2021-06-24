@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { u_infinite_scroll } from 'content_script/internal';
 
-export const LoadEndMsg = observer(() => (
+export const LoadEndMsg: React.FunctionComponent = observer(() => (
     <div
         className={x.cls([
             'content',

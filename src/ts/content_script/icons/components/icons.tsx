@@ -1,8 +1,9 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import { c_icons, p_icons } from 'content_script/internal';
 
-export const Icons = (props: p_icons.Icons) => {
+export const Icons: React.FunctionComponent<p_icons.Icons> = observer((props) => {
     const { i } = props;
 
     return (
@@ -11,4 +12,4 @@ export const Icons = (props: p_icons.Icons) => {
             <c_icons.Icon type='favicons' i={i} />
         </div>
     );
-};
+});

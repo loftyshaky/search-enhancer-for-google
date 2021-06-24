@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 import { u_infinite_scroll, p_infinite_scroll } from 'content_script/internal';
 
-export const Separator = observer((props: p_infinite_scroll.Separator) => {
+export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = observer((props) => {
     const { i } = props;
 
     return (

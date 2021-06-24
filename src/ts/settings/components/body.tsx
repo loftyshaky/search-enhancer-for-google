@@ -5,7 +5,7 @@ import { c_settings } from '@loftyshaky/shared/settings';
 import { d_inputs } from '@loftyshaky/shared/inputs';
 import { d_sections } from 'settings/internal';
 
-export const Body = observer(() => {
+export const Body: React.FunctionComponent = observer(() => {
     useEffect(() => {
         async function run() {
             d_inputs.NestedInput.i().set_all_parents_disbled_vals({

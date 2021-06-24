@@ -1,10 +1,13 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import { p_infinite_scroll } from 'content_script/internal';
 
-export const SpinnerItem = (props: p_infinite_scroll.SpinnerItem) => {
-    const { i } = props;
-    const name: string = 'spinner';
+export const SpinnerItem: React.FunctionComponent<p_infinite_scroll.SpinnerItem> = observer(
+    (props) => {
+        const { i } = props;
+        const name: string = 'spinner';
 
-    return <div id={`${name}_${i}`} className={name} />;
-};
+        return <div id={`${name}_${i}`} className={name} />;
+    },
+);

@@ -8,7 +8,7 @@ import {
     u_img_action_bar,
 } from 'content_script/internal';
 
-export const ImgActionBar = observer(() => {
+export const ImgActionBar: React.FunctionComponent = observer(() => {
     const img_action_bar_ref = useRef<HTMLDivElement>(null);
 
     return (

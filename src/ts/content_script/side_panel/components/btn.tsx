@@ -10,40 +10,42 @@ const component: any = {
     scroll_to_top: svg.KeyboardArrowUp,
 };
 
-export const Btn = observer((props: p_side_panel.Btn) => {
-    const {
-        name,
-        disabled_cls,
-        position_remembered_cls,
-        position_overridden_cls,
-        on_click,
-        on_mouse_down,
-        on_mouse_up,
-        on_context_menu,
-        on_keydown,
-    } = props;
+export const Btn: React.FunctionComponent<p_side_panel.Btn> = observer(
+    (props: p_side_panel.Btn) => {
+        const {
+            name,
+            disabled_cls,
+            position_remembered_cls,
+            position_overridden_cls,
+            on_click,
+            on_mouse_down,
+            on_mouse_up,
+            on_context_menu,
+            on_keydown,
+        } = props;
 
-    const Component: any = component[name];
+        const Component: any = component[name];
 
-    return (
-        <button
-            className={x.cls([
-                'side_panel_item',
-                'btn',
-                name,
-                disabled_cls,
-                position_remembered_cls,
-                position_overridden_cls,
-            ])}
-            type='button'
-            title={ext.msg(`${name}_title`)}
-            onClick={on_click}
-            onMouseDown={on_mouse_down}
-            onMouseUp={on_mouse_up}
-            onContextMenu={on_context_menu}
-            onKeyDown={on_keydown}
-        >
-            <Component />
-        </button>
-    );
-});
+        return (
+            <button
+                className={x.cls([
+                    'side_panel_item',
+                    'btn',
+                    name,
+                    disabled_cls,
+                    position_remembered_cls,
+                    position_overridden_cls,
+                ])}
+                type='button'
+                title={ext.msg(`${name}_title`)}
+                onClick={on_click}
+                onMouseDown={on_mouse_down}
+                onMouseUp={on_mouse_up}
+                onContextMenu={on_context_menu}
+                onKeyDown={on_keydown}
+            >
+                <Component />
+            </button>
+        );
+    },
+);
