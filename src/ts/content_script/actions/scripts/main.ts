@@ -1,12 +1,13 @@
 import _ from 'lodash';
-import { d_shared } from 'shared/internal';
+
+import { d_settings } from 'shared/internal';
 import {
-    s_location,
-    s_el_parser,
-    s_roots,
-    s_keywords,
     u_img_action_bar,
     u_infinite_scroll,
+    s_el_parser,
+    s_keywords,
+    s_location,
+    s_roots,
 } from 'content_script/internal';
 
 import { InitAll } from 'shared/init_all';
@@ -38,8 +39,8 @@ export class Main {
 
     public run_reload_actions = (): Promise<void> =>
         err_async(async () => {
-            if (d_shared.Data.i().allow_rerun_actions) {
-                await d_shared.Data.i().set_from_storage();
+            if (d_settings.Main.i().allow_rerun_actions) {
+                await d_settings.Main.i().set_from_storage();
                 s_el_parser.Main.i().get_els();
 
                 if (s_location.Main.i().is_search_results) {
@@ -56,7 +57,7 @@ export class Main {
                     s_roots.Main.i().init({ name: 'icons' });
                 }
             } else {
-                d_shared.Data.i().allow_rerun_actions = true;
+                d_settings.Main.i().allow_rerun_actions = true;
             }
         }, 'ges_1014');
 

@@ -1,4 +1,4 @@
-import { Suffix } from 'shared/internal';
+import { s_suffix } from 'shared/internal';
 import { s_actions } from 'content_script/internal';
 
 const observer = new MutationObserver((mutations: any): void =>
@@ -6,12 +6,15 @@ const observer = new MutationObserver((mutations: any): void =>
         mutations.forEach((mutation: any): void =>
             err(() => {
                 if (
-                    !x.matches(mutation.target, `.${new Suffix('root_parent').result}`) &&
-                    !x.matches(mutation.target, `.${new Suffix('icons').result}`) &&
+                    !x.matches(mutation.target, `.${new s_suffix.Main('root_parent').result}`) &&
+                    !x.matches(mutation.target, `.${new s_suffix.Main('icons').result}`) &&
                     n(mutation.addedNodes[0]) &&
-                    !x.matches(mutation.addedNodes[0], `.${new Suffix('icons').result}`) &&
-                    !x.matches(mutation.addedNodes[0], `.${new Suffix('img_action_bar').result}`) &&
-                    !x.matches(mutation.addedNodes[0], `.${new Suffix('spinner').result}`)
+                    !x.matches(mutation.addedNodes[0], `.${new s_suffix.Main('icons').result}`) &&
+                    !x.matches(
+                        mutation.addedNodes[0],
+                        `.${new s_suffix.Main('img_action_bar').result}`,
+                    ) &&
+                    !x.matches(mutation.addedNodes[0], `.${new s_suffix.Main('spinner').result}`)
                 ) {
                     s_actions.Main.i().run_reload_actions_2();
                 }

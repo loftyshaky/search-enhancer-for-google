@@ -1,13 +1,13 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
-import { Suffix } from 'shared/internal';
+import { s_suffix } from 'shared/internal';
 import {
-    s_el_parser,
-    s_actions,
-    s_roots,
-    s_infinite_scroll,
-    u_side_panel,
     u_infinite_scroll,
+    u_side_panel,
+    s_actions,
+    s_el_parser,
+    s_infinite_scroll,
+    s_roots,
 } from 'content_script/internal';
 
 export class Iframe {
@@ -43,15 +43,15 @@ export class Iframe {
 
                 const loading_first_iframe: boolean = !n(this.last_iframe);
                 const el_to_append_iframe_to = loading_first_iframe
-                    ? s<HTMLElement>(`.${new Suffix('spinner').result}`)
+                    ? s<HTMLElement>(`.${new s_suffix.Main('spinner').result}`)
                     : this.last_iframe;
 
                 this.last_iframe = x.create(
                     'iframe',
                     x.cls([
-                        new Suffix('iframe').result,
-                        new Suffix('hidden').result,
-                        new Suffix('opacity_0').result,
+                        new s_suffix.Main('iframe').result,
+                        new s_suffix.Main('hidden').result,
+                        new s_suffix.Main('opacity_0').result,
                     ]),
                 );
 
@@ -107,7 +107,7 @@ export class Iframe {
                                     x.css(
                                         'font_face',
                                         iframe_doc.head,
-                                        new Suffix('font_face_link').result,
+                                        new s_suffix.Main('font_face_link').result,
                                     );
 
                                     s_roots.Main.i().append_root({
@@ -129,11 +129,11 @@ export class Iframe {
                                             err(() => {
                                                 x.remove_cls(
                                                     this.last_iframe,
-                                                    new Suffix('hidden').result,
+                                                    new s_suffix.Main('hidden').result,
                                                 );
                                                 x.remove_cls(
                                                     this.last_iframe,
-                                                    new Suffix('opacity_0').result,
+                                                    new s_suffix.Main('opacity_0').result,
                                                 );
 
                                                 s_actions.Main.i().run_reload_actions();
@@ -194,7 +194,7 @@ export class Iframe {
             if (n(iframe_doc)) {
                 const separator_root = sb<HTMLIFrameElement>(
                     iframe_doc.body,
-                    `.${new Suffix('separator').result}`,
+                    `.${new s_suffix.Main('separator').result}`,
                 );
 
                 if (n(separator_root) && n(separator_root.shadowRoot)) {

@@ -1,7 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 
-import { Viewport } from '@loftyshaky/shared';
-import { s_infinite_scroll, u_side_panel } from 'content_script/internal';
+import { s_viewport } from '@loftyshaky/shared';
+import { u_side_panel, s_infinite_scroll } from 'content_script/internal';
 
 export class Page {
     private static i0: Page;
@@ -31,7 +31,7 @@ export class Page {
             const current_iframe_i: number = s_infinite_scroll.Iframe.i().iframes.findIndex(
                 (el: HTMLIFrameElement): boolean =>
                     err(() => {
-                        const page_height: number = Viewport.i().get_dim({ dim: 'height' });
+                        const page_height: number = s_viewport.Main.i().get_dim({ dim: 'height' });
                         const rect: any = el.getBoundingClientRect();
                         const rendering_iframe: boolean = rect.top > 50000;
 

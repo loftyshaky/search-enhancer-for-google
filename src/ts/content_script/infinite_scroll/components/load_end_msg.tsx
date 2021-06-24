@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+
 import { u_infinite_scroll } from 'content_script/internal';
 
 export const LoadEndMsg = observer(() => (

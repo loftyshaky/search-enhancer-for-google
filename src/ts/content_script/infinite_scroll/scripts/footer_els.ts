@@ -1,6 +1,5 @@
+import { s_suffix } from 'shared/internal';
 import { s_el_parser } from 'content_script/internal';
-
-import { Suffix } from 'shared/internal';
 
 export class FooterEls {
     private static i0: FooterEls;
@@ -14,11 +13,11 @@ export class FooterEls {
         err(() => {
             x.before(
                 s_el_parser.Main.i().footer_el,
-                s<HTMLElement>(`.${new Suffix('spinner').result}`),
+                s<HTMLElement>(`.${new s_suffix.Main('spinner').result}`),
             );
             x.before(
                 s_el_parser.Main.i().footer_el,
-                s<HTMLElement>(`.${new Suffix('load_end_msg').result}`),
+                s<HTMLElement>(`.${new s_suffix.Main('load_end_msg').result}`),
             );
         }, 'ges_1052');
 }

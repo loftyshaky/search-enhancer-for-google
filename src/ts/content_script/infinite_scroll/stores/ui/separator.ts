@@ -1,7 +1,7 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { Viewport } from '@loftyshaky/shared';
-import { s_location, s_el_parser, s_text_dir } from 'content_script/internal';
+import { s_viewport } from '@loftyshaky/shared';
+import { s_el_parser, s_location, s_text_dir } from 'content_script/internal';
 
 export class Separator {
     private static i0: Separator;
@@ -49,7 +49,7 @@ export class Separator {
                 if (s_text_dir.Main.i().dir === 'ltr') {
                     this.offset_left = rect.left;
                 } else if (s_text_dir.Main.i().dir === 'rtl') {
-                    this.offset_left = Viewport.i().get_dim({ dim: 'width' }) - rect.right;
+                    this.offset_left = s_viewport.Main.i().get_dim({ dim: 'width' }) - rect.right;
                 }
             }
         }, 'ges_1067');

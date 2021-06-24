@@ -1,5 +1,5 @@
 import { d_color } from '@loftyshaky/shared/inputs';
-import { Suffix } from 'shared/internal';
+import { s_suffix } from 'shared/internal';
 import { s_el_parser, s_infinite_scroll } from 'content_script/internal';
 
 export class Main {
@@ -16,7 +16,7 @@ export class Main {
     public color_keywords = (): void =>
         err(
             () => {
-                const cls = new Suffix('keyword').result;
+                const cls = new s_suffix.Main('keyword').result;
 
                 [...s_el_parser.Main.i().keyword_els].forEach((keyword_el: HTMLElement): void =>
                     err(() => {

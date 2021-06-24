@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import { runInAction, toJS } from 'mobx';
 
-export class Data {
-    private static i0: Data;
+export class Main {
+    private static i0: Main;
 
-    public static i(): Data {
+    public static i(): Main {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }

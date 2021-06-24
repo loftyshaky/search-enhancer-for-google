@@ -1,22 +1,24 @@
-import { TabIndex } from '@loftyshaky/shared';
-import { app_id, s_db } from 'shared/internal';
+import { s_tab_index } from '@loftyshaky/shared';
+import { s_suffix, s_db } from 'shared/internal';
 import {
+    d_img_action_bar,
+    u_img_action_bar,
+    u_side_panel,
     s_actions,
     s_infinite_scroll,
     s_text_dir,
-    u_side_panel,
-    u_img_action_bar,
 } from 'content_script/internal';
 
 export const init = async (): Promise<void> => {
+    d_img_action_bar.Btns.i().init_component();
     s_text_dir.Main.i().get();
     s_db.Main.i().init_db();
     await s_actions.Main.i().run_initial_actions();
     s_infinite_scroll.FooterEls.i().append_to_footer();
 
-    TabIndex.i().bind_set_input_type_f({
+    s_tab_index.Main.i().bind_set_input_type_f({
         parent: document.body,
-        app_id,
+        app_id: s_suffix.app_id,
     });
 
     x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);

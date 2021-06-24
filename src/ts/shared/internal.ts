@@ -1,9 +1,9 @@
-import '@loftyshaky/shared';
-
-export * from 'shared/suffix';
-export * from 'shared/css_vars';
 export * from 'shared/init_all';
 
+export * as d_settings from 'shared/settings/stores/data';
+
+export * as s_css_vars from 'shared/css_vars/scripts';
 export * as s_db from 'shared/db/scripts';
-export * as d_shared from 'shared/stores/data';
+export * as s_suffix from 'shared/suffix/scripts';
+
 export * as i_icons from 'shared/icons/interfaces';

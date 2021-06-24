@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
+
 import {
+    c_img_action_bar,
     o_img_action_bar,
     d_img_action_bar,
     u_img_action_bar,
-    c_img_action_bar,
 } from 'content_script/internal';
 
 export const ImgActionBar = observer(() => {

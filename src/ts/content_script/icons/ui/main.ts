@@ -3,7 +3,7 @@ import { computedFn } from 'mobx-utils';
 import { browser } from 'webextension-polyfill-ts';
 
 import { i_icons as i_icons_shared } from 'shared/internal';
-import { s_location, s_el_parser, i_icons } from 'content_script/internal';
+import { s_el_parser, s_location, i_icons } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;

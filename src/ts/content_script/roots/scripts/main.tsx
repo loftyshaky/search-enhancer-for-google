@@ -1,18 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { CrashHandler } from '@loftyshaky/shared';
-import { Suffix } from 'shared/internal';
-
+import { c_crash_handler } from '@loftyshaky/shared';
+import { s_suffix } from 'shared/internal';
 import {
+    c_icons,
+    c_img_action_bar,
+    c_infinite_scroll,
+    u_img_action_bar,
+    s_el_parser,
+    s_infinite_scroll,
     s_location,
     s_roots,
-    s_el_parser,
-    c_icons,
-    u_img_action_bar,
-    c_infinite_scroll,
-    c_img_action_bar,
-    s_infinite_scroll,
 } from 'content_script/internal';
 
 export class Main {
@@ -48,7 +47,7 @@ export class Main {
                             if (n(iframe.contentDocument)) {
                                 const icon_roots = sab<HTMLDivElement>(
                                     iframe.contentDocument,
-                                    `.${new Suffix(name).result}`,
+                                    `.${new s_suffix.Main(name).result}`,
                                 );
 
                                 if (n(icon_roots)) {
@@ -58,7 +57,7 @@ export class Main {
                         }, 'ges_1075'),
                     );
 
-                    const icon_roots = sa<HTMLDivElement>(`.${new Suffix(name).result}`);
+                    const icon_roots = sa<HTMLDivElement>(`.${new s_suffix.Main(name).result}`);
 
                     if (n(icon_roots)) {
                         remove_icons({ icon_roots });
@@ -69,7 +68,7 @@ export class Main {
                             if (i >= start) {
                                 const icons_el: HTMLElement | undefined = sb(
                                     title_el,
-                                    `.${new Suffix(name).result}`,
+                                    `.${new s_suffix.Main(name).result}`,
                                 );
 
                                 if (!n(icons_el)) {
@@ -104,7 +103,7 @@ export class Main {
                 if (n(next_el)) {
                     const next_el_is_img_action_bar: boolean = x.matches(
                         next_el as HTMLElement,
-                        `.${new Suffix(name).result}`,
+                        `.${new s_suffix.Main(name).result}`,
                     );
 
                     if (!next_el_is_img_action_bar) {
@@ -128,11 +127,11 @@ export class Main {
         append_f_name: 'append' | 'as_first' | 'after';
     }): void =>
         err(() => {
-            const root: HTMLDivElement = x.create('div', new Suffix(name).result);
+            const root: HTMLDivElement = x.create('div', new s_suffix.Main(name).result);
 
             if (name === 'icons') {
                 if (s_location.Main.i().is_news_page) {
-                    x.add_cls(root, new Suffix('news').result);
+                    x.add_cls(root, new s_suffix.Main('news').result);
                 }
             }
 
@@ -153,9 +152,9 @@ export class Main {
                             const Component: any = this.component[name];
 
                             render(
-                                <CrashHandler>
+                                <c_crash_handler.Body>
                                     <Component i={i} />
-                                </CrashHandler>,
+                                </c_crash_handler.Body>,
                                 content,
                             );
                         }, 'ges_1079'),
@@ -175,10 +174,10 @@ export class Main {
 
     public apply_root_parent_cls_to_title_el = ({ title_el }: { title_el: HTMLElement }): void =>
         err(() => {
-            x.add_cls(title_el, new Suffix('root_parent').result);
+            x.add_cls(title_el, new s_suffix.Main('root_parent').result);
 
             if (s_location.Main.i().is_news_page) {
-                x.add_cls(title_el, new Suffix('news').result);
+                x.add_cls(title_el, new s_suffix.Main('news').result);
             }
         }, 'ges_1083');
 }

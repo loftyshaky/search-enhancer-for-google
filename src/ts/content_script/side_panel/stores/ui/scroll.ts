@@ -1,6 +1,6 @@
 import { makeObservable, observable, computed, action, runInAction } from 'mobx';
 
-import { CssVars } from '@loftyshaky/shared';
+import { s_css_vars } from '@loftyshaky/shared';
 import { i_side_panel } from 'content_script/internal';
 
 export class Scroll {
@@ -82,7 +82,7 @@ export class Scroll {
                         });
 
                         await x.delay(
-                            +CssVars.i().get({
+                            +s_css_vars.Main.i().get({
                                 name: 'transition_duration',
                             }) + data.settings.transition_duration,
                         );

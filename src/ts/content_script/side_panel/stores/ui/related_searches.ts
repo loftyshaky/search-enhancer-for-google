@@ -1,7 +1,7 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { CssVars } from '@loftyshaky/shared';
-import { s_el_parser, u_side_panel, i_side_panel } from 'content_script/internal';
+import { s_css_vars } from '@loftyshaky/shared';
+import { u_side_panel, s_el_parser, i_side_panel } from 'content_script/internal';
 
 export class RelatedSearches {
     private static i0: RelatedSearches;
@@ -62,7 +62,7 @@ export class RelatedSearches {
 
                     this.last_related_searches_position =
                         document.documentElement.scrollTop -
-                        parseInt(CssVars.i().get({ name: 'offset_from_header' }), 10);
+                        parseInt(s_css_vars.Main.i().get({ name: 'offset_from_header' }), 10);
 
                     u_side_panel.Scroll.i().scroll_to_position({
                         position: this.last_related_searches_position,

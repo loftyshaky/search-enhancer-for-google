@@ -1,6 +1,5 @@
 import { makeObservable, observable, action } from 'mobx';
 
-import { Viewport } from '@loftyshaky/shared';
 import { s_el_parser, s_text_dir } from 'content_script/internal';
 
 export class Position {

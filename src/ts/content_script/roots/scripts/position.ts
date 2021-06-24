@@ -1,4 +1,4 @@
-import { Suffix } from 'shared/internal';
+import { s_suffix } from 'shared/internal';
 import { s_el_parser, s_roots } from 'content_script/internal';
 
 export class Position {
@@ -12,8 +12,8 @@ export class Position {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public offset_1_cls: string = new Suffix('offset_1').result;
-    public offset_2_cls: string = new Suffix('offset_2').result;
+    public offset_1_cls: string = new s_suffix.Main('offset_1').result;
+    public offset_2_cls: string = new s_suffix.Main('offset_2').result;
 
     public position_title_el = (): void =>
         err(() => {

@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
-import { Viewport } from '@loftyshaky/shared';
-import { Suffix } from 'shared/internal';
-import { s_roots, s_location, s_infinite_scroll, s_text_dir } from 'content_script/internal';
+import { s_viewport } from '@loftyshaky/shared';
+import { s_suffix } from 'shared/internal';
+import { s_infinite_scroll, s_location, s_roots, s_text_dir } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -74,7 +74,7 @@ export class Main {
 
             this.keyword_els.forEach((keyword_el: HTMLElement): void =>
                 err(() => {
-                    x.remove_cls(keyword_el, new Suffix('keyword').result);
+                    x.remove_cls(keyword_el, new s_suffix.Main('keyword').result);
                 }, 'ges_1020'),
             );
 
@@ -104,7 +104,7 @@ export class Main {
             });
             const filtered_links: HTMLLinkElement[] = [];
             this.title_els = [];
-            const viewport_width: number = Viewport.i().get_dim({ dim: 'width' });
+            const viewport_width: number = s_viewport.Main.i().get_dim({ dim: 'width' });
 
             links.forEach((el: HTMLLinkElement): boolean =>
                 err(() => {
@@ -121,7 +121,7 @@ export class Main {
                                 const news_icon_selector: string = 'g-img';
 
                                 if (
-                                    !x.matches(el_2, `.${new Suffix('icons').result}`) &&
+                                    !x.matches(el_2, `.${new s_suffix.Main('icons').result}`) &&
                                     ((s_location.Main.i().is_news_page &&
                                         el_2.offsetHeight <= 40 &&
                                         el_2.firstElementChild &&
@@ -260,7 +260,7 @@ export class Main {
                 err(
                     () =>
                         el_2.nodeType === Node.TEXT_NODE ||
-                        x.matches(el_2 as any, `.${new Suffix('icons').result}`),
+                        x.matches(el_2 as any, `.${new s_suffix.Main('icons').result}`),
                     'ges_1036',
                 ),
             );

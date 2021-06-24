@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { u_infinite_scroll, c_infinite_scroll } from 'content_script/internal';
+import { c_infinite_scroll, u_infinite_scroll } from 'content_script/internal';
 
 export const Spinner = observer(() => (
     <div id='spinner' className={u_infinite_scroll.Spinner.i().visibility_cls}>

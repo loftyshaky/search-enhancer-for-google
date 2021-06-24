@@ -1,9 +1,9 @@
-import { CssVars as CssVarsShared } from '@loftyshaky/shared';
+import { s_css_vars } from '@loftyshaky/shared';
 
-export class CssVars {
-    private static i0: CssVars;
+export class Main {
+    private static i0: Main;
 
-    public static i(): CssVars {
+    public static i(): Main {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
@@ -17,12 +17,12 @@ export class CssVars {
                 ? [document.documentElement]
                 : [];
 
-            CssVarsShared.i().set_transition_vars({
+            s_css_vars.Main.i().set_transition_vars({
                 roots,
                 transition_duration: data.settings.transition_duration,
             });
 
-            CssVarsShared.i().set_var({
+            s_css_vars.Main.i().set_var({
                 roots,
                 name: 'offset_from_header',
                 val: '147px',

@@ -1,6 +1,6 @@
 export const app_id: string = 'u6Pgzb39sN1';
 
-export class Suffix {
+export class Main {
     private prefix: string;
 
     public constructor(prefix: string) {

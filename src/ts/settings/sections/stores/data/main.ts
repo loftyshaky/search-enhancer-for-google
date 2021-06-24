@@ -1,6 +1,6 @@
 import { makeObservable, computed } from 'mobx';
 
-import { Utils } from '@loftyshaky/shared';
+import { s_utils } from '@loftyshaky/shared';
 import { o_inputs, o_color } from '@loftyshaky/shared/inputs';
 import { d_settings } from '@loftyshaky/shared/settings';
 import { d_sections } from 'settings/internal';
@@ -12,20 +12,20 @@ export class Main {
         if (!this.i0) {
             this.i0 = new this();
 
-            this.i0.sections = Utils.i().to_object({ arr: this.i0.sections });
-            this.i0.sections.all.inputs = Utils.i().to_object({
+            this.i0.sections = s_utils.Main.i().to_object({ arr: this.i0.sections });
+            this.i0.sections.all.inputs = s_utils.Main.i().to_object({
                 arr: this.i0.sections.all.inputs,
                 section: 'all',
             });
-            this.i0.sections.imgs.inputs = Utils.i().to_object({
+            this.i0.sections.imgs.inputs = s_utils.Main.i().to_object({
                 arr: this.i0.sections.imgs.inputs,
                 section: 'imgs',
             });
-            this.i0.sections.theme.inputs = Utils.i().to_object({
+            this.i0.sections.theme.inputs = s_utils.Main.i().to_object({
                 arr: this.i0.sections.theme.inputs,
                 section: 'theme',
             });
-            this.i0.sections.links.inputs = Utils.i().to_object({
+            this.i0.sections.links.inputs = s_utils.Main.i().to_object({
                 arr: this.i0.sections.links.inputs,
                 section: 'links',
             });

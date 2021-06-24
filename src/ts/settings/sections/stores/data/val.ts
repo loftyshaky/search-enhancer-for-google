@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { browser, Runtime } from 'webextension-polyfill-ts';
 
-import { d_inputs, o_color, d_color, i_inputs, i_color } from '@loftyshaky/shared/inputs';
+import { o_color, d_inputs, d_color, i_inputs, i_color } from '@loftyshaky/shared/inputs';
 import { s_settings } from '@loftyshaky/shared/settings';
-import { CssVars } from 'shared/internal';
+import { s_css_vars } from 'shared/internal';
 import { d_sections } from 'settings/internal';
 
 export class Val {
@@ -65,7 +65,7 @@ export class Val {
                 } else if (input.type !== 'color' || i === 'main') {
                     s_settings.Theme.i().change({
                         input,
-                        val,
+                        name: val,
                     });
 
                     await set_val();
@@ -85,7 +85,7 @@ export class Val {
                     sections: d_sections.Main.i().sections,
                 });
 
-                CssVars.i().set();
+                s_css_vars.Main.i().set();
 
                 ext.iterate_all_tabs({ msg: 'rerun_actions' });
             }, 'ges_1112'),

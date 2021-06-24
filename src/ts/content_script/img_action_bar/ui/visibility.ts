@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, computed } from 'mobx';
+import { makeObservable, observable, computed, action } from 'mobx';
 
 import { s_el_parser } from 'content_script/internal';
 

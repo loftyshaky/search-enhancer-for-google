@@ -1,5 +1,4 @@
 import { t } from '@loftyshaky/shared';
-
 import { u_side_panel } from 'content_script/internal';
 
 export class Main {
