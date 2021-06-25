@@ -7,11 +7,15 @@ import { c_side_panel, u_side_panel, s_tab_index } from 'content_script/internal
 export const Body: React.FunctionComponent = observer(() => {
     const name_1 = 'scroll_to_top';
     const remember_scrolling_position_0_35_seconds = (e: any) =>
-        u_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
-            {
-                keyboard_call: false,
-            },
-            e,
+        err(
+            () =>
+                u_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
+                    {
+                        keyboard_call: false,
+                    },
+                    e,
+                ),
+            'ges_1147',
         );
 
     return (

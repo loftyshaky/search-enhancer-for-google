@@ -6,15 +6,20 @@ import { d_inputs } from '@loftyshaky/shared/inputs';
 import { d_sections } from 'settings/internal';
 
 export const Body: React.FunctionComponent = observer(() => {
-    useEffect(() => {
-        async function run() {
-            d_inputs.NestedInput.i().set_all_parents_disbled_vals({
-                sections: d_sections.Main.i().sections,
-            });
-        }
+    useEffect(
+        () =>
+            err(() => {
+                const run = async () =>
+                    err(() => {
+                        d_inputs.NestedInput.i().set_all_parents_disbled_vals({
+                            sections: d_sections.Main.i().sections,
+                        });
+                    }, 'ges_1144');
 
-        run();
-    }, []);
+                run();
+            }, 'ges_1145'),
+        [],
+    );
 
     return (
         <c_settings.Body

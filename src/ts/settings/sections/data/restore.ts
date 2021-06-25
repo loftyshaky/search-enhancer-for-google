@@ -53,9 +53,11 @@ export class Restore {
                 settings_final = settings;
             }
 
-            runInAction((): void => {
-                data.settings = settings_final;
-            });
+            runInAction((): void =>
+                err(() => {
+                    data.settings = settings_final;
+                }, 'ges_1143'),
+            );
         }, 'ges_1106');
 
     public set_from_storage = (): Promise<void> =>

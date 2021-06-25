@@ -23,9 +23,11 @@ export class Main {
                 settings_final = settings;
             }
 
-            runInAction((): void => {
-                data.settings = settings_final;
-            });
+            runInAction((): void =>
+                err(() => {
+                    data.settings = settings_final;
+                }, 'ges_1142'),
+            );
         }, 'ges_1132');
 
     public change = ({ key, val }: { key: string; val: any }): void =>

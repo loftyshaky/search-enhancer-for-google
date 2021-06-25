@@ -75,9 +75,11 @@ export class Main {
                 });
 
                 if (n(favicon_url)) {
-                    runInAction(() => {
-                        this.favicons[url] = favicon_url;
-                    });
+                    runInAction(() =>
+                        err(() => {
+                            this.favicons[url] = favicon_url;
+                        }, 'ges_1148'),
+                    );
                 }
             }
         }, 'ges_1041');
@@ -98,19 +100,21 @@ export class Main {
                         ? browser.runtime.getURL(`flags/${server_info.country_code}.png`)
                         : 'placeholder';
 
-                    runInAction(() => {
-                        this.server_locations[url] = flag_path;
+                    runInAction(() =>
+                        err(() => {
+                            this.server_locations[url] = flag_path;
 
-                        if (server_location_found) {
-                            if (server_info.country_name !== '') {
-                                this.server_countries[url] = server_info.country_name;
-                            }
+                            if (server_location_found) {
+                                if (server_info.country_name !== '') {
+                                    this.server_countries[url] = server_info.country_name;
+                                }
 
-                            if (server_info.ip !== '') {
-                                this.server_ips[url] = server_info.ip;
+                                if (server_info.ip !== '') {
+                                    this.server_ips[url] = server_info.ip;
+                                }
                             }
-                        }
-                    });
+                        }, 'ges_1149'),
+                    );
                 }
             },
             'ges_1042',

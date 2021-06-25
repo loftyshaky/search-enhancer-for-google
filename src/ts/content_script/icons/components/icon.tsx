@@ -8,20 +8,22 @@ import { u_icons, p_icons } from 'content_script/internal';
 export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
     const icon_was_already_set_ref = useRef<boolean>(false);
 
-    useEffect(() => {
-        const { type, i } = props;
+    useEffect(() =>
+        err(() => {
+            const { type, i } = props;
 
-        if (data.settings[`show_${type}`] && !icon_was_already_set_ref.current) {
-            icon_was_already_set_ref.current = true;
+            if (data.settings[`show_${type}`] && !icon_was_already_set_ref.current) {
+                icon_was_already_set_ref.current = true;
 
-            const url: string = u_icons.Main.i().get_url({
-                i,
-                type,
-            });
+                const url: string = u_icons.Main.i().get_url({
+                    i,
+                    type,
+                });
 
-            (u_icons.Main as any).i()[`generate_${type}`]({ url });
-        }
-    });
+                (u_icons.Main as any).i()[`generate_${type}`]({ url });
+            }
+        }, 'ges_1150'),
+    );
 
     const { type, i } = props;
 

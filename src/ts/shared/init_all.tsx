@@ -84,15 +84,16 @@ export class InitAll {
                             <Body />
                         </c_crash_handler.Body>,
                         settings_root,
-                        (): void => {
-                            x.css('normalize', document.head);
+                        (): void =>
+                            err(() => {
+                                x.css('normalize', document.head);
 
-                            const settings_css = x.css('settings_css', document.head);
+                                const settings_css = x.css('settings_css', document.head);
 
-                            if (n(settings_css)) {
-                                x.bind(settings_css, 'load', on_render);
-                            }
-                        },
+                                if (n(settings_css)) {
+                                    x.bind(settings_css, 'load', on_render);
+                                }
+                            }, 'ges_1137'),
                     );
                 }, 'ges_1123');
 
@@ -105,9 +106,10 @@ export class InitAll {
                             <c_infinite_scroll.Spinner />
                         </c_crash_handler.Body>,
                         spinner_root,
-                        (): void => {
-                            x.css('spinner', spinner_root);
-                        },
+                        (): void =>
+                            err(() => {
+                                x.css('spinner', spinner_root);
+                            }, 'ges_1138'),
                     );
                 }, 'ges_1124');
 
@@ -120,9 +122,10 @@ export class InitAll {
                             <c_infinite_scroll.LoadEndMsg />
                         </c_crash_handler.Body>,
                         load_end_msg_root,
-                        (): void => {
-                            x.css('load_end_msg', load_end_msg_root);
-                        },
+                        (): void =>
+                            err(() => {
+                                x.css('load_end_msg', load_end_msg_root);
+                            }, 'ges_1139'),
                     );
                 }, 'ges_1125');
 
@@ -135,19 +138,20 @@ export class InitAll {
                             <c_side_panel.Body />
                         </c_crash_handler.Body>,
                         side_panel_root,
-                        (): void => {
-                            s_no_tr.Main.i().enable({ el: side_panel_root });
+                        (): void =>
+                            err(() => {
+                                s_no_tr.Main.i().enable({ el: side_panel_root });
 
-                            const side_panel_css = x.css('side_panel', side_panel_root);
+                                const side_panel_css = x.css('side_panel', side_panel_root);
 
-                            if (n(side_panel_css)) {
-                                x.bind(side_panel_css, 'load', (): void =>
-                                    err(() => {
-                                        s_no_tr.Main.i().disable({ el: side_panel_root });
-                                    }, 'ges_1126'),
-                                );
-                            }
-                        },
+                                if (n(side_panel_css)) {
+                                    x.bind(side_panel_css, 'load', (): void =>
+                                        err(() => {
+                                            s_no_tr.Main.i().disable({ el: side_panel_root });
+                                        }, 'ges_1126'),
+                                    );
+                                }
+                            }, 'ges_1140'),
                     );
                 }, 'ges_1127');
 
@@ -158,31 +162,37 @@ export class InitAll {
                             <c_loading_screen.Body />
                         </c_crash_handler.Body>,
                         loading_screen_root,
-                        (): void => {
-                            const loading_screen_root_el = s<HTMLDivElement>(
-                                `.${new s_suffix.Main('loading_screen').result}`,
-                            );
-
-                            if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
-                                s_theme.Main.i().set({ name: data.settings.options_page_theme });
-
-                                x.css('normalize', loading_screen_root_el.shadowRoot);
-                                const loading_screen_css = x.css(
-                                    'loading_screen',
-                                    loading_screen_root_el.shadowRoot,
+                        (): void =>
+                            err(() => {
+                                const loading_screen_root_el = s<HTMLDivElement>(
+                                    `.${new s_suffix.Main('loading_screen').result}`,
                                 );
 
-                                if (n(loading_screen_css)) {
-                                    x.bind(loading_screen_css, 'load', (): void =>
-                                        err(() => {
-                                            u_loading_screen.Visibility.i().show();
+                                if (
+                                    n(loading_screen_root_el) &&
+                                    n(loading_screen_root_el.shadowRoot)
+                                ) {
+                                    s_theme.Main.i().set({
+                                        name: data.settings.options_page_theme,
+                                    });
 
-                                            render_settings();
-                                        }, 'ges_1128'),
+                                    x.css('normalize', loading_screen_root_el.shadowRoot);
+                                    const loading_screen_css = x.css(
+                                        'loading_screen',
+                                        loading_screen_root_el.shadowRoot,
                                     );
+
+                                    if (n(loading_screen_css)) {
+                                        x.bind(loading_screen_css, 'load', (): void =>
+                                            err(() => {
+                                                u_loading_screen.Visibility.i().show();
+
+                                                render_settings();
+                                            }, 'ges_1128'),
+                                        );
+                                    }
                                 }
-                            }
-                        },
+                            }, 'ges_1141'),
                     );
                 } else if (page === 'content_script') {
                     render_spinner();
