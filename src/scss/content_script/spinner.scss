@@ -82,24 +82,12 @@
 @keyframes bounce_spinner {
     0% {
         transform: scale(1);
-        background-color: rgb(66, 134, 244);
+        background-color: #00b0ff;
     }
 
     100% {
         transform: scale(0.3);
-        background-color: rgb(255, 255, 255);
-    }
-}
-
-@-webkit-keyframes bounce_spinner {
-    0% {
-        -webkit-transform: scale(1);
-        background-color: rgb(66, 134, 244);
-    }
-
-    100% {
-        -webkit-transform: scale(0.3);
-        background-color: rgb(255, 255, 255);
+        background-color: #ffffff;
     }
 }
 /*< css from spinner generator */

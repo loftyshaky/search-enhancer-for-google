@@ -47,6 +47,9 @@
     "keyword_color_label_text": {
         "message": "Keyword color"
     },
+    "spinner_color_label_text": {
+        "message": "Page load spinner color"
+    },
     "allow_favicons_from_google_label_text": {
         "message": "Allow favicons from Google"
     },

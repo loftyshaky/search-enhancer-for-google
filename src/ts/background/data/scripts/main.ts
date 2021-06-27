@@ -21,6 +21,7 @@ export class Main {
         colors: d_color.Color.i().default_colors,
         side_panel_position: 'right',
         keyword_color: 2,
+        spinner_color: 15,
         enable_infinite_scrolling: true,
         show_enable_btn: true,
         show_jump_to_related_searches_btn: true,

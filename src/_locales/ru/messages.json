@@ -44,6 +44,9 @@
     "keyword_color_label_text": {
         "message": "Цвет ключевых слов"
     },
+    "spinner_color_label_text": {
+        "message": "Цвет индикатора загрузки страницы"
+    },
     "allow_favicons_from_google_label_text": {
         "message": "Разрешить получать фавиконы с помощью Google"
     },

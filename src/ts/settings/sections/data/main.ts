@@ -76,6 +76,17 @@ export class Main {
                         name: 'enable_infinite_scrolling',
                         event_callback: d_sections.Val.i().change,
                     }),
+                    new o_color.Color({
+                        name: 'spinner_color',
+                        parent: 'enable_infinite_scrolling',
+                        event_callback: d_sections.Val.i().change,
+                        select_palette_color_callback:
+                            d_sections.Val.i().save_selected_palette_color,
+                        hide_color_help_callback: d_sections.Visibility.i().hide_color_help,
+                        remove_color_callback: d_sections.Val.i().remove_color_callback,
+                        restore_default_palette_callback:
+                            d_sections.Val.i().restore_default_palette_callback,
+                    }),
                     new o_inputs.Checkbox({
                         name: 'show_enable_btn',
                         parent: 'enable_infinite_scrolling',

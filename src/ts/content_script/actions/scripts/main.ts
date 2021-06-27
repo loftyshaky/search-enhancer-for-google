@@ -5,6 +5,7 @@ import {
     d_img_action_bar,
     d_infinite_scroll,
     s_el_parser,
+    s_infinite_scroll,
     s_keywords,
     s_location,
     s_roots,
@@ -34,6 +35,7 @@ export class Main {
 
             if (s_location.Main.i().is_search_results) {
                 await InitAll.i().init();
+                s_infinite_scroll.Spinner.i().set_color();
             }
         }, 'ges_1013');
 
@@ -44,6 +46,7 @@ export class Main {
                 s_el_parser.Main.i().get_els();
 
                 if (s_location.Main.i().is_search_results) {
+                    s_infinite_scroll.Spinner.i().set_color();
                     s_keywords.Main.i().color_keywords();
                 }
 
