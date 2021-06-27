@@ -28,68 +28,75 @@ export class Val {
             this.os = platform_info.os;
         }, 'ges_1110');
 
-    public change = _.debounce(
-        ({ input, i }: { input: i_inputs.Input; i?: i_color.I }): Promise<void> =>
-            err_async(async () => {
-                let val: any;
+    public change = ({ input, i }: { input: i_inputs.Input; i?: i_color.I }): Promise<void> =>
+        err_async(async () => {
+            let val: any;
 
-                const set_val = (): Promise<void> =>
-                    err_async(async () => {
-                        d_inputs.Val.i().set({
-                            val,
-                            input,
-                        });
-
-                        await ext.send_msg_resp({
-                            msg: 'update_settings',
-                            settings: data.settings,
-                        });
-                    }, 'ges_1111');
-
-                if (input.type === 'color' && n(i)) {
-                    val = d_color.Color.i().access({
+            const set_val = (): Promise<void> =>
+                err_async(async () => {
+                    d_inputs.Val.i().set({
+                        val,
                         input,
-                        i,
-                    });
-                } else {
-                    val = d_inputs.Val.i().access({ input });
-                }
-
-                if (input.type === 'text') {
-                    if (
-                        !this.validate_input({ input }) ||
-                        !d_inputs.Val.i().validate_input({ input })
-                    ) {
-                        await set_val();
-                    }
-                } else if (input.type !== 'color' || i === 'main') {
-                    s_settings.Theme.i().change({
-                        input,
-                        name: val,
                     });
 
-                    await set_val();
-                } else if (n(i)) {
-                    const { colors } = data.settings;
+                    d_inputs.NestedInput.i().set_parent_disbled_vals({
+                        input,
+                        sections: d_sections.Main.i().sections,
+                    });
 
-                    colors[i] = val;
+                    s_css_vars.Main.i().set();
 
                     await ext.send_msg_resp({
                         msg: 'update_settings',
-                        settings: { colors },
+                        settings: data.settings,
                     });
-                }
+                }, 'ges_1111');
 
-                d_inputs.NestedInput.i().set_parent_disbled_vals({
+            if (input.type === 'color' && n(i)) {
+                val = d_color.Color.i().access({
                     input,
-                    sections: d_sections.Main.i().sections,
+                    i,
                 });
+            } else {
+                val = d_inputs.Val.i().access({ input });
+            }
+
+            if (input.type === 'text') {
+                if (
+                    !this.validate_input({ input }) ||
+                    !d_inputs.Val.i().validate_input({ input })
+                ) {
+                    await set_val();
+                }
+            } else if (input.type !== 'color' || i === 'main') {
+                await set_val();
+
+                s_settings.Theme.i().change({
+                    input,
+                    name: val,
+                });
+            } else if (n(i)) {
+                const { colors } = data.settings;
+
+                colors[i] = val;
 
                 s_css_vars.Main.i().set();
 
+                await ext.send_msg_resp({
+                    msg: 'update_settings',
+                    settings: { colors },
+                });
+            }
+
+            this.reflect_settings_change_in_content_script();
+        }, 'ges_1112');
+
+    private reflect_settings_change_in_content_script = _.debounce(
+        (): void =>
+            err(() => {
                 ext.iterate_all_tabs({ msg: 'rerun_actions' });
-            }, 'ges_1112'),
-        200,
+            }, 'ges_1152'),
+        500,
     );
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>
