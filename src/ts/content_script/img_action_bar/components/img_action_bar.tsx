@@ -1,22 +1,17 @@
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import {
-    c_img_action_bar,
-    o_img_action_bar,
-    d_img_action_bar,
-    u_img_action_bar,
-} from 'content_script/internal';
+import { c_img_action_bar, o_img_action_bar, d_img_action_bar } from 'content_script/internal';
 
 export const ImgActionBar: React.FunctionComponent = observer(() => {
     const img_action_bar_ref = useRef<HTMLDivElement>(null);
 
     return (
         <div
-            className={x.cls(['img_action_bar', u_img_action_bar.Visibility.i().visibility_cls])}
+            className={x.cls(['img_action_bar', d_img_action_bar.Visibility.i().visibility_cls])}
             style={{
-                bottom: u_img_action_bar.Position.i().bottom,
-                right: u_img_action_bar.Position.i().right,
+                bottom: d_img_action_bar.Position.i().bottom,
+                right: d_img_action_bar.Position.i().right,
             }}
             ref={img_action_bar_ref}
         >

@@ -1,5 +1,5 @@
 import { t } from '@loftyshaky/shared';
-import { u_side_panel } from 'content_script/internal';
+import { d_side_panel } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -33,12 +33,12 @@ export class Main {
                     }
 
                     if (e.altKey) {
-                        u_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
+                        d_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
                             { keyboard_call: true },
                             e_2,
                         );
                     } else {
-                        u_side_panel.Scroll.i().scroll(e_2);
+                        d_side_panel.Scroll.i().scroll(e_2);
                     }
                 } else if (n(callback)) {
                     callback();

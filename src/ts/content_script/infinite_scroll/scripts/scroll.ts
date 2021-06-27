@@ -1,5 +1,5 @@
 import { s_viewport } from '@loftyshaky/shared';
-import { u_infinite_scroll, s_el_parser, s_infinite_scroll } from 'content_script/internal';
+import { d_infinite_scroll, s_el_parser, s_infinite_scroll } from 'content_script/internal';
 
 export class Scroll {
     private static i0: Scroll;
@@ -22,7 +22,7 @@ export class Scroll {
             ) {
                 s_infinite_scroll.Iframe.i().insert();
             } else if (!n(s_el_parser.Main.i().next_page_href)) {
-                u_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
+                d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
         }, 'ges_1064');
 }

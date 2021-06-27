@@ -1,7 +1,7 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
 import { s_css_vars } from '@loftyshaky/shared';
-import { u_side_panel, s_el_parser, i_side_panel } from 'content_script/internal';
+import { d_side_panel, s_el_parser, i_side_panel } from 'content_script/internal';
 
 export class RelatedSearches {
     private static i0: RelatedSearches;
@@ -29,10 +29,10 @@ export class RelatedSearches {
 
     public remember_position = (): void =>
         err(() => {
-            const current_position: number = u_side_panel.Scroll.i().get_current_position();
+            const current_position: number = d_side_panel.Scroll.i().get_current_position();
 
             this.remembered_position = current_position;
-            u_side_panel.Scroll.i().remembered_position = current_position;
+            d_side_panel.Scroll.i().remembered_position = current_position;
         }, 'ges_1091');
 
     public reset_position = (): void =>
@@ -64,12 +64,12 @@ export class RelatedSearches {
                         document.documentElement.scrollTop -
                         parseInt(s_css_vars.Main.i().get({ name: 'offset_from_header' }), 10);
 
-                    u_side_panel.Scroll.i().scroll_to_position({
+                    d_side_panel.Scroll.i().scroll_to_position({
                         position: this.last_related_searches_position,
                     });
                 }
             } else {
-                u_side_panel.Scroll.i().scroll_to_position({ position: this.remembered_position });
+                d_side_panel.Scroll.i().scroll_to_position({ position: this.remembered_position });
 
                 this.reset_position();
             }

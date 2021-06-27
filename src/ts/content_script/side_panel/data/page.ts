@@ -1,7 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 
 import { s_viewport } from '@loftyshaky/shared';
-import { u_side_panel, s_infinite_scroll } from 'content_script/internal';
+import { d_side_panel, s_infinite_scroll } from 'content_script/internal';
 
 export class Page {
     private static i0: Page;
@@ -52,10 +52,10 @@ export class Page {
             }
 
             if (
-                u_side_panel.RelatedSearches.i().last_related_searches_position !==
-                u_side_panel.Scroll.i().get_current_position()
+                d_side_panel.RelatedSearches.i().last_related_searches_position !==
+                d_side_panel.Scroll.i().get_current_position()
             ) {
-                u_side_panel.RelatedSearches.i().reset_position();
+                d_side_panel.RelatedSearches.i().reset_position();
             }
         }, 'ges_1089');
 

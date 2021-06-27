@@ -46,12 +46,12 @@ export class Position {
                 );
                 const margin_right: number = x.get_float_css_val(img_in_img_viewer, 'margin-right');
 
-                this.bottom = `${margin_bottom}px`;
-                this.right = `${
+                this.bottom = x.px(margin_bottom);
+                this.right = x.px(
                     s_text_dir.Main.i().dir === 'ltr'
                         ? margin_right + img_viewer.offsetLeft
-                        : -(margin_right + img_viewer.offsetLeft)
-                }px`;
+                        : -(margin_right + img_viewer.offsetLeft),
+                );
             }
         }, 'ges_1050');
 }

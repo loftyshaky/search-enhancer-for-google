@@ -6,12 +6,12 @@ import {
     c_crash_handler,
     c_error,
     c_loading_screen,
-    u_loading_screen,
+    d_loading_screen,
     s_no_tr,
     s_tab_index,
     s_theme,
 } from '@loftyshaky/shared';
-import { u_settings } from '@loftyshaky/shared/settings';
+import { d_settings as d_settings_shared } from '@loftyshaky/shared/settings';
 import { d_settings, s_css_vars, s_suffix } from 'shared/internal';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
@@ -69,12 +69,12 @@ export class InitAll {
                         err_async(async () => {
                             const { d_sections } = await import('settings/internal');
 
-                            u_settings.InputsWidth.i().calculate_for_all_sections({
+                            d_settings_shared.InputWidth.i().calculate_for_all_sections({
                                 sections: d_sections.Main.i().sections,
                             });
-                            u_settings.InputsWidth.i().set_max_width();
+                            d_settings_shared.InputWidth.i().set_max_width();
 
-                            u_loading_screen.Visibility.i().hide();
+                            d_loading_screen.Main.i().hide();
 
                             s_tab_index.Main.i().bind_set_input_type_f();
                         }, 'ges_1122');
@@ -185,7 +185,7 @@ export class InitAll {
                                     if (n(loading_screen_css)) {
                                         x.bind(loading_screen_css, 'load', (): void =>
                                             err(() => {
-                                                u_loading_screen.Visibility.i().show();
+                                                d_loading_screen.Main.i().show();
 
                                                 render_settings();
                                             }, 'ges_1128'),

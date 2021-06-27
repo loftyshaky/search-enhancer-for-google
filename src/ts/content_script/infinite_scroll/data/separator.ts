@@ -19,7 +19,7 @@ export class Separator {
         });
     }
 
-    public offset_left: number = 0;
+    public offset_left: string = '0';
 
     get none_cls() {
         return data.settings.show_page_separators ? '' : 'none';
@@ -47,9 +47,11 @@ export class Separator {
                 const rect: any = s_el_parser.Main.i().search_result_body!.getBoundingClientRect();
 
                 if (s_text_dir.Main.i().dir === 'ltr') {
-                    this.offset_left = rect.left;
+                    this.offset_left = x.px(rect.left);
                 } else if (s_text_dir.Main.i().dir === 'rtl') {
-                    this.offset_left = s_viewport.Main.i().get_dim({ dim: 'width' }) - rect.right;
+                    this.offset_left = x.px(
+                        s_viewport.Main.i().get_dim({ dim: 'width' }) - rect.right,
+                    );
                 }
             }
         }, 'ges_1067');

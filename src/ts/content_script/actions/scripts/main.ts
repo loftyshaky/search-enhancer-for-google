@@ -2,8 +2,8 @@ import _ from 'lodash';
 
 import { d_settings } from 'shared/internal';
 import {
-    u_img_action_bar,
-    u_infinite_scroll,
+    d_img_action_bar,
+    d_infinite_scroll,
     s_el_parser,
     s_keywords,
     s_location,
@@ -29,7 +29,7 @@ export class Main {
             s_el_parser.Main.i().get_next_page_href();
 
             if (!n(s_el_parser.Main.i().next_page_href)) {
-                u_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
+                d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
 
             if (s_location.Main.i().is_search_results) {
@@ -51,7 +51,7 @@ export class Main {
                     s_roots.Main.i().apply_root_parent_cls_to_title_els();
                 }
 
-                u_infinite_scroll.Separator.i().set_offset_left();
+                d_infinite_scroll.Separator.i().set_offset_left();
 
                 if (s_location.Main.i().is_icons_search_results) {
                     s_roots.Main.i().init({ name: 'icons' });
@@ -74,7 +74,7 @@ export class Main {
             if (s_location.Main.i().is_imgs_page) {
                 s_el_parser.Main.i().get_img_viewer();
                 s_roots.Main.i().init({ name: 'img_action_bar' });
-                u_img_action_bar.Position.i().observe_img_margin_change();
+                d_img_action_bar.Position.i().observe_img_margin_change();
             }
 
             this.run_reload_actions_debounce();

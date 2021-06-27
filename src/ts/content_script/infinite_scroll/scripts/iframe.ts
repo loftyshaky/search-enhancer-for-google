@@ -2,8 +2,8 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { s_suffix } from 'shared/internal';
 import {
-    u_infinite_scroll,
-    u_side_panel,
+    d_infinite_scroll,
+    d_side_panel,
     s_actions,
     s_el_parser,
     s_infinite_scroll,
@@ -68,7 +68,7 @@ export class Iframe {
                     err(() => {
                         const change_visibility = (): void =>
                             err(() => {
-                                u_infinite_scroll.LoadEndMsg.i().change_visibility({
+                                d_infinite_scroll.LoadEndMsg.i().change_visibility({
                                     is_visible: true,
                                 });
                             }, 'ges_1135');
@@ -90,8 +90,8 @@ export class Iframe {
                                 this.inserting_iframe = false;
                             });
 
-                            u_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
-                            u_infinite_scroll.LoadEndMsg.i().change_visibility({
+                            d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
+                            d_infinite_scroll.LoadEndMsg.i().change_visibility({
                                 is_visible: true,
                             });
                         } else {
@@ -144,7 +144,7 @@ export class Iframe {
 
                                                 this.cur_iframe_i += 1;
 
-                                                u_side_panel.Page.i().set_total();
+                                                d_side_panel.Page.i().set_total();
 
                                                 const is_last_page: boolean = !n(
                                                     s_el_parser.Main.i().next_page_href,

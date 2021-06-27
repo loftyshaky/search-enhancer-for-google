@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import { svg } from 'shared/svg';
-import { p_side_panel } from 'content_script/internal';
+import { d_side_panel, p_side_panel } from 'content_script/internal';
 
 const component: any = {
     enable_btn: svg.PowerSettingsNew,
@@ -37,7 +37,7 @@ export const Btn: React.FunctionComponent<p_side_panel.Btn> = observer(
                     position_overridden_cls,
                 ])}
                 type='button'
-                title={ext.msg(`${name}_title`)}
+                title={d_side_panel.Btn.i().msg({ name })}
                 onClick={on_click}
                 onMouseDown={on_mouse_down}
                 onMouseUp={on_mouse_up}

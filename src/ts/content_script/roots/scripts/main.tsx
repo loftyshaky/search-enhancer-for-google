@@ -7,7 +7,7 @@ import {
     c_icons,
     c_img_action_bar,
     c_infinite_scroll,
-    u_img_action_bar,
+    d_img_action_bar,
     s_el_parser,
     s_infinite_scroll,
     s_location,
@@ -95,7 +95,7 @@ export class Main {
                             append_f_name: 'after',
                         });
 
-                        u_img_action_bar.Position.i().set_margin();
+                        d_img_action_bar.Position.i().set_margin();
                     }, 'ges_1077');
 
                 const next_el: Element | null = s_el_parser.Main.i().img_viewer!.nextElementSibling;
