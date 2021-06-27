@@ -25,8 +25,8 @@ export class Separator {
         return data.settings.show_page_separators ? '' : 'none';
     }
 
-    get video_cls() {
-        return s_location.Main.i().is_video_page ? 'video' : '';
+    get videos_cls() {
+        return s_location.Main.i().is_videos_page ? 'videos' : '';
     }
 
     get books_cls() {

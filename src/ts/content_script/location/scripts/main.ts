@@ -15,7 +15,7 @@ export class Main {
 
     public is_all_page: boolean = this.search_string_is_present && !n(this.tbm);
 
-    public is_video_page: boolean = this.search_string_is_present && this.tbm === 'vid';
+    public is_videos_page: boolean = this.search_string_is_present && this.tbm === 'vid';
 
     public is_books_page: boolean = this.search_string_is_present && this.tbm === 'bks';
 
@@ -28,13 +28,13 @@ export class Main {
 
     public is_search_results: boolean =
         this.is_all_page ||
-        this.is_video_page ||
+        this.is_videos_page ||
         this.is_books_page ||
         this.is_news_page ||
         this.is_shopping_page;
 
     public is_icons_search_results: boolean =
-        this.is_all_page || this.is_video_page || this.is_news_page || this.is_shopping_page;
+        this.is_all_page || this.is_videos_page || this.is_news_page || this.is_shopping_page;
 
     public is_non_standard_search_results: boolean = this.is_news_page || this.is_shopping_page;
 }

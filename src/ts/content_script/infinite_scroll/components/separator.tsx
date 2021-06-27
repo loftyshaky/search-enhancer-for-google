@@ -11,7 +11,7 @@ export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = o
             className={x.cls([
                 'separator',
                 d_infinite_scroll.Separator.i().none_cls,
-                d_infinite_scroll.Separator.i().video_cls,
+                d_infinite_scroll.Separator.i().videos_cls,
                 d_infinite_scroll.Separator.i().books_cls,
                 d_infinite_scroll.Separator.i().news_cls,
                 d_infinite_scroll.Separator.i().shopping_cls,
