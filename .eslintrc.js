@@ -102,7 +102,6 @@ const rules = {
         'react/prefer-stateless-function': 'off',
         'react/jsx-filename-extension': 'off',
         'react/static-property-placement': 'off',
-        'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         //< react
     },
