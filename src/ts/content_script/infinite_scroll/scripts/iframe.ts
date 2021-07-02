@@ -210,11 +210,11 @@ export class Iframe {
                 }
 
                 const search_results_w = sb<HTMLElement>(
-                    iframe_doc.body!,
+                    iframe_doc.body,
                     this.search_results_w_selector,
                 );
 
-                const resize_observer: any = new ResizeObserver((): void => {
+                const resize_observer = new ResizeObserver((): void => {
                     this.resize_iframe({ cur_iframe_i });
                 });
 
@@ -244,7 +244,7 @@ export class Iframe {
 
             if (n(iframe_doc)) {
                 const search_results_w = sb<HTMLElement>(
-                    iframe_doc.body!,
+                    iframe_doc.body,
                     this.search_results_w_selector,
                 );
                 const els = sab<HTMLElement>(iframe_doc.body, '*');
@@ -253,7 +253,8 @@ export class Iframe {
                     [...els].forEach((el: HTMLElement): void =>
                         err(() => {
                             if (
-                                !el.contains(search_results_w!) &&
+                                n(search_results_w) &&
+                                !el.contains(search_results_w) &&
                                 !x.closest(el, this.search_results_w_selector)
                             ) {
                                 x.add_cls(el, 'none');
@@ -263,4 +264,17 @@ export class Iframe {
                 }
             }
         }, 'ges_1061');
+
+    public get_content_document = ({
+        base_el,
+    }: {
+        base_el: HTMLIFrameElement;
+    }): Document | undefined =>
+        err(() => {
+            if (n(base_el.contentDocument)) {
+                return base_el.contentDocument;
+            }
+
+            return undefined;
+        }, 'ges_1155');
 }

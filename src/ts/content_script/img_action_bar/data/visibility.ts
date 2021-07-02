@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { makeObservable, observable, computed, action } from 'mobx';
 
 import { s_el_parser } from 'content_script/internal';
@@ -11,16 +12,16 @@ export class Visibility {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<Visibility, 'is_visible'>(this, {
             is_visible: observable,
             visibility_cls: computed,
             change: action,
         });
     }
 
-    public is_visible: boolean = false;
+    private is_visible: boolean = false;
 
-    public change = (e: any): void =>
+    public change = (e: MouseEvent): void =>
         err(() => {
             const img_in_img_viewer: HTMLImageElement | undefined =
                 s_el_parser.Main.i().get_img_in_img_viewer();
@@ -28,7 +29,7 @@ export class Visibility {
             if (n(img_in_img_viewer)) {
                 const scroll_left: number = document.documentElement.scrollLeft;
                 const scroll_top: number = document.documentElement.scrollTop;
-                const rect: any = img_in_img_viewer.getBoundingClientRect();
+                const rect = img_in_img_viewer.getBoundingClientRect();
                 const hovering_over_img: boolean =
                     e.pageX - scroll_left >= rect.left &&
                     e.pageY - scroll_top >= rect.top &&

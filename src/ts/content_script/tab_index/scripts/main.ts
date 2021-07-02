@@ -1,3 +1,4 @@
+import { KeyboardEvent, MouseEvent } from 'react';
 import { t } from '@loftyshaky/shared';
 import { d_side_panel } from 'content_script/internal';
 
@@ -17,10 +18,10 @@ export class Main {
             type?: string;
             callback?: t.CallbackVariadicVoid;
         },
-        e: any,
+        e: KeyboardEvent,
     ): void =>
         err(() => {
-            const e_2: any = { button: e.button };
+            const e_2 = { button: 0 };
 
             if (e.code === 'Enter') {
                 if (type === 'scroll_to_top') {
@@ -35,10 +36,10 @@ export class Main {
                     if (e.altKey) {
                         d_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
                             { keyboard_call: true },
-                            e_2,
+                            e_2 as MouseEvent,
                         );
                     } else {
-                        d_side_panel.Scroll.i().scroll(e_2);
+                        d_side_panel.Scroll.i().scroll(e_2 as MouseEvent);
                     }
                 } else if (n(callback)) {
                     callback();

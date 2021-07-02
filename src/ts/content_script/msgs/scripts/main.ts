@@ -3,7 +3,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { t } from '@loftyshaky/shared';
 import { s_actions } from 'content_script/internal';
 
-browser.runtime.onMessage.addListener((msg: t.Msg): any =>
+browser.runtime.onMessage.addListener((msg: t.Msg): void =>
     err(() => {
         const msg_str: string = msg.msg;
 

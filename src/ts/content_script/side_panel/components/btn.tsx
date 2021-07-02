@@ -1,10 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import { t } from '@loftyshaky/shared';
 import { svg } from 'shared/svg';
 import { d_side_panel, p_side_panel } from 'content_script/internal';
 
-const component: any = {
+const component: t.AnyRecord = {
     enable_btn: svg.PowerSettingsNew,
     jump_to_related_searches: svg.Article,
     scroll_to_top: svg.KeyboardArrowUp,
@@ -24,7 +25,7 @@ export const Btn: React.FunctionComponent<p_side_panel.Btn> = observer(
             on_keydown,
         } = props;
 
-        const Component: any = component[name];
+        const Component = component[name];
 
         return (
             <button

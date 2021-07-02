@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
-import { s_viewport } from '@loftyshaky/shared';
+import { t, s_viewport } from '@loftyshaky/shared';
 import { s_suffix } from 'shared/internal';
 import { s_infinite_scroll, s_location, s_roots, s_text_dir } from 'content_script/internal';
 
@@ -40,7 +40,7 @@ export class Main {
             this.get_search_result_body();
         }, 'ges_1017');
 
-    private get_els_of_all_frames = ({ selector }: { selector: string }): any[] =>
+    private get_els_of_all_frames = ({ selector }: { selector: string }): HTMLElement[] =>
         err(() => {
             const base_els: (Document | HTMLIFrameElement)[] = [
                 document,
@@ -53,7 +53,9 @@ export class Main {
                     const els = sab<HTMLElement>(
                         base_el.nodeType === 9
                             ? base_el
-                            : (base_el as HTMLIFrameElement).contentDocument!,
+                            : s_infinite_scroll.Iframe.i().get_content_document({
+                                  base_el: base_el as HTMLIFrameElement,
+                              }),
                         selector,
                     );
 
@@ -99,14 +101,14 @@ export class Main {
         err(() => {
             s_roots.Position.i().remove_offset_classes();
 
-            const links: HTMLLinkElement[] = this.get_els_of_all_frames({
+            const links: HTMLElement[] = this.get_els_of_all_frames({
                 selector: `a${this.pseudo}`,
             });
             const filtered_links: HTMLLinkElement[] = [];
             this.title_els = [];
             const viewport_width: number = s_viewport.Main.i().get_dim({ dim: 'width' });
 
-            links.forEach((el: HTMLLinkElement): boolean =>
+            links.forEach((el: HTMLElement): boolean =>
                 err(() => {
                     const children = sab<HTMLElement>(el, `*${this.pseudo}`);
 
@@ -151,10 +153,10 @@ export class Main {
                                                     this.check_if_el_has_immediate_text({
                                                         el: el_2,
                                                     }))) &&
-                                            n(el.href) &&
-                                            el.href))
+                                            n((el as HTMLLinkElement).href) &&
+                                            (el as HTMLLinkElement).href))
                                 ) {
-                                    filtered_links.push(el);
+                                    filtered_links.push(el as HTMLLinkElement);
                                     this.title_els.push(el_2);
                                 }
                             }, 'ges_1023'),
@@ -260,13 +262,13 @@ export class Main {
                 err(
                     () =>
                         el_2.nodeType === Node.TEXT_NODE ||
-                        x.matches(el_2 as any, `.${new s_suffix.Main('icons').result}`),
+                        x.matches(el_2 as HTMLElement, `.${new s_suffix.Main('icons').result}`),
                     'ges_1036',
                 ),
             );
         }, 'ges_1037');
 
-    private get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): any =>
+    private get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): t.AnyRecord =>
         err(() => {
             const color_hex: string = x.get_css_val(el, key);
 

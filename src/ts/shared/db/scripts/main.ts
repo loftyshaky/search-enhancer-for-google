@@ -1,24 +1,24 @@
 import Dexie from 'dexie';
 
-export class Main {
-    private static i0: Main;
+import { i_db } from 'shared/internal';
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+export class Main extends Dexie {
+    public ip_to_country: Dexie.Table<i_db.IpToCountry, number>;
+
+    public constructor() {
+        super('google-enhancement-suite');
+
+        this.version(1).stores({
+            ip_to_country: 'id++, ip_from',
+        });
+
+        this.ip_to_country = this.table('ip_to_country');
     }
-
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
-    private constructor() {}
-
-    public db: any = new Dexie('google-enhancement-suite');
 
     public init_db = (): void =>
         err(() => {
-            this.db.version(1).stores({
-                ip_to_country: 'id++, ip_from',
-            });
-
-            this.db.open();
+            this.open();
         }, 'ges_1121');
 }
+
+export const db = new Main();

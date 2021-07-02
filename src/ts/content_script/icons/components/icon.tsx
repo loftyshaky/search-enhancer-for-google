@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
+import { t } from '@loftyshaky/shared';
 import { svg } from 'shared/svg';
 
 import { d_icons, p_icons } from 'content_script/internal';
@@ -20,7 +21,7 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
                     type,
                 });
 
-                (d_icons.Main as any).i()[`generate_${type}`]({ url });
+                (d_icons.Main as t.AnyRecord).i()[`generate_${type}`]({ url });
             }
         }, 'ges_1150'),
     );

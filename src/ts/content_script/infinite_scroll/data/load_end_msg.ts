@@ -11,7 +11,7 @@ export class LoadEndMsg {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<LoadEndMsg, 'is_visible'>(this, {
             type: observable,
             is_visible: observable,
             visibility_cls: computed,
@@ -21,7 +21,7 @@ export class LoadEndMsg {
     }
 
     public type: i_infinite_scroll.LoadEndMsgType = 'last_page';
-    public is_visible: boolean = false;
+    private is_visible: boolean = false;
 
     public get visibility_cls() {
         return this.is_visible ? '' : 'none';

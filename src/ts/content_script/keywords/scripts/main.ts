@@ -27,14 +27,16 @@ export class Main {
                     (base_el: Document | HTMLIFrameElement): void =>
                         err(
                             () => {
-                                const head: HTMLHeadElement =
+                                const document_2: Document | undefined =
                                     base_el.nodeType === 9
-                                        ? (base_el as Document).head
-                                        : (base_el as HTMLIFrameElement).contentDocument!.head;
+                                        ? (base_el as Document)
+                                        : s_infinite_scroll.Iframe.i().get_content_document({
+                                              base_el: base_el as HTMLIFrameElement,
+                                          });
 
-                                if (n(head)) {
+                                if (n(document_2)) {
                                     x.dynamic_css(
-                                        head,
+                                        document_2.head,
                                         cls,
                                         `.${cls} { color: ${d_color.Color.i().access_from_val({
                                             val: data.settings.keyword_color,

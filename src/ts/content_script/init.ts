@@ -1,7 +1,8 @@
 import { s_tab_index } from '@loftyshaky/shared';
-import { s_suffix, s_db } from 'shared/internal';
+import { db, s_suffix } from 'shared/internal';
 import {
     d_img_action_bar,
+    s_roots,
     d_side_panel,
     s_actions,
     s_infinite_scroll,
@@ -10,16 +11,19 @@ import {
 
 export const init = (): Promise<void> =>
     err_async(async () => {
-        d_img_action_bar.Btns.i().init_component();
-        s_text_dir.Main.i().get();
-        s_db.Main.i().init_db();
-        await s_actions.Main.i().run_initial_actions();
-        s_infinite_scroll.FooterEls.i().append_to_footer();
-
         s_tab_index.Main.i().bind_set_input_type_f({
             parent: document.body,
             app_id: s_suffix.app_id,
         });
+
+        db.init_db();
+
+        d_img_action_bar.Btns.i().init_btns();
+        d_img_action_bar.Btns.i().init_component();
+        s_roots.Main.i().init_component();
+        await s_actions.Main.i().run_initial_actions();
+        s_infinite_scroll.FooterEls.i().append_to_footer();
+        s_text_dir.Main.i().get();
 
         x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);
         x.bind(window, 'scroll', d_side_panel.Page.i().set_current);

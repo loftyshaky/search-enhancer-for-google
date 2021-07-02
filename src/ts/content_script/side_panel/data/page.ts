@@ -32,7 +32,7 @@ export class Page {
                 (el: HTMLIFrameElement): boolean =>
                     err(() => {
                         const page_height: number = s_viewport.Main.i().get_dim({ dim: 'height' });
-                        const rect: any = el.getBoundingClientRect();
+                        const rect = el.getBoundingClientRect();
                         const rendering_iframe: boolean = rect.top > 50000;
 
                         if (rendering_iframe) {

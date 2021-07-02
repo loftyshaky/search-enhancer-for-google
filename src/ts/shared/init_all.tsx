@@ -12,6 +12,7 @@ import {
     s_theme,
 } from '@loftyshaky/shared';
 import { d_settings as d_settings_shared } from '@loftyshaky/shared/settings';
+import { i_inputs } from '@loftyshaky/shared/inputs';
 import { d_settings, s_css_vars, s_suffix } from 'shared/internal';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
@@ -70,7 +71,7 @@ export class InitAll {
                             const { d_sections } = await import('settings/internal');
 
                             d_settings_shared.InputWidth.i().calculate_for_all_sections({
-                                sections: d_sections.Main.i().sections,
+                                sections: d_sections.Main.i().sections as i_inputs.Sections,
                             });
                             d_settings_shared.InputWidth.i().set_max_width();
 

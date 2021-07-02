@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent, KeyboardEvent } from 'react';
 import { observer } from 'mobx-react';
 
 import { prevent_default } from '@loftyshaky/shared';
@@ -6,7 +6,7 @@ import { c_side_panel, d_side_panel, s_tab_index } from 'content_script/internal
 
 export const Body: React.FunctionComponent = observer(() => {
     const name_1 = 'scroll_to_top';
-    const remember_scrolling_position_0_35_seconds = (e: any) =>
+    const remember_scrolling_position_0_35_seconds = (e: MouseEvent) =>
         err(
             () =>
                 d_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
@@ -41,7 +41,7 @@ export const Body: React.FunctionComponent = observer(() => {
                     on_mouse_down={remember_scrolling_position_0_35_seconds}
                     on_mouse_up={d_side_panel.Scroll.i().scroll}
                     on_context_menu={prevent_default}
-                    on_keydown={(e: any) => {
+                    on_keydown={(e: KeyboardEvent) => {
                         s_tab_index.Main.i().simulate_side_panel_btn_click_on_enter(
                             { type: name_1 },
                             e,
@@ -57,7 +57,7 @@ export const Body: React.FunctionComponent = observer(() => {
                         d_side_panel.RelatedSearches.i().position_remembered_cls
                     }
                     on_mouse_down={d_side_panel.RelatedSearches.i().jump_to}
-                    on_keydown={(e: any) => {
+                    on_keydown={(e: KeyboardEvent) => {
                         s_tab_index.Main.i().simulate_side_panel_btn_click_on_enter(
                             {
                                 callback: d_side_panel.RelatedSearches.i().jump_to,

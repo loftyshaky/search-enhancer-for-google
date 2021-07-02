@@ -3,7 +3,7 @@ import { t } from '@loftyshaky/shared';
 export class Btn {
     public name: string;
     public svg_name: string;
-    public event_callback: t.CallbackVariadicAny;
+    public event_callback: t.CallbackVariadicVoid;
 
     public constructor(obj: Btn) {
         Object.assign(this, obj);

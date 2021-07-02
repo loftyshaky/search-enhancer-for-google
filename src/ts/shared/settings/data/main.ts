@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import { runInAction, toJS } from 'mobx';
 
+import { t } from '@loftyshaky/shared';
+import { i_data } from 'shared/internal';
+
 export class Main {
     private static i0: Main;
 
@@ -11,16 +14,18 @@ export class Main {
 
     public allow_rerun_actions = true;
 
-    private set = ({ settings }: { settings?: any } = {}): Promise<void> =>
+    private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
         err_async(async () => {
-            let settings_final: any;
+            let settings_final: i_data.Settings;
 
-            if (_.isEmpty(settings)) {
-                const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+            if (n(settings)) {
+                if (_.isEmpty(settings)) {
+                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-                settings_final = default_settings;
-            } else {
-                settings_final = settings;
+                    settings_final = default_settings;
+                } else {
+                    settings_final = settings;
+                }
             }
 
             runInAction((): void =>
@@ -30,7 +35,7 @@ export class Main {
             );
         }, 'ges_1132');
 
-    public change = ({ key, val }: { key: string; val: any }): void =>
+    public change = ({ key, val }: { key: string; val: t.AnyUndefined }): void =>
         err(() => {
             data.settings[key] = val;
 

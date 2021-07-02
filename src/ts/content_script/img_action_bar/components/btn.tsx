@@ -6,7 +6,7 @@ import { d_img_action_bar, p_img_action_bar } from 'content_script/internal';
 
 export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((props) => {
     const { btn } = props;
-    const Component: any = d_img_action_bar.Btns.i().component[btn.name];
+    const Component = d_img_action_bar.Btns.i().component[btn.name];
 
     return data.settings[`show_${btn.name}_btn`] ? (
         <button

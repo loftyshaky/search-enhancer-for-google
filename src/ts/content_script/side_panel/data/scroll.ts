@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { makeObservable, observable, computed, action, runInAction } from 'mobx';
 
 import { s_css_vars } from '@loftyshaky/shared';
@@ -12,7 +13,7 @@ export class Scroll {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<Scroll, 'remember_position' | 'reset_position'>(this, {
             remembered_position: observable,
             position_overridden: observable,
             position_remembered_cls: computed,
@@ -25,7 +26,8 @@ export class Scroll {
 
     public remembered_position: i_side_panel.RememberedPosition = 'none';
     public position_overridden = false;
-    private remember_scrolling_position_0_35_seconds_timeout: any = false;
+    private remember_scrolling_position_0_35_seconds_timeout: boolean | number | NodeJS.Timeout =
+        false;
 
     private middle_button_holded_more_than_0_35_seconds: boolean = false;
 
@@ -49,12 +51,12 @@ export class Scroll {
             return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
         }, 'ges_1095');
 
-    public remember_position = (): void =>
+    private remember_position = (): void =>
         err(() => {
             this.remembered_position = this.get_current_position();
         }, 'ges_1096');
 
-    public reset_position = (): void =>
+    private reset_position = (): void =>
         err(() => {
             this.remembered_position = 'none';
         }, 'ges_1097');
@@ -98,7 +100,7 @@ export class Scroll {
 
     public stop_remember_scrolling_position_0_35_seconds_timeout = (): void =>
         err(() => {
-            clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout);
+            clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout as NodeJS.Timeout);
         }, 'ges_1099');
 
     public scroll = (e: MouseEvent): void =>

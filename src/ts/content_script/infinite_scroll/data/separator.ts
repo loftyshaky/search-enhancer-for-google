@@ -44,7 +44,7 @@ export class Separator {
     public set_offset_left = (): void =>
         err(() => {
             if (n(s_el_parser.Main.i().search_result_body)) {
-                const rect: any = s_el_parser.Main.i().search_result_body!.getBoundingClientRect();
+                const rect = s_el_parser.Main.i().search_result_body!.getBoundingClientRect();
 
                 if (s_text_dir.Main.i().dir === 'ltr') {
                     this.offset_left = x.px(rect.left);

@@ -27,7 +27,7 @@ export class Position {
                 s_el_parser.Main.i().get_img_in_img_viewer();
 
             if (n(img_in_img_viewer)) {
-                const resize_observer: any = new ResizeObserver(this.set_margin);
+                const resize_observer = new ResizeObserver(this.set_margin);
 
                 resize_observer.observe(img_in_img_viewer);
             }

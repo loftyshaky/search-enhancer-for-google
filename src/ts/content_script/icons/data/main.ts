@@ -2,6 +2,7 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 import { browser } from 'webextension-polyfill-ts';
 
+import { t } from '@loftyshaky/shared';
 import { i_icons as i_icons_shared } from 'shared/internal';
 import { s_el_parser, s_location, i_icons } from 'content_script/internal';
 
@@ -14,20 +15,20 @@ export class Main {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<Main, 'server_ips' | 'server_countries'>(this, {
             favicons: observable,
             server_locations: observable,
             server_ips: observable,
             server_countries: observable,
-            generate_favicons: action,
-            generate_server_locations: action,
+            generate_favicons: action, // called from content_script/icons/components/icon.tsx
+            generate_server_locations: action, // called from content_script/icons/components/icon.tsx
         });
     }
 
-    public favicons: { [index: string]: string } = {};
-    public server_locations: { [index: string]: string } = {};
-    public server_ips: { [index: string]: string } = {};
-    public server_countries: { [index: string]: string } = {};
+    public favicons: t.StringRecord = {};
+    public server_locations: t.StringRecord = {};
+    private server_ips: t.StringRecord = {};
+    private server_countries: t.StringRecord = {};
 
     public server_data = computedFn(function (
         this: Main,

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { browser, Runtime } from 'webextension-polyfill-ts';
 
+import { i_data } from '@loftyshaky/shared';
 import { o_color, d_inputs, d_color, i_inputs, i_color } from '@loftyshaky/shared/inputs';
 import { s_settings } from '@loftyshaky/shared/settings';
 import { s_css_vars } from 'shared/internal';
@@ -30,7 +31,7 @@ export class Val {
 
     public change = ({ input, i }: { input: i_inputs.Input; i?: i_color.I }): Promise<void> =>
         err_async(async () => {
-            let val: any;
+            let val: i_data.Val;
 
             const set_val = (): Promise<void> =>
                 err_async(async () => {
@@ -41,7 +42,7 @@ export class Val {
 
                     d_inputs.NestedInput.i().set_parent_disbled_vals({
                         input,
-                        sections: d_sections.Main.i().sections,
+                        sections: d_sections.Main.i().sections as i_inputs.Sections,
                     });
 
                     s_css_vars.Main.i().set();
@@ -73,7 +74,7 @@ export class Val {
 
                 s_settings.Theme.i().change({
                     input,
-                    name: val,
+                    name: val as string,
                 });
             } else if (n(i)) {
                 const { colors } = data.settings;
@@ -101,40 +102,43 @@ export class Val {
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>
         err(() => {
-            const val: string = d_inputs.Val.i().access({ input });
+            const val: i_data.Val = d_inputs.Val.i().access({ input });
 
-            if (input.name === 'img_downloads_dir') {
-                const dim: string = '/';
-                const windows_forbidden_chars = [':', '*', '?', '"', '<', '>', '|'];
+            if (typeof val === 'string') {
+                if (input.name === 'img_downloads_dir') {
+                    const dim: string = '/';
+                    const windows_forbidden_chars = [':', '*', '?', '"', '<', '>', '|'];
 
-                if (this.os === 'win') {
-                    const dir_path_has_forbidden_characters: boolean = windows_forbidden_chars.some(
-                        (char: string): boolean => err(() => val.includes(char), 'ges_1113'),
-                    );
+                    if (this.os === 'win') {
+                        const dir_path_has_forbidden_characters: boolean =
+                            windows_forbidden_chars.some((char: string): boolean =>
+                                err(() => val.includes(char), 'ges_1113'),
+                            );
 
-                    if (dir_path_has_forbidden_characters) {
+                        if (dir_path_has_forbidden_characters) {
+                            return true;
+                        }
+                    }
+
+                    const dir_path_contains_backslash = val.includes('\\');
+                    const dir_path_is_only_dim = val === dim;
+                    const first_character_in_dir_path_is_dim = val[0] === dim;
+                    const last_character_in_dir_path_is_dim = val[val.length - 1] === dim;
+                    const dim_repeat_reg = RegExp(`(${dim})\\1+`);
+                    const dim_repeats_in_dir_path: boolean = dim_repeat_reg.test(val);
+
+                    if (
+                        dir_path_contains_backslash ||
+                        dir_path_is_only_dim ||
+                        first_character_in_dir_path_is_dim ||
+                        last_character_in_dir_path_is_dim ||
+                        dim_repeats_in_dir_path
+                    ) {
                         return true;
                     }
+                } else {
+                    return !/^1$|^0$|^(0\.[0-9]{1,2}|1\.00?)$/.test(val);
                 }
-
-                const dir_path_contains_backslash = val.includes('\\');
-                const dir_path_is_only_dim = val === dim;
-                const first_character_in_dir_path_is_dim = val[0] === dim;
-                const last_character_in_dir_path_is_dim = val[val.length - 1] === dim;
-                const dim_repeat_reg: any = RegExp(`(${dim})\\1+`);
-                const dim_repeats_in_dir_path: boolean = dim_repeat_reg.test(val);
-
-                if (
-                    dir_path_contains_backslash ||
-                    dir_path_is_only_dim ||
-                    first_character_in_dir_path_is_dim ||
-                    last_character_in_dir_path_is_dim ||
-                    dim_repeats_in_dir_path
-                ) {
-                    return true;
-                }
-            } else {
-                return !/^1$|^0$|^(0\.[0-9]{1,2}|1\.00?)$/.test(val);
             }
 
             return false;
@@ -174,7 +178,7 @@ export class Val {
     public restore_default_palette_callback = ({
         default_colors,
     }: {
-        default_colors: any;
+        default_colors: i_color.Color[];
     }): Promise<void> =>
         err_async(async () => {
             await ext.send_msg_resp({

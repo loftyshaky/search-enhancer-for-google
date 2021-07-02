@@ -1,5 +1,7 @@
 import { browser, Downloads } from 'webextension-polyfill-ts';
 
+import { i_data } from 'shared/internal';
+
 export class Main {
     private static i0: Main;
 
@@ -11,50 +13,54 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public run = ({ type, img_url }: { type: string; img_url: string }): Promise<string> =>
+    public run = ({ type, img_url }: { type: string; img_url: string }): Promise<void> =>
         new Promise(() =>
             err_async(async () => {
                 if (['view_img', 'search_by_img'].includes(type)) {
                     browser.tabs.create({ url: img_url });
                 } else if (['download_img', 'save_img_as'].includes(type)) {
-                    const img_filename: string = img_url
-                        .split('/')
-                        .pop()!
-                        .split('#')[0]
-                        .split('?')[0];
-                    const img_filename_final: string = /\.(webp|jpeg|jpg|gif|png)$/.test(
-                        img_filename,
-                    )
-                        ? img_filename
-                        : `${img_filename}.png`;
+                    const img_filename: string | undefined = img_url.split('/').pop();
 
-                    const download_item: Downloads.DownloadOptionsType = {
-                        url: img_url,
-                        filename: img_filename_final,
-                        saveAs: type === 'save_img_as',
-                    };
+                    if (n(img_filename)) {
+                        const img_filename_2: string = img_filename.split('#')[0].split('?')[0];
+                        const img_filename_final: string = /\.(webp|jpeg|jpg|gif|png)$/.test(
+                            img_filename_2,
+                        )
+                            ? img_filename_2
+                            : `${img_filename_2}.png`;
 
-                    if (env.browser !== 'firefox') {
-                        const storage: any = await ext.storage_get('img_downloads_dir');
+                        const download_item: Downloads.DownloadOptionsType = {
+                            url: img_url,
+                            filename: img_filename_final,
+                            saveAs: type === 'save_img_as',
+                        };
 
-                        const suggest_dir = (
-                            download_item_2: Downloads.DownloadItem,
-                            suggest: any,
-                        ): void =>
-                            err(() => {
-                                suggest({
-                                    filename: `${storage.img_downloads_dir}/${download_item_2.filename}`,
-                                });
+                        if (env.browser !== 'firefox') {
+                            const storage: i_data.Settings = await ext.storage_get(
+                                'img_downloads_dir',
+                            );
 
-                                (browser.downloads as any).onDeterminingFilename.removeListener(
-                                    suggest_dir,
-                                );
-                            }, 'ges_1007');
+                            const suggest_dir = (
+                                download_item_2: Downloads.DownloadItem,
+                                suggest: ({ filename }: { filename: string }) => void,
+                            ): void =>
+                                err(() => {
+                                    suggest({
+                                        filename: `${storage.img_downloads_dir}/${download_item_2.filename}`,
+                                    });
 
-                        (browser.downloads as any).onDeterminingFilename.addListener(suggest_dir);
+                                    (browser.downloads as any).onDeterminingFilename.removeListener(
+                                        suggest_dir,
+                                    );
+                                }, 'ges_1007');
+
+                            (browser.downloads as any).onDeterminingFilename.addListener(
+                                suggest_dir,
+                            );
+                        }
+
+                        await browser.downloads.download(download_item);
                     }
-
-                    await browser.downloads.download(download_item);
                 }
             }, 'ges_1008'),
         );

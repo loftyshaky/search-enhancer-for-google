@@ -1,3 +1,4 @@
+import { MouseEvent, KeyboardEvent } from 'react';
 import { makeObservable, observable, computed, action } from 'mobx';
 
 import { s_css_vars } from '@loftyshaky/shared';
@@ -12,7 +13,7 @@ export class RelatedSearches {
     }
 
     private constructor() {
-        makeObservable(this, {
+        makeObservable<RelatedSearches, 'remembered_position' | 'remember_position'>(this, {
             remembered_position: observable,
             position_remembered_cls: computed,
             remember_position: action,
@@ -20,14 +21,14 @@ export class RelatedSearches {
         });
     }
 
-    public remembered_position: i_side_panel.RememberedPosition = 'none';
+    private remembered_position: i_side_panel.RememberedPosition = 'none';
     public last_related_searches_position: number = 0;
 
     get position_remembered_cls() {
         return this.remembered_position === 'none' ? '' : 'position_remembered';
     }
 
-    public remember_position = (): void =>
+    private remember_position = (): void =>
         err(() => {
             const current_position: number = d_side_panel.Scroll.i().get_current_position();
 
@@ -40,7 +41,7 @@ export class RelatedSearches {
             this.remembered_position = 'none';
         }, 'ges_1092');
 
-    public jump_to = (e: any): void =>
+    public jump_to = (e: MouseEvent | KeyboardEvent): void =>
         err(() => {
             if (n(e)) {
                 e.preventDefault();

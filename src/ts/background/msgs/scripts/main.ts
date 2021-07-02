@@ -20,14 +20,14 @@ browser.runtime.onMessage.addListener(
                 return s_data.Main.i().defaults;
             } else if (msg_str === 'get_favicon_url') {
                 return s_icons.Main.i().get_favicon_url({
-                    url: msg.url,
+                    url: msg.url as string,
                 });
             } else if (msg_str === 'get_server_info') {
-                return s_icons.Main.i().get_server_info({ url: msg.url });
+                return s_icons.Main.i().get_server_info({ url: msg.url as string });
             } else if (msg_str === 'run_img_action') {
                 return s_img_action.Main.i().run({
-                    type: msg.type,
-                    img_url: msg.img_url,
+                    type: msg.type as string,
+                    img_url: msg.img_url as string,
                 });
             }
 

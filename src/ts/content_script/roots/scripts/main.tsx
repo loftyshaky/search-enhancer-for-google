@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { render } from 'react-dom';
 
 import { c_crash_handler } from '@loftyshaky/shared';
@@ -25,11 +25,16 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    private component: any = {
-        icons: c_icons.Icons,
-        separator: c_infinite_scroll.Separator,
-        img_action_bar: c_img_action_bar.ImgActionBar,
-    };
+    private component: Record<string, FunctionComponent<any>> = {};
+
+    public init_component = (): void =>
+        err(() => {
+            this.component = {
+                icons: c_icons.Icons,
+                separator: c_infinite_scroll.Separator,
+                img_action_bar: c_img_action_bar.ImgActionBar,
+            };
+        }, 'ges_1159');
 
     public init = ({ name, start = 0 }: { name: string; start?: number }): void =>
         err(() => {
@@ -37,7 +42,7 @@ export class Main {
                 s_roots.Position.i().position_title_el();
 
                 if (s_el_parser.Main.i().title_els.length === 0) {
-                    const remove_icons = ({ icon_roots }: { icon_roots: any }): void =>
+                    const remove_icons = ({ icon_roots }: { icon_roots: NodeList }): void =>
                         err(() => {
                             x.remove(icon_roots);
                         }, 'ges_1074');
@@ -149,7 +154,7 @@ export class Main {
                 if (n(css)) {
                     x.bind(css, 'load', (): void =>
                         err(() => {
-                            const Component: any = this.component[name];
+                            const Component: FunctionComponent<any> = this.component[name];
 
                             render(
                                 <c_crash_handler.Body>
