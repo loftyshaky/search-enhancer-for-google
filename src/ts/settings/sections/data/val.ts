@@ -63,10 +63,7 @@ export class Val {
             }
 
             if (input.type === 'text') {
-                if (
-                    !this.validate_input({ input }) ||
-                    !d_inputs.Val.i().validate_input({ input })
-                ) {
+                if (!this.validate_input({ input })) {
                     await set_val();
                 }
             } else if (input.type !== 'color' || i === 'main') {
@@ -136,6 +133,8 @@ export class Val {
                     ) {
                         return true;
                     }
+                } else if (input.name === 'transition_duration') {
+                    return d_inputs.Val.i().validate_input({ input });
                 } else {
                     return !/^1$|^0$|^(0\.[0-9]{1,2}|1\.00?)$/.test(val);
                 }
