@@ -3,6 +3,7 @@ const path = require('path');
 const appRoot = require('app-root-path').path;
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -38,6 +39,7 @@ module.exports = (env, argv) => {
         argv,
         env,
         MiniCssExtractPlugin,
+        OptimizeCssAssetsPlugin,
         // FixStyleOnlyEntriesPlugin,
         CopyWebpackPlugin,
         copy_patters: [
