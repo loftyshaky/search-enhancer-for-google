@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { d_settings } from 'shared/internal';
+import { d_settings, s_css_vars } from 'shared/internal';
 import {
     d_img_action_bar,
     d_infinite_scroll,
@@ -26,6 +26,8 @@ export class Main {
 
     public run_initial_actions = (): Promise<void> =>
         err_async(async () => {
+            await d_settings.Main.i().set_from_storage();
+            s_css_vars.Main.i().set();
             s_el_parser.Main.i().get_els();
             s_el_parser.Main.i().get_next_page_href();
 
@@ -44,6 +46,7 @@ export class Main {
             async () => {
                 if (d_settings.Main.i().allow_rerun_actions) {
                     await d_settings.Main.i().set_from_storage();
+                    s_css_vars.Main.i().set();
                     s_el_parser.Main.i().get_els();
 
                     if (s_location.Main.i().is_search_results) {
