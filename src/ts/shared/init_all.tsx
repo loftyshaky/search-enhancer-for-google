@@ -86,9 +86,11 @@ export class InitAll {
                         settings_root,
                         (): void =>
                             err(() => {
-                                x.css('normalize', document.head);
-
                                 const settings_css = x.css('settings_css', document.head);
+
+                                s_theme.Main.i().set({
+                                    name: data.settings.options_page_theme,
+                                });
 
                                 if (n(settings_css)) {
                                     x.bind(settings_css, 'load', on_render);
@@ -172,11 +174,6 @@ export class InitAll {
                                     n(loading_screen_root_el) &&
                                     n(loading_screen_root_el.shadowRoot)
                                 ) {
-                                    s_theme.Main.i().set({
-                                        name: data.settings.options_page_theme,
-                                    });
-
-                                    x.css('normalize', loading_screen_root_el.shadowRoot);
                                     const loading_screen_css = x.css(
                                         'loading_screen',
                                         loading_screen_root_el.shadowRoot,

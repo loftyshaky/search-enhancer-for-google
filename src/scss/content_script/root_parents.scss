@@ -1,20 +1,22 @@
 .root_parent_#{$app_id} {
     position: relative;
     white-space: nowrap;
+
+    &.offset_1_#{$app_id}:not(.news_#{$app_id}) {
+        margin-left: $icon_offset_1;
+    }
+
+    &.offset_2_#{$app_id}:not(.news_#{$app_id}) {
+        margin-left: $icon_offset_2;
+    }
 }
 
-.root_parent_#{$app_id}.offset_1_#{$app_id}:not(.news_#{$app_id}) {
-    margin-left: $icon_offset_1;
-}
+html[dir='rtl'] {
+    .root_parent_#{$app_id}.offset_1_#{$app_id}:not(.news_#{$app_id}) {
+        margin-right: $icon_offset_1;
+    }
 
-.root_parent_#{$app_id}.offset_2_#{$app_id}:not(.news_#{$app_id}) {
-    margin-left: $icon_offset_2;
-}
-
-html[dir='rtl'] .root_parent_#{$app_id}.offset_1_#{$app_id}:not(.news_#{$app_id}) {
-    margin-right: $icon_offset_1;
-}
-
-html[dir='rtl'] .root_parent_#{$app_id}.offset_2_#{$app_id}:not(.news_#{$app_id}) {
-    margin-right: $icon_offset_2;
+    .root_parent_#{$app_id}.offset_2_#{$app_id}:not(.news_#{$app_id}) {
+        margin-right: $icon_offset_2;
+    }
 }

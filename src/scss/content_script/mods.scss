@@ -1,4 +1,6 @@
-@import 'vars';
+.opacity_0_#{$app_id} {
+    opacity: 0 !important;
+}
 
 .none {
     display: none !important;
@@ -8,8 +10,4 @@
     position: fixed !important;
     visibility: hidden !important;
     top: 99999px !important;
-}
-
-.opacity_0_#{$app_id} {
-    opacity: 0 !important;
 }

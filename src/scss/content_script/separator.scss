@@ -1,28 +1,24 @@
-@import '../../../node_modules/@loftyshaky/shared/scss/vars';
-@import '../../../node_modules/@loftyshaky/shared/scss/mixins';
-@import '../../../node_modules/@loftyshaky/shared/scss/text';
-@import '../../../node_modules/@loftyshaky/shared/scss/mods';
-@import '../../../node_modules/@loftyshaky/shared/scss/crash_handler';
-@import 'vars';
+@import '../shared/index';
+@import 'shared';
 
 .separator {
     color: $black;
     font-size: $font_size;
     margin-bottom: 44px;
-}
 
-.separator.video {
-    margin-bottom: 31px;
-}
+    &.video {
+        margin-bottom: 31px;
+    }
 
-.separator.books {
-    margin-bottom: 17px;
-}
+    &.books {
+        margin-bottom: 17px;
+    }
 
-.separator.news {
-    margin-bottom: 19px;
-}
+    &.news {
+        margin-bottom: 19px;
+    }
 
-.separator.shopping {
-    margin-bottom: 7px;
+    &.shopping {
+        margin-bottom: 7px;
+    }
 }

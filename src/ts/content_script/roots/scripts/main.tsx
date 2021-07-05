@@ -148,7 +148,6 @@ export class Main {
             x.append(root.shadowRoot, content);
 
             if (n(root.shadowRoot)) {
-                x.css('normalize', root.shadowRoot);
                 const css = x.css(name, root.shadowRoot);
 
                 if (n(css)) {

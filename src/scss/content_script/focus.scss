@@ -1,12 +1,11 @@
-@import '../../../node_modules/@loftyshaky/shared/scss/vars';
-@import '../shared/index';
+:host-context(.keyboard_#{$app_id}) {
+    .btn:focus {
+        @include outline_solid_thick;
+        outline-color: $black;
+        outline-offset: -$outline_offset;
+    }
 
-:host-context(.keyboard_#{$app_id}) .btn:focus {
-    @include outline_solid_thick;
-    outline-color: $black;
-    outline-offset: -$outline_offset;
-}
-
-:host-context(.keyboard_#{$app_id}) .img_action_bar .btn:focus {
-    outline-color: #d93deb;
+    .img_action_bar .btn:focus {
+        outline-color: #d93deb;
+    }
 }

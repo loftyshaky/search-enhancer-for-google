@@ -1,6 +1,5 @@
-@import '../../../node_modules/@loftyshaky/shared/scss/text';
-@import '../../../node_modules/@loftyshaky/shared/scss/mods';
-@import '../../../node_modules/@loftyshaky/shared/scss/crash_handler';
+@import '../shared/index';
+@import 'shared';
 
 .load_end_msg {
     position: relative;

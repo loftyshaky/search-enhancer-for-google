@@ -1,7 +1,10 @@
-@import '../shared/index';
+@import '../../../node_modules/@loftyshaky/shared/scss/shared/vars';
+@import '../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
+@import '../shared/vars';
 @import 'vars';
+@import 'focus';
+@import 'iframe';
 @import 'mods';
-@import 'transitions';
 @import 'root_parents';
 @import 'roots';
-@import 'iframe';
+@import 'transitions';

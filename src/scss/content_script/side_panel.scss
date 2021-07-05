@@ -1,12 +1,5 @@
-@import '../../../node_modules/@loftyshaky/shared/scss/vars';
-@import '../../../node_modules/@loftyshaky/shared/scss/text';
-@import '../../../node_modules/@loftyshaky/shared/scss/mixins';
-@import '../../../node_modules/@loftyshaky/shared/scss/crash_handler';
 @import '../shared/index';
-@import 'transitions';
-@import 'focus';
-@import 'vars';
-@import 'mods';
+@import 'shared';
 
 $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
@@ -16,72 +9,72 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
     overflow: hidden;
     text-align: center;
     width: fit-content;
-}
 
-.side_panel .btn {
-    @include btn;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: $btn_size;
-    min-width: $btn_size;
-    width: 100%;
-    background-color: #b349ca;
-}
+    .side_panel_item {
+        cursor: help;
+        font-size: $font_size;
+        padding-top: 4px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        padding-right: 9px;
+        color: white;
 
-.side_panel .enable_btn {
-    background-color: #38c353;
-}
+        &:not(:last-child) {
+            @include border_bottom;
+            border-color: white;
+        }
 
-.side_panel .enable_btn.disabled {
-    background-color: #d83737;
-}
+        &.current {
+            background-color: #6280ff;
+        }
 
-.side_panel .btn.position_remembered {
-    background-color: #ca7742;
-}
+        &.total {
+            background-color: #5bbeff;
+        }
+    }
 
-.side_panel .btn.position_overridden {
-    background-color: #7fc33b;
-}
+    &.left {
+        box-shadow: $side_panel_box_shadow;
+        border-start-end-radius: $bar_border_radius;
+        border-end-end-radius: $bar_border_radius;
+    }
 
-.side_panel .btn svg {
-    @include text_btn_svg;
-    fill: white;
-}
+    &.right {
+        box-shadow: $side_panel_box_shadow;
+        inset-inline-end: 0;
+        border-start-start-radius: $bar_border_radius;
+        border-end-start-radius: $bar_border_radius;
+    }
 
-.side_panel_item {
-    cursor: help;
-    font-size: $font_size;
-    padding-top: 4px;
-    padding-bottom: 3px;
-    padding-left: 10px;
-    padding-right: 9px;
-    color: white;
-}
+    .btn {
+        @include btn;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $btn_size;
+        min-width: $btn_size;
+        width: 100%;
+        background-color: #b349ca;
 
-.side_panel_item:not(:last-child) {
-    @include border_bottom;
-    border-color: white;
-}
+        svg {
+            @include text_btn_svg;
+            fill: white;
+        }
 
-.side_panel_item.current {
-    background-color: #6280ff;
-}
+        &.position_remembered {
+            background-color: #ca7742;
+        }
 
-.side_panel_item.total {
-    background-color: #5bbeff;
-}
+        &.position_overridden {
+            background-color: #7fc33b;
+        }
+    }
 
-.side_panel.left {
-    box-shadow: $side_panel_box_shadow;
-    border-start-end-radius: $bar_border_radius;
-    border-end-end-radius: $bar_border_radius;
-}
+    .enable_btn {
+        background-color: #38c353;
 
-.side_panel.right {
-    box-shadow: $side_panel_box_shadow;
-    inset-inline-end: 0;
-    border-start-start-radius: $bar_border_radius;
-    border-end-start-radius: $bar_border_radius;
+        &.disabled {
+            background-color: #d83737;
+        }
+    }
 }
