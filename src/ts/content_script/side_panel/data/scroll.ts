@@ -86,7 +86,7 @@ export class Scroll {
                         await x.delay(
                             +s_css_vars.Main.i().get({
                                 name: 'transition_duration',
-                            }) + data.settings.transition_duration,
+                            }) + 150,
                         );
 
                         runInAction((): void => {
