@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import { db, i_data, i_db } from 'shared/internal';
 
 export class Main {
@@ -36,23 +34,36 @@ export class Main {
                 const ip_to_country_text_no_information_and_notes = ip_to_country_text.substring(
                     ip_to_country_text.lastIndexOf('#') + 2,
                 );
-                const ip_to_country_arr = _.dropRight(
-                    ip_to_country_text_no_information_and_notes.split(/\r?\n/),
-                );
-
-                const ip_to_country_db_arr: i_db.IpToCountryBase[] = ip_to_country_arr.map(
-                    (item: string): i_db.IpToCountryBase =>
+                const ip_to_country_arr =
+                    ip_to_country_text_no_information_and_notes.split(/\r?\n/);
+                const ip_to_country_db_arr: (i_db.IpToCountryBase | undefined)[] =
+                    ip_to_country_arr.map((item: string): i_db.IpToCountryBase | undefined =>
                         err(() => {
                             const item_arr: string[] = item.split(',');
 
-                            return {
-                                ip_from: +this.normalize_val({ val: item_arr[0] }),
-                                country_code: this.normalize_val({ val: item_arr[4] }),
-                            };
-                        }, 'ges_1009'),
-                );
+                            if (n(item_arr) && n(item_arr[0]) && n(item_arr[4])) {
+                                return {
+                                    ip_from: +this.normalize_val({ val: item_arr[0] }),
+                                    country_code: this.normalize_val({ val: item_arr[4] }),
+                                };
+                            }
 
-                await db.ip_to_country.bulkAdd(ip_to_country_db_arr as any);
+                            return undefined;
+                        }, 'ges_1009'),
+                    );
+
+                const ip_to_country_db_arr_no_undefined: i_db.IpToCountryBase[] =
+                    ip_to_country_db_arr.filter((item: i_db.IpToCountryBase | undefined): boolean =>
+                        err(() => n(item), 'ges_1165'),
+                    ) as i_db.IpToCountryBase[];
+
+                await db
+                    .transaction('rw', db.ip_to_country, async () => {
+                        await db.ip_to_country.bulkAdd(ip_to_country_db_arr_no_undefined as any);
+                    })
+                    .catch((error: Error) => {
+                        show_err_ribbon(error, 'ges_1163');
+                    });
 
                 ext.iterate_all_tabs({ msg: 'rerun_actions' });
             }

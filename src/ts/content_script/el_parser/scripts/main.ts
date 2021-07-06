@@ -3,7 +3,7 @@ import tinycolor from 'tinycolor2';
 
 import { t, s_viewport } from '@loftyshaky/shared';
 import { s_suffix } from 'shared/internal';
-import { s_infinite_scroll, s_location, s_roots, s_text_dir } from 'content_script/internal';
+import { s_infinite_scroll, s_location, s_text_dir } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -99,8 +99,6 @@ export class Main {
 
     private get_title_els_and_hostnames = (): void =>
         err(() => {
-            s_roots.Position.i().remove_offset_classes();
-
             const links: HTMLElement[] = this.get_els_of_all_frames({
                 selector: `a${this.pseudo}`,
             });

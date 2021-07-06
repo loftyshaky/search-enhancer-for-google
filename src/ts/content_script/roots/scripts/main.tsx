@@ -130,42 +130,45 @@ export class Main {
         i: number;
         parent: HTMLElement;
         append_f_name: 'append' | 'as_first' | 'after';
-    }): void =>
-        err(() => {
-            const root: HTMLDivElement = x.create('div', new s_suffix.Main(name).result);
+    }): Promise<void> =>
+        new Promise((resolve) => {
+            err(() => {
+                const root: HTMLDivElement = x.create('div', new s_suffix.Main(name).result);
 
-            if (name === 'icons') {
-                if (s_location.Main.i().is_news_page) {
-                    x.add_cls(root, new s_suffix.Main('news').result);
+                if (name === 'icons') {
+                    if (s_location.Main.i().is_news_page) {
+                        x.add_cls(root, new s_suffix.Main('news').result);
+                    }
                 }
-            }
 
-            x[append_f_name](parent, root);
+                x[append_f_name](parent, root);
 
-            root.attachShadow({ mode: 'open' });
+                root.attachShadow({ mode: 'open' });
 
-            const content = x.create('div', 'content');
-            x.append(root.shadowRoot, content);
+                const content = x.create('div', 'content');
+                x.append(root.shadowRoot, content);
 
-            if (n(root.shadowRoot)) {
-                const css = x.css(name, root.shadowRoot);
+                if (n(root.shadowRoot)) {
+                    const css = x.css(name, root.shadowRoot);
 
-                if (n(css)) {
-                    x.bind(css, 'load', (): void =>
-                        err(() => {
-                            const Component: FunctionComponent<any> = this.component[name];
+                    if (n(css)) {
+                        x.bind(css, 'load', (): void =>
+                            err(() => {
+                                const Component: FunctionComponent<any> = this.component[name];
 
-                            render(
-                                <c_crash_handler.Body>
-                                    <Component i={i} />
-                                </c_crash_handler.Body>,
-                                content,
-                            );
-                        }, 'ges_1079'),
-                    );
+                                render(
+                                    <c_crash_handler.Body>
+                                        <Component i={i} />
+                                    </c_crash_handler.Body>,
+                                    content,
+                                    resolve,
+                                );
+                            }, 'ges_1079'),
+                        );
+                    }
                 }
-            }
-        }, 'ges_1080');
+            }, 'ges_1080');
+        });
 
     public apply_root_parent_cls_to_title_els = (): void =>
         err(() => {

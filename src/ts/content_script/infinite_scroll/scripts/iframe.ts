@@ -64,108 +64,113 @@ export class Iframe {
                     this.last_iframe,
                 );
 
-                x.bind(this.last_iframe, 'load', (): void =>
-                    err(() => {
-                        const change_visibility = (): void =>
-                            err(() => {
-                                d_infinite_scroll.LoadEndMsg.i().change_visibility({
-                                    is_visible: true,
-                                });
-                            }, 'ges_1135');
-
-                        this.captcha_error_occurred_once =
-                            n(this.last_iframe) &&
-                            n(this.last_iframe.contentDocument) &&
-                            n(this.last_iframe.contentDocument.body.textContent) &&
-                            this.last_iframe.contentDocument.body.textContent.length <= 2000;
-
-                        if (this.captcha_error_occurred_once) {
-                            this.captcha_error_occurred_once = true;
-
-                            show_err_ribbon(err_obj('A captcha error occurred.'), 'ges_1053', {
-                                silent: true,
-                            });
-
-                            runInAction(() => {
-                                this.inserting_iframe = false;
-                            });
-
-                            d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
-                            d_infinite_scroll.LoadEndMsg.i().change_visibility({
-                                is_visible: true,
-                            });
-                        } else {
-                            this.hide_everything_from_iframe_except_search_results();
-
-                            s_el_parser.Main.i().get_next_page_href();
-
-                            if (this.last_iframe) {
-                                const iframe_doc: Document | null =
-                                    this.last_iframe.contentDocument;
-
-                                if (n(iframe_doc)) {
-                                    x.css(
-                                        'font_face',
-                                        iframe_doc.head,
-                                        new s_suffix.Main('font_face_link').result,
-                                    );
-
-                                    s_roots.Main.i().append_root({
-                                        name: 'separator',
-                                        parent: iframe_doc.body,
-                                        i: this.cur_iframe_i + 2,
-                                        append_f_name: 'as_first',
-                                    });
-
-                                    this.observe_iframe_resizing({
-                                        cur_iframe_i: this.cur_iframe_i,
-                                    });
-
-                                    x.css('content_script_css', iframe_doc.head);
-                                    const css = x.css('iframe_inner', iframe_doc.head);
-
-                                    if (n(css)) {
-                                        x.bind(css, 'load', (): void =>
-                                            err(() => {
-                                                x.remove_cls(
-                                                    this.last_iframe,
-                                                    new s_suffix.Main('hidden').result,
-                                                );
-                                                x.remove_cls(
-                                                    this.last_iframe,
-                                                    new s_suffix.Main('opacity_0').result,
-                                                );
-
-                                                s_actions.Main.i().run_reload_actions();
-
-                                                this.resize_iframe({
-                                                    cur_iframe_i: this.cur_iframe_i,
-                                                });
-
-                                                this.cur_iframe_i += 1;
-
-                                                d_side_panel.Page.i().set_total();
-
-                                                const is_last_page: boolean = !n(
-                                                    s_el_parser.Main.i().next_page_href,
-                                                );
-
-                                                s_infinite_scroll.ImgLinks.i().bind_all();
-
-                                                if (is_last_page) {
-                                                    change_visibility();
-                                                }
-
-                                                runInAction(() => {
-                                                    this.inserting_iframe = false;
-                                                });
-                                            }, 'ges_1054'),
+                x.bind(
+                    this.last_iframe,
+                    'load',
+                    (): Promise<void> =>
+                        err_async(async () => {
+                            const show_page = (): void => {
+                                window.requestAnimationFrame(() =>
+                                    err(() => {
+                                        x.remove_cls(
+                                            this.last_iframe,
+                                            new s_suffix.Main('hidden').result,
                                         );
+                                        x.remove_cls(
+                                            this.last_iframe,
+                                            new s_suffix.Main('opacity_0').result,
+                                        );
+
+                                        s_actions.Main.i().run_reload_actions();
+
+                                        this.resize_iframe({
+                                            cur_iframe_i: this.cur_iframe_i,
+                                        });
+
+                                        this.cur_iframe_i += 1;
+
+                                        d_side_panel.Page.i().set_total();
+
+                                        const is_last_page: boolean = !n(
+                                            s_el_parser.Main.i().next_page_href,
+                                        );
+
+                                        s_infinite_scroll.ImgLinks.i().bind_all();
+
+                                        if (is_last_page) {
+                                            show_load_end_msg();
+                                        }
+
+                                        runInAction(() => {
+                                            this.inserting_iframe = false;
+                                        });
+                                    }, 'ges_1054'),
+                                );
+                            };
+
+                            const show_load_end_msg = (): void =>
+                                err(() => {
+                                    d_infinite_scroll.LoadEndMsg.i().change_visibility({
+                                        is_visible: true,
+                                    });
+                                }, 'ges_1135');
+
+                            this.captcha_error_occurred_once =
+                                n(this.last_iframe) &&
+                                n(this.last_iframe.contentDocument) &&
+                                n(this.last_iframe.contentDocument.body.textContent) &&
+                                this.last_iframe.contentDocument.body.textContent.length <= 2000;
+
+                            if (this.captcha_error_occurred_once) {
+                                this.captcha_error_occurred_once = true;
+
+                                show_err_ribbon(err_obj('A captcha error occurred.'), 'ges_1053', {
+                                    silent: true,
+                                });
+
+                                runInAction(() => {
+                                    this.inserting_iframe = false;
+                                });
+
+                                d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
+                                show_load_end_msg();
+                            } else {
+                                this.hide_everything_from_iframe_except_search_results();
+
+                                s_el_parser.Main.i().get_next_page_href();
+
+                                if (this.last_iframe) {
+                                    const iframe_doc: Document | null =
+                                        this.last_iframe.contentDocument;
+
+                                    if (n(iframe_doc)) {
+                                        x.css(
+                                            'font_face',
+                                            iframe_doc.head,
+                                            new s_suffix.Main('font_face_link').result,
+                                        );
+
+                                        await s_roots.Main.i().append_root({
+                                            name: 'separator',
+                                            parent: iframe_doc.body,
+                                            i: this.cur_iframe_i + 2,
+                                            append_f_name: 'as_first',
+                                        });
+
+                                        this.observe_iframe_resizing({
+                                            cur_iframe_i: this.cur_iframe_i,
+                                        });
+
+                                        x.css('content_script_css', iframe_doc.head);
+                                        const css = x.css('iframe_inner', iframe_doc.head);
+
+                                        if (n(css)) {
+                                            x.bind(css, 'load', show_page);
+                                        }
                                     }
                                 }
                             }
-                        }
-                    }, 'ges_1055'),
+                        }, 'ges_1055'),
                 );
             }
         }, 'ges_1056');

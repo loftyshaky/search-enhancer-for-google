@@ -1,6 +1,6 @@
 import { browser } from 'webextension-polyfill-ts';
 
-import { t } from '@loftyshaky/shared';
+import { t, s_utils } from '@loftyshaky/shared';
 import { s_data, s_icons, s_img_action } from 'background/internal';
 
 browser.runtime.onMessage.addListener(
@@ -30,6 +30,8 @@ browser.runtime.onMessage.addListener(
                     img_url: msg.img_url as string,
                 });
             }
+
+            s_utils.Main.i().reload_ext({ msg: msg_str });
 
             return true;
         }, 'ges_1012'),

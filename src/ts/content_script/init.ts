@@ -24,6 +24,7 @@ export const init = (): Promise<void> =>
         await s_actions.Main.i().run_initial_actions();
         s_infinite_scroll.FooterEls.i().append_to_footer();
         s_text_dir.Main.i().get();
+        s_infinite_scroll.Scroll.i().observe();
 
         x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);
         x.bind(window, 'scroll', d_side_panel.Page.i().set_current);
