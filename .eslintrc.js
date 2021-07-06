@@ -15,6 +15,16 @@ const rules = {
         'func-names': 'off',
         'no-param-reassign': 'off',
         'class-methods-use-this': 'off',
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                js: 'never',
+                jsx: 'never',
+                ts: 'never',
+                tsx: 'never',
+            },
+        ],
         camelcase: 'off',
         quotes: [2, 'single', { avoidEscape: true }],
         'max-len': [
