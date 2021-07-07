@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 
 import { t } from '@loftyshaky/shared';
@@ -7,25 +7,6 @@ import { svg } from 'shared/svg';
 import { d_icons, p_icons } from 'content_script/internal';
 
 export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
-    const icon_was_already_set_ref = useRef<boolean>(false);
-
-    useEffect(() =>
-        err(() => {
-            const { type, i } = props;
-
-            if (data.settings[`show_${type}`] && !icon_was_already_set_ref.current) {
-                icon_was_already_set_ref.current = true;
-
-                const url: string = d_icons.Main.i().get_url({
-                    i,
-                    type,
-                });
-
-                (d_icons.Main as t.AnyRecord).i()[`generate_${type}`]({ url });
-            }
-        }, 'ges_1150'),
-    );
-
     const { type, i } = props;
 
     const url: string = d_icons.Main.i().get_url({

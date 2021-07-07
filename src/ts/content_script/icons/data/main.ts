@@ -15,13 +15,19 @@ export class Main {
     }
 
     private constructor() {
-        makeObservable<Main, 'server_ips' | 'server_countries'>(this, {
+        makeObservable<
+            Main,
+            | 'server_ips'
+            | 'server_countries'
+            | 'generate_favicon_url'
+            | 'generate_server_location_url'
+        >(this, {
             favicons: observable,
             server_locations: observable,
             server_ips: observable,
             server_countries: observable,
-            generate_favicons: action, // called from content_script/icons/components/icon.tsx
-            generate_server_locations: action, // called from content_script/icons/components/icon.tsx
+            generate_favicon_url: action,
+            generate_server_location_url: action,
         });
     }
 
@@ -65,7 +71,7 @@ export class Main {
         return server_data;
     });
 
-    public generate_favicons = async ({ url }: { url: string }): Promise<void> =>
+    private generate_favicon_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
             if (data.settings.show_favicons) {
                 this.favicons[url] = 'placeholder';
@@ -85,7 +91,7 @@ export class Main {
             }
         }, 'ges_1041');
 
-    public generate_server_locations = async ({ url }: { url: string }): Promise<void> =>
+    private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(
             async () => {
                 if (data.settings.show_server_locations) {
@@ -121,6 +127,36 @@ export class Main {
             'ges_1042',
             { silent: true },
         );
+
+    public generate_urls = ({ i }: { i: number }): void =>
+        err(() => {
+            const generate_url_if_its_doesnt_exist = ({
+                key_1,
+                key_2,
+            }: {
+                key_1: string;
+                key_2: string;
+            }): void =>
+                err(() => {
+                    const that = s_el_parser.Main.i() as any;
+                    const that_2 = this as any;
+                    const key_2_plural: string = `${key_2}s`;
+                    const url: string = that[key_1][i];
+
+                    const cond =
+                        !n(that_2[key_2_plural][url]) ||
+                        that_2[key_2_plural][url] === 'placeholder';
+
+                    if (cond) {
+                        that_2[`generate_${key_2}_url`]({
+                            url: that[key_1][i],
+                        });
+                    }
+                }, 'ges_1169');
+
+            generate_url_if_its_doesnt_exist({ key_1: 'hostnames', key_2: 'server_location' });
+            generate_url_if_its_doesnt_exist({ key_1: 'hrefs', key_2: 'favicon' });
+        }, 'ges_1168');
 
     public get_url = ({ i, type }: { i: number; type: i_icons.IconType }): string =>
         err(() => s_el_parser.Main.i()[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'ges_1043');

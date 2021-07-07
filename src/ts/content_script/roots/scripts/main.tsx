@@ -7,6 +7,7 @@ import {
     c_icons,
     c_img_action_bar,
     c_infinite_scroll,
+    d_icons,
     d_img_action_bar,
     s_el_parser,
     s_infinite_scroll,
@@ -71,6 +72,8 @@ export class Main {
                     s_el_parser.Main.i().title_els.forEach((title_el, i): void =>
                         err(() => {
                             if (i >= start) {
+                                d_icons.Main.i().generate_urls({ i });
+
                                 const icons_el: HTMLElement | undefined = sb(
                                     title_el,
                                     `.${new s_suffix.Main(name).result}`,
