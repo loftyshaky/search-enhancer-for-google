@@ -1,4 +1,4 @@
-import { s_tab_index } from '@loftyshaky/shared';
+import { s_keep_alive, s_tab_index } from '@loftyshaky/shared';
 import { db, s_suffix } from 'shared/internal';
 import {
     d_img_action_bar,
@@ -11,6 +11,7 @@ import {
 
 export const init = (): Promise<void> =>
     err_async(async () => {
+        s_keep_alive.Tabs.i().add_on_connect_listener();
         s_tab_index.Main.i().bind_set_input_type_f({
             parent: document.body,
             app_id: s_suffix.app_id,

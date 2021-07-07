@@ -11,6 +11,8 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
+    public ip_to_country_loaded_into_inexed_db = false;
+
     public populate_indexed_db_from_ip_to_country_csv = (): Promise<void> =>
         err_async(async () => {
             const response = await fetch('IpToCountry.csv');
@@ -67,6 +69,8 @@ export class Main {
 
                 ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
             }
+
+            this.ip_to_country_loaded_into_inexed_db = true;
         }, 'ges_1010');
 
     private normalize_val = ({ val }: { val: string }): string =>
