@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { browser } from 'webextension-polyfill-ts';
 
 import {
     c_crash_handler,
@@ -31,7 +30,7 @@ export class InitAll {
     public init = (): Promise<void> =>
         err_async(async () => {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            __webpack_public_path__ = browser.runtime.getURL('');
+            __webpack_public_path__ = we.runtime.getURL('');
 
             await d_settings.Main.i().set_from_storage();
 

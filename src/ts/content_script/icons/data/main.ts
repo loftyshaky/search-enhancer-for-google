@@ -1,6 +1,5 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
-import { browser } from 'webextension-polyfill-ts';
 
 import { t } from '@loftyshaky/shared';
 import { i_icons as i_icons_shared } from 'shared/internal';
@@ -104,7 +103,7 @@ export class Main {
                     const server_location_found: boolean = server_info.country_code !== '';
 
                     const flag_path = server_location_found
-                        ? browser.runtime.getURL(`flags/${server_info.country_code}.png`)
+                        ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
                         : 'placeholder';
 
                     runInAction(() =>

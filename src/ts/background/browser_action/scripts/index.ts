@@ -1,1 +1,1 @@
-export * from 'background/browser_action/scripts/main';
+import 'background/browser_action/scripts/main';

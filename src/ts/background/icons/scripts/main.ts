@@ -1,5 +1,4 @@
 import _ from 'lodash';
-// import { browser } from 'webextension-polyfill-ts';
 
 import { t } from '@loftyshaky/shared';
 import { db, i_db, i_icons } from 'shared/internal';
@@ -87,7 +86,7 @@ export class Main {
             };
             try {
                 const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
-                    ['en-US' /* browser.i18n.getUILanguage() */],
+                    ['en-US' /* we.i18n.getUILanguage() */],
                     { type: 'region' },
                 );
                 const response: Response = await fetch(`https://dns.google/resolve?name=${url}`);

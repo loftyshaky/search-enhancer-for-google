@@ -18,9 +18,11 @@ export class Main {
             const response = await fetch('IpToCountry.csv');
             const ip_to_country_text: string = await response.text();
             const ip_to_country_csv_char_count: number = ip_to_country_text.length;
+            l(666);
             const storage: i_data.Settings = await ext.storage_get(
                 'last_ip_to_country_csv_char_count',
             );
+            l(storage);
             const new_ip_to_country_csv_detected: boolean =
                 ip_to_country_csv_char_count !== storage.last_ip_to_country_csv_char_count;
 

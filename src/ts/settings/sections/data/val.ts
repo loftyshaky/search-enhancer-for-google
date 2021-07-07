@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { browser, Runtime } from 'webextension-polyfill-ts';
 
 import { i_data } from '@loftyshaky/shared';
 import { o_color, d_inputs, d_color, i_inputs, i_color } from '@loftyshaky/shared/inputs';
@@ -24,7 +23,7 @@ export class Val {
 
     public get_os = (): Promise<void> =>
         err_async(async () => {
-            const platform_info: Runtime.PlatformInfo = await browser.runtime.getPlatformInfo();
+            const platform_info: browser.runtime.PlatformInfo = await we.runtime.getPlatformInfo();
 
             this.os = platform_info.os;
         }, 'ges_1110');

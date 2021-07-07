@@ -1,5 +1,3 @@
-import { browser, Downloads } from 'webextension-polyfill-ts';
-
 import { i_data } from 'shared/internal';
 
 export class Main {
@@ -17,7 +15,7 @@ export class Main {
         new Promise(() =>
             err_async(async () => {
                 if (['view_img', 'search_by_img'].includes(type)) {
-                    browser.tabs.create({ url: img_url });
+                    we.tabs.create({ url: img_url });
                 } else if (['download_img', 'save_img_as'].includes(type)) {
                     const img_filename: string | undefined = img_url.split('/').pop();
 
@@ -29,7 +27,7 @@ export class Main {
                             ? img_filename_2
                             : `${img_filename_2}.png`;
 
-                        const download_item: Downloads.DownloadOptionsType = {
+                        const download_item = {
                             url: img_url,
                             filename: img_filename_final,
                             saveAs: type === 'save_img_as',
@@ -41,7 +39,7 @@ export class Main {
                             );
 
                             const suggest_dir = (
-                                download_item_2: Downloads.DownloadItem,
+                                download_item_2: browser.downloads.DownloadItem,
                                 suggest: ({ filename }: { filename: string }) => void,
                             ): void =>
                                 err(() => {
@@ -49,17 +47,15 @@ export class Main {
                                         filename: `${storage.img_downloads_dir}/${download_item_2.filename}`,
                                     });
 
-                                    (browser.downloads as any).onDeterminingFilename.removeListener(
+                                    (we.downloads as any).onDeterminingFilename.removeListener(
                                         suggest_dir,
                                     );
                                 }, 'ges_1007');
 
-                            (browser.downloads as any).onDeterminingFilename.addListener(
-                                suggest_dir,
-                            );
+                            (we.downloads as any).onDeterminingFilename.addListener(suggest_dir);
                         }
 
-                        await browser.downloads.download(download_item);
+                        await we.downloads.download(download_item);
                     }
                 }
             }, 'ges_1008'),

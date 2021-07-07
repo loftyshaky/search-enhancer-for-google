@@ -1,7 +1,5 @@
-import { browser } from 'webextension-polyfill-ts';
-
-(browser as any).action.onClicked.addListener((): void =>
+(we as any).action.onClicked.addListener((): void =>
     err(() => {
-        browser.runtime.openOptionsPage();
+        we.runtime.openOptionsPage();
     }, 'ges_1000'),
 );
