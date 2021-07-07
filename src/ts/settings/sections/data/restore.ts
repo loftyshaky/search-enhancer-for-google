@@ -40,7 +40,7 @@ export class Restore {
             if (confirmed_restore) {
                 await this.restore({ settings });
 
-                ext.iterate_all_tabs({ msg: 'rerun_actions' });
+                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
             }
         }, 'ges_1105');
 
@@ -95,7 +95,7 @@ export class Restore {
 
             this.override({ show_color_help });
 
-            ext.iterate_all_tabs({ msg: 'rerun_actions' });
+            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1108');
 
     private override = ({ show_color_help }: { show_color_help: boolean }): void =>

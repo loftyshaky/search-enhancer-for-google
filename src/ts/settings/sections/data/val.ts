@@ -92,7 +92,7 @@ export class Val {
     private reflect_settings_change_in_content_script = _.debounce(
         (): void =>
             err(() => {
-                ext.iterate_all_tabs({ msg: 'rerun_actions' });
+                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
             }, 'ges_1152'),
         500,
     );
@@ -161,7 +161,7 @@ export class Val {
                 settings: { [input.name]: i },
             });
 
-            ext.iterate_all_tabs({ msg: 'rerun_actions' });
+            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1116');
 
     public remove_color_callback = ({ input }: { input: o_color.Color }): Promise<void> =>
@@ -171,7 +171,7 @@ export class Val {
                 settings: { [input.name]: '' },
             });
 
-            ext.iterate_all_tabs({ msg: 'rerun_actions' });
+            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1117');
 
     public restore_default_palette_callback = ({
@@ -185,6 +185,6 @@ export class Val {
                 settings: { colors: default_colors },
             });
 
-            ext.iterate_all_tabs({ msg: 'rerun_actions' });
+            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1118');
 }

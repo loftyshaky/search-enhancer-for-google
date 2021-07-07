@@ -65,7 +65,7 @@ export class Main {
                         show_err_ribbon(error, 'ges_1163');
                     });
 
-                ext.iterate_all_tabs({ msg: 'rerun_actions' });
+                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
             }
         }, 'ges_1010');
 

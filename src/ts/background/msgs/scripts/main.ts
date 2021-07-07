@@ -14,7 +14,7 @@ browser.runtime.onMessage.addListener(
                 });
 
                 if (n(msg.rerun_actions)) {
-                    ext.iterate_all_tabs({ msg: 'rerun_actions' });
+                    ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
                 }
             } else if (msg_str === 'get_defaults') {
                 return s_data.Main.i().defaults;
