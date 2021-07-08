@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { MouseEvent, KeyboardEvent } from 'react';
 import { makeObservable, observable, computed, action } from 'mobx';
 
@@ -71,7 +72,11 @@ export class RelatedSearches {
                     this.last_related_searches_position = document.documentElement.scrollTop;
                 }
             } else {
-                d_side_panel.Scroll.i().scroll_to_position({ position: this.remembered_position });
+                const old_position = _.clone(this.remembered_position);
+
+                this.remember_position();
+
+                d_side_panel.Scroll.i().scroll_to_position({ position: old_position });
 
                 this.reset_position();
             }
