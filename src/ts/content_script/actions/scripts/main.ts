@@ -35,8 +35,9 @@ export class Main {
                 d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
 
+            await InitAll.i().init();
+
             if (s_location.Main.i().is_search_results) {
-                await InitAll.i().init();
                 s_infinite_scroll.Spinner.i().set_color();
             }
         }, 'ges_1013');

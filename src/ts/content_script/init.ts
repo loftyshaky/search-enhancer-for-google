@@ -11,6 +11,7 @@ import {
 
 export const init = (): Promise<void> =>
     err_async(async () => {
+        x.insert_invisible_chars_in_title();
         s_keep_alive.Tabs.i().add_on_connect_listener();
         s_tab_index.Main.i().bind_set_input_type_f({
             parent: document.body,

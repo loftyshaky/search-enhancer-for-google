@@ -201,6 +201,7 @@ export class Main {
                 this.img_viewer = [...links].find((link: HTMLLinkElement): boolean =>
                     err(() => {
                         const img = sb<HTMLImageElement>(link, 'img');
+
                         if (n(img)) {
                             return Boolean(img.offsetWidth) && n(img.style) && n(img.style.height);
                         }
