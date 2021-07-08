@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
 import { t } from '@loftyshaky/shared';
+
+import { s_ip_to_country } from 'background/internal';
 import { db, i_db, i_icons } from 'shared/internal';
 
 export class Main {
@@ -92,15 +94,9 @@ export class Main {
                 const response: Response = await fetch(`https://dns.google/resolve?name=${url}`);
                 const json: any = await response.json();
                 const ip: string = (_.last(json.Answer) as any).data;
-                const ip_sub_blocks: string[] = ip.split('.');
-                const ip_number: number =
-                    16777216 * +ip_sub_blocks[0] +
-                    65536 * +ip_sub_blocks[1] +
-                    256 * +ip_sub_blocks[2] +
-                    +ip_sub_blocks[3];
                 const record: i_db.IpToCountry | undefined = await db.ip_to_country
                     .where('ip_from')
-                    .belowOrEqual(ip_number)
+                    .belowOrEqual(s_ip_to_country.Main.i().convert_ip_to_ip_number({ ip }))
                     .last();
 
                 if (n(record)) {

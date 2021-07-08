@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
                 from: path.join('src', 'flags'),
                 to: 'flags',
             },
-            path.join('src', 'IpToCountry.csv'),
+            path.join('src', 'ip_to_country_ipv4.csv'),
         ],
         callback_begin: () => {
             task_scheduler.unlock_dist({
