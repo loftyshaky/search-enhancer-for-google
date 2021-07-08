@@ -59,15 +59,16 @@ export class RelatedSearches {
                 if (n(el_to_jump_to)) {
                     this.remember_position();
 
-                    el_to_jump_to.scrollIntoView();
-
-                    this.last_related_searches_position =
-                        document.documentElement.scrollTop -
+                    const new_position: number =
+                        document.documentElement.scrollTop +
+                        el_to_jump_to.getBoundingClientRect().top -
                         parseInt(s_css_vars.Main.i().get({ name: 'offset_from_header' }), 10);
 
                     d_side_panel.Scroll.i().scroll_to_position({
-                        position: this.last_related_searches_position,
+                        position: new_position,
                     });
+
+                    this.last_related_searches_position = document.documentElement.scrollTop;
                 }
             } else {
                 d_side_panel.Scroll.i().scroll_to_position({ position: this.remembered_position });
