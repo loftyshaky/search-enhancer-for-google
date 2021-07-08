@@ -49,8 +49,7 @@ export const Body: React.FunctionComponent = observer(() => {
                     }}
                 />
             ) : undefined}
-            {data.settings.enable_infinite_scrolling &&
-            data.settings.show_jump_to_related_searches_btn ? (
+            {data.settings.show_jump_to_related_searches_btn ? (
                 <c_side_panel.Btn
                     name='jump_to_related_searches'
                     position_remembered_cls={
