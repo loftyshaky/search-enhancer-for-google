@@ -55,7 +55,7 @@ export class Main {
             }
 
             if (server_data !== '') {
-                server_data += ' |';
+                // server_data += ' |';
             }
 
             if (n(this.server_ips[url])) {
@@ -63,7 +63,7 @@ export class Main {
                     server_data += ' ';
                 }
 
-                server_data += this.server_ips[url];
+                // server_data += this.server_ips[url];
             }
         }
 
