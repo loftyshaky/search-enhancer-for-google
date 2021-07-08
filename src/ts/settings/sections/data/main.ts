@@ -79,11 +79,6 @@ export class Main {
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_jump_to_related_searches_btn',
-                                parent: 'enable_infinite_scrolling',
-                                event_callback: d_sections.Val.i().change,
-                            }),
-                            new o_inputs.Checkbox({
                                 name: 'show_page_indicator',
                                 parent: 'enable_infinite_scrolling',
                                 event_callback: d_sections.Val.i().change,
@@ -105,6 +100,10 @@ export class Main {
                                 name: 'show_scroll_to_top_btn',
                                 include_help: true,
                                 alt_help_msg: ext.msg('scroll_to_top_title'),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'show_jump_to_related_searches_btn',
                                 event_callback: d_sections.Val.i().change,
                             }),
                         ],
