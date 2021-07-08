@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { makeObservable, observable } from 'mobx';
 import tinycolor from 'tinycolor2';
 
 import { t, s_viewport } from '@loftyshaky/shared';
@@ -12,13 +11,6 @@ export class Main {
     public static i(): Main {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
-    }
-
-    private constructor() {
-        makeObservable(this, {
-            hostnames: observable,
-            hrefs: observable,
-        });
     }
 
     private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
