@@ -132,28 +132,30 @@ export class InitAll {
 
             const render_side_panel = (): Promise<void> =>
                 err_async(async () => {
-                    const { c_side_panel } = await import('content_script/internal');
+                    const { c_side_panel, s_location } = await import('content_script/internal');
 
-                    render(
-                        <c_crash_handler.Body>
-                            <c_side_panel.Body />
-                        </c_crash_handler.Body>,
-                        side_panel_root,
-                        (): void =>
-                            err(() => {
-                                s_no_tr.Main.i().enable({ el: side_panel_root });
+                    if (s_location.Main.i().is_search_results) {
+                        render(
+                            <c_crash_handler.Body>
+                                <c_side_panel.Body />
+                            </c_crash_handler.Body>,
+                            side_panel_root,
+                            (): void =>
+                                err(() => {
+                                    s_no_tr.Main.i().enable({ el: side_panel_root });
 
-                                const side_panel_css = x.css('side_panel', side_panel_root);
+                                    const side_panel_css = x.css('side_panel', side_panel_root);
 
-                                if (n(side_panel_css)) {
-                                    x.bind(side_panel_css, 'load', (): void =>
-                                        err(() => {
-                                            s_no_tr.Main.i().disable({ el: side_panel_root });
-                                        }, 'ges_1126'),
-                                    );
-                                }
-                            }, 'ges_1140'),
-                    );
+                                    if (n(side_panel_css)) {
+                                        x.bind(side_panel_css, 'load', (): void =>
+                                            err(() => {
+                                                s_no_tr.Main.i().disable({ el: side_panel_root });
+                                            }, 'ges_1126'),
+                                        );
+                                    }
+                                }, 'ges_1140'),
+                        );
+                    }
                 }, 'ges_1127');
 
             render(<c_error.Body app_id={s_suffix.app_id} />, error_root, (): void => {
