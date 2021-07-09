@@ -7,6 +7,7 @@ import {
     s_actions,
     s_infinite_scroll,
     s_text_dir,
+    s_welcome_msg,
 } from 'content_script/internal';
 
 export const init = (): Promise<void> =>
@@ -27,6 +28,7 @@ export const init = (): Promise<void> =>
         s_infinite_scroll.FooterEls.i().append_to_footer();
         s_text_dir.Main.i().get();
         s_infinite_scroll.Scroll.i().observe();
+        s_welcome_msg.Main.i().show();
 
         x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);
         x.bind(window, 'scroll', d_side_panel.Page.i().set_current);

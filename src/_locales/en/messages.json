@@ -148,5 +148,8 @@
     },
     "load_end_msg_error_text": {
         "message": "An error occured. Google thinks you're a robot. Reload the page and solve the captcha.\u200E"
+    },
+    "welcome_notification": {
+        "message": "Thank you for installing Google Enhancement Suite. The country flags will take some time to load for the first time. Please wait."
     }
 }

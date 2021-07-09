@@ -53,6 +53,7 @@ export class Main {
                 },
                 infinite_scrolling_enabled: true,
                 last_ip_to_country_csv_char_count: 0,
+                welcome_msg_has_already_been_shown: false,
             };
         }, 'ges_1156');
 

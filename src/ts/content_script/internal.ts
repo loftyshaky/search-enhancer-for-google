@@ -24,6 +24,7 @@ export * as s_location from 'content_script/location/scripts';
 export * as s_roots from 'content_script/roots/scripts';
 export * as s_tab_index from 'content_script/tab_index/scripts';
 export * as s_text_dir from 'content_script/text_dir/scripts';
+export * as s_welcome_msg from 'content_script/welcome_msg/scripts';
 
 export * as i_icons from 'content_script/icons/interfaces';
 export * as i_infinite_scroll from 'content_script/infinite_scroll/interfaces';
