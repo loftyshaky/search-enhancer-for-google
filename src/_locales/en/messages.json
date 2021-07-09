@@ -151,5 +151,23 @@
     },
     "welcome_notification": {
         "message": "Thank you for installing Google Enhancement Suite. The country flags will take some time to load for the first time. Please wait."
+    },
+    "enable_infinite_scrolling_hotkey": {
+        "message": "Enable/disable infinite scrolling"
+    },
+    "scroll_to_top_hotkey": {
+        "message": "Scroll to top"
+    },
+    "scroll_to_bottom_hotkey": {
+        "message": "Scroll to bottom"
+    },
+    "remember_scroll_position_hotkey": {
+        "message": "Remember scroll position/return to the remembered scroll position"
+    },
+    "remember_scroll_position_forced_hotkey": {
+        "message": "Remember scroll position (if Google Enhancement Suite already have a position remembered)"
+    },
+    "jump_to_related_searches_hotkey": {
+        "message": "Jump to related searches/pagination buttons"
     }
 }

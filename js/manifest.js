@@ -443,6 +443,44 @@ class Manifest {
                     css: ['content_script_css.css'],
                 },
             ],
+            commands: {
+                enable_infinite_scrolling: {
+                    description: '__MSG_enable_btn_title__',
+                },
+                scroll_to_top: {
+                    description: '__MSG_scroll_to_top_hotkey__',
+                },
+                scroll_to_bottom: {
+                    description: '__MSG_scroll_to_bottom_hotkey__',
+                },
+                remember_scroll_position: {
+                    description: '__MSG_remember_scroll_position_hotkey__',
+                },
+                remember_scroll_position_forced: {
+                    description: '__MSG_remember_scroll_position_forced_hotkey__',
+                },
+                jump_to_related_searches: {
+                    description: '__MSG_jump_to_related_searches_hotkey__',
+                },
+                view_img: {
+                    description: '__MSG_view_img_title__',
+                },
+                search_by_img: {
+                    description: '__MSG_search_by_img_title__',
+                },
+                download_img: {
+                    description: '__MSG_download_img_title__',
+                },
+                save_img_as: {
+                    description: '__MSG_save_img_as_title__',
+                },
+                copy_img: {
+                    description: '__MSG_copy_img_title__',
+                },
+                copy_img_url: {
+                    description: '__MSG_copy_img_url_title__',
+                },
+            },
         };
 
         manifest_shared.generate({

@@ -1,4 +1,5 @@
 import 'background/browser_action/scripts';
+import 'background/commands/scripts';
 import 'background/msgs/scripts';
 
 misplaced_dependency('background');

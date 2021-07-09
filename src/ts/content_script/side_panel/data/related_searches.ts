@@ -42,7 +42,7 @@ export class RelatedSearches {
             this.remembered_position = 'none';
         }, 'ges_1092');
 
-    public jump_to = (e: MouseEvent | KeyboardEvent): void =>
+    public jump_to = (e?: MouseEvent | KeyboardEvent): void =>
         err(() => {
             if (n(e)) {
                 e.preventDefault();

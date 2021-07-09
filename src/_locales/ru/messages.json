@@ -148,5 +148,23 @@
     },
     "welcome_notification": {
         "message": "Спасибо за установку Google Enhancement Suite. Первая загрузка флагов займет некоторое время. Пожалуйста, подождите."
+    },
+    "enable_infinite_scrolling_hotkey": {
+        "message": "Включить/выключить бесконечную загрузку страниц"
+    },
+    "scroll_to_top_hotkey": {
+        "message": "Прокрутить страницу вверх"
+    },
+    "scroll_to_bottom_hotkey": {
+        "message": "Прокрутить страницу вниз"
+    },
+    "remember_scroll_position_hotkey": {
+        "message": "Запоминить позицию/вернуться на запомненную позицию"
+    },
+    "remember_scroll_position_forced_hotkey": {
+        "message": "Запоминить позицию (если Google Enhancement Suite уже имеет запомненную позицию)"
+    },
+    "jump_to_related_searches_hotkey": {
+        "message": "Перейти к похожим запросам/кнопкам нумерации страниц"
     }
 }
