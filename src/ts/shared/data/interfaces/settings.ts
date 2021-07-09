@@ -5,6 +5,7 @@ export interface Settings {
     options_page_theme: string;
     transition_duration: number;
     show_color_help: boolean;
+    enable_cut_features: boolean;
     colors: i_color.Color[];
     side_panel_position: string;
     keyword_color: number;

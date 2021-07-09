@@ -43,34 +43,30 @@ export class Main {
         }, 'ges_1013');
 
     public run_reload_actions = (): Promise<void> =>
-        err_async(
-            async () => {
-                if (d_settings.Main.i().allow_rerun_actions) {
-                    await d_settings.Main.i().set_from_storage();
-                    s_css_vars.Main.i().set();
-                    s_el_parser.Main.i().get_els();
+        err_async(async () => {
+            if (d_settings.Main.i().allow_rerun_actions) {
+                await d_settings.Main.i().set_from_storage();
+                s_css_vars.Main.i().set();
+                s_el_parser.Main.i().get_els();
 
-                    if (s_location.Main.i().is_search_results) {
-                        s_infinite_scroll.Spinner.i().set_color();
-                        s_keywords.Main.i().color_keywords();
-                    }
-
-                    if (s_location.Main.i().is_icons_search_results) {
-                        s_roots.Main.i().apply_root_parent_cls_to_title_els();
-                    }
-
-                    d_infinite_scroll.Separator.i().set_offset_left();
-
-                    if (s_location.Main.i().is_icons_search_results) {
-                        s_roots.Main.i().init({ name: 'icons' });
-                    }
-                } else {
-                    d_settings.Main.i().allow_rerun_actions = true;
+                if (s_location.Main.i().is_search_results) {
+                    s_infinite_scroll.Spinner.i().set_color();
+                    s_keywords.Main.i().color_keywords();
                 }
-            },
-            'ges_1014',
-            { silent: true },
-        );
+
+                if (s_location.Main.i().is_icons_search_results) {
+                    s_roots.Main.i().apply_root_parent_cls_to_title_els();
+                }
+
+                d_infinite_scroll.Separator.i().set_offset_left();
+
+                if (s_location.Main.i().is_icons_search_results) {
+                    s_roots.Main.i().init({ name: 'icons' });
+                }
+            } else {
+                d_settings.Main.i().allow_rerun_actions = true;
+            }
+        }, 'ges_1014');
 
     private run_reload_actions_debounce = _.debounce(
         (): void =>

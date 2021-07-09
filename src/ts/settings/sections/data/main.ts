@@ -129,6 +129,7 @@ export class Main {
                             }),
                             new o_inputs.Checkbox({
                                 name: 'show_save_img_as_btn',
+                                is_cut: true,
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Text({

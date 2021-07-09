@@ -48,6 +48,7 @@ export class Btns {
                 new o_img_action_bar.Btn({
                     name: 'save_img_as',
                     svg_name: 'Archive',
+                    is_cut: true,
                     event_callback: s_img_action_bar.Action.i().run,
                 }),
                 new o_img_action_bar.Btn({

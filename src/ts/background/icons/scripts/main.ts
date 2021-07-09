@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { t } from '@loftyshaky/shared';
 
 import { s_ip_to_country } from 'background/internal';
-import { db, i_db, i_icons } from 'shared/internal';
+import { db, i_data, i_db, i_icons } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -87,8 +87,9 @@ export class Main {
                 country_name: '',
             };
             try {
+                const settings: i_data.Settings = await ext.storage_get();
                 const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
-                    ['en-US' /* we.i18n.getUILanguage() */],
+                    [settings.enable_cut_features ? we.i18n.getUILanguage() : navigator.language],
                     { type: 'region' },
                 );
                 const response: Response = await fetch(`https://dns.google/resolve?name=${url}`);

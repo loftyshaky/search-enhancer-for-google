@@ -14,42 +14,34 @@ export class Main {
     private constructor() {}
 
     public color_keywords = (): void =>
-        err(
-            () => {
-                const cls = new s_suffix.Main('keyword').result;
+        err(() => {
+            const cls = new s_suffix.Main('keyword').result;
 
-                [...s_el_parser.Main.i().keyword_els].forEach((keyword_el: HTMLElement): void =>
+            [...s_el_parser.Main.i().keyword_els].forEach((keyword_el: HTMLElement): void =>
+                err(() => {
+                    x.add_cls(keyword_el, cls);
+                }, 'ges_1068'),
+            );
+            [document, ...s_infinite_scroll.Iframe.i().iframes].forEach(
+                (base_el: Document | HTMLIFrameElement): void =>
                     err(() => {
-                        x.add_cls(keyword_el, cls);
-                    }, 'ges_1068'),
-                );
-                [document, ...s_infinite_scroll.Iframe.i().iframes].forEach(
-                    (base_el: Document | HTMLIFrameElement): void =>
-                        err(
-                            () => {
-                                const document_2: Document | undefined =
-                                    base_el.nodeType === 9
-                                        ? (base_el as Document)
-                                        : s_infinite_scroll.Iframe.i().get_content_document({
-                                              base_el: base_el as HTMLIFrameElement,
-                                          });
+                        const document_2: Document | undefined =
+                            base_el.nodeType === 9
+                                ? (base_el as Document)
+                                : s_infinite_scroll.Iframe.i().get_content_document({
+                                      base_el: base_el as HTMLIFrameElement,
+                                  });
 
-                                if (n(document_2)) {
-                                    x.dynamic_css(
-                                        document_2.head,
-                                        cls,
-                                        `.${cls} { color: ${d_color.Color.i().access_from_val({
-                                            val: data.settings.keyword_color,
-                                        })}!important }`,
-                                    );
-                                }
-                            },
-                            'ges_1069',
-                            { silent: true },
-                        ),
-                );
-            },
-            'ges_1070',
-            { silent: true },
-        );
+                        if (n(document_2)) {
+                            x.dynamic_css(
+                                document_2.head,
+                                cls,
+                                `.${cls} { color: ${d_color.Color.i().access_from_val({
+                                    val: data.settings.keyword_color,
+                                })}!important }`,
+                            );
+                        }
+                    }, 'ges_1069'),
+            );
+        }, 'ges_1070');
 }

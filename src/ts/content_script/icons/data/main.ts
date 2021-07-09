@@ -91,41 +91,37 @@ export class Main {
         }, 'ges_1041');
 
     private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
-        err_async(
-            async () => {
-                if (data.settings.show_server_locations) {
-                    this.server_locations[url] = 'placeholder';
+        err_async(async () => {
+            if (data.settings.show_server_locations) {
+                this.server_locations[url] = 'placeholder';
 
-                    const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp({
-                        msg: 'get_server_info',
-                        url,
-                    });
-                    const server_location_found: boolean = server_info.country_code !== '';
+                const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp({
+                    msg: 'get_server_info',
+                    url,
+                });
+                const server_location_found: boolean = server_info.country_code !== '';
 
-                    const flag_path = server_location_found
-                        ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
-                        : 'placeholder';
+                const flag_path = server_location_found
+                    ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
+                    : 'placeholder';
 
-                    runInAction(() =>
-                        err(() => {
-                            this.server_locations[url] = flag_path;
+                runInAction(() =>
+                    err(() => {
+                        this.server_locations[url] = flag_path;
 
-                            if (server_location_found) {
-                                if (server_info.country_name !== '') {
-                                    this.server_countries[url] = server_info.country_name;
-                                }
-
-                                if (server_info.ip !== '') {
-                                    this.server_ips[url] = server_info.ip;
-                                }
+                        if (server_location_found) {
+                            if (server_info.country_name !== '') {
+                                this.server_countries[url] = server_info.country_name;
                             }
-                        }, 'ges_1149'),
-                    );
-                }
-            },
-            'ges_1042',
-            { silent: true },
-        );
+
+                            if (server_info.ip !== '') {
+                                this.server_ips[url] = server_info.ip;
+                            }
+                        }
+                    }, 'ges_1149'),
+                );
+            }
+        }, 'ges_1042');
 
     public generate_urls = ({ i }: { i: number }): void =>
         err(() => {

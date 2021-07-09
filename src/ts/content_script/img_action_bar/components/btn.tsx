@@ -8,7 +8,8 @@ export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((prop
     const { btn } = props;
     const Component = d_img_action_bar.Btns.i().component[btn.name];
 
-    return data.settings[`show_${btn.name}_btn`] ? (
+    return data.settings[`show_${btn.name}_btn`] &&
+        ((btn.is_cut && data.settings.enable_cut_features) || !btn.is_cut) ? (
         <button
             className='btn'
             type='button'
