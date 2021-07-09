@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { t } from '@loftyshaky/shared';
 import { svg } from 'shared/svg';
 
 import { d_icons, p_icons } from 'content_script/internal';
