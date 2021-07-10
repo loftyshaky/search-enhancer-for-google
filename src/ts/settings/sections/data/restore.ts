@@ -48,14 +48,12 @@ export class Restore {
         err_async(async () => {
             let settings_final: i_data.Settings;
 
-            if (n(settings)) {
-                if (_.isEmpty(settings)) {
-                    const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
+            if (_.isEmpty(settings)) {
+                const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-                    settings_final = default_settings;
-                } else {
-                    settings_final = settings;
-                }
+                settings_final = default_settings;
+            } else if (n(settings)) {
+                settings_final = settings;
             }
 
             runInAction((): void =>
