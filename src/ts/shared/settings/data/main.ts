@@ -28,7 +28,7 @@ export class Main {
                 }
             }
 
-            runInAction((): void =>
+            runInAction(() =>
                 err(() => {
                     data.settings = settings_final;
                 }, 'ges_1142'),

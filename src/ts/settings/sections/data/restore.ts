@@ -56,7 +56,7 @@ export class Restore {
                 settings_final = settings;
             }
 
-            runInAction((): void =>
+            runInAction(() =>
                 err(() => {
                     data.settings = settings_final;
                 }, 'ges_1143'),

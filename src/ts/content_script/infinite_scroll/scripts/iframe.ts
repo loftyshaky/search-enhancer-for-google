@@ -101,9 +101,11 @@ export class Iframe {
                                             show_load_end_msg();
                                         }
 
-                                        runInAction(() => {
-                                            this.inserting_iframe = false;
-                                        });
+                                        runInAction(() =>
+                                            err(() => {
+                                                this.inserting_iframe = false;
+                                            }, 'ges_1178'),
+                                        );
                                     }, 'ges_1054'),
                                 );
                             };
@@ -128,9 +130,11 @@ export class Iframe {
                                     silent: true,
                                 });
 
-                                runInAction(() => {
-                                    this.inserting_iframe = false;
-                                });
+                                runInAction(() =>
+                                    err(() => {
+                                        this.inserting_iframe = false;
+                                    }, 'ges_1177'),
+                                );
 
                                 d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
                                 show_load_end_msg();

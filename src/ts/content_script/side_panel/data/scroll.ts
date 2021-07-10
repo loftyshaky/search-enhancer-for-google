@@ -79,9 +79,11 @@ export class Scroll {
                             this.middle_button_holded_more_than_0_35_seconds = true;
                         }
 
-                        runInAction((): void => {
-                            this.position_overridden = true;
-                        });
+                        runInAction(() =>
+                            err(() => {
+                                this.position_overridden = true;
+                            }, 'ges_1179'),
+                        );
 
                         await x.delay(
                             +s_css_vars.Main.i().get({
@@ -89,9 +91,11 @@ export class Scroll {
                             }) + 150,
                         );
 
-                        runInAction((): void => {
-                            this.position_overridden = false;
-                        });
+                        runInAction(() =>
+                            err(() => {
+                                this.position_overridden = false;
+                            }, 'ges_1180'),
+                        );
                     },
                     keyboard_call ? 0 : 350,
                 );
