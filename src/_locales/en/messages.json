@@ -1,9 +1,6 @@
 {
-    "name": {
-        "message": "Google Enhancement Suite"
-    },
     "description": {
-        "message": ""
+        "message": "Adds infinite scrolling, site icons, server locations, \"View image\" button, \"Download image\" button and more to Google search."
     },
     "all_section_text": {
         "message": "All"
@@ -151,9 +148,6 @@
     },
     "welcome_notification": {
         "message": "Thank you for installing Google Enhancement Suite. The country flags will take some time to load for the first time. Please wait."
-    },
-    "enable_infinite_scrolling_hotkey": {
-        "message": "Enable/disable infinite scrolling"
     },
     "scroll_to_top_hotkey": {
         "message": "Scroll to top"
