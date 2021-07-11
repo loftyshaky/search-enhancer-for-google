@@ -65,6 +65,7 @@ export class Main {
                 });
 
                 ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
+                ext.send_msg({ msg: 'upadate_settings_var' });
             }
 
             this.ip_to_country_loaded_into_inexed_db = true;

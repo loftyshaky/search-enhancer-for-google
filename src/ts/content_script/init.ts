@@ -22,13 +22,13 @@ export const init = (): Promise<void> =>
         db.init_db();
 
         await s_actions.Main.i().run_initial_actions();
+        s_welcome_msg.Main.i().show();
         d_img_action_bar.Btns.i().init_btns();
         d_img_action_bar.Btns.i().init_component();
         s_roots.Main.i().init_component();
         s_infinite_scroll.FooterEls.i().append_to_footer();
         s_text_dir.Main.i().get();
         s_infinite_scroll.Scroll.i().observe();
-        s_welcome_msg.Main.i().show();
 
         x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);
         x.bind(window, 'scroll', d_side_panel.Page.i().set_current);

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { makeObservable, action, runInAction, toJS } from 'mobx';
+import { runInAction, toJS } from 'mobx';
 
 import { t } from '@loftyshaky/shared';
 import { i_data } from 'shared/internal';
@@ -12,15 +12,29 @@ export class Restore {
         return this.i0 || (this.i0 = new this());
     }
 
-    private constructor() {
-        makeObservable<Restore, 'override'>(this, {
-            override: action,
-        });
-    }
-
-    private restore = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
+    public restore_confirm = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
         err_async(async () => {
-            const { show_color_help } = data.settings;
+            // eslint-disable-next-line no-alert
+            const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
+
+            if (confirmed_restore) {
+                const settings_final: i_data.Settings = await this.set({ settings });
+
+                await ext.send_msg_resp({
+                    msg: 'update_settings',
+                    settings: settings_final,
+                });
+
+                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
+            }
+        }, 'ges_1105');
+
+    public restore_back_up = ({ data_obj }: { data_obj: t.AnyRecord }): Promise<void> =>
+        err_async(async () => {
+            const settings: i_data.Settings = {
+                ...data_obj,
+                ...this.get_unchanged_settings(),
+            } as i_data.Settings;
 
             await this.set({ settings });
 
@@ -29,38 +43,32 @@ export class Restore {
                 settings,
             });
 
-            this.override({ show_color_help });
-        }, 'ges_1104');
+            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
+        }, 'ges_1108');
 
-    public restore_confirm = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
-        err_async(async () => {
-            // eslint-disable-next-line no-alert
-            const confirmed_restore: boolean = window.confirm(ext.msg('restore_defaults_confirm'));
-
-            if (confirmed_restore) {
-                await this.restore({ settings });
-
-                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-            }
-        }, 'ges_1105');
-
-    private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
+    private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<i_data.Settings> =>
         err_async(async () => {
             let settings_final: i_data.Settings;
 
             if (_.isEmpty(settings)) {
                 const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
-                settings_final = default_settings;
+                settings_final = { ...default_settings, ...this.get_unchanged_settings() };
             } else if (n(settings)) {
                 settings_final = settings;
             }
 
-            runInAction(() =>
-                err(() => {
-                    data.settings = settings_final;
-                }, 'ges_1143'),
-            );
+            const set_inner = (): i_data.Settings => {
+                runInAction(() =>
+                    err(() => {
+                        data.settings = settings_final;
+                    }, 'ges_1143'),
+                );
+
+                return settings_final;
+            };
+
+            return set_inner();
         }, 'ges_1106');
 
     public set_from_storage = (): Promise<void> =>
@@ -78,33 +86,15 @@ export class Restore {
             }
         }, 'ges_1107');
 
-    public restore_back_up = ({ data_obj }: { data_obj: t.AnyRecord }): Promise<void> =>
-        err_async(async () => {
-            const { show_color_help } = data.settings;
-
-            const data_obj_clone: t.AnyRecord = _.cloneDeep(data_obj);
-
-            await this.set({ settings: data_obj.settings });
-
-            await ext.send_msg_resp({
-                msg: 'update_settings',
-                settings: data_obj_clone.settings,
-            });
-
-            this.override({ show_color_help });
-
-            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-        }, 'ges_1108');
-
-    private override = ({ show_color_help }: { show_color_help: boolean }): void =>
-        err(() => {
-            if (!show_color_help) {
-                data.settings.show_color_help = false;
-
-                ext.send_msg_resp({
-                    msg: 'update_settings',
-                    settings: { show_color_help: false },
-                });
-            }
-        }, 'ges_1109');
+    public get_unchanged_settings = (): t.AnyRecord =>
+        err(
+            () => ({
+                current_section: data.settings.current_section,
+                show_color_help: data.settings.show_color_help,
+                last_ip_to_country_csv_char_count: data.settings.last_ip_to_country_csv_char_count,
+                welcome_msg_has_already_been_shown:
+                    data.settings.welcome_msg_has_already_been_shown,
+            }),
+            'ges_1178',
+        );
 }

@@ -9,8 +9,8 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
-    public show = (): void =>
-        err(() => {
+    public show = async (): Promise<void> =>
+        err(async () => {
             if (!data.settings.welcome_msg_has_already_been_shown) {
                 show_err_ribbon(undefined, undefined, {
                     persistent: true,
@@ -18,7 +18,8 @@ export class Main {
                     notification_msg_key: 'welcome_notification',
                 });
 
-                ext.storage_set({ welcome_msg_has_already_been_shown: true });
+                await ext.storage_set({ welcome_msg_has_already_been_shown: true });
+                ext.send_msg({ msg: 'upadate_settings_var' });
             }
         }, 'ges_1172');
 }
