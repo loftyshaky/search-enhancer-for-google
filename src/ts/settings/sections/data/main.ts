@@ -198,7 +198,7 @@ export class Main {
                         inputs: [
                             new o_inputs.Link({
                                 name: 'privacy_policy',
-                                href: 'http://bit.ly/cws-privacy-policy',
+                                href: 'https://bit.ly/extensions-privacy-policy',
                             }),
                             new o_inputs.Link({
                                 name: 'rate',
