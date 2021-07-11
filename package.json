@@ -56,10 +56,9 @@
         "webpack-fix-style-only-entries": "^0.6.0"
     },
     "dependencies": {
-        "@loftyshaky/shared": "0.0.10",
+        "@loftyshaky/shared": "0.0.17",
         "@simonwep/pickr": "^1.8.1",
         "@svgr/webpack": "^5.5.0",
-        "advanced-extension-reloader-watch-2": "0.0.1",
         "dexie": "^3.0.3",
         "lodash": "^4.17.20",
         "mobx": "^6.0.4",
