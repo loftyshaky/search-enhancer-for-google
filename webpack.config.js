@@ -54,7 +54,7 @@ module.exports = (env, argv) => {
         ],
         callback_begin: () => {
             task_scheduler.unlock_dist({
-                package_name: 'Extension Reloader',
+                package_name: 'Google Enhancement Suite',
                 remove_dist: argv.mode === 'production',
             });
         },
