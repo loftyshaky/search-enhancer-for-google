@@ -434,12 +434,7 @@ class Manifest {
                         '*://www.google.cat/*',
                     ],
                     include_globs: ['*search?*'],
-                    js: [
-                        'content_script.js',
-                        'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
-                        'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
-                        'chunks/src_ts_content_script_internal_ts.js',
-                    ],
+                    js: ['content_script.js'],
                     css: ['content_script_css.css'],
                 },
             ],
