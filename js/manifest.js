@@ -243,6 +243,8 @@ class Manifest {
             ],
             content_scripts: [
                 {
+                    js: ['content_script.js'],
+                    css: ['content_script_css.css'],
                     matches: [
                         '*://www.google.com/*',
                         '*://www.google.ad/*',
@@ -434,8 +436,6 @@ class Manifest {
                         '*://www.google.cat/*',
                     ],
                     include_globs: ['*search?*'],
-                    js: ['content_script.js'],
-                    css: ['content_script_css.css'],
                 },
             ],
             commands: {
@@ -477,6 +477,14 @@ class Manifest {
                 },
             },
         };
+
+        if (mode === 'development') {
+            manifest.content_scripts[0].js.push(
+                'chunks/src_ts_content_script_internal_ts.js',
+                'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
+                'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
+            );
+        }
 
         manifest_shared.generate({
             manifest,
