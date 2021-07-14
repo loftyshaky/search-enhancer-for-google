@@ -8,7 +8,6 @@ import {
     c_img_action_bar,
     c_infinite_scroll,
     d_icons,
-    d_img_action_bar,
     s_el_parser,
     s_infinite_scroll,
     s_location,
@@ -102,8 +101,6 @@ export class Main {
                             i: 0,
                             append_f_name: 'after',
                         });
-
-                        d_img_action_bar.Position.i().set_margin();
                     }, 'ges_1077');
 
                 const next_el: Element | null = s_el_parser.Main.i().img_viewer!.nextElementSibling;

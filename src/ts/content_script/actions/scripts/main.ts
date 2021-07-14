@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 import { d_settings, s_css_vars } from 'shared/internal';
 import {
-    d_img_action_bar,
     d_infinite_scroll,
     s_el_parser,
     s_infinite_scroll,
@@ -81,7 +80,6 @@ export class Main {
             if (s_location.Main.i().is_imgs_page) {
                 s_el_parser.Main.i().get_img_viewer();
                 s_roots.Main.i().init({ name: 'img_action_bar' });
-                d_img_action_bar.Position.i().observe_img_margin_change();
             }
 
             this.run_reload_actions_debounce();

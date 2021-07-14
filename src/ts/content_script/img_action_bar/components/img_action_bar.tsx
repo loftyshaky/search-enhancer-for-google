@@ -9,10 +9,6 @@ export const ImgActionBar: React.FunctionComponent = observer(() => {
     return (
         <div
             className={x.cls(['img_action_bar', d_img_action_bar.Visibility.i().visibility_cls])}
-            style={{
-                bottom: d_img_action_bar.Position.i().bottom,
-                right: d_img_action_bar.Position.i().right,
-            }}
             ref={img_action_bar_ref}
         >
             {Object.values(d_img_action_bar.Btns.i().btns as o_img_action_bar.Btn[]).map(
