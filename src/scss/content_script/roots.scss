@@ -6,7 +6,7 @@
 
     &:not(.news_#{$app_id}) {
         position: absolute;
-        top: 10px;
+        top: 30px;
         left: -$gap;
         transform: translateX(-100%);
     }
