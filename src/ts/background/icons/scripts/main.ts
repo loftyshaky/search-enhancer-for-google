@@ -2,8 +2,7 @@ import _ from 'lodash';
 
 import { t } from '@loftyshaky/shared';
 
-import { s_ip_to_country } from 'background/internal';
-import { db, i_data, i_db, i_icons } from 'shared/internal';
+import { i_data, i_icons } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -15,6 +14,8 @@ export class Main {
 
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
+
+    public ip_to_country: i_icons.IpToCountry[] = [];
 
     private favicon_providers: t.StringRecord = {
         google: 'https://s2.googleusercontent.com/s2/favicons?domain_url=',
@@ -87,25 +88,38 @@ export class Main {
                 country_name: '',
             };
             try {
-                const settings: i_data.Settings = await ext.storage_get();
-                const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
-                    [settings.enable_cut_features ? we.i18n.getUILanguage() : navigator.language],
-                    { type: 'region' },
-                );
-                const response: Response = await fetch(`https://dns.google/resolve?name=${url}`);
-                const json: any = await response.json();
-                const ip: string = (_.last(json.Answer) as any).data;
-                const record: i_db.IpToCountry | undefined = await db.ip_to_country
-                    .where('ip_from')
-                    .belowOrEqual(s_ip_to_country.Main.i().convert_ip_to_ip_number({ ip }))
-                    .last();
+                if (n(this.ip_to_country)) {
+                    const settings: i_data.Settings = await ext.storage_get();
+                    const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
+                        [
+                            settings.enable_cut_features
+                                ? we.i18n.getUILanguage()
+                                : navigator.language,
+                        ],
+                        { type: 'region' },
+                    );
+                    const response_2: Response = await fetch(
+                        `https://dns.google/resolve?name=${url}`,
+                    );
+                    const json: any = await response_2.json();
+                    const ip: string = (_.last(json.Answer) as any).data;
 
-                if (n(record)) {
-                    return {
-                        ip,
-                        country_code: record.country_code,
-                        country_name: region_name.of(record.country_code),
-                    };
+                    const record: i_icons.IpToCountry | undefined = _.findLast(
+                        this.ip_to_country,
+                        (item: i_icons.IpToCountry): boolean =>
+                            err(
+                                () => item.ip_from < this.convert_ip_to_ip_number({ ip }),
+                                'ges_1180',
+                            ),
+                    );
+
+                    if (n(record)) {
+                        return {
+                            ip,
+                            country_code: record.country_code,
+                            country_name: region_name.of(record.country_code),
+                        };
+                    }
                 }
 
                 return empty_row;
@@ -115,4 +129,45 @@ export class Main {
                 return empty_row;
             }
         }, 'ges_1006');
+
+    public generate_ip_to_country_arr = (): Promise<void> =>
+        err_async(async () => {
+            const response = await fetch(we.runtime.getURL('ip_to_country_ipv4.csv'));
+            const ip_to_country_text: string = await response.text();
+
+            const ip_to_country_arr = ip_to_country_text.split(/\r?\n/);
+            const ip_to_country_db_arr: (i_icons.IpToCountry | undefined)[] = ip_to_country_arr.map(
+                (item: string): i_icons.IpToCountry | undefined =>
+                    err(() => {
+                        const item_arr: string[] = item.split(',');
+
+                        if (n(item_arr) && n(item_arr[0]) && n(item_arr[2])) {
+                            return {
+                                ip_from: this.convert_ip_to_ip_number({
+                                    ip: item_arr[0],
+                                }),
+                                country_code: item_arr[2],
+                            };
+                        }
+
+                        return undefined;
+                    }, 'ges_1009'),
+            );
+
+            this.ip_to_country = ip_to_country_db_arr.filter(
+                (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'ges_1165'),
+            ) as i_icons.IpToCountry[];
+        }, 'ges_1181');
+
+    private convert_ip_to_ip_number = ({ ip }: { ip: string }): number =>
+        err(() => {
+            const ip_sub_blocks: string[] = ip.split('.');
+            const ip_number: number =
+                16777216 * +ip_sub_blocks[0] +
+                65536 * +ip_sub_blocks[1] +
+                256 * +ip_sub_blocks[2] +
+                +ip_sub_blocks[3];
+
+            return ip_number;
+        }, 'ges_1171');
 }

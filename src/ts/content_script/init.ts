@@ -1,5 +1,5 @@
-import { s_keep_alive, s_tab_index } from '@loftyshaky/shared';
-import { db, s_suffix } from 'shared/internal';
+import { s_tab_index } from '@loftyshaky/shared';
+import { s_suffix } from 'shared/internal';
 import {
     d_img_action_bar,
     s_roots,
@@ -7,22 +7,17 @@ import {
     s_actions,
     s_infinite_scroll,
     s_text_dir,
-    s_welcome_msg,
 } from 'content_script/internal';
 
 export const init = (): Promise<void> =>
     err_async(async () => {
         x.insert_invisible_chars_in_title();
-        s_keep_alive.Tabs.i().add_on_connect_listener();
         s_tab_index.Main.i().bind_set_input_type_f({
             parent: document.body,
             app_id: s_suffix.app_id,
         });
 
-        db.init_db();
-
         await s_actions.Main.i().run_initial_actions();
-        s_welcome_msg.Main.i().show();
         d_img_action_bar.Btns.i().init_btns();
         d_img_action_bar.Btns.i().init_component();
         s_roots.Main.i().init_component();

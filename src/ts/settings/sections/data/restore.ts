@@ -92,8 +92,6 @@ export class Restore {
                 current_section: data.settings.current_section,
                 show_color_help: data.settings.show_color_help,
                 last_ip_to_country_csv_char_count: data.settings.last_ip_to_country_csv_char_count,
-                welcome_msg_has_already_been_shown:
-                    data.settings.welcome_msg_has_already_been_shown,
             }),
             'ges_1178',
         );

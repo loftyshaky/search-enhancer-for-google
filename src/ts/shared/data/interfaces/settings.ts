@@ -35,5 +35,4 @@ export interface Settings {
     };
     infinite_scrolling_enabled: boolean;
     last_ip_to_country_csv_char_count: number;
-    welcome_msg_has_already_been_shown: boolean;
 }

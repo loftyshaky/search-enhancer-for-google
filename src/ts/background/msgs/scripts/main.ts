@@ -21,7 +21,9 @@ we.runtime.onMessage.addListener(
                     url: msg.url as string,
                 });
             } else if (msg_str === 'get_server_info') {
-                return s_icons.Main.i().get_server_info({ url: msg.url as string });
+                return s_icons.Main.i().get_server_info({
+                    url: msg.url as string,
+                });
             } else if (msg_str === 'run_img_action') {
                 return s_img_action.Main.i().run({
                     type: msg.type as string,

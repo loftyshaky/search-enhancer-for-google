@@ -29,6 +29,7 @@ class Manifest {
                         'img_action_bar.css',
                         'flags/*',
                         'chunks/*',
+                        'ip_to_country_ipv4.csv',
                     ],
                     matches: ['<all_urls>'],
                 },
