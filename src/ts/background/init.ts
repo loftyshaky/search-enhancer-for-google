@@ -1,7 +1,9 @@
+import { s_keep_alive } from '@loftyshaky/shared';
 import { s_data, s_icons } from 'background/internal';
 
 export const init = (): Promise<void> =>
     err_async(async () => {
+        s_keep_alive.Tabs.i().keep_long();
         s_data.Main.i().init_defaults();
         await s_data.Main.i().set_from_storage();
         await s_icons.Main.i().generate_ip_to_country_arr();
