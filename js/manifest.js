@@ -15,7 +15,6 @@ class Manifest {
             web_accessible_resources: [
                 {
                     resources: [
-                        'normalize.css',
                         'no_tr.css',
                         'font_face.css',
                         'error.css',
@@ -28,8 +27,6 @@ class Manifest {
                         'side_panel.css',
                         'img_action_bar.css',
                         'flags/*',
-                        'chunks/*',
-                        'ip_to_country_ipv4.csv',
                     ],
                     matches: ['<all_urls>'],
                 },
