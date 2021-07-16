@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const { Reload } = require('advanced-extension-reloader-watch-2');
@@ -43,6 +44,7 @@ module.exports = (env, argv) => {
         MiniCssExtractPlugin,
         OptimizeCssAssetsPlugin,
         // FixStyleOnlyEntriesPlugin,
+        FixStyleOnlyEntriesPlugin,
         CopyWebpackPlugin,
         copy_patters: [
             'FLAGS ICONS LICENSE.txt',
