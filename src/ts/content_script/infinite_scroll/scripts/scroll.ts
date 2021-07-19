@@ -24,5 +24,5 @@ export class Scroll {
             } else if (!n(s_el_parser.Main.i().next_page_href)) {
                 d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
-        }, 'ges_1064');
+        }, 'ges_1080');
 }

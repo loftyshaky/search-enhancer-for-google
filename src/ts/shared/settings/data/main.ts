@@ -31,9 +31,9 @@ export class Main {
             runInAction(() =>
                 err(() => {
                     data.settings = settings_final;
-                }, 'ges_1142'),
+                }, 'ges_1163'),
             );
-        }, 'ges_1132');
+        }, 'ges_1164');
 
     public change = ({ key, val }: { key: string; val: t.AnyUndefined }): void =>
         err(() => {
@@ -46,7 +46,7 @@ export class Main {
                 settings: { [key]: val },
                 rerun_actions: true,
             });
-        }, 'ges_1133');
+        }, 'ges_1165');
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
@@ -61,5 +61,5 @@ export class Main {
             if (!_.isEqual(toJS(data.settings), settings)) {
                 this.set({ settings });
             }
-        }, 'ges_1134');
+        }, 'ges_1166');
 }

@@ -34,5 +34,5 @@ we.runtime.onMessage.addListener(
             s_utils.Main.i().reload_ext({ msg: msg_str });
 
             return true;
-        }, 'ges_1012'),
+        }, 'ges_1017'),
 );

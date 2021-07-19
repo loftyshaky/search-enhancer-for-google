@@ -19,5 +19,5 @@ export class FooterEls {
                 s_el_parser.Main.i().footer_el,
                 s<HTMLElement>(`.${new s_suffix.Main('load_end_msg').result}`),
             );
-        }, 'ges_1052');
+        }, 'ges_1064');
 }

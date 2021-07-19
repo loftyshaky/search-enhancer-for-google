@@ -46,7 +46,7 @@ export class Page {
                             rect.top <= page_height - this.offset &&
                             rect.bottom >= page_height - this.offset
                         );
-                    }, 'ges_1088'),
+                    }, 'ges_1106'),
             );
 
             if (!rendering_iframe_final) {
@@ -59,12 +59,12 @@ export class Page {
             ) {
                 d_side_panel.RelatedSearches.i().reset_position();
             }
-        }, 'ges_1089');
+        }, 'ges_1107');
 
     public set_total = (): void =>
         err(() => {
             const iframe_count: number = s_infinite_scroll.Iframe.i().iframes.length;
 
             this.total = iframe_count + 1;
-        }, 'ges_1090');
+        }, 'ges_1108');
 }

@@ -35,12 +35,12 @@ export class RelatedSearches {
 
             this.remembered_position = current_position;
             d_side_panel.Scroll.i().remembered_position = current_position;
-        }, 'ges_1091');
+        }, 'ges_1109');
 
     public reset_position = (): void =>
         err(() => {
             this.remembered_position = 'none';
-        }, 'ges_1092');
+        }, 'ges_1110');
 
     public jump_to = (e?: MouseEvent | KeyboardEvent): void =>
         err(() => {
@@ -80,5 +80,5 @@ export class RelatedSearches {
 
                 this.reset_position();
             }
-        }, 'ges_1093');
+        }, 'ges_1111');
 }

@@ -27,7 +27,7 @@ export class Restore {
 
                 ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
             }
-        }, 'ges_1105');
+        }, 'ges_1130');
 
     public restore_back_up = ({ data_obj }: { data_obj: t.AnyRecord }): Promise<void> =>
         err_async(async () => {
@@ -44,7 +44,7 @@ export class Restore {
             });
 
             ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-        }, 'ges_1108');
+        }, 'ges_1131');
 
     private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<i_data.Settings> =>
         err_async(async () => {
@@ -62,14 +62,14 @@ export class Restore {
                 runInAction(() =>
                     err(() => {
                         data.settings = settings_final;
-                    }, 'ges_1143'),
+                    }, 'ges_1132'),
                 );
 
                 return settings_final;
             };
 
             return set_inner();
-        }, 'ges_1106');
+        }, 'ges_1133');
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
@@ -84,7 +84,7 @@ export class Restore {
             if (!_.isEqual(toJS(data.settings), settings)) {
                 this.set({ settings });
             }
-        }, 'ges_1107');
+        }, 'ges_1134');
 
     public get_unchanged_settings = (): t.AnyRecord =>
         err(
@@ -93,6 +93,6 @@ export class Restore {
                 show_color_help: data.settings.show_color_help,
                 last_ip_to_country_csv_char_count: data.settings.last_ip_to_country_csv_char_count,
             }),
-            'ges_1178',
+            'ges_1135',
         );
 }

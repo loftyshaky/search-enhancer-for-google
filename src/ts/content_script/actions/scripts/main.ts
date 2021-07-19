@@ -39,7 +39,7 @@ export class Main {
             if (s_location.Main.i().is_search_results) {
                 s_infinite_scroll.Spinner.i().set_color();
             }
-        }, 'ges_1013');
+        }, 'ges_1018');
 
     public run_reload_actions = (): Promise<void> =>
         err_async(async () => {
@@ -65,13 +65,13 @@ export class Main {
             } else {
                 d_settings.Main.i().allow_rerun_actions = true;
             }
-        }, 'ges_1014');
+        }, 'ges_1019');
 
     private run_reload_actions_debounce = _.debounce(
         (): void =>
             err(() => {
                 this.run_reload_actions();
-            }, 'ges_1015'),
+            }, 'ges_1020'),
         200,
     );
 
@@ -83,5 +83,5 @@ export class Main {
             }
 
             this.run_reload_actions_debounce();
-        }, 'ges_1016');
+        }, 'ges_1021');
 }

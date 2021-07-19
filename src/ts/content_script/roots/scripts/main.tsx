@@ -34,7 +34,7 @@ export class Main {
                 separator: c_infinite_scroll.Separator,
                 img_action_bar: c_img_action_bar.ImgActionBar,
             };
-        }, 'ges_1159');
+        }, 'ges_1089');
 
     public init = ({ name, start = 0 }: { name: string; start?: number }): void =>
         err(() => {
@@ -45,7 +45,7 @@ export class Main {
                     const remove_icons = ({ icon_roots }: { icon_roots: NodeList }): void =>
                         err(() => {
                             x.remove(icon_roots);
-                        }, 'ges_1074');
+                        }, 'ges_1090');
 
                     s_infinite_scroll.Iframe.i().iframes.forEach((iframe: HTMLIFrameElement) =>
                         err(() => {
@@ -59,7 +59,7 @@ export class Main {
                                     remove_icons({ icon_roots });
                                 }
                             }
-                        }, 'ges_1075'),
+                        }, 'ges_1091'),
                     );
 
                     const icon_roots = sa<HTMLDivElement>(`.${new s_suffix.Main(name).result}`);
@@ -89,7 +89,7 @@ export class Main {
                                     });
                                 }
                             }
-                        }, 'ges_1076'),
+                        }, 'ges_1092'),
                     );
                 }
             } else if (name === 'img_action_bar' && n(s_el_parser.Main.i().img_viewer)) {
@@ -101,7 +101,7 @@ export class Main {
                             i: 0,
                             append_f_name: 'after',
                         });
-                    }, 'ges_1077');
+                    }, 'ges_1093');
 
                 const next_el: Element | null = s_el_parser.Main.i().img_viewer!.nextElementSibling;
 
@@ -118,7 +118,7 @@ export class Main {
                     append();
                 }
             }
-        }, 'ges_1078');
+        }, 'ges_1094');
 
     public append_root = ({
         name,
@@ -163,11 +163,11 @@ export class Main {
                                     content,
                                     resolve,
                                 );
-                            }, 'ges_1079'),
+                            }, 'ges_1095'),
                         );
                     }
                 }
-            }, 'ges_1080');
+            }, 'ges_1096');
         });
 
     public apply_root_parent_cls_to_title_els = (): void =>
@@ -175,9 +175,9 @@ export class Main {
             s_el_parser.Main.i().title_els.forEach((title_el): void =>
                 err(() => {
                     this.apply_root_parent_cls_to_title_el({ title_el });
-                }, 'ges_1081'),
+                }, 'ges_1097'),
             );
-        }, 'ges_1082');
+        }, 'ges_1098');
 
     public apply_root_parent_cls_to_title_el = ({ title_el }: { title_el: HTMLElement }): void =>
         err(() => {
@@ -186,5 +186,5 @@ export class Main {
             if (s_location.Main.i().is_news_page) {
                 x.add_cls(title_el, new s_suffix.Main('news').result);
             }
-        }, 'ges_1083');
+        }, 'ges_1099');
 }

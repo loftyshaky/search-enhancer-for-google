@@ -55,7 +55,7 @@ export class Main {
                 infinite_scrolling_enabled: true,
                 last_ip_to_country_csv_char_count: 0,
             };
-        }, 'ges_1156');
+        }, 'ges_1002');
 
     public update_settings = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
         err_async(async () => {
@@ -64,7 +64,7 @@ export class Main {
                 : (this.defaults as i_data.Settings);
 
             await ext.storage_set(settings_final);
-        }, 'ges_1001');
+        }, 'ges_1003');
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
@@ -73,5 +73,5 @@ export class Main {
             if (_.isEmpty(settings)) {
                 this.update_settings();
             }
-        }, 'ges_1002');
+        }, 'ges_1004');
 }

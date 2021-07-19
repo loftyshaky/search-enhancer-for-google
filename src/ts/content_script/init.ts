@@ -34,4 +34,4 @@ export const init = (): Promise<void> =>
             d_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout,
         );
         x.bind(document, 'mousemove', d_img_action_bar.Visibility.i().change);
-    }, 'ges_1146');
+    }, 'ges_1082');

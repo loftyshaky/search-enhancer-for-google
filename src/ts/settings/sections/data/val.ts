@@ -26,7 +26,7 @@ export class Val {
             const platform_info: browser.runtime.PlatformInfo = await we.runtime.getPlatformInfo();
 
             this.os = platform_info.os;
-        }, 'ges_1110');
+        }, 'ges_1136');
 
     public change = ({ input, i }: { input: i_inputs.Input; i?: i_color.I }): Promise<void> =>
         err_async(async () => {
@@ -50,7 +50,7 @@ export class Val {
                         msg: 'update_settings',
                         settings: data.settings,
                     });
-                }, 'ges_1111');
+                }, 'ges_1137');
 
             if (input.type === 'color' && n(i)) {
                 val = d_color.Color.i().access({
@@ -86,13 +86,13 @@ export class Val {
             }
 
             this.reflect_settings_change_in_content_script();
-        }, 'ges_1112');
+        }, 'ges_1138');
 
     private reflect_settings_change_in_content_script = _.debounce(
         (): void =>
             err(() => {
                 ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-            }, 'ges_1152'),
+            }, 'ges_1139'),
         500,
     );
 
@@ -108,7 +108,7 @@ export class Val {
                     if (this.os === 'win') {
                         const dir_path_has_forbidden_characters: boolean =
                             windows_forbidden_chars.some((char: string): boolean =>
-                                err(() => val.includes(char), 'ges_1113'),
+                                err(() => val.includes(char), 'ges_1140'),
                             );
 
                         if (dir_path_has_forbidden_characters) {
@@ -140,12 +140,12 @@ export class Val {
             }
 
             return false;
-        }, 'ges_1114');
+        }, 'ges_1141');
 
     public remove_val = ({ input }: { input: i_inputs.Input }): Promise<void> =>
         err_async(async () => {
             this.change({ input });
-        }, 'ges_1115');
+        }, 'ges_1142');
 
     public save_selected_palette_color = ({
         input,
@@ -161,7 +161,7 @@ export class Val {
             });
 
             ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-        }, 'ges_1116');
+        }, 'ges_1143');
 
     public remove_color_callback = ({ input }: { input: o_color.Color }): Promise<void> =>
         err_async(async () => {
@@ -171,7 +171,7 @@ export class Val {
             });
 
             ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-        }, 'ges_1117');
+        }, 'ges_1144');
 
     public restore_default_palette_callback = ({
         default_colors,
@@ -185,5 +185,5 @@ export class Val {
             });
 
             ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-        }, 'ges_1118');
+        }, 'ges_1145');
 }

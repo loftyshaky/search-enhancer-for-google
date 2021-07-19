@@ -104,9 +104,9 @@ export class Iframe {
                                         runInAction(() =>
                                             err(() => {
                                                 this.inserting_iframe = false;
-                                            }, 'ges_1178'),
+                                            }, 'ges_1065'),
                                         );
-                                    }, 'ges_1054'),
+                                    }, 'ges_1066'),
                                 );
                             };
 
@@ -115,7 +115,7 @@ export class Iframe {
                                     d_infinite_scroll.LoadEndMsg.i().change_visibility({
                                         is_visible: true,
                                     });
-                                }, 'ges_1135');
+                                }, 'ges_1067');
 
                             this.captcha_error_occurred_once =
                                 n(this.last_iframe) &&
@@ -126,14 +126,14 @@ export class Iframe {
                             if (this.captcha_error_occurred_once) {
                                 this.captcha_error_occurred_once = true;
 
-                                show_err_ribbon(err_obj('A captcha error occurred.'), 'ges_1053', {
+                                show_err_ribbon(err_obj('A captcha error occurred.'), 'ges_1068', {
                                     silent: true,
                                 });
 
                                 runInAction(() =>
                                     err(() => {
                                         this.inserting_iframe = false;
-                                    }, 'ges_1177'),
+                                    }, 'ges_1069'),
                                 );
 
                                 d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
@@ -174,10 +174,10 @@ export class Iframe {
                                     }
                                 }
                             }
-                        }, 'ges_1055'),
+                        }, 'ges_1070'),
                 );
             }
-        }, 'ges_1056');
+        }, 'ges_1071');
 
     public get_iframe_doc = ({ cur_iframe_i }: { cur_iframe_i?: number } = {}):
         | Document
@@ -194,7 +194,7 @@ export class Iframe {
             }
 
             return undefined;
-        }, 'ges_1057');
+        }, 'ges_1072');
 
     private observe_iframe_resizing = ({ cur_iframe_i }: { cur_iframe_i: number }): void =>
         err(() => {
@@ -231,7 +231,7 @@ export class Iframe {
                     resize_observer.observe(search_results_w);
                 }
             }
-        }, 'ges_1058');
+        }, 'ges_1073');
 
     private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): Promise<void> =>
         err_async(async () => {
@@ -245,7 +245,7 @@ export class Iframe {
                 cur_iframe.offsetWidth;
                 cur_iframe.style.height = `${iframe_doc.body.scrollHeight}px`;
             }
-        }, 'ges_1059');
+        }, 'ges_1074');
 
     private hide_everything_from_iframe_except_search_results = (): void =>
         err(() => {
@@ -268,11 +268,11 @@ export class Iframe {
                             ) {
                                 x.add_cls(el, 'none');
                             }
-                        }, 'ges_1060'),
+                        }, 'ges_1075'),
                     );
                 }
             }
-        }, 'ges_1061');
+        }, 'ges_1076');
 
     public get_content_document = ({
         base_el,
@@ -285,5 +285,5 @@ export class Iframe {
             }
 
             return undefined;
-        }, 'ges_1155');
+        }, 'ges_1077');
 }

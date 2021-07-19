@@ -34,7 +34,7 @@ export class Main {
                     new o_inputs.Option({ name: 'right' }),
                 ],
             };
-        }, 'ges_1160');
+        }, 'ges_1127');
 
     public init_sections = (): void =>
         err(() => {
@@ -241,7 +241,7 @@ export class Main {
                 arr: this.sections.links.inputs as o_inputs.Section[],
                 section: 'links',
             });
-        }, 'ges_1161');
+        }, 'ges_1128');
 
     public change_section_val = (): void =>
         err(() => {
@@ -251,5 +251,5 @@ export class Main {
                 msg: 'update_settings',
                 settings: { current_section: d_settings.Sections.i().current_section },
             });
-        }, 'ges_1103');
+        }, 'ges_1129');
 }

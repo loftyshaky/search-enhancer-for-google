@@ -17,4 +17,4 @@ export const init = (): Promise<void> =>
             ],
             ['content_script_css.css'],
         );
-    }, 'ges_1151');
+    }, 'ges_1016');

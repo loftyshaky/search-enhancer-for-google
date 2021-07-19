@@ -33,5 +33,5 @@ export class InfiniteScrollingState {
             if (new_state) {
                 s_infinite_scroll.Scroll.i().observe();
             }
-        }, 'ges_1087');
+        }, 'ges_1105');
 }

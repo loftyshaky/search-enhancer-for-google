@@ -52,7 +52,7 @@ export class Main {
             }
 
             return icon_url;
-        }, 'ges_1003');
+        }, 'ges_1005');
 
     private get_favicon_url_inner = ({
         url,
@@ -78,7 +78,7 @@ export class Main {
             }
 
             return base64;
-        }, 'ges_1004');
+        }, 'ges_1006');
 
     public get_server_info = async ({ url }: { url: string }): Promise<i_icons.ServerInfo> =>
         err_async(async () => {
@@ -109,7 +109,7 @@ export class Main {
                         (item: i_icons.IpToCountry): boolean =>
                             err(
                                 () => item.ip_from < this.convert_ip_to_ip_number({ ip }),
-                                'ges_1180',
+                                'ges_1007',
                             ),
                     );
 
@@ -124,11 +124,11 @@ export class Main {
 
                 return empty_row;
             } catch (error_obj) {
-                show_err_ribbon(error_obj, 'ges_1005');
+                show_err_ribbon(error_obj, 'ges_1008');
 
                 return empty_row;
             }
-        }, 'ges_1006');
+        }, 'ges_1009');
 
     public generate_ip_to_country_arr = (): Promise<void> =>
         err_async(async () => {
@@ -151,13 +151,13 @@ export class Main {
                         }
 
                         return undefined;
-                    }, 'ges_1009'),
+                    }, 'ges_1010'),
             );
 
             this.ip_to_country = ip_to_country_db_arr.filter(
-                (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'ges_1165'),
+                (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'ges_1011'),
             ) as i_icons.IpToCountry[];
-        }, 'ges_1181');
+        }, 'ges_1012');
 
     private convert_ip_to_ip_number = ({ ip }: { ip: string }): number =>
         err(() => {
@@ -169,5 +169,5 @@ export class Main {
                 +ip_sub_blocks[3];
 
             return ip_number;
-        }, 'ges_1171');
+        }, 'ges_1013');
 }

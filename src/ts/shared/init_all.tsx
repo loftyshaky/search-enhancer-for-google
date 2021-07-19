@@ -76,7 +76,7 @@ export class InitAll {
                             d_loading_screen.Main.i().hide();
 
                             s_tab_index.Main.i().bind_set_input_type_f();
-                        }, 'ges_1122');
+                        }, 'ges_1148');
 
                     render(
                         <c_crash_handler.Body>
@@ -94,9 +94,9 @@ export class InitAll {
                                 if (n(settings_css)) {
                                     x.bind(settings_css, 'load', on_render);
                                 }
-                            }, 'ges_1137'),
+                            }, 'ges_1149'),
                     );
-                }, 'ges_1123');
+                }, 'ges_1150');
 
             const render_spinner = (): Promise<void> =>
                 err_async(async () => {
@@ -110,9 +110,9 @@ export class InitAll {
                         (): void =>
                             err(() => {
                                 x.css('spinner', spinner_root);
-                            }, 'ges_1138'),
+                            }, 'ges_1151'),
                     );
-                }, 'ges_1124');
+                }, 'ges_1152');
 
             const render_last_end_msg = (): Promise<void> =>
                 err_async(async () => {
@@ -126,9 +126,9 @@ export class InitAll {
                         (): void =>
                             err(() => {
                                 x.css('load_end_msg', load_end_msg_root);
-                            }, 'ges_1139'),
+                            }, 'ges_1153'),
                     );
-                }, 'ges_1125');
+                }, 'ges_1154');
 
             const render_side_panel = (): Promise<void> =>
                 err_async(async () => {
@@ -150,13 +150,13 @@ export class InitAll {
                                         x.bind(side_panel_css, 'load', (): void =>
                                             err(() => {
                                                 s_no_tr.Main.i().disable({ el: side_panel_root });
-                                            }, 'ges_1126'),
+                                            }, 'ges_1155'),
                                         );
                                     }
-                                }, 'ges_1140'),
+                                }, 'ges_1156'),
                         );
                     }
-                }, 'ges_1127');
+                }, 'ges_1157');
 
             render(<c_error.Body app_id={s_suffix.app_id} />, error_root, (): void => {
                 if (page === 'settings') {
@@ -186,11 +186,11 @@ export class InitAll {
                                                 d_loading_screen.Main.i().show();
 
                                                 render_settings();
-                                            }, 'ges_1128'),
+                                            }, 'ges_1158'),
                                         );
                                     }
                                 }
-                            }, 'ges_1141'),
+                            }, 'ges_1159'),
                     );
                 } else if (page === 'content_script') {
                     render_spinner();
@@ -198,7 +198,7 @@ export class InitAll {
                     render_side_panel();
                 }
             });
-        }, 'ges_1129');
+        }, 'ges_1160');
 
     private create_root = ({
         prefix,
@@ -220,7 +220,7 @@ export class InitAll {
             }
 
             return root;
-        }, 'ges_1130');
+        }, 'ges_1161');
 
     private set_page_title = (): void =>
         err(() => {
@@ -229,5 +229,5 @@ export class InitAll {
             if (n(title_el)) {
                 title_el.textContent = ext.msg(`${page}_title_text`);
             }
-        }, 'ges_1131');
+        }, 'ges_1162');
 }

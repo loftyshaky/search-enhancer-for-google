@@ -35,7 +35,7 @@ export class Main {
             this.get_pagination_el();
             this.get_img_viewer();
             this.get_search_result_body();
-        }, 'ges_1017');
+        }, 'ges_1022');
 
     private get_els_of_all_frames = ({ selector }: { selector: string }): HTMLElement[] =>
         err(() => {
@@ -59,11 +59,11 @@ export class Main {
                     if (n(els)) {
                         all_els = [...all_els, ...els];
                     }
-                }, 'ges_1018'),
+                }, 'ges_1023'),
             );
 
             return all_els;
-        }, 'ges_1019');
+        }, 'ges_1024');
 
     private get_keyword_els = (): void =>
         err(() => {
@@ -74,7 +74,7 @@ export class Main {
             this.keyword_els.forEach((keyword_el: HTMLElement): void =>
                 err(() => {
                     x.remove_cls(keyword_el, new s_suffix.Main('keyword').result);
-                }, 'ges_1020'),
+                }, 'ges_1025'),
             );
 
             this.keyword_els = bold_els.filter((el: HTMLElement): boolean =>
@@ -90,9 +90,9 @@ export class Main {
                         this.text_is_bold({ el }) &&
                         this.check_if_el_has_immediate_text({ el })
                     );
-                }, 'ges_1021'),
+                }, 'ges_1026'),
             );
-        }, 'ges_1022');
+        }, 'ges_1027');
 
     private get_title_els_and_hostnames = (): void =>
         err(() => {
@@ -154,36 +154,36 @@ export class Main {
                                     filtered_links.push(el as HTMLLinkElement);
                                     this.title_els.push(el_2);
                                 }
-                            }, 'ges_1023'),
+                            }, 'ges_1028'),
                         );
                     }
 
                     return false;
-                }, 'ges_1024'),
+                }, 'ges_1029'),
             );
 
             this.hostnames = filtered_links.map((el: HTMLLinkElement): string =>
-                err(() => new URL(el.href).hostname, 'ges_1025'),
+                err(() => new URL(el.href).hostname, 'ges_1030'),
             );
             this.hrefs = filtered_links.map((el: HTMLLinkElement): string =>
-                err(() => el.href, 'ges_1026'),
+                err(() => el.href, 'ges_1031'),
             );
-        }, 'ges_1027');
+        }, 'ges_1032');
 
     private get_footer_el = (): void =>
         err(() => {
             this.footer_el = s<HTMLElement>('[role="contentinfo"]');
-        }, 'ges_1028');
+        }, 'ges_1033');
 
     private get_related_searches_el = (): void =>
         err(() => {
             this.related_searches_el = s<HTMLElement>('#brs, #bres');
-        }, 'ges_1029');
+        }, 'ges_1034');
 
     private get_pagination_el = (): void =>
         err(() => {
             this.pagination_el = s<HTMLElement>('#xjs');
-        }, 'ges_1030');
+        }, 'ges_1035');
 
     public get_img_viewer = (): void =>
         err(() => {
@@ -199,18 +199,18 @@ export class Main {
                         }
 
                         return false;
-                    }, 'ges_1031'),
+                    }, 'ges_1036'),
                 );
             }
-        }, 'ges_1032');
+        }, 'ges_1037');
 
     public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
-        err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1033');
+        err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1038');
 
     public get_search_result_body = (): void =>
         err(() => {
             this.search_result_body = s<HTMLElement>('#rso');
-        }, 'ges_1034');
+        }, 'ges_1039');
 
     public get_next_page_href = (): void =>
         err(() => {
@@ -248,7 +248,7 @@ export class Main {
                     }
                 }
             }
-        }, 'ges_1035');
+        }, 'ges_1040');
 
     private check_if_el_has_immediate_text = ({ el }: { el: HTMLElement }): boolean =>
         err(() => {
@@ -259,24 +259,24 @@ export class Main {
                     () =>
                         el_2.nodeType === Node.TEXT_NODE ||
                         x.matches(el_2 as HTMLElement, `.${new s_suffix.Main('icons').result}`),
-                    'ges_1036',
+                    'ges_1041',
                 ),
             );
-        }, 'ges_1037');
+        }, 'ges_1042');
 
     private get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): t.AnyRecord =>
         err(() => {
             const color_hex: string = x.get_css_val(el, key);
 
             return tinycolor(color_hex).toHsv();
-        }, 'ges_1038');
+        }, 'ges_1043');
 
     private text_is_bold = ({ el }: { el: HTMLElement }): boolean =>
         err(() => {
             const font_weight: number = x.get_numeric_css_val(el, 'font-weight');
 
             return font_weight >= 600 && font_weight <= 700;
-        }, 'ges_1039');
+        }, 'ges_1044');
 
     private get_page_val = ({ next_page_href }: { next_page_href: string | undefined }): number =>
         err(() => {
@@ -289,5 +289,5 @@ export class Main {
             }
 
             return 0;
-        }, 'ges_1040');
+        }, 'ges_1045');
 }

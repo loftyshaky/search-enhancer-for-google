@@ -14,10 +14,10 @@ export const Body: React.FunctionComponent = observer(() => {
                         d_inputs.NestedInput.i().set_all_parents_disbled_vals({
                             sections: d_sections.Main.i().sections as i_inputs.Sections,
                         });
-                    }, 'ges_1144');
+                    }, 'ges_1123');
 
                 run();
-            }, 'ges_1145'),
+            }, 'ges_1124'),
         [],
     );
 

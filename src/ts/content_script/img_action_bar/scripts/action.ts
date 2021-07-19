@@ -32,7 +32,7 @@ export class Action {
                     });
                 }
             }
-        }, 'ges_1047');
+        }, 'ges_1059');
 
     private send_msg = ({ type, img_url }: { type: string; img_url: string }): void =>
         err(() => {
@@ -41,5 +41,5 @@ export class Action {
                 type,
                 img_url,
             });
-        }, 'ges_1048');
+        }, 'ges_1060');
 }

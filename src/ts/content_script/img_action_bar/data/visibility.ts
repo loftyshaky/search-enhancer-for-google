@@ -42,7 +42,7 @@ export class Visibility {
                     this.is_visible = false;
                 }
             }
-        }, 'ges_1051');
+        }, 'ges_1058');
 
     public get visibility_cls() {
         return data.settings.always_show_img_action_bar || this.is_visible ? '' : 'hidden';

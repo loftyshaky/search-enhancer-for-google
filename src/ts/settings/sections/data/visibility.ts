@@ -15,5 +15,5 @@ export class Visibility {
                 msg: 'update_settings',
                 settings: { show_color_help: false },
             });
-        }, 'ges_1119');
+        }, 'ges_1146');
 }

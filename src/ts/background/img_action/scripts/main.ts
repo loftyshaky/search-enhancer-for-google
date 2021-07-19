@@ -50,7 +50,7 @@ export class Main {
                                     (we.downloads as any).onDeterminingFilename.removeListener(
                                         suggest_dir,
                                     );
-                                }, 'ges_1007');
+                                }, 'ges_1014');
 
                             (we.downloads as any).onDeterminingFilename.addListener(suggest_dir);
                         }
@@ -58,6 +58,6 @@ export class Main {
                         await we.downloads.download(download_item);
                     }
                 }
-            }, 'ges_1008'),
+            }, 'ges_1015'),
         );
 }

@@ -10,5 +10,5 @@ export class Btn {
     private constructor() {}
 
     public msg = ({ name }: { name: string }): string =>
-        err(() => ext.msg(`${name}_title`), 'ges_1153');
+        err(() => ext.msg(`${name}_title`), 'ges_1104');
 }

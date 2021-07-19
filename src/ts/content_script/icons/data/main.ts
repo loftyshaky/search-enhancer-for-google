@@ -84,11 +84,11 @@ export class Main {
                     runInAction(() =>
                         err(() => {
                             this.favicons[url] = favicon_url;
-                        }, 'ges_1148'),
+                        }, 'ges_1046'),
                     );
                 }
             }
-        }, 'ges_1041');
+        }, 'ges_1047');
 
     private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
@@ -118,10 +118,10 @@ export class Main {
                                 this.server_ips[url] = server_info.ip;
                             }
                         }
-                    }, 'ges_1149'),
+                    }, 'ges_1048'),
                 );
             }
-        }, 'ges_1042');
+        }, 'ges_1049');
 
     public generate_urls = ({ i }: { i: number }): void =>
         err(() => {
@@ -147,14 +147,14 @@ export class Main {
                             url: that[key_1][i],
                         });
                     }
-                }, 'ges_1169');
+                }, 'ges_1050');
 
             generate_url_if_its_doesnt_exist({ key_1: 'hostnames', key_2: 'server_location' });
             generate_url_if_its_doesnt_exist({ key_1: 'hrefs', key_2: 'favicon' });
-        }, 'ges_1168');
+        }, 'ges_1051');
 
     public get_url = ({ i, type }: { i: number; type: i_icons.IconType }): string =>
-        err(() => s_el_parser.Main.i()[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'ges_1043');
+        err(() => s_el_parser.Main.i()[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'ges_1052');
 
     public get_show_icon_bool = ({ type, url }: { type: i_icons.IconType; url: string }): boolean =>
         err(() => {
@@ -166,10 +166,10 @@ export class Main {
                     ((type === 'favicons' && !s_location.Main.i().is_news_page) ||
                         type === 'server_locations'),
             );
-        }, 'ges_1044');
+        }, 'ges_1053');
 
     public icon_visibility_cls = ({ show_icon }: { show_icon: boolean }): string =>
-        err(() => (show_icon ? '' : 'none'), 'ges_1045');
+        err(() => (show_icon ? '' : 'none'), 'ges_1054');
 
     public show_placeholder = ({
         type,
@@ -183,7 +183,7 @@ export class Main {
                 !show_icon &&
                 (type === 'server_locations' ||
                     (type === 'favicons' && !s_location.Main.i().is_news_page)),
-            'ges_1046',
+            'ges_1055',
         );
 
     public show_icon_w = computedFn(function (

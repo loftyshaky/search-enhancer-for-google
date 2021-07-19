@@ -42,24 +42,24 @@ export class Scroll {
     public scroll_to_position = ({ position }: { position: number }): void =>
         err(() => {
             document.documentElement.scrollTop = position;
-        }, 'ges_1094');
+        }, 'ges_1112');
 
     public get_current_position = (): number =>
         err(() => {
             const doc = document.documentElement;
 
             return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-        }, 'ges_1095');
+        }, 'ges_1113');
 
     private remember_position = (): void =>
         err(() => {
             this.remembered_position = this.get_current_position();
-        }, 'ges_1096');
+        }, 'ges_1114');
 
     private reset_position = (): void =>
         err(() => {
             this.remembered_position = 'none';
-        }, 'ges_1097');
+        }, 'ges_1115');
 
     public remember_scrolling_position_0_35_seconds = (
         { keyboard_call }: { keyboard_call: boolean },
@@ -82,7 +82,7 @@ export class Scroll {
                         runInAction(() =>
                             err(() => {
                                 this.position_overridden = true;
-                            }, 'ges_1179'),
+                            }, 'ges_1116'),
                         );
 
                         await x.delay(
@@ -94,18 +94,18 @@ export class Scroll {
                         runInAction(() =>
                             err(() => {
                                 this.position_overridden = false;
-                            }, 'ges_1180'),
+                            }, 'ges_1117'),
                         );
                     },
                     keyboard_call ? 0 : 350,
                 );
             }
-        }, 'ges_1098');
+        }, 'ges_1118');
 
     public stop_remember_scrolling_position_0_35_seconds_timeout = (): void =>
         err(() => {
             clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout as NodeJS.Timeout);
-        }, 'ges_1099');
+        }, 'ges_1119');
 
     public scroll = (e: MouseEvent): void =>
         err(() => {
@@ -139,5 +139,5 @@ export class Scroll {
                     this.reset_position();
                 }
             }
-        }, 'ges_1100');
+        }, 'ges_1120');
 }

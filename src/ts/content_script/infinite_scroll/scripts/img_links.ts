@@ -24,11 +24,11 @@ export class ImgLinks {
 
                 x.bind(img_links, 'click', this.open_img_link);
             }
-        }, 'ges_1062');
+        }, 'ges_1078');
 
     private open_img_link = function (this: HTMLLinkElement): void {
         err(() => {
             window.top.location.href = this.href;
-        }, 'ges_1063');
+        }, 'ges_1079');
     };
 }

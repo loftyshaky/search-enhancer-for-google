@@ -30,9 +30,9 @@ const observer = new MutationObserver((mutations): void =>
                 ) {
                     s_actions.Main.i().run_reload_actions_2();
                 }
-            }, 'ges_1072'),
+            }, 'ges_1087'),
         );
-    }, 'ges_1073'),
+    }, 'ges_1088'),
 );
 
 observer.observe(document.body, {
