@@ -56,7 +56,7 @@
         "webpack-fix-style-only-entries": "^0.6.1"
     },
     "dependencies": {
-        "@loftyshaky/shared": "0.0.23",
+        "@loftyshaky/shared": "0.0.24",
         "@simonwep/pickr": "^1.8.1",
         "@svgr/webpack": "^5.5.0",
         "dexie": "^3.0.3",
