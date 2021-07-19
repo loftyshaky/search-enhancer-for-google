@@ -1,6 +1,7 @@
 :host-context(.keyboard_#{$app_id}) {
     .btn:focus {
         @include outline_solid_thick;
+
         outline-color: $black;
         outline-offset: -$outline_offset;
     }

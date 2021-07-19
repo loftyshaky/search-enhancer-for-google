@@ -21,6 +21,7 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
         &:not(:last-child) {
             @include border_bottom;
+
             border-color: white;
         }
 
@@ -48,6 +49,7 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
     .btn {
         @include btn;
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -58,6 +60,7 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
         svg {
             @include text_btn_svg;
+
             fill: white;
         }
 

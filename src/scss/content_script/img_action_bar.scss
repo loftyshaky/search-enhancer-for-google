@@ -11,6 +11,7 @@ $img_action_bar_button_opacity: 0.65;
 
 .img_action_bar {
     @include border_top;
+
     display: flex;
     overflow: hidden;
     border-start-start-radius: $bar_border_radius;
@@ -27,12 +28,13 @@ $img_action_bar_button_opacity: 0.65;
 
 .btn {
     @include input_basic;
+
     height: $btn_size;
     width: $btn_size;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
+    border: 0;
     cursor: pointer;
     background-color: rgba(66, 133, 244, $img_action_bar_button_opacity);
     border-color: white;
