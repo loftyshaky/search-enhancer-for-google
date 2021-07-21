@@ -72,8 +72,8 @@ export class Main {
 
     private generate_favicon_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
-            if (data.settings.show_favicons) {
-                this.favicons[url] = 'placeholder';
+            if (data.settings.show_favicons && this.favicons[url] !== 'placeholder') {
+                this.favicons[url] = 'pre_placeholder';
 
                 const favicon_url: string = await ext.send_msg_resp({
                     msg: 'get_favicon_url',
@@ -86,14 +86,19 @@ export class Main {
                             this.favicons[url] = favicon_url;
                         }, 'ges_1046'),
                     );
+                } else {
+                    this.favicons[url] = 'placeholder';
                 }
             }
         }, 'ges_1047');
 
     private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
-            if (data.settings.show_server_locations) {
-                this.server_locations[url] = 'placeholder';
+            if (
+                data.settings.show_server_locations &&
+                this.server_locations[url] !== 'placeholder'
+            ) {
+                this.server_locations[url] = 'pre_placeholder';
 
                 const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp({
                     msg: 'get_server_info',
@@ -171,20 +176,28 @@ export class Main {
     public icon_visibility_cls = ({ show_icon }: { show_icon: boolean }): string =>
         err(() => (show_icon ? '' : 'none'), 'ges_1054');
 
+    public is_any_placeholder = ({ src }: { src: string }): boolean =>
+        err(() => ['pre_placeholder', 'placeholder'].includes(src), 'ges_1055');
+
     public show_placeholder = ({
+        pre,
         type,
-        show_icon,
+        url,
     }: {
+        pre: boolean;
         type: i_icons.IconType;
-        show_icon: boolean;
+        url: string;
     }): boolean =>
-        err(
-            () =>
-                !show_icon &&
+        err(() => {
+            const src: string = this[type][url];
+
+            return (
+                n(src) &&
+                src === `${pre ? 'pre_' : ''}placeholder` &&
                 (type === 'server_locations' ||
-                    (type === 'favicons' && !s_location.Main.i().is_news_page)),
-            'ges_1055',
-        );
+                    (type === 'favicons' && !s_location.Main.i().is_news_page))
+            );
+        }, 'ges_1055');
 
     public show_icon_w = computedFn(function (
         this: Main,

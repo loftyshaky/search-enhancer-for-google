@@ -25,7 +25,7 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
 
     return d_icons.Main.i().show_icon_w({ type }) ? (
         <span className={x.cls(['icon_w', type])}>
-            {src === 'placeholder' ? undefined : (
+            {d_icons.Main.i().is_any_placeholder({ src }) ? undefined : (
                 <img
                     className={x.cls([
                         'icon',
@@ -41,8 +41,16 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
                 />
             )}
             {d_icons.Main.i().show_placeholder({
+                pre: true,
                 type,
-                show_icon,
+                url,
+            }) ? (
+                <svg.RefreshInverse />
+            ) : undefined}
+            {d_icons.Main.i().show_placeholder({
+                pre: false,
+                type,
+                url,
             }) ? (
                 <svg.Yard />
             ) : undefined}
