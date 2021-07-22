@@ -233,8 +233,8 @@ export class Iframe {
             }
         }, 'ges_1073');
 
-    private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): Promise<void> =>
-        err_async(async () => {
+    private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): void =>
+        err(() => {
             const cur_iframe: HTMLIFrameElement = this.iframes[cur_iframe_i];
             const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
