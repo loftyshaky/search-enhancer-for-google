@@ -275,7 +275,7 @@ export class Main {
         err(() => {
             const font_weight: number = x.get_numeric_css_val(el, 'font-weight');
 
-            return font_weight >= 600 && font_weight <= 700;
+            return font_weight >= 600;
         }, 'ges_1044');
 
     private get_page_val = ({ next_page_href }: { next_page_href: string | undefined }): number =>
