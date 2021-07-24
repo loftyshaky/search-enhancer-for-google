@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { s_suffix } from 'shared/internal';
@@ -64,14 +65,32 @@ export class Iframe {
                     this.last_iframe,
                 );
 
-                x.bind(
-                    this.last_iframe,
-                    'load',
-                    (): Promise<void> =>
-                        err_async(async () => {
-                            const show_page = (): void => {
-                                window.requestAnimationFrame(() =>
-                                    err(() => {
+                x.bind(this.last_iframe, 'load', (): void =>
+                    err(() => {
+                        const show_page = (): void => {
+                            window.requestAnimationFrame(
+                                async (): Promise<void> =>
+                                    err_async(async () => {
+                                        s_actions.Main.i().run_reload_actions();
+
+                                        if (this.last_iframe) {
+                                            const iframe_doc: Document | null =
+                                                this.last_iframe.contentDocument;
+
+                                            if (n(iframe_doc)) {
+                                                await s_roots.Main.i().append_root({
+                                                    name: 'separator',
+                                                    parent: iframe_doc.body,
+                                                    i: this.cur_iframe_i + 2,
+                                                    append_f_name: 'as_first',
+                                                });
+                                            }
+                                        }
+
+                                        await this.resize_iframe({
+                                            cur_iframe_i: this.cur_iframe_i,
+                                        });
+
                                         x.remove_cls(
                                             this.last_iframe,
                                             new s_suffix.Main('hidden').result,
@@ -80,12 +99,6 @@ export class Iframe {
                                             this.last_iframe,
                                             new s_suffix.Main('opacity_0').result,
                                         );
-
-                                        s_actions.Main.i().run_reload_actions();
-
-                                        this.resize_iframe({
-                                            cur_iframe_i: this.cur_iframe_i,
-                                        });
 
                                         this.cur_iframe_i += 1;
 
@@ -107,74 +120,67 @@ export class Iframe {
                                             }, 'ges_1065'),
                                         );
                                     }, 'ges_1066'),
-                                );
-                            };
+                            );
+                        };
 
-                            const show_load_end_msg = (): void =>
-                                err(() => {
-                                    d_infinite_scroll.LoadEndMsg.i().change_visibility({
-                                        is_visible: true,
-                                    });
-                                }, 'ges_1067');
-
-                            this.captcha_error_occurred_once =
-                                n(this.last_iframe) &&
-                                n(this.last_iframe.contentDocument) &&
-                                n(this.last_iframe.contentDocument.body.textContent) &&
-                                this.last_iframe.contentDocument.body.textContent.length <= 2000;
-
-                            if (this.captcha_error_occurred_once) {
-                                this.captcha_error_occurred_once = true;
-
-                                show_err_ribbon(err_obj('A captcha error occurred.'), 'ges_1068', {
-                                    silent: true,
+                        const show_load_end_msg = (): void =>
+                            err(() => {
+                                d_infinite_scroll.LoadEndMsg.i().change_visibility({
+                                    is_visible: true,
                                 });
+                            }, 'ges_1067');
 
-                                runInAction(() =>
-                                    err(() => {
-                                        this.inserting_iframe = false;
-                                    }, 'ges_1069'),
-                                );
+                        this.captcha_error_occurred_once =
+                            n(this.last_iframe) &&
+                            n(this.last_iframe.contentDocument) &&
+                            n(this.last_iframe.contentDocument.body.textContent) &&
+                            this.last_iframe.contentDocument.body.textContent.length <= 2000;
 
-                                d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
-                                show_load_end_msg();
-                            } else {
-                                this.hide_everything_from_iframe_except_search_results();
+                        if (this.captcha_error_occurred_once) {
+                            this.captcha_error_occurred_once = true;
 
-                                s_el_parser.Main.i().get_next_page_href();
+                            show_err_ribbon(err_obj('A captcha error occurred.'), 'ges_1068', {
+                                silent: true,
+                            });
 
-                                if (this.last_iframe) {
-                                    const iframe_doc: Document | null =
-                                        this.last_iframe.contentDocument;
+                            runInAction(() =>
+                                err(() => {
+                                    this.inserting_iframe = false;
+                                }, 'ges_1069'),
+                            );
 
-                                    if (n(iframe_doc)) {
-                                        x.css(
-                                            'font_face',
-                                            iframe_doc.head,
-                                            new s_suffix.Main('font_face_link').result,
-                                        );
+                            d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
+                            show_load_end_msg();
+                        } else {
+                            this.hide_everything_from_iframe_except_search_results();
 
-                                        await s_roots.Main.i().append_root({
-                                            name: 'separator',
-                                            parent: iframe_doc.body,
-                                            i: this.cur_iframe_i + 2,
-                                            append_f_name: 'as_first',
-                                        });
+                            s_el_parser.Main.i().get_next_page_href();
 
-                                        this.observe_iframe_resizing({
-                                            cur_iframe_i: this.cur_iframe_i,
-                                        });
+                            if (this.last_iframe) {
+                                const iframe_doc: Document | null =
+                                    this.last_iframe.contentDocument;
 
-                                        x.css('content_script_css', iframe_doc.head);
-                                        const css = x.css('iframe_inner', iframe_doc.head);
+                                if (n(iframe_doc)) {
+                                    x.css(
+                                        'font_face',
+                                        iframe_doc.head,
+                                        new s_suffix.Main('font_face_link').result,
+                                    );
 
-                                        if (n(css)) {
-                                            x.bind(css, 'load', show_page);
-                                        }
+                                    this.observe_iframe_resizing({
+                                        cur_iframe_i: this.cur_iframe_i,
+                                    });
+
+                                    x.css('content_script_css', iframe_doc.head);
+                                    const css = x.css('iframe_inner', iframe_doc.head);
+
+                                    if (n(css)) {
+                                        x.bind(css, 'load', show_page);
                                     }
                                 }
                             }
-                        }, 'ges_1070'),
+                        }
+                    }, 'ges_1070'),
                 );
             }
         }, 'ges_1071');
@@ -233,18 +239,31 @@ export class Iframe {
             }
         }, 'ges_1073');
 
-    private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): void =>
-        err(() => {
+    private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): Promise<void> =>
+        err_async(async () => {
             const cur_iframe: HTMLIFrameElement = this.iframes[cur_iframe_i];
             const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
-            if (n(iframe_doc)) {
-                cur_iframe.style.height = '';
+            await window.requestAnimationFrame(
+                async (): Promise<void> =>
+                    err_async(async () => {
+                        cur_iframe.style.height = '';
 
-                // eslint-disable-next-line no-unused-expressions
-                cur_iframe.offsetWidth;
-                cur_iframe.style.height = `${iframe_doc.body.scrollHeight}px`;
-            }
+                        await window.requestAnimationFrame(
+                            (): Promise<void> =>
+                                err(async () => {
+                                    await x.delay(0);
+
+                                    runInAction(() => {
+                                        if (n(iframe_doc)) {
+                                            cur_iframe.style.height = `${iframe_doc.documentElement.scrollHeight}px`;
+                                            iframe_doc.documentElement.scrollTop = 0;
+                                        }
+                                    });
+                                }, 'ges_1168'),
+                        );
+                    }, 'ges_1168'),
+            );
         }, 'ges_1074');
 
     private hide_everything_from_iframe_except_search_results = (): void =>
