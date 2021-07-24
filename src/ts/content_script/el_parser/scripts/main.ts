@@ -207,6 +207,28 @@ export class Main {
     public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
         err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1038');
 
+    public get_img_viewer_wrapper = (): HTMLElement | undefined =>
+        err(() => {
+            const parents: HTMLElement[] = [];
+
+            if (n(this.img_viewer)) {
+                parents.push(this.img_viewer);
+
+                while (
+                    this.img_viewer.getBoundingClientRect().bottom ===
+                    _.last(parents)!.getBoundingClientRect().bottom
+                ) {
+                    const last = _.last(parents);
+
+                    if (n(last) && n(last.parentElement)) {
+                        parents.push(last.parentElement);
+                    }
+                }
+            }
+
+            return parents[parents.length - 2];
+        }, 'ges_1172');
+
     public get_search_result_body = (): void =>
         err(() => {
             this.search_result_body = s<HTMLElement>('#rso');
