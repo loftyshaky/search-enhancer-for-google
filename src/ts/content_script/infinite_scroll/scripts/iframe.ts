@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
 import { s_suffix } from 'shared/internal';
