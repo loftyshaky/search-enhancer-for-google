@@ -2,7 +2,7 @@ import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import { t } from '@loftyshaky/shared';
-import { i_icons as i_icons_shared } from 'shared/internal';
+import { s_icons, i_icons as i_icons_shared } from 'shared/internal';
 import { s_el_parser, s_location, i_icons } from 'content_script/internal';
 
 export class Main {
@@ -74,6 +74,33 @@ export class Main {
         err_async(async () => {
             if (data.settings.show_favicons && this.favicons[url] !== 'placeholder') {
                 this.favicons[url] = 'pre_placeholder';
+                const favicon_providers: string[] = Object.keys(s_icons.Main.i().favicon_providers);
+
+                // eslint-disable-next-line no-restricted-syntax
+                for await (const favicon_provider of favicon_providers) {
+                    if (data.settings.favicon_providers[favicon_provider]) {
+                        const icon_url: string = s_icons.Main.i().construct_favicon_url({
+                            favicon_provider,
+                            url,
+                        });
+
+                        const img = new Image();
+
+                        await new Promise((resolve, reject) => {
+                            err(() => {
+                                img.onerror = reject;
+                                img.onload = () => {
+                                    resolve(undefined);
+                                };
+                                img.src = icon_url;
+                            }, 'ges_1170');
+                        });
+
+                        this.favicons[url] = icon_url;
+
+                        break;
+                    }
+                }
 
                 const favicon_url: string = await ext.send_msg_resp({
                     msg: 'get_favicon_url',
