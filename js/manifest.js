@@ -239,6 +239,7 @@ class Manifest {
             ],
             content_scripts: [
                 {
+                    run_at: 'document_end',
                     js: ['content_script.js'],
                     css: ['content_script_css.css'],
                     matches: [
