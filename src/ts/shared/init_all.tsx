@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import '@loftyshaky/shared/ext';
 import {
     c_crash_handler,
     c_error,
