@@ -96,7 +96,11 @@ export class Main {
                             }, 'ges_1170');
                         });
 
-                        this.favicons[url] = icon_url;
+                        runInAction(() =>
+                            err(() => {
+                                this.favicons[url] = icon_url;
+                            }, 'ges_1173'),
+                        );
 
                         break;
                     }
