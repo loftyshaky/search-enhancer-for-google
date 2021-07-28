@@ -110,8 +110,23 @@
     "jump_to_related_searches_title": {
         "message": "Кликните, чтобы перейти к похожим запросам/кнопкам нумерации страниц. Кликните снова или кликните средней кнопкой мыши кнопку \"Вверх\" чтобы вернуться назад."
     },
+    "google_enhancement_suite_for_chrome_link_text": {
+        "message": "⚗️ Google Enhancement Suite для Chrome"
+    },
+    "google_enhancement_suite_for_edge_link_text": {
+        "message": "⚗️ Google Enhancement Suite для Edge"
+    },
     "rate_chrome_link_href": {
-        "message": "http://bit.ly/google-enhancement-suite-rate-ru"
+        "message": "https://bit.ly/google-enhancement-suite-rate-ru"
+    },
+    "rate_edge_link_href": {
+        "message": "https://bit.ly/google-enhancement-suite-edge"
+    },
+    "google_enhancement_suite_for_chrome_link_href": {
+        "message": "https://bit.ly/google-enhancement-suite-ru"
+    },
+    "google_enhancement_suite_for_edge_link_href": {
+        "message": "https://bit.ly/google-enhancement-suite-edge"
     },
     "current_indicator_title": {
         "message": "Текущая страница"

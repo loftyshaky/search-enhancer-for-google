@@ -206,8 +206,12 @@ export class Main {
                                 force_resolve: true,
                             }),
                             new o_inputs.Link({
-                                name: 'help_translating',
-                                href: 'https://bit.ly/help-translating',
+                                name: 'google_enhancement_suite_for_chrome',
+                                browser: 'chrome',
+                            }),
+                            new o_inputs.Link({
+                                name: 'google_enhancement_suite_for_edge',
+                                browser: 'edge',
                             }),
                             new o_inputs.Link({
                                 name: 'facebook_page',

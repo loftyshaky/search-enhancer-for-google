@@ -110,8 +110,23 @@
     "jump_to_related_searches_title": {
         "message": "Click to jump to related searches/pagination buttons. Click again or middle-click the scroll to top button to return to the previous position."
     },
+    "google_enhancement_suite_for_chrome_link_text": {
+        "message": "⚗️ Google Enhancement Suite for Chrome"
+    },
+    "google_enhancement_suite_for_edge_link_text": {
+        "message": "⚗️ Google Enhancement Suite for Edge"
+    },
     "rate_chrome_link_href": {
-        "message": "http://bit.ly/google-enhancement-suite-rate"
+        "message": "https://bit.ly/google-enhancement-suite-rate"
+    },
+    "rate_edge_link_href": {
+        "message": "https://bit.ly/google-enhancement-suite-edge"
+    },
+    "google_enhancement_suite_for_chrome_link_href": {
+        "message": "https://bit.ly/google-enhancement-suite-3"
+    },
+    "google_enhancement_suite_for_edge_link_href": {
+        "message": "https://bit.ly/google-enhancement-suite-edge"
     },
     "current_indicator_title": {
         "message": "Current page"
