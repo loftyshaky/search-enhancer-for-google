@@ -7,20 +7,18 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-// const { Reload } = require('advanced-extension-reloader-watch-2');
+const { Reload } = require('advanced-extension-reloader-watch-2');
 const { Env } = require('@loftyshaky/shared/js/ext/env');
 const { Locales } = require('@loftyshaky/shared/js/ext/locales');
 const { shared_config } = require('@loftyshaky/shared/js/ext/webpack.config');
 const { TaskScheduler } = require('@loftyshaky/shared/js/task_scheduler');
 const { Manifest } = require('./js/manifest');
 
-/*
 const reload = new Reload({
     port: 7220,
 });
 
 reload.watch();
-*/
 
 const task_scheduler = new TaskScheduler();
 
@@ -65,12 +63,10 @@ module.exports = (env, argv) => {
             });
             env_instance.generate({ browser: env.browser });
             locales.merge();
-            /*
             reload.reload({
                 hard: false,
                 hard_paths: ['_locales', 'shared', 'content_script', 'background'],
             });
-*/
         },
     });
 

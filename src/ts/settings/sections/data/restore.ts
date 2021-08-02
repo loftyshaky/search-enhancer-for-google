@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { runInAction, toJS } from 'mobx';
+import { runInAction } from 'mobx';
 
 import { t } from '@loftyshaky/shared';
 import { i_data } from 'shared/internal';
@@ -11,6 +11,9 @@ export class Restore {
         // eslint-disable-next-line no-return-assign
         return this.i0 || (this.i0 = new this());
     }
+
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
 
     public restore_confirm = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
         err_async(async () => {
@@ -70,21 +73,6 @@ export class Restore {
 
             return set_inner();
         }, 'ges_1133');
-
-    public set_from_storage = (): Promise<void> =>
-        err_async(async () => {
-            const settings = await ext.storage_get();
-
-            if (_.isEmpty(settings)) {
-                const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
-
-                await ext.storage_set(default_settings);
-            }
-
-            if (!_.isEqual(toJS(data.settings), settings)) {
-                this.set({ settings });
-            }
-        }, 'ges_1134');
 
     public get_unchanged_settings = (): t.AnyRecord =>
         err(

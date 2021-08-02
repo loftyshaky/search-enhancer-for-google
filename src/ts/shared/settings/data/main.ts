@@ -12,6 +12,9 @@ export class Main {
         return this.i0 || (this.i0 = new this());
     }
 
+    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    private constructor() {}
+
     public allow_rerun_actions = true;
 
     private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>

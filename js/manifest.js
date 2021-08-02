@@ -480,6 +480,7 @@ class Manifest {
                 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnT4SrilXDXfaqqoM3ur3ueyIlfUxIf8WnBgs+RKCNSvx4YpqJcHY8/q8dVPGBY8J8kfyGKWQvsTmeFen06AAc/3bhLtFcMQ1r3U8IG6iNjv/2A1fN0n2kFQBnMAYPz3rfiVccs49DzaqbO8h2MeGCHBP5vuFXIqbWkXu9JkLmx5MuEESGBe+6WhSsjXyJEL/tYBKQA1xyQ3BlwhKt32CnW1B2WaqU5Rw4PlKkBPyQykVr4My4z6r6mTKfBhozThN6xfwdJyY6CTQ0UTcG57uNmd8T5lHwnx2VrbZFvEoPbAEHKzErZ+kWd871oA1fVqWzWSExErCWXSTEWsA3873KwIDAQAB';
             manifest.content_scripts[0].js.push(
                 'chunks/src_ts_content_script_internal_ts.js',
+                'chunks/src_ts_settings_internal_ts.js',
                 'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
                 'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
             );
