@@ -23,7 +23,7 @@ export class Val {
 
     public get_os = (): Promise<void> =>
         err_async(async () => {
-            const platform_info: browser.runtime.PlatformInfo = await we.runtime.getPlatformInfo();
+            const platform_info = await we.runtime.getPlatformInfo();
 
             this.os = platform_info.os;
         }, 'ges_1136');
