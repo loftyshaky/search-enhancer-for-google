@@ -1,8 +1,5 @@
-import listen from 'advanced-extension-reloader-watch-2/listen';
 import { t, s_utils } from '@loftyshaky/shared';
 import { s_data, s_icons, s_img_action } from 'background/internal';
-
-listen();
 
 we.runtime.onMessage.addListener(
     (msg: t.Msg): Promise<any> =>
