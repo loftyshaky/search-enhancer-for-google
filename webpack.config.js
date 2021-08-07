@@ -66,7 +66,6 @@ module.exports = (env, argv) => {
             reload.reload({
                 ext_id: 'pipbbdfondfipmjmdkmggihiknhmcfhd',
                 hard: true,
-                hardfull: true,
                 hard_paths: ['_locales', 'shared', 'content_script', 'background'],
             });
         },
