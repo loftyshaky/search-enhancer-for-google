@@ -65,7 +65,7 @@ module.exports = (env, argv) => {
             env_instance.generate({ browser: env.browser });
             locales.merge();
             reload.reload({
-                ext_id: 'pipbbdfondfipmjmdkmggihiknhmcfhd',
+                ext_id: 'mfihhepjphokhfnlioficodoomlnhlbd',
                 hard: true,
                 hard_paths: ['_locales', 'shared', 'content_script', 'background'],
             });
