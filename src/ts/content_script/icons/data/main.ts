@@ -27,6 +27,7 @@ export class Main {
             server_countries: observable,
             generate_favicon_url: action,
             generate_server_location_url: action,
+            generate_urls: action,
         });
     }
 
@@ -73,7 +74,12 @@ export class Main {
     private generate_favicon_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
             if (data.settings.show_favicons && this.favicons[url] !== 'placeholder') {
-                this.favicons[url] = 'pre_placeholder';
+                runInAction(() =>
+                    err(() => {
+                        this.favicons[url] = 'pre_placeholder';
+                    }, 'ges_1175'),
+                );
+
                 const favicon_providers: string[] = Object.keys(s_icons.Main.i().favicon_providers);
 
                 // eslint-disable-next-line no-restricted-syntax
@@ -111,15 +117,15 @@ export class Main {
                     url,
                 });
 
-                if (n(favicon_url)) {
-                    runInAction(() =>
-                        err(() => {
+                runInAction(() =>
+                    err(() => {
+                        if (n(favicon_url)) {
                             this.favicons[url] = favicon_url;
-                        }, 'ges_1046'),
-                    );
-                } else {
-                    this.favicons[url] = 'placeholder';
-                }
+                        } else {
+                            this.favicons[url] = 'placeholder';
+                        }
+                    }, 'ges_1046'),
+                );
             }
         }, 'ges_1047');
 
@@ -129,7 +135,11 @@ export class Main {
                 data.settings.show_server_locations &&
                 this.server_locations[url] !== 'placeholder'
             ) {
-                this.server_locations[url] = 'pre_placeholder';
+                runInAction(() =>
+                    err(() => {
+                        this.server_locations[url] = 'pre_placeholder';
+                    }, 'ges_1176'),
+                );
 
                 const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp({
                     msg: 'get_server_info',
