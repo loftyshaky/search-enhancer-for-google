@@ -72,62 +72,68 @@ export class Main {
     });
 
     private generate_favicon_url = async ({ url }: { url: string }): Promise<void> =>
-        err_async(async () => {
-            if (data.settings.show_favicons && this.favicons[url] !== 'placeholder') {
-                runInAction(() =>
-                    err(() => {
-                        this.favicons[url] = 'pre_placeholder';
-                    }, 'ges_1175'),
-                );
+        err_async(
+            async () => {
+                if (data.settings.show_favicons && this.favicons[url] !== 'placeholder') {
+                    runInAction(() =>
+                        err(() => {
+                            this.favicons[url] = 'pre_placeholder';
+                        }, 'ges_1175'),
+                    );
 
-                const favicon_providers: string[] = Object.keys(s_icons.Main.i().favicon_providers);
+                    const favicon_providers: string[] = Object.keys(
+                        s_icons.Main.i().favicon_providers,
+                    );
 
-                // eslint-disable-next-line no-restricted-syntax
-                for await (const favicon_provider of favicon_providers) {
-                    if (data.settings.favicon_providers[favicon_provider]) {
-                        const icon_url: string = s_icons.Main.i().construct_favicon_url({
-                            favicon_provider,
-                            url,
-                        });
+                    // eslint-disable-next-line no-restricted-syntax
+                    for await (const favicon_provider of favicon_providers) {
+                        if (data.settings.favicon_providers[favicon_provider]) {
+                            const icon_url: string = s_icons.Main.i().construct_favicon_url({
+                                favicon_provider,
+                                url,
+                            });
 
-                        const img = new Image();
+                            const img = new Image();
 
-                        await new Promise((resolve, reject) => {
-                            err(() => {
-                                img.onerror = reject;
-                                img.onload = () => {
-                                    resolve(undefined);
-                                };
-                                img.src = icon_url;
-                            }, 'ges_1170');
-                        });
+                            await new Promise((resolve, reject) => {
+                                err(() => {
+                                    img.onerror = reject;
+                                    img.onload = () => {
+                                        resolve(undefined);
+                                    };
+                                    img.src = icon_url;
+                                }, 'ges_1170');
+                            });
 
-                        runInAction(() =>
-                            err(() => {
-                                this.favicons[url] = icon_url;
-                            }, 'ges_1173'),
-                        );
+                            runInAction(() =>
+                                err(() => {
+                                    this.favicons[url] = icon_url;
+                                }, 'ges_1173'),
+                            );
 
-                        break;
-                    }
-                }
-
-                const favicon_url: string = await ext.send_msg_resp({
-                    msg: 'get_favicon_url',
-                    url,
-                });
-
-                runInAction(() =>
-                    err(() => {
-                        if (n(favicon_url)) {
-                            this.favicons[url] = favicon_url;
-                        } else {
-                            this.favicons[url] = 'placeholder';
+                            break;
                         }
-                    }, 'ges_1046'),
-                );
-            }
-        }, 'ges_1047');
+                    }
+
+                    const favicon_url: string = await ext.send_msg_resp({
+                        msg: 'get_favicon_url',
+                        url,
+                    });
+
+                    runInAction(() =>
+                        err(() => {
+                            if (n(favicon_url)) {
+                                this.favicons[url] = favicon_url;
+                            } else {
+                                this.favicons[url] = 'placeholder';
+                            }
+                        }, 'ges_1046'),
+                    );
+                }
+            },
+            'ges_1047',
+            { silent: true },
+        );
 
     private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
