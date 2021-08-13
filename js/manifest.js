@@ -8,7 +8,7 @@ class Manifest {
     generate = ({ mode, test, browser }) => {
         const manifest = {
             manifest_version: 3,
-            name: 'Google Enhancement Suite',
+            name: 'Search Enhancer for Google™',
             description: '__MSG_description__',
             web_accessible_resources: [
                 {

@@ -93,13 +93,13 @@
         "message": "Right"
     },
     "theme_help_text": {
-        "message": "If you use a custom Google Search theme and some features of the Google Enhancement Suite are not working, you'll need to change settings on this page. Why? Because in some cases Google Enhancement Suite checks HTML elements' HSV value to get elements it needs. For example, if your custom theme uses hsv(215, 38%, 90%) as a color for links in search results, the extension will not find link elements (as result, site and server location icons will not appear), because by default it expects saturation of links to be 50% (0.5) or higher. To fix this you will need to set the value of the \"Link min saturation\" input to 0.38 or lower."
+        "message": "If you use a custom Google Search theme and some features of the Search Enhancer for Google™ are not working, you'll need to change settings on this page. Why? Because in some cases Search Enhancer for Google™ checks HTML elements' HSV value to get elements it needs. For example, if your custom theme uses hsv(215, 38%, 90%) as a color for links in search results, the extension will not find link elements (as result, site and server location icons will not appear), because by default it expects saturation of links to be 50% (0.5) or higher. To fix this you will need to set the value of the \"Link min saturation\" input to 0.38 or lower."
     },
     "enable_btn_title": {
         "message": "Enable/disable infinite scrolling"
     },
     "scroll_to_top_title": {
-        "message": "Left-click to go to top. (Tab: Enter)\n\nRight-click to go to bottom. (Tab: Ctrl + Enter)\n\nWhen you go to top or bottom Google Enhancement Suite remembers your position. To return to this position middle-click. (Tab: Shift + Enter)\n\nYou can also remember your position without going to top or bottom. To do this, middle-click, if Google Enhancement Suite doesn't have a position remembered, or click and hold middle button for 0.35 second if it does. (Tab: Alt + Enter)"
+        "message": "Left-click to go to top. (Tab: Enter)\n\nRight-click to go to bottom. (Tab: Ctrl + Enter)\n\nWhen you go to top or bottom Search Enhancer for Google™ remembers your position. To return to this position middle-click. (Tab: Shift + Enter)\n\nYou can also remember your position without going to top or bottom. To do this, middle-click, if Search Enhancer for Google™ doesn't have a position remembered, or click and hold middle button for 0.35 second if it does. (Tab: Alt + Enter)"
     },
     "img_downloads_dir_help_text": {
         "message": "A path to the folder in the downloads folder, where downloaded images will go. May contain subfolders. Must not contain characters prohibited by the operating system. If the folder does not exist, it will be created on the first download. Leave empty to download images into the default folder. Example: !Google/Images"
@@ -111,10 +111,10 @@
         "message": "Click to jump to related searches/pagination buttons. Click again or middle-click the scroll to top button to return to the previous position."
     },
     "google_enhancement_suite_for_chrome_link_text": {
-        "message": "⚗️ Google Enhancement Suite for Chrome"
+        "message": "⚗️ Search Enhancer for Google™ for Chrome"
     },
     "google_enhancement_suite_for_edge_link_text": {
-        "message": "⚗️ Google Enhancement Suite for Edge"
+        "message": "⚗️ Search Enhancer for Google™ for Edge"
     },
     "rate_chrome_link_href": {
         "message": "https://bit.ly/google-enhancement-suite-rate"
@@ -162,7 +162,7 @@
         "message": "An error occured. Google thinks you're a robot. Reload the page and solve the captcha.\u200E"
     },
     "welcome_notification": {
-        "message": "Thank you for installing Google Enhancement Suite. The country flags will take some time to load for the first time. Please wait."
+        "message": "Thank you for installing Search Enhancer for Google™. The country flags will take some time to load for the first time. Please wait."
     },
     "scroll_to_top_hotkey": {
         "message": "Scroll to top"
@@ -174,7 +174,7 @@
         "message": "Remember scroll position/return to the remembered scroll position"
     },
     "remember_scroll_position_forced_hotkey": {
-        "message": "Remember scroll position (if Google Enhancement Suite already have a position remembered)"
+        "message": "Remember scroll position (if Search Enhancer for Google™ already have a position remembered)"
     },
     "jump_to_related_searches_hotkey": {
         "message": "Jump to related searches/pagination buttons"
