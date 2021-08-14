@@ -150,9 +150,8 @@ export class Val {
             await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings: { [input.name]: i },
+                rerun_actions: true,
             });
-
-            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1143');
 
     public remove_color_callback = ({ input }: { input: o_color.Color }): Promise<void> =>
@@ -160,9 +159,8 @@ export class Val {
             await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings: { [input.name]: '' },
+                rerun_actions: true,
             });
-
-            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1144');
 
     public restore_default_palette_callback = ({
@@ -174,8 +172,7 @@ export class Val {
             await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings: { colors: default_colors },
+                rerun_actions: true,
             });
-
-            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1145');
 }

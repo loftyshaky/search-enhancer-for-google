@@ -26,9 +26,8 @@ export class Restore {
                 await ext.send_msg_resp({
                     msg: 'update_settings',
                     settings: settings_final,
+                    rerun_actions: true,
                 });
-
-                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
             }
         }, 'ges_1130');
 
@@ -44,9 +43,8 @@ export class Restore {
             await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings,
+                rerun_actions: true,
             });
-
-            ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
         }, 'ges_1131');
 
     private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<i_data.Settings> =>
