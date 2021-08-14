@@ -231,7 +231,7 @@ export class Main {
 
     public get_search_result_body = (): void =>
         err(() => {
-            this.search_result_body = s<HTMLElement>('#rso');
+            this.search_result_body = s<HTMLElement>('#center_col');
         }, 'ges_1039');
 
     public get_next_page_href = (): void =>
