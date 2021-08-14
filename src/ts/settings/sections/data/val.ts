@@ -49,6 +49,7 @@ export class Val {
                     await ext.send_msg_resp({
                         msg: 'update_settings',
                         settings: data.settings,
+                        rerun_actions: true,
                     });
                 }, 'ges_1137');
 
@@ -82,19 +83,10 @@ export class Val {
                 await ext.send_msg_resp({
                     msg: 'update_settings',
                     settings: { colors },
+                    rerun_actions: true,
                 });
             }
-
-            this.reflect_settings_change_in_content_script();
         }, 'ges_1138');
-
-    private reflect_settings_change_in_content_script = _.debounce(
-        (): void =>
-            err(() => {
-                ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
-            }, 'ges_1139'),
-        500,
-    );
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>
         err(() => {

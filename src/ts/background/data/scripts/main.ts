@@ -66,6 +66,18 @@ export class Main {
             await ext.storage_set(settings_final);
         }, 'ges_1003');
 
+    public update_settings_debounce = _.debounce(
+        (settings: i_data.Settings, rerun_actions: boolean) =>
+            err_async(async () => {
+                await this.update_settings({ settings });
+
+                if (n(rerun_actions)) {
+                    ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
+                }
+            }, 'ges_1177'),
+        500,
+    );
+
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
             const settings: i_data.Settings = await ext.storage_get();
