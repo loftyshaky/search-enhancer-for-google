@@ -86,7 +86,7 @@ export class Iframe {
                                             }
                                         }
 
-                                        await this.resize_iframe({
+                                        this.observe_iframe_resizing({
                                             cur_iframe_i: this.cur_iframe_i,
                                         });
 
@@ -166,10 +166,6 @@ export class Iframe {
                                         new s_suffix.Main('font_face_link').result,
                                     );
 
-                                    this.observe_iframe_resizing({
-                                        cur_iframe_i: this.cur_iframe_i,
-                                    });
-
                                     x.css('content_script_css', iframe_doc.head);
                                     const css = x.css('iframe_inner', iframe_doc.head);
 
@@ -240,6 +236,7 @@ export class Iframe {
 
     private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): Promise<void> =>
         err_async(async () => {
+            const scroll_top = document.documentElement.scrollTop;
             const cur_iframe: HTMLIFrameElement = this.iframes[cur_iframe_i];
             const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
@@ -257,6 +254,7 @@ export class Iframe {
                                         if (n(iframe_doc)) {
                                             cur_iframe.style.height = `${iframe_doc.documentElement.scrollHeight}px`;
                                             iframe_doc.documentElement.scrollTop = 0;
+                                            document.documentElement.scrollTop = scroll_top;
                                         }
                                     });
                                 }, 'ges_1168'),
