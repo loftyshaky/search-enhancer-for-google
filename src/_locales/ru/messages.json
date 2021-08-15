@@ -117,16 +117,16 @@
         "message": "⚗️ Search Enhancer for Google™ для Edge"
     },
     "rate_chrome_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-rate-ru"
+        "message": "https://bit.ly/search-enhancer-for-google-rate-ru"
     },
     "rate_edge_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-edge"
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
     },
     "google_enhancement_suite_for_chrome_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-ru"
+        "message": "https://bit.ly/search-enhancer-for-google-ru"
     },
     "google_enhancement_suite_for_edge_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-edge"
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
     },
     "current_indicator_title": {
         "message": "Текущая страница"

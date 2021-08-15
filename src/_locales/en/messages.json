@@ -117,16 +117,16 @@
         "message": "⚗️ Search Enhancer for Google™ for Edge"
     },
     "rate_chrome_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-rate"
+        "message": "https://bit.ly/search-enhancer-for-google-rate"
     },
     "rate_edge_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-edge"
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
     },
     "google_enhancement_suite_for_chrome_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-3"
+        "message": "https://bit.ly/search-enhancer-for-google"
     },
     "google_enhancement_suite_for_edge_link_href": {
-        "message": "https://bit.ly/google-enhancement-suite-edge"
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
     },
     "current_indicator_title": {
         "message": "Current page"
