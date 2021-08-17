@@ -66,6 +66,7 @@ module.exports = (env, argv) => {
             locales.merge();
             reload.reload({
                 ext_id: 'mfihhepjphokhfnlioficodoomlnhlbd',
+                hard: false,
                 play_sound: true,
                 full_reload_timeout: 1000,
                 hard_paths: ['_locales', 'shared', 'content_script', 'background'],
