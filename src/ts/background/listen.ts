@@ -1,3 +1,3 @@
-import listen from 'advanced-extension-reloader-watch-2/listen';
+import Listener from 'advanced-extension-reloader-watch-2/umd/listener';
 
-listen();
+new Listener().listen();

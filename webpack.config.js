@@ -7,18 +7,18 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const Reload = require('advanced-extension-reloader-watch-2/reload');
+const Reloader = require('advanced-extension-reloader-watch-2/umd/reloader');
 const { Env } = require('@loftyshaky/shared/js/ext/env');
 const { Locales } = require('@loftyshaky/shared/js/ext/locales');
 const { shared_config } = require('@loftyshaky/shared/js/ext/webpack.config');
 const { TaskScheduler } = require('@loftyshaky/shared/js/task_scheduler');
 const { Manifest } = require('./js/manifest');
 
-const reload = new Reload({
+const reloader = new Reloader({
     port: 7220,
 });
 
-reload.watch();
+reloader.watch();
 
 const task_scheduler = new TaskScheduler();
 
@@ -64,7 +64,7 @@ module.exports = (env, argv) => {
             });
             env_instance.generate({ browser: env.browser });
             locales.merge();
-            reload.reload({
+            reloader.reload({
                 ext_id: 'mfihhepjphokhfnlioficodoomlnhlbd',
                 hard: false,
                 play_sound: true,
