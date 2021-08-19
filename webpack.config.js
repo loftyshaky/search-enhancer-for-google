@@ -68,6 +68,7 @@ module.exports = (env, argv) => {
                 ext_id: 'mfihhepjphokhfnlioficodoomlnhlbd',
                 hard: false,
                 play_sound: true,
+                after_enable_delay: 300,
                 full_reload_timeout: 1000,
                 hard_paths: ['_locales', 'shared', 'content_script', 'background'],
             });
