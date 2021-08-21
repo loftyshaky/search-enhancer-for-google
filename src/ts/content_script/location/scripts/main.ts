@@ -10,8 +10,8 @@ export class Main {
     private constructor() {}
 
     public imgs_param_val = 'isch';
-    private tbm: string | null = new URLSearchParams(window.location.href).get('tbm');
-    private search_string_is_present: boolean = window.location.href.includes('search?');
+    private tbm: string | null = new URLSearchParams(self.location.href).get('tbm');
+    private search_string_is_present: boolean = self.location.href.includes('search?');
 
     public is_all_page: boolean = this.search_string_is_present && !n(this.tbm);
 

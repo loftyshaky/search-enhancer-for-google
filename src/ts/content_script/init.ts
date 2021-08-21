@@ -26,8 +26,8 @@ export const init = (): Promise<void> =>
         s_text_dir.Main.i().get();
         s_infinite_scroll.Scroll.i().observe();
 
-        x.bind(window, 'scroll', s_infinite_scroll.Scroll.i().observe);
-        x.bind(window, 'scroll', d_side_panel.Page.i().set_current);
+        x.bind(self, 'scroll', s_infinite_scroll.Scroll.i().observe);
+        x.bind(self, 'scroll', d_side_panel.Page.i().set_current);
         x.bind(
             document,
             'mouseup',

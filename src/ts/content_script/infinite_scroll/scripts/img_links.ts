@@ -28,7 +28,7 @@ export class ImgLinks {
 
     private open_img_link = function (this: HTMLLinkElement): void {
         err(() => {
-            window.top.location.href = this.href;
+            self.top.location.href = this.href;
         }, 'ges_1079');
     };
 }

@@ -67,7 +67,7 @@ export class Iframe {
                 x.bind(this.last_iframe, 'load', (): void =>
                     err(() => {
                         const show_page = (): void => {
-                            window.requestAnimationFrame(
+                            self.requestAnimationFrame(
                                 async (): Promise<void> =>
                                     err_async(async () => {
                                         s_actions.Main.i().run_reload_actions();
@@ -240,12 +240,12 @@ export class Iframe {
             const cur_iframe: HTMLIFrameElement = this.iframes[cur_iframe_i];
             const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
-            await window.requestAnimationFrame(
+            await self.requestAnimationFrame(
                 async (): Promise<void> =>
                     err_async(async () => {
                         cur_iframe.style.height = '';
 
-                        await window.requestAnimationFrame(
+                        await self.requestAnimationFrame(
                             (): Promise<void> =>
                                 err(async () => {
                                     await x.delay(0);

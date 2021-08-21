@@ -249,7 +249,7 @@ export class Main {
 
                     if (n(next_page_el)) {
                         const omnibox_start_val: number = this.get_page_val({
-                            next_page_href: window.location.href,
+                            next_page_href: self.location.href,
                         });
                         const next_start_val: number = this.get_page_val({
                             next_page_href: next_page_el.href,

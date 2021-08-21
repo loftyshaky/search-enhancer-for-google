@@ -48,7 +48,7 @@ export class Scroll {
         err(() => {
             const doc = document.documentElement;
 
-            return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+            return (self.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
         }, 'ges_1113');
 
     private remember_position = (): void =>
@@ -71,7 +71,7 @@ export class Scroll {
             }
 
             if (e.button === 1) {
-                this.remember_scrolling_position_0_35_seconds_timeout = window.setTimeout(
+                this.remember_scrolling_position_0_35_seconds_timeout = self.setTimeout(
                     async () => {
                         this.remember_position();
 
