@@ -21,6 +21,7 @@ $icon_size: 16px;
     svg {
         width: $icon_size;
         height: $icon_size;
+        background-color: white;
     }
 
     &.favicons svg {
