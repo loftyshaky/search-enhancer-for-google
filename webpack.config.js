@@ -89,6 +89,7 @@ module.exports = (env, argv) => {
             spinner: path.join(app_root, 'src', 'scss', 'content_script', 'spinner.scss'),
             load_end_msg: path.join(app_root, 'src', 'scss', 'content_script', 'load_end_msg.scss'),
             side_panel: path.join(app_root, 'src', 'scss', 'content_script', 'side_panel.scss'),
+            dark_ui: path.join(app_root, 'src', 'scss', 'content_script', 'dark_ui.scss'),
             img_action_bar: path.join(
                 app_root,
                 'src',

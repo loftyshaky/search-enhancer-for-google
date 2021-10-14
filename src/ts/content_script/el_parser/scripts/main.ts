@@ -286,7 +286,7 @@ export class Main {
             );
         }, 'ges_1042');
 
-    private get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): t.AnyRecord =>
+    public get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): t.AnyRecord =>
         err(() => {
             const color_hex: string = x.get_css_val(el, key);
 

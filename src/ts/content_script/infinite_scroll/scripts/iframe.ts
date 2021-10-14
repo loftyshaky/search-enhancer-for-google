@@ -8,6 +8,7 @@ import {
     s_el_parser,
     s_infinite_scroll,
     s_roots,
+    s_theme,
 } from 'content_script/internal';
 
 export class Iframe {
@@ -82,6 +83,10 @@ export class Iframe {
                                                     parent: iframe_doc.body,
                                                     i: this.cur_iframe_i + 2,
                                                     append_f_name: 'as_first',
+                                                });
+
+                                                s_theme.Main.i().adapt_separator_to_dark_theme({
+                                                    iframe_doc,
                                                 });
                                             }
                                         }

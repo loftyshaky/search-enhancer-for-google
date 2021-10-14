@@ -24,6 +24,7 @@ class Manifest {
                         'load_end_msg.css',
                         'side_panel.css',
                         'img_action_bar.css',
+                        'dark_ui.css',
                         'flags/*',
                     ],
                     matches: ['<all_urls>'],

@@ -12,6 +12,7 @@ import {
     s_infinite_scroll,
     s_location,
     s_roots,
+    s_theme,
 } from 'content_script/internal';
 
 export class Main {
@@ -101,6 +102,8 @@ export class Main {
                             i: 0,
                             append_f_name: 'after',
                         });
+
+                        s_theme.Main.i().adapt_panel_to_dark_theme();
                     }, 'ges_1093');
 
                 const next_el: Element | null = s_el_parser.Main.i().img_viewer!.nextElementSibling;

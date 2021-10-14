@@ -9,7 +9,7 @@ import {
     d_loading_screen,
     s_no_tr,
     s_tab_index,
-    s_theme,
+    s_theme as s_theme_shared,
 } from '@loftyshaky/shared';
 import { d_inputs, i_inputs } from '@loftyshaky/shared/inputs';
 import { d_settings, s_css_vars, s_suffix } from 'shared/internal';
@@ -88,7 +88,7 @@ export class InitAll {
                             err(() => {
                                 const settings_css = x.css('settings_css', document.head);
 
-                                s_theme.Main.i().set({
+                                s_theme_shared.Main.i().set({
                                     name: data.settings.options_page_theme,
                                 });
 
@@ -133,7 +133,9 @@ export class InitAll {
 
             const render_side_panel = (): Promise<void> =>
                 err_async(async () => {
-                    const { c_side_panel, s_location } = await import('content_script/internal');
+                    const { c_side_panel, s_location, s_theme } = await import(
+                        'content_script/internal'
+                    );
 
                     if (s_location.Main.i().is_search_results) {
                         render(
@@ -145,6 +147,7 @@ export class InitAll {
                                 err(() => {
                                     s_no_tr.Main.i().enable({ el: side_panel_root });
 
+                                    s_theme.Main.i().adapt_panel_to_dark_theme();
                                     const side_panel_css = x.css('side_panel', side_panel_root);
 
                                     if (n(side_panel_css)) {
