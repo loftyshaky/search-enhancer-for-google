@@ -103,10 +103,6 @@ export class Main {
                         ([...children] as HTMLElement[]).forEach((el_2: HTMLElement): void =>
                             err(() => {
                                 const font_size: number = x.get_numeric_css_val(el_2, 'font-size');
-                                const color_hsv = this.get_el_hsv_color({
-                                    el: el_2,
-                                    key: 'color',
-                                });
                                 const news_icon_selector: string = 'g-img';
 
                                 if (
