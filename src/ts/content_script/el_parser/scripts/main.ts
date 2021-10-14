@@ -78,19 +78,11 @@ export class Main {
             );
 
             this.keyword_els = bold_els.filter((el: HTMLElement): boolean =>
-                err(() => {
-                    const color_hsv = this.get_el_hsv_color({
-                        el,
-                        key: 'color',
-                    });
-
-                    return (
-                        (color_hsv.s <= data.settings.keyword_max_saturation ||
-                            color_hsv.s >= data.settings.link_min_saturation) && // additional search results under search result (in blue). Ex: https://www.google.com/search?q=javascript+stack+overflow+declare+variable
-                        this.text_is_bold({ el }) &&
-                        this.check_if_el_has_immediate_text({ el })
-                    );
-                }, 'ges_1026'),
+                err(
+                    () => this.text_is_bold({ el }) && this.check_if_el_has_immediate_text({ el }),
+                    // additional search results under search result (in blue). Ex: https://www.google.com/search?q=javascript+stack+overflow+declare+variable
+                    'ges_1026',
+                ),
             );
         }, 'ges_1027');
 
@@ -134,7 +126,6 @@ export class Main {
                                             ))) ||
                                         (!s_location.Main.i().is_non_standard_search_results &&
                                             font_size >= 18 &&
-                                            color_hsv.s >= data.settings.link_min_saturation &&
                                             !this.text_is_bold({ el: el_2 }) && // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
                                             ((s_text_dir.Main.i().dir === 'ltr' &&
                                                 el_2.getBoundingClientRect().left <= 300) ||

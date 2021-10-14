@@ -26,8 +26,6 @@ export interface Settings {
     img_downloads_dir: string;
     show_copy_img_btn: boolean;
     show_copy_img_url_btn: boolean;
-    link_min_saturation: string;
-    keyword_max_saturation: string;
     favicon_providers: {
         google: boolean;
         yandex: boolean;

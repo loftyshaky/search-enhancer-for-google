@@ -150,24 +150,6 @@ export class Main {
                             }),
                         ],
                     }),
-                    new o_inputs.Section({
-                        name: 'theme',
-                        include_help: true,
-                        inputs: [
-                            new o_inputs.Text({
-                                name: 'link_min_saturation',
-                                text_type: 'number',
-                                event_callback: d_sections.Val.i().change,
-                                warn_state_checker: d_sections.Val.i().validate_input,
-                            }),
-                            new o_inputs.Text({
-                                name: 'keyword_max_saturation',
-                                text_type: 'number',
-                                event_callback: d_sections.Val.i().change,
-                                warn_state_checker: d_sections.Val.i().validate_input,
-                            }),
-                        ],
-                    }),
                 ],
                 ...d_settings.Sections.i().make_shared_sections({
                     download_back_up_callback: ext.storage_get,
@@ -240,10 +222,6 @@ export class Main {
             this.sections.imgs.inputs = s_utils.Main.i().to_object({
                 arr: this.sections.imgs.inputs as o_inputs.Section[],
                 section: 'imgs',
-            });
-            this.sections.theme.inputs = s_utils.Main.i().to_object({
-                arr: this.sections.theme.inputs as o_inputs.Section[],
-                section: 'theme',
             });
             this.sections.links.inputs = s_utils.Main.i().to_object({
                 arr: this.sections.links.inputs as o_inputs.Section[],

@@ -8,9 +8,6 @@
     "imgs_section_text": {
         "message": "Images"
     },
-    "theme_section_text": {
-        "message": "Theme"
-    },
     "favicons_section_text": {
         "message": "Favicons"
     },
@@ -56,12 +53,6 @@
     "allow_favicons_from_duckduckgo_label_text": {
         "message": "Allow favicons from DuckDuckGo"
     },
-    "link_min_saturation_label_text": {
-        "message": "Link min saturation"
-    },
-    "keyword_max_saturation_label_text": {
-        "message": "Keyword max saturation"
-    },
     "always_show_img_action_bar_label_text": {
         "message": "Always show buttons"
     },
@@ -91,9 +82,6 @@
     },
     "right_option_text": {
         "message": "Right"
-    },
-    "theme_help_text": {
-        "message": "If you use a custom Google Search theme and some features of the Search Enhancer for Google™ are not working, you'll need to change settings on this page. Why? Because in some cases Search Enhancer for Google™ checks HTML elements' HSV value to get elements it needs. For example, if your custom theme uses hsv(215, 38%, 90%) as a color for links in search results, the extension will not find link elements (as result, site and server location icons will not appear), because by default it expects saturation of links to be 50% (0.5) or higher. To fix this you will need to set the value of the \"Link min saturation\" input to 0.38 or lower."
     },
     "enable_btn_title": {
         "message": "Enable/disable infinite scrolling"
