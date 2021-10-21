@@ -433,7 +433,7 @@ class Manifest {
                         '*://www.google.co.zw/*',
                         '*://www.google.cat/*',
                     ],
-                    include_globs: ['https://www.google.*/search?q=*'],
+                    include_globs: ['https://www.google.*/search?*'],
                 },
             ],
             commands: {
