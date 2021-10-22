@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { runInAction } from 'mobx';
 
 import { t } from '@loftyshaky/shared';
-import { i_data } from 'shared/internal';
+import { d_settings, i_data } from 'shared/internal';
 
 export class Restore {
     private static i0: Restore;
@@ -33,12 +33,21 @@ export class Restore {
 
     public restore_back_up = ({ data_obj }: { data_obj: t.AnyRecord }): Promise<void> =>
         err_async(async () => {
-            const settings: i_data.Settings = {
+            let settings: i_data.Settings = {
                 ...data_obj,
                 ...this.get_unchanged_settings(),
             } as i_data.Settings;
 
-            await this.set({ settings });
+            settings = await this.set({ settings });
+
+            const result = d_settings.Main.i().update_schema({
+                restoring_from_back_up: true,
+                settings,
+            });
+
+            if (result.updated_schema) {
+                settings = result.settings;
+            }
 
             await ext.send_msg_resp({
                 msg: 'update_settings',
@@ -76,7 +85,7 @@ export class Restore {
         err(
             () => ({
                 current_section: data.settings.current_section,
-                show_color_help: data.settings.show_color_help,
+                color_help_is_visible: data.settings.color_help_is_visible,
                 last_ip_to_country_csv_char_count: data.settings.last_ip_to_country_csv_char_count,
             }),
             'ges_1135',

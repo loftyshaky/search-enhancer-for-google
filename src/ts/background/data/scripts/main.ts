@@ -23,7 +23,7 @@ export class Main {
                 current_section: 'all',
                 options_page_theme: 'light',
                 transition_duration: 200,
-                show_color_help: true,
+                color_help_is_visible: true,
                 enable_cut_features: false,
                 colors: d_color.Color.i().default_colors,
                 side_panel_position: 'right',

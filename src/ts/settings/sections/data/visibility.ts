@@ -13,7 +13,7 @@ export class Visibility {
         err(() => {
             ext.send_msg_resp({
                 msg: 'update_settings',
-                settings: { show_color_help: false },
+                settings: { color_help_is_visible: false },
             });
         }, 'ges_1146');
 }

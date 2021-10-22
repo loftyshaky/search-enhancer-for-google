@@ -4,7 +4,7 @@ export interface Settings {
     current_section: string;
     options_page_theme: string;
     transition_duration: number;
-    show_color_help: boolean;
+    color_help_is_visible: boolean;
     enable_cut_features: boolean;
     colors: i_color.Color[];
     side_panel_position: string;
