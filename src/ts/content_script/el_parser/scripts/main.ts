@@ -159,7 +159,7 @@ export class Main {
 
     private get_footer_el = (): void =>
         err(() => {
-            this.footer_el = s<HTMLElement>('[role="contentinfo"]');
+            this.footer_el = s<HTMLElement>('#footcnt');
         }, 'ges_1033');
 
     private get_related_searches_el = (): void =>

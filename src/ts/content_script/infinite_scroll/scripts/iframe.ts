@@ -7,6 +7,7 @@ import {
     s_actions,
     s_el_parser,
     s_infinite_scroll,
+    s_location,
     s_roots,
     s_theme,
 } from 'content_script/internal';
@@ -30,7 +31,10 @@ export class Iframe {
     public last_iframe: HTMLIFrameElement | undefined;
     private cur_iframe_i: number = 0;
     public inserting_iframe: boolean = false;
-    private search_results_w_selector: string = '#search';
+    private search_results_w_selector: string = s_location.Main.i().is_shopping_page
+        ? '#rso'
+        : '#search';
+
     private captcha_error_occurred_once: boolean = false;
 
     public insert = (): void =>
