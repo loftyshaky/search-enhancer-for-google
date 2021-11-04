@@ -1,0 +1,164 @@
+{
+    "description": {
+        "message": "Fügt der Google-Suche einen endlosen Bildlauf, Website-Symbole, Serverstandorte, die Schaltfläche „Grafik anzeigen” und „Grafik herunterladen” und mehr hinzu."
+    },
+    "all_section_text": {
+        "message": "Alle"
+    },
+    "imgs_section_text": {
+        "message": "Bilder"
+    },
+    "side_panel_position_label_text": {
+        "message": "Position der Seitenleiste"
+    },
+    "enable_infinite_scrolling_label_text": {
+        "message": "Endlosen Bildlauf aktivieren"
+    },
+    "show_enable_btn_label_text": {
+        "message": "Schaltfläche zum Aktivieren/Deaktivieren anzeigen"
+    },
+    "show_jump_to_related_searches_btn_label_text": {
+        "message": "Springen zu ähnlichen Suchanfragen/Schaltflächen für Seitenwechsel anzeigen"
+    },
+    "show_page_indicator_label_text": {
+        "message": "Anzeige der Gesamtzahl der geladenen Seiten/Anzeige der aktuellen Seite"
+    },
+    "show_page_separators_label_text": {
+        "message": "Seitentrennungen anzeigen"
+    },
+    "show_favicons_label_text": {
+        "message": "Favicons anzeigen"
+    },
+    "show_server_locations_label_text": {
+        "message": "Serverstandorte anzeigen"
+    },
+    "show_scroll_to_top_btn_label_text": {
+        "message": "Schaltfläche „Nach oben blättern” anzeigen"
+    },
+    "keyword_color_label_text": {
+        "message": "Hervorhebungsfarbe der Suchbegriffe"
+    },
+    "spinner_color_label_text": {
+        "message": "Farbe der Seitenladefunktion"
+    },
+    "allow_favicons_from_google_label_text": {
+        "message": "Favicons von Google zulassen"
+    },
+    "allow_favicons_from_yandex_label_text": {
+        "message": "Favicons von Yandex zulassen"
+    },
+    "allow_favicons_from_duckduckgo_label_text": {
+        "message": "Favicons von DuckDuckGo zulassen"
+    },
+    "always_show_img_action_bar_label_text": {
+        "message": "Schaltflächen immer anzeigen"
+    },
+    "show_view_img_btn_label_text": {
+        "message": "Schaltfläche „Grafik anzeigen” anzeigen"
+    },
+    "show_search_by_img_btn_label_text": {
+        "message": "Schaltfläche „Nach Grafik suchen” anzeigen"
+    },
+    "show_download_img_btn_label_text": {
+        "message": "Schaltfläche „Grafik herunterladen” anzeigen"
+    },
+    "show_save_img_as_btn_label_text": {
+        "message": "Schaltfläche „Grafik speichern unter...” anzeigen"
+    },
+    "img_downloads_dir_label_text": {
+        "message": "Ordner für das Herunterladen von Grafiken"
+    },
+    "show_copy_img_btn_label_text": {
+        "message": "Schaltfläche „Grafik kopieren” anzeigen"
+    },
+    "show_copy_img_url_btn_label_text": {
+        "message": "Schaltfläche „Grafik-Adresse kopieren” anzeigen"
+    },
+    "left_option_text": {
+        "message": "Links"
+    },
+    "right_option_text": {
+        "message": "Rechts"
+    },
+    "enable_btn_title": {
+        "message": "Endlosen Bildlauf aktivieren/deaktivieren"
+    },
+    "scroll_to_top_title": {
+        "message": "Linksklick, um zum Anfang zu gelangen. (Tab: Enter)\n\nRechtsklick, um zum Ende zu gelangen. (Tab: Ctrl + Enter)\n\nWenn Sie zum Anfang oder Ende springen, merkt sich „Search Enhancer for Google™” die aktuelle Position. Um zu dieser Position zurückzukehren, klicken Sie mit der mittleren Maustaste. (Tab: Shift + Enter)\n\nSie können sich Ihre Position auch merken, ohne zum Anfang oder Ende zu springen. Klicken Sie dazu mit der mittleren Maustaste, wenn „Search Enhancer for Google™” keine Position gespeichert hat, oder klicken Sie auf die mittlere Taste und halten Sie sie 0,35 Sekunden lang gedrückt, wenn dies der Fall ist. (Tab: Alt + Enter)"
+    },
+    "img_downloads_dir_help_text": {
+        "message": "Ein Pfad zum Ordner im Download-Ordner, in dem die heruntergeladenen Grafiken gespeichert werden. Darf Unterordner enthalten. Darf jedoch keine vom Betriebssystem unzulässigen Zeichen enthalten. Wenn der Ordner nicht existiert, wird er beim ersten Herunterladen erstellt. Lassen Sie ihn leer, um Grafiken in den Standardordner herunterzuladen. Beispiel: !Google/Grafiken"
+    },
+    "show_copy_img_btn_help_text": {
+        "message": "Nicht alle Anwendungen akzeptieren Grafiken, die mit dieser Schaltfläche kopiert werden. In diesen Fällen müssen Sie die Grafiken auf dem üblichen Weg kopieren - über das Kontextmenü des Browsers."
+    },
+    "jump_to_related_searches_title": {
+        "message": "Klicken Sie hier, um zu ähnlichen Suchanfragen/Schaltflächen für Seitenwechsel zu springen. Klicken Sie erneut oder klicken Sie mit der mittleren Maustaste auf die Schaltfläche „Nach oben blättern”, um zur vorherigen Position zurückzukehren."
+    },
+    "google_enhancement_suite_for_chrome_link_text": {
+        "message": "⚗️ Search Enhancer for Google™ für Chrome"
+    },
+    "google_enhancement_suite_for_edge_link_text": {
+        "message": "⚗️ Search Enhancer for Google™ für Edge"
+    },
+    "rate_chrome_link_href": {
+        "message": "https://bit.ly/search-enhancer-for-google-rate"
+    },
+    "rate_edge_link_href": {
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
+    },
+    "google_enhancement_suite_for_chrome_link_href": {
+        "message": "https://bit.ly/search-enhancer-for-google"
+    },
+    "google_enhancement_suite_for_edge_link_href": {
+        "message": "https://bit.ly/search-enhancer-for-google-edge"
+    },
+    "current_indicator_title": {
+        "message": "Aktuelle Seite"
+    },
+    "total_indicator_title": {
+        "message": "Gesamtzahl der geladenen Seiten"
+    },
+    "page_text": {
+        "message": "Seite"
+    },
+    "view_img_title": {
+        "message": "Grafik anzeigen"
+    },
+    "search_by_img_title": {
+        "message": "Nach Grafik suchen"
+    },
+    "download_img_title": {
+        "message": "Grafik herunterladen"
+    },
+    "save_img_as_title": {
+        "message": "Grafik speichern unter..."
+    },
+    "copy_img_title": {
+        "message": "Grafik kopieren"
+    },
+    "copy_img_url_title": {
+        "message": "Grafik-Adresse kopieren"
+    },
+    "load_end_msg_last_page_text": {
+        "message": "Letzte Seite"
+    },
+    "load_end_msg_error_text": {
+        "message": "Es ist ein Fehler aufgetreten. Google hält Sie für einen Roboter. Laden Sie die Seite neu und lösen Sie das Captcha.‎"
+    },
+    "scroll_to_top_hotkey": {
+        "message": "Zum Anfang blätternn"
+    },
+    "scroll_to_bottom_hotkey": {
+        "message": "Zum Ende blättern"
+    },
+    "remember_scroll_position_hotkey": {
+        "message": "Bildlaufposition speichern/zur gespeicherten Bildlaufposition zurückkehren"
+    },
+    "remember_scroll_position_forced_hotkey": {
+        "message": "Bildlaufposition speichern (wenn Search Enhancer for Google™ bereits eine Position gespeichert hat)"
+    },
+    "jump_to_related_searches_hotkey": {
+        "message": "Zu ähnlichen Suchanfragen springen/Schaltflächen für Seitenwechsel"
+    }
+}
