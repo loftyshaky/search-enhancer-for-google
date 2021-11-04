@@ -8,9 +8,6 @@
     "imgs_section_text": {
         "message": "Картинки"
     },
-    "favicons_section_text": {
-        "message": "Фавиконы"
-    },
     "side_panel_position_label_text": {
         "message": "Позиция боковой панели"
     },
@@ -148,9 +145,6 @@
     },
     "load_end_msg_last_page_text": {
         "message": "Произошла ошибка. Google думает что вы робот. Перезагрузите страницу и решите каптчу.\u200E"
-    },
-    "welcome_notification": {
-        "message": "Спасибо за установку Search Enhancer for Google™. Первая загрузка флагов займет некоторое время. Пожалуйста, подождите."
     },
     "scroll_to_top_hotkey": {
         "message": "Прокрутить страницу вверх"

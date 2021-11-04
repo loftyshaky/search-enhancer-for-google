@@ -8,9 +8,6 @@
     "imgs_section_text": {
         "message": "Images"
     },
-    "favicons_section_text": {
-        "message": "Favicons"
-    },
     "side_panel_position_label_text": {
         "message": "Side panel position"
     },
@@ -148,9 +145,6 @@
     },
     "load_end_msg_error_text": {
         "message": "An error occured. Google thinks you're a robot. Reload the page and solve the captcha.\u200E"
-    },
-    "welcome_notification": {
-        "message": "Thank you for installing Search Enhancer for Google™. The country flags will take some time to load for the first time. Please wait."
     },
     "scroll_to_top_hotkey": {
         "message": "Scroll to top"
