@@ -1,6 +1,6 @@
 {
     "name": "search-enhancer-for-google",
-    "version": "3.2.2",
+    "version": "3.3.0",
     "scripts": {
         "dev": "webpack --watch --mode=development --env test --env browser=chrome",
         "prod": "webpack --mode=production --env browser=chrome",
