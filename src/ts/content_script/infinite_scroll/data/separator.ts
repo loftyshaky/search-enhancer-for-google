@@ -1,7 +1,7 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
 import { s_viewport } from '@loftyshaky/shared';
-import { s_el_parser, s_location, s_text_dir } from 'content_script/internal';
+import { s_el_parser, s_text_dir } from 'content_script/internal';
 
 export class Separator {
     private static i0: Separator;
@@ -23,22 +23,6 @@ export class Separator {
 
     get none_cls() {
         return data.settings.show_page_separators ? '' : 'none';
-    }
-
-    get videos_cls() {
-        return s_location.Main.i().is_videos_page ? 'videos' : '';
-    }
-
-    get books_cls() {
-        return s_location.Main.i().is_books_page ? 'books' : '';
-    }
-
-    get news_cls() {
-        return s_location.Main.i().is_news_page ? 'news' : '';
-    }
-
-    get shopping_cls() {
-        return s_location.Main.i().is_shopping_page ? 'shopping' : '';
     }
 
     public set_offset_left = (): void =>

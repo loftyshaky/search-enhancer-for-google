@@ -11,6 +11,15 @@ $icon_size: 16px;
     display: flex;
 }
 
+.icons:not(.news):not(:empty) {
+    margin-right: $gap;
+}
+
+:host-context(html[dir=rtl]) .icons:not(.news):not(:empty) {
+    margin-right: 0;
+    margin-left: $gap;
+}
+
 .icon_w {
     display: flex;
 

@@ -72,12 +72,16 @@ export class Main {
                     s_el_parser.Main.i().title_els.forEach((title_el, i): void =>
                         err(() => {
                             if (i >= start) {
+                                let icons_el: HTMLElement | undefined;
+
                                 d_icons.Main.i().generate_urls({ i });
 
-                                const icons_el: HTMLElement | undefined = sb(
-                                    title_el,
-                                    `.${new s_suffix.Main(name).result}`,
-                                );
+                                if (n(title_el.parentElement)) {
+                                    icons_el = sb(
+                                        title_el.parentElement,
+                                        `.${new s_suffix.Main(name).result}`,
+                                    );
+                                }
 
                                 if (!n(icons_el)) {
                                     this.append_root({
@@ -86,7 +90,7 @@ export class Main {
                                         i,
                                         append_f_name: s_location.Main.i().is_news_page
                                             ? 'as_first'
-                                            : 'append',
+                                            : 'before',
                                     });
                                 }
                             }
@@ -132,7 +136,7 @@ export class Main {
         name: string;
         i: number;
         parent: HTMLElement;
-        append_f_name: 'append' | 'as_first' | 'after';
+        append_f_name: 'append' | 'as_first' | 'before' | 'after';
     }): Promise<void> =>
         new Promise((resolve) => {
             err(() => {

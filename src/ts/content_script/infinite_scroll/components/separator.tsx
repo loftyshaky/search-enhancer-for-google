@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { d_infinite_scroll, p_infinite_scroll } from 'content_script/internal';
+import { d_infinite_scroll, s_location, p_infinite_scroll } from 'content_script/internal';
 
 export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = observer((props) => {
     const { i } = props;
@@ -11,10 +11,10 @@ export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = o
             className={x.cls([
                 'separator',
                 d_infinite_scroll.Separator.i().none_cls,
-                d_infinite_scroll.Separator.i().videos_cls,
-                d_infinite_scroll.Separator.i().books_cls,
-                d_infinite_scroll.Separator.i().news_cls,
-                d_infinite_scroll.Separator.i().shopping_cls,
+                s_location.Classes.i().videos_cls,
+                s_location.Classes.i().books_cls,
+                s_location.Classes.i().news_cls,
+                s_location.Classes.i().shopping_cls,
             ])}
             style={{ marginInlineStart: d_infinite_scroll.Separator.i().offset_left }}
         >

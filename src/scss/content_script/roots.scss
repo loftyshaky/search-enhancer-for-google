@@ -5,10 +5,8 @@
     }
 
     &:not(.news_#{$app_id}) {
-        position: absolute;
-        top: 30px;
-        left: -$gap;
-        transform: translateX(-100%);
+        display: inline-block;
+        vertical-align: -1px;
     }
 }
 

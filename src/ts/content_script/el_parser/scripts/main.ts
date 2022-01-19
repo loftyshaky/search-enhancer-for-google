@@ -130,7 +130,8 @@ export class Main {
                                                         el_2.getBoundingClientRect().right <=
                                                         300)) &&
                                             ((!s_location.Main.i().is_news_page &&
-                                                /H[0-6]/.test(el_2.tagName)) ||
+                                                /H[0-6]/.test(el_2.tagName) &&
+                                                !el_2.hasAttribute('role')) || // !el_2.hasAttribute('role')) === not "Images for ..."
                                                 (s_location.Main.i().is_news_page &&
                                                     this.check_if_el_has_immediate_text({
                                                         el: el_2,
