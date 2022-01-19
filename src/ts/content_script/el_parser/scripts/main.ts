@@ -3,7 +3,7 @@ import tinycolor from 'tinycolor2';
 
 import { t, s_viewport } from '@loftyshaky/shared';
 import { s_suffix } from 'shared/internal';
-import { s_infinite_scroll, s_location, s_text_dir } from 'content_script/internal';
+import { s_icons, s_infinite_scroll, s_location, s_text_dir } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -157,15 +157,7 @@ export class Main {
                 err(() => el.href, 'ges_1031'),
             );
 
-            //> put titles and icons on one line (without this title may wrap on second line if it's too long)
-            if (!s_location.Main.i().is_news_page) {
-                filtered_links.forEach((el: HTMLLinkElement): void =>
-                    err(() => {
-                        x.add_cls(el, new s_suffix.Main('white_space').result);
-                    }, 'ges_1186'),
-                );
-            }
-            //<
+            s_icons.Main.i().prevent_titles_and_icons_from_wrapping({ filtered_links });
         }, 'ges_1032');
 
     private get_footer_el = (): void =>
