@@ -156,6 +156,16 @@ export class Main {
             this.hrefs = filtered_links.map((el: HTMLLinkElement): string =>
                 err(() => el.href, 'ges_1031'),
             );
+
+            //> put titles and icons on one line (without this title may wrap on second line if it's too long)
+            if (!s_location.Main.i().is_news_page) {
+                filtered_links.forEach((el: HTMLLinkElement): void =>
+                    err(() => {
+                        x.add_cls(el, new s_suffix.Main('white_space').result);
+                    }, 'ges_1186'),
+                );
+            }
+            //<
         }, 'ges_1032');
 
     private get_footer_el = (): void =>

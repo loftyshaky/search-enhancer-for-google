@@ -11,3 +11,7 @@
     visibility: hidden !important;
     top: 99999px !important;
 }
+
+.white_space_#{$app_id} {
+    white-space: nowrap;
+}
