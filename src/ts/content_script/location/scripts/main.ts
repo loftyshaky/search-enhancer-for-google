@@ -16,7 +16,8 @@ export class Main {
     public is_content_script_execution_page: boolean =
         /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(self.location.href);
 
-    public is_all_page: boolean = this.search_string_is_present && !n(this.tbm);
+    public is_all_page: boolean =
+        this.search_string_is_present && (!n(this.tbm) || this.tbm === '');
 
     public is_videos_page: boolean = this.search_string_is_present && this.tbm === 'vid';
 
