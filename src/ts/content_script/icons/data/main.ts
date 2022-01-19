@@ -151,7 +151,8 @@ export class Main {
                     msg: 'get_server_info',
                     url,
                 });
-                const server_location_found: boolean = server_info.country_code !== '';
+                const server_location_found: boolean =
+                    n(server_info) && server_info.country_code !== '';
 
                 const flag_path = server_location_found
                     ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
