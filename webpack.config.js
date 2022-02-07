@@ -55,7 +55,7 @@ module.exports = (env, argv) => {
         ],
         callback_begin: () => {
             task_scheduler.unlock_dist({
-                package_name: 'Google Enhancement Suite',
+                package_name: 'Search Enhancer for Google',
                 remove_dist: argv.mode === 'production',
             });
         },
