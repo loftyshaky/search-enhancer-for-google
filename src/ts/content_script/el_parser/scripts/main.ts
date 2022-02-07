@@ -197,7 +197,7 @@ export class Main {
     public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
         err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1038');
 
-    public get_img_viewer_wrapper = (): HTMLElement | undefined =>
+    public get_img_viewer_w = (): HTMLElement | undefined =>
         err(() => {
             const parents: HTMLElement[] = [];
 

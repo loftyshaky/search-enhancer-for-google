@@ -23,13 +23,12 @@ export class Visibility {
 
     public change = (e: MouseEvent): void =>
         err(() => {
-            const img_viewer_wrapper: HTMLElement | undefined =
-                s_el_parser.Main.i().get_img_viewer_wrapper();
+            const img_viewer_w: HTMLElement | undefined = s_el_parser.Main.i().get_img_viewer_w();
 
-            if (n(img_viewer_wrapper)) {
+            if (n(img_viewer_w)) {
                 const scroll_left: number = document.documentElement.scrollLeft;
                 const scroll_top: number = document.documentElement.scrollTop;
-                const rect = img_viewer_wrapper.getBoundingClientRect();
+                const rect = img_viewer_w.getBoundingClientRect();
 
                 const hovering_over_img: boolean =
                     e.pageX - scroll_left >= rect.left &&
