@@ -35,6 +35,10 @@ export const init = (): Promise<void> =>
                 'mouseup',
                 d_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout,
             );
-            x.bind(document, 'mousemove', d_img_action_bar.Visibility.i().change);
+
+            if (s_location.Main.i().is_imgs_page) {
+                // "get_img_viewer_w" function called from "change" function causes infinite loop in "All" pages when clicking on cards: https://www.google.com/search?q=animals+list
+                x.bind(document, 'mousemove', d_img_action_bar.Visibility.i().change);
+            }
         }
     }, 'ges_1082');
