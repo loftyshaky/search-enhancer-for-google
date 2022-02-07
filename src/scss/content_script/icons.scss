@@ -15,7 +15,7 @@ $icon_size: 16px;
     margin-right: $gap;
 }
 
-:host-context(html[dir=rtl]) .icons:not(.news):not(:empty) {
+:host-context(html[dir='rtl']) .icons:not(.news):not(:empty) {
     margin-right: 0;
     margin-left: $gap;
 }
