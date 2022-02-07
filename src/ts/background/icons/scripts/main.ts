@@ -116,7 +116,7 @@ export class Main {
                 }
 
                 return empty_row;
-            } catch (error_obj) {
+            } catch (error_obj: any) {
                 show_err_ribbon(error_obj, 'ges_1008');
 
                 return empty_row;
