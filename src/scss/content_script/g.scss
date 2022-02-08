@@ -1,10 +1,10 @@
-#res .g {
+#res {
     [style='width:600px'] {
         width: 652px !important; // without this long titles won't fit because I put titles and icons in one line
     }
+}
 
-    [style='-webkit-line-clamp:2'] {
-        // search result text
-        width: 600px;
-    }
+#res .g [style='-webkit-line-clamp:2'] {
+    // search result text
+    width: 600px;
 }
