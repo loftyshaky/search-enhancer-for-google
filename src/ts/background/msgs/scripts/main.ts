@@ -7,7 +7,11 @@ we.runtime.onMessage.addListener(
             const msg_str: string = msg.msg;
 
             if (msg_str === 'update_settings') {
-                await s_data.Main.i().update_settings_debounce(msg.settings, msg.rerun_actions);
+                await s_data.Main.i().update_settings_debounce(
+                    msg.settings,
+                    msg.rerun_actions,
+                    n(msg.transform) ? msg.transform : false,
+                );
             } else if (msg_str === 'get_defaults') {
                 return s_data.Main.i().defaults;
             } else if (msg_str === 'get_favicon_url') {

@@ -28,7 +28,7 @@ const observer = new MutationObserver((mutations): void =>
                         `.${new s_suffix.Main('spinner').result}`,
                     )
                 ) {
-                    s_actions.Main.i().run_reload_actions_2();
+                    s_actions.Main.i().run_reload_actions_2_debounce();
                 }
             }, 'ges_1087'),
         );

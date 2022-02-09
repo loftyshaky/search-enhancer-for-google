@@ -37,7 +37,10 @@ export class Main {
                 show_favicons: true,
                 show_server_locations: true,
                 show_scroll_to_top_btn: true,
-                always_show_img_action_bar: true,
+                show_img_viewer_img_action_bar: true,
+                show_preview_img_viewer_img_action_bar: true,
+                show_img_viewer_img_action_bar_only_on_hover: false,
+                show_preview_img_viewer_img_action_bar_only_on_hover: false,
                 show_view_img_btn: true,
                 show_search_by_img_btn: true,
                 show_download_img_btn: true,
@@ -55,19 +58,28 @@ export class Main {
             };
         }, 'ges_1002');
 
-    public update_settings = ({ settings }: { settings?: i_data.Settings } = {}): Promise<void> =>
+    public update_settings = ({
+        settings,
+        transform = false,
+    }: { settings?: i_data.Settings; transform?: boolean } = {}): Promise<void> =>
         err_async(async () => {
-            const settings_final: i_data.Settings = n(settings)
+            const settings_2: i_data.Settings = n(settings)
                 ? settings
                 : (this.defaults as i_data.Settings);
 
-            await ext.storage_set(settings_final);
+            let settings_final: i_data.Settings = settings_2;
+
+            if (transform) {
+                settings_final = await this.transform({ settings: settings_2 });
+            }
+
+            await ext.storage_set(settings_final, transform);
         }, 'ges_1003');
 
     public update_settings_debounce = _.debounce(
-        (settings: i_data.Settings, rerun_actions: boolean) =>
+        (settings: i_data.Settings, rerun_actions: boolean, transform: boolean = false) =>
             err_async(async () => {
-                await this.update_settings({ settings });
+                await this.update_settings({ settings, transform });
 
                 if (n(rerun_actions)) {
                     ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
@@ -76,12 +88,53 @@ export class Main {
         500,
     );
 
-    public set_from_storage = (): Promise<void> =>
+    public set_from_storage = ({
+        transform = false,
+    }: { transform?: boolean } = {}): Promise<void> =>
         err_async(async () => {
             const settings: i_data.Settings = await ext.storage_get();
 
             if (_.isEmpty(settings)) {
-                this.update_settings();
+                await this.update_settings({ transform });
+            } else if (transform) {
+                await this.update_settings({ settings, transform });
             }
         }, 'ges_1004');
+
+    private transform = ({ settings }: { settings: i_data.Settings }): Promise<i_data.Settings> =>
+        err_async(async () => {
+            const updated_settings: any = settings;
+            const always_show_img_action_bar_reverse: boolean = n(
+                updated_settings.always_show_img_action_bar,
+            )
+                ? !updated_settings.always_show_img_action_bar
+                : false;
+
+            updated_settings.show_img_viewer_img_action_bar = n(
+                updated_settings.show_img_viewer_img_action_bar,
+            )
+                ? updated_settings.show_img_viewer_img_action_bar
+                : true;
+            updated_settings.show_preview_img_viewer_img_action_bar = n(
+                updated_settings.show_preview_img_viewer_img_action_bar,
+            )
+                ? updated_settings.show_preview_img_viewer_img_action_bar
+                : true;
+            updated_settings.show_img_viewer_img_action_bar_only_on_hover = n(
+                updated_settings.show_img_viewer_img_action_bar_only_on_hover,
+            )
+                ? updated_settings.show_img_viewer_img_action_bar_only_on_hover
+                : always_show_img_action_bar_reverse;
+            updated_settings.show_preview_img_viewer_img_action_bar_only_on_hover = n(
+                updated_settings.show_preview_img_viewer_img_action_bar_only_on_hover,
+            )
+                ? updated_settings.show_preview_img_viewer_img_action_bar_only_on_hover
+                : always_show_img_action_bar_reverse;
+
+            delete updated_settings.always_show_img_action_bar;
+
+            await ext.storage_remove(['always_show_img_action_bar']);
+
+            return updated_settings;
+        }, 'ges_1199');
 }

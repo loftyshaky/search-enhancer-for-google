@@ -3,7 +3,13 @@ import tinycolor from 'tinycolor2';
 
 import { t, s_viewport } from '@loftyshaky/shared';
 import { s_suffix } from 'shared/internal';
-import { s_icons, s_infinite_scroll, s_location, s_text_dir } from 'content_script/internal';
+import {
+    s_icons,
+    s_infinite_scroll,
+    s_location,
+    s_text_dir,
+    i_img_action_bar,
+} from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -20,11 +26,16 @@ export class Main {
     public related_searches_el: HTMLElement | undefined = undefined;
     public pagination_el: HTMLElement | undefined = undefined;
     public img_viewer: HTMLLinkElement | undefined = undefined;
+    public img_viewer_w: HTMLElement | undefined = undefined;
+    public preview_img_viewers: HTMLElement[] = [];
+    public preview_img_viewer_ws: HTMLElement[] = [];
     public hostnames: string[] = [];
     public hrefs: string[] = [];
     public next_page_href: string | undefined;
+    public img_data: t.AnyRecord[] = [];
     public loaded_all_pages: boolean = false;
     public search_result_body: HTMLElement | undefined = undefined;
+    private attempted_to_acquire_img_data: boolean = false;
 
     public get_els = (): void =>
         err(() => {
@@ -34,6 +45,9 @@ export class Main {
             this.get_related_searches_el();
             this.get_pagination_el();
             this.get_img_viewer();
+            this.get_img_viewer_w();
+            this.get_preview_img_viewers();
+            this.get_img_data();
             this.get_search_result_body();
         }, 'ges_1022');
 
@@ -177,47 +191,133 @@ export class Main {
 
     public get_img_viewer = (): void =>
         err(() => {
-            const links = sa<HTMLLinkElement>('a[role="link"]');
+            if (data.settings.show_img_viewer_img_action_bar && s_location.Main.i().is_imgs_page) {
+                const links = sa<HTMLLinkElement>('a[role="link"]');
 
-            if (n(links)) {
-                this.img_viewer = [...links].find((link: HTMLLinkElement): boolean =>
-                    err(() => {
-                        const img = sb<HTMLImageElement>(link, 'img');
+                if (n(links)) {
+                    this.img_viewer = [...links].find((link: HTMLLinkElement): boolean =>
+                        err(() => {
+                            const img = sb<HTMLImageElement>(link, 'img');
 
-                        if (n(img)) {
-                            return Boolean(img.offsetWidth) && n(img.style) && n(img.style.height);
-                        }
+                            if (n(img)) {
+                                return (
+                                    Boolean(img.offsetWidth) && n(img.style) && n(img.style.height)
+                                );
+                            }
 
-                        return false;
-                    }, 'ges_1036'),
-                );
+                            return false;
+                        }, 'ges_1036'),
+                    );
+                }
             }
         }, 'ges_1037');
 
     public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
         err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1038');
 
-    public get_img_viewer_w = (): HTMLElement | undefined =>
+    private get_img_viewer_w = (): void =>
         err(() => {
-            const parents: HTMLElement[] = [];
+            if (data.settings.show_img_viewer_img_action_bar && s_location.Main.i().is_imgs_page) {
+                const parents: HTMLElement[] = [];
 
-            if (n(this.img_viewer)) {
-                parents.push(this.img_viewer);
+                if (n(this.img_viewer)) {
+                    parents.push(this.img_viewer);
 
-                while (
-                    this.img_viewer.getBoundingClientRect().bottom ===
-                    _.last(parents)!.getBoundingClientRect().bottom
-                ) {
-                    const last = _.last(parents);
+                    while (
+                        this.img_viewer.getBoundingClientRect().bottom ===
+                        _.last(parents)!.getBoundingClientRect().bottom
+                    ) {
+                        const last = _.last(parents);
 
-                    if (n(last) && n(last.parentElement)) {
-                        parents.push(last.parentElement);
+                        if (n(last) && n(last.parentElement)) {
+                            parents.push(last.parentElement);
+                        }
+                    }
+                }
+
+                this.img_viewer_w = parents[parents.length - 2];
+
+                if (n(this.img_viewer_w)) {
+                    this.img_viewer_w.dataset.img_viewer_i = 'main';
+                }
+            }
+        }, 'ges_1172');
+
+    public get_preview_img_viewers = (): void =>
+        err(() => {
+            if (
+                data.settings.show_preview_img_viewer_img_action_bar &&
+                s_location.Main.i().is_imgs_page
+            ) {
+                const imgs = sa<HTMLDivElement>('.rg_i[data-iml], .rg_i[data-ils]');
+
+                if (n(imgs)) {
+                    this.preview_img_viewers = [];
+                    this.preview_img_viewer_ws = [];
+
+                    imgs.forEach((img): void =>
+                        err(() => {
+                            const link: HTMLLinkElement | undefined = x.closest(img, 'a');
+
+                            if (n(link) && n(link.parentElement)) {
+                                this.preview_img_viewers.push(link);
+                                this.preview_img_viewer_ws.push(link.parentElement);
+
+                                link.dataset.img_viewer_i = (
+                                    this.preview_img_viewers.length - 1
+                                ).toString();
+                            }
+                        }, 'ges_1191'),
+                    );
+                }
+            }
+        }, 'ges_1189');
+
+    private get_img_data = (): void =>
+        err(() => {
+            if (!this.attempted_to_acquire_img_data) {
+                this.attempted_to_acquire_img_data = true;
+
+                if (s_location.Main.i().is_imgs_page) {
+                    const script_els = sa<HTMLScriptElement>('script');
+
+                    if (n(script_els)) {
+                        const img_data_el: HTMLScriptElement | undefined = _.findLast(
+                            script_els,
+                            (script_el: HTMLScriptElement): boolean =>
+                                script_el.innerHTML.startsWith('AF_initDataCallback'),
+                        );
+
+                        if (n(img_data_el)) {
+                            const img_data_el_html: string = img_data_el.innerHTML;
+                            const img_data_el_html_no_before: string = img_data_el_html.substring(
+                                img_data_el_html.indexOf('[') - 0,
+                            );
+                            const img_data_el_html_no_after: string =
+                                img_data_el_html_no_before.substring(
+                                    0,
+                                    img_data_el_html_no_before.lastIndexOf(']') + 1,
+                                );
+
+                            // eslint-disable-next-line prefer-destructuring
+                            const img_data_initial = JSON.parse(img_data_el_html_no_after)[31];
+                            // eslint-disable-next-line prefer-destructuring
+                            this.img_data =
+                                img_data_initial[
+                                    img_data_initial.length === 1 ? 0 : img_data_initial.length - 1
+                                ][12][2];
+
+                            this.img_data = this.img_data.filter((not_used, i: number): boolean =>
+                                err(
+                                    () => n(this.get_preview_img_url({ img_viewer_i: i })),
+                                    'ges_1192',
+                                ),
+                            );
+                        }
                     }
                 }
             }
-
-            return parents[parents.length - 2];
-        }, 'ges_1172');
+        }, 'ges_1188');
 
     public get_search_result_body = (): void =>
         err(() => {
@@ -302,4 +402,18 @@ export class Main {
 
             return 0;
         }, 'ges_1045');
+
+    public get_preview_img_url = ({
+        img_viewer_i,
+    }: {
+        img_viewer_i: i_img_action_bar.ImgViewerI;
+    }): string | undefined =>
+        err(() => {
+            const data = _.get(this.img_data, `[${img_viewer_i}][1][3][0]`);
+            if (typeof data === 'string') {
+                return data;
+            }
+
+            return undefined;
+        }, 'ges_1190');
 }

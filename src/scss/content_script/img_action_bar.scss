@@ -2,6 +2,8 @@
 @import 'shared';
 
 $img_action_bar_button_opacity: 0.65;
+$small_btn_size: 24px;
+$small_icon_size: 13px;
 
 .content {
     position: absolute;
@@ -9,13 +11,54 @@ $img_action_bar_button_opacity: 0.65;
     bottom: 0;
 }
 
+.btn {
+    @include input_basic;
+
+    height: $small_btn_size;
+    width: $small_btn_size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    cursor: pointer;
+    background-color: rgba(66, 133, 244, $img_action_bar_button_opacity);
+    border-color: white;
+
+    svg {
+        height: $small_icon_size;
+        width: $small_icon_size;
+        fill: white;
+    }
+
+    &:hover {
+        background-color: rgba(15, 157, 88, $img_action_bar_button_opacity);
+    }
+
+    &:active {
+        background-color: rgba(219, 68, 55, $img_action_bar_button_opacity);
+    }
+}
+
 .img_action_bar {
     @include border_top;
 
+    position: relative;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
     border-start-start-radius: $bar_border_radius;
     border-color: white;
+    transform-origin: bottom right;
+
+    &.main .btn {
+        height: $btn_size;
+        width: $btn_size;
+
+        svg {
+            height: $icon_size;
+            width: $icon_size;
+        }
+    }
 }
 
 :host-context([dir='ltr']) .img_action_bar {
@@ -26,38 +69,10 @@ $img_action_bar_button_opacity: 0.65;
     @include border_right;
 }
 
-.btn {
-    @include input_basic;
-
-    height: $btn_size;
-    width: $btn_size;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 0;
-    cursor: pointer;
-    background-color: rgba(66, 133, 244, $img_action_bar_button_opacity);
-    border-color: white;
-
-    &:hover {
-        background-color: rgba(15, 157, 88, $img_action_bar_button_opacity);
-    }
-
-    &:active {
-        background-color: rgba(219, 68, 55, $img_action_bar_button_opacity);
-    }
-
-    svg {
-        height: $icon_size;
-        width: $icon_size;
-        fill: white;
-    }
-}
-
 :host-context([dir='ltr']) .btn:not(:first-child) {
-    @include border_left;
+    @include border_top;
 }
 
 :host-context([dir='rtl']) .btn:not(:last-child) {
-    @include border_left;
+    @include border_top;
 }

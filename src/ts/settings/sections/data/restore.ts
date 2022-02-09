@@ -53,6 +53,7 @@ export class Restore {
                 msg: 'update_settings',
                 settings,
                 rerun_actions: true,
+                transform: true,
             });
         }, 'ges_1131');
 

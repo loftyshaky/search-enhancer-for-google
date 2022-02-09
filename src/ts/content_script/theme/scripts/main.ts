@@ -20,7 +20,7 @@ export class Main {
 
     public adapt_panel_to_dark_theme = (): void =>
         err(() => {
-            const panel_root = s<HTMLDivElement>(
+            const panel_roots = sa<HTMLDivElement>(
                 `.${
                     new s_suffix.Main(
                         s_location.Main.i().is_imgs_page ? 'img_action_bar' : 'side_panel',
@@ -28,7 +28,13 @@ export class Main {
                 }`,
             );
 
-            this.apply_css({ roots: [panel_root] });
+            if (n(panel_roots)) {
+                panel_roots.forEach((panel_root) => {
+                    err(() => {
+                        this.apply_css({ roots: [panel_root] });
+                    }, 'ges_1198');
+                });
+            }
         }, 'ges_1183');
 
     public adapt_separator_to_dark_theme = ({ iframe_doc }: { iframe_doc: Document }): void =>

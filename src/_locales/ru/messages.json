@@ -50,8 +50,14 @@
     "allow_favicons_from_duckduckgo_label_text": {
         "message": "Разрешить получать фавиконы с помощью DuckDuckGo"
     },
-    "always_show_img_action_bar_label_text": {
-        "message": "Всегда показывать кнопки"
+    "show_img_viewer_img_action_bar_label_text": {
+        "message": "Показать кнопки действий с изображением в обозревателе изображений"
+    },
+    "show_preview_img_viewer_img_action_bar_label_text": {
+        "message": "Показать кнопки действий с изображением в превью изображений"
+    },
+    "show_img_action_bar_only_on_hover_label_text": {
+        "message": "Показывать только при наведении на изображение"
     },
     "show_view_img_btn_label_text": {
         "message": "Показывать кнопку \"Открыть в полном размере\""

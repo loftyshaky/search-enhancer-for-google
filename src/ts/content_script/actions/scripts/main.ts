@@ -75,13 +75,23 @@ export class Main {
         200,
     );
 
-    public run_reload_actions_2 = (): void =>
-        err(() => {
+    public run_reload_actions_2 = (): Promise<void> =>
+        err_async(async () => {
             if (s_location.Main.i().is_imgs_page) {
+                await d_settings.Main.i().set_from_storage();
                 s_el_parser.Main.i().get_img_viewer();
+                s_el_parser.Main.i().get_preview_img_viewers();
                 s_roots.Main.i().init({ name: 'img_action_bar' });
             }
 
             this.run_reload_actions_debounce();
         }, 'ges_1021');
+
+    public run_reload_actions_2_debounce = _.debounce(
+        (): void =>
+            err(() => {
+                this.run_reload_actions_2();
+            }, 'ges_1197'),
+        200,
+    );
 }

@@ -5,7 +5,7 @@ import { prevent_default } from '@loftyshaky/shared';
 import { d_img_action_bar, p_img_action_bar } from 'content_script/internal';
 
 export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((props) => {
-    const { btn } = props;
+    const { btn, img_viewer_i } = props;
     const Component = d_img_action_bar.Btns.i().component[btn.name];
 
     return data.settings[`show_${btn.name}_btn`] &&
@@ -15,7 +15,7 @@ export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((prop
             type='button'
             title={ext.msg(`${btn.name}_title`)}
             onClick={(): void => {
-                btn.event_callback({ type: btn.name });
+                btn.event_callback({ type: btn.name, img_viewer_i });
             }}
             onContextMenu={prevent_default}
         >

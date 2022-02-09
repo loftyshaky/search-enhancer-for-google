@@ -50,8 +50,14 @@
     "allow_favicons_from_duckduckgo_label_text": {
         "message": "Allow favicons from DuckDuckGo"
     },
-    "always_show_img_action_bar_label_text": {
-        "message": "Always show buttons"
+    "show_img_viewer_img_action_bar_label_text": {
+        "message": "Show image action buttons in image viewer"
+    },
+    "show_preview_img_viewer_img_action_bar_label_text": {
+        "message": "Show image action buttons in image previews"
+    },
+    "show_img_action_bar_only_on_hover_label_text": {
+        "message": "Show only when hovering over image"
     },
     "show_view_img_btn_label_text": {
         "message": "Show \"View image\" button"

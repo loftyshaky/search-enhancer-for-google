@@ -33,7 +33,10 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
                     break;
                 default:
                     if (s_location.Main.i().is_imgs_page) {
-                        s_img_action_bar.Action.i().run({ type: msg.command });
+                        s_img_action_bar.Action.i().run({
+                            type: msg.command,
+                            img_viewer_i: 'main',
+                        });
                     }
             }
         }

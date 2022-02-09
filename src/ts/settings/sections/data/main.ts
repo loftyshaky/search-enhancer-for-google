@@ -112,7 +112,23 @@ export class Main {
                         name: 'imgs',
                         inputs: [
                             new o_inputs.Checkbox({
-                                name: 'always_show_img_action_bar',
+                                name: 'show_img_viewer_img_action_bar',
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'show_img_viewer_img_action_bar_only_on_hover',
+                                parent: 'show_img_viewer_img_action_bar',
+                                alt_msg: ext.msg('show_img_action_bar_only_on_hover_label_text'),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'show_preview_img_viewer_img_action_bar',
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'show_preview_img_viewer_img_action_bar_only_on_hover',
+                                parent: 'show_preview_img_viewer_img_action_bar',
+                                alt_msg: ext.msg('show_img_action_bar_only_on_hover_label_text'),
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({

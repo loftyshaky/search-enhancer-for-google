@@ -13,6 +13,7 @@ import {
     s_location,
     s_roots,
     s_theme,
+    i_img_action_bar,
 } from 'content_script/internal';
 
 export class Main {
@@ -33,12 +34,14 @@ export class Main {
             this.component = {
                 icons: c_icons.Icons,
                 separator: c_infinite_scroll.Separator,
-                img_action_bar: c_img_action_bar.ImgActionBar,
+                img_action_bar: c_img_action_bar.Body,
             };
         }, 'ges_1089');
 
     public init = ({ name, start = 0 }: { name: string; start?: number }): void =>
         err(() => {
+            const { img_viewer } = s_el_parser.Main.i();
+
             if (name === 'icons') {
                 s_roots.Position.i().position_title_el();
 
@@ -97,33 +100,63 @@ export class Main {
                         }, 'ges_1092'),
                     );
                 }
-            } else if (name === 'img_action_bar' && n(s_el_parser.Main.i().img_viewer)) {
-                const append = (): void =>
+            } else if (name === 'img_action_bar') {
+                const append = ({
+                    append_only_to_preview_img_viewers = false,
+                }: {
+                    append_only_to_preview_img_viewers?: boolean;
+                } = {}): void =>
                     err(() => {
-                        this.append_root({
-                            name,
-                            parent: s_el_parser.Main.i().img_viewer!,
-                            i: 0,
-                            append_f_name: 'after',
-                        });
+                        if (n(img_viewer) && !append_only_to_preview_img_viewers) {
+                            this.append_root({
+                                name,
+                                parent: img_viewer,
+                                i: 0,
+                                append_f_name: 'after',
+                                img_viewer_i: 'main',
+                            });
+                        }
+
+                        s_el_parser.Main.i().preview_img_viewer_ws.forEach(
+                            (preview_img_viewer_ws: HTMLElement, i: number) => {
+                                const preview_img_url: string | undefined =
+                                    s_el_parser.Main.i().get_preview_img_url({
+                                        img_viewer_i: i,
+                                    });
+
+                                if (n(preview_img_url)) {
+                                    this.append_root({
+                                        name,
+                                        parent: preview_img_viewer_ws,
+                                        i: 0,
+                                        append_f_name: 'append',
+                                        img_viewer_i: i,
+                                    });
+                                }
+                            },
+                        );
 
                         s_theme.Main.i().adapt_panel_to_dark_theme();
                     }, 'ges_1093');
 
-                const next_el: Element | null = s_el_parser.Main.i().img_viewer!.nextElementSibling;
+                if (n(img_viewer)) {
+                    const next_el: Element | null = img_viewer.nextElementSibling;
 
-                if (n(next_el)) {
-                    const next_el_is_img_action_bar: boolean = x.matches(
-                        next_el as HTMLElement,
-                        `.${new s_suffix.Main(name).result}`,
-                    );
+                    if (n(next_el)) {
+                        const next_el_is_img_action_bar: boolean = x.matches(
+                            next_el as HTMLElement,
+                            `.${new s_suffix.Main(name).result}`,
+                        );
 
-                    if (!next_el_is_img_action_bar) {
+                        if (!next_el_is_img_action_bar) {
+                            append();
+                        }
+                    } else {
                         append();
                     }
-                } else {
-                    append();
                 }
+
+                append({ append_only_to_preview_img_viewers: true });
             }
         }, 'ges_1094');
 
@@ -132,46 +165,52 @@ export class Main {
         i,
         parent,
         append_f_name,
+        img_viewer_i,
     }: {
         name: string;
         i: number;
         parent: HTMLElement;
         append_f_name: 'append' | 'as_first' | 'before' | 'after';
+        img_viewer_i?: i_img_action_bar.ImgViewerI;
     }): Promise<void> =>
         new Promise((resolve) => {
             err(() => {
-                const root: HTMLDivElement = x.create('div', new s_suffix.Main(name).result);
+                const root_cls = new s_suffix.Main(name).result;
 
-                if (name === 'icons') {
-                    if (s_location.Main.i().is_news_page) {
-                        x.add_cls(root, new s_suffix.Main('news').result);
+                if (!sb(parent, `.${root_cls}`)) {
+                    const root: HTMLDivElement = x.create('div', new s_suffix.Main(name).result);
+
+                    if (name === 'icons') {
+                        if (s_location.Main.i().is_news_page) {
+                            x.add_cls(root, new s_suffix.Main('news').result);
+                        }
                     }
-                }
 
-                x[append_f_name](parent, root);
+                    x[append_f_name](parent, root);
 
-                root.attachShadow({ mode: 'open' });
+                    root.attachShadow({ mode: 'open' });
 
-                const content = x.create('div', 'content');
-                x.append(root.shadowRoot, content);
+                    const content = x.create('div', 'content');
+                    x.append(root.shadowRoot, content);
 
-                if (n(root.shadowRoot)) {
-                    const css = x.css(name, root.shadowRoot);
+                    if (n(root.shadowRoot)) {
+                        const css = x.css(name, root.shadowRoot);
 
-                    if (n(css)) {
-                        x.bind(css, 'load', (): void =>
-                            err(() => {
-                                const Component: FunctionComponent<any> = this.component[name];
+                        if (n(css)) {
+                            x.bind(css, 'load', (): void =>
+                                err(() => {
+                                    const Component: FunctionComponent<any> = this.component[name];
 
-                                render(
-                                    <c_crash_handler.Body>
-                                        <Component i={i} />
-                                    </c_crash_handler.Body>,
-                                    content,
-                                    resolve,
-                                );
-                            }, 'ges_1095'),
-                        );
+                                    render(
+                                        <c_crash_handler.Body>
+                                            <Component i={i} img_viewer_i={img_viewer_i} />
+                                        </c_crash_handler.Body>,
+                                        content,
+                                        resolve,
+                                    );
+                                }, 'ges_1095'),
+                            );
+                        }
                     }
                 }
             }, 'ges_1096');

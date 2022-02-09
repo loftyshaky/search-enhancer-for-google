@@ -25,5 +25,5 @@ export class Main {
                     }, 'ges_1186'),
                 );
             }
-        }, 'cnt_1187');
+        }, 'ges_1187');
 }

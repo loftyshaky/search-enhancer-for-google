@@ -5,7 +5,7 @@ export const init = (): Promise<void> =>
     err_async(async () => {
         s_keep_alive.Tabs.i().keep_long();
         s_data.Main.i().init_defaults();
-        await s_data.Main.i().set_from_storage();
+        await s_data.Main.i().set_from_storage({ transform: true });
         await s_icons.Main.i().generate_ip_to_country_arr();
 
         ext.inject_js_and_css_in_content_script(

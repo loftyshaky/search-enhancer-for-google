@@ -28,6 +28,7 @@ export * as s_text_dir from 'content_script/text_dir/scripts';
 export * as s_theme from 'content_script/theme/scripts';
 
 export * as i_icons from 'content_script/icons/interfaces';
+export * as i_img_action_bar from 'content_script/img_action_bar/interfaces';
 export * as i_infinite_scroll from 'content_script/infinite_scroll/interfaces';
 export * as i_side_panel from 'content_script/side_panel/interfaces';
 

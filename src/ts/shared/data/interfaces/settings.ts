@@ -18,7 +18,10 @@ export interface Settings {
     show_favicons: boolean;
     show_server_locations: boolean;
     show_scroll_to_top_btn: boolean;
-    always_show_img_action_bar: boolean;
+    show_img_viewer_img_action_bar: boolean;
+    show_preview_img_viewer_img_action_bar: boolean;
+    show_img_viewer_img_action_bar_only_on_hover: boolean;
+    show_preview_img_viewer_img_action_bar_only_on_hover: boolean;
     show_view_img_btn: boolean;
     show_search_by_img_btn: boolean;
     show_download_img_btn: boolean;
