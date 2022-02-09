@@ -1,6 +1,6 @@
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { i_infinite_scroll } from 'content_script/internal';
+import { s_location, i_infinite_scroll } from 'content_script/internal';
 
 export class LoadEndMsg {
     private static i0: LoadEndMsg;
@@ -24,7 +24,7 @@ export class LoadEndMsg {
     private is_visible: boolean = false;
 
     public get visibility_cls() {
-        return this.is_visible ? '' : 'none';
+        return this.is_visible && s_location.Main.i().is_search_results ? '' : 'none';
     }
 
     public change_visibility = ({ is_visible }: { is_visible: boolean }): void =>
