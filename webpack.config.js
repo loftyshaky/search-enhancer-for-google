@@ -75,7 +75,12 @@ module.exports = (env, argv) => {
                     play_sound: true,
                     after_enable_delay: 300,
                     full_reload_timeout: 1000,
-                    hard_paths: ['_locales', 'shared', 'content_script', 'background'],
+                    hard_paths: [
+                        `_locales${path.sep}`,
+                        `shared${path.sep}`,
+                        `content_script${path.sep}`,
+                        `background${path.sep}`,
+                    ],
                 });
             } else {
                 reloader.reload({
