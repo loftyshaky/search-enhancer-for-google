@@ -49,6 +49,8 @@ export class Main {
             this.get_preview_img_viewers();
             this.get_img_data();
             this.get_search_result_body();
+
+            l(this.preview_img_viewers, this.img_data);
         }, 'ges_1022');
 
     private get_els_of_all_frames = ({ selector }: { selector: string }): HTMLElement[] =>
