@@ -1,7 +1,5 @@
 A browser extension that adds infinite scrolling, site icons, server locations, "View image" button, "Download image" button and more to Google search.
 
-The extension was built on Windows. It uses webpack.
-
 ## Links
 
 [Chrome Web Store](https://bit.ly/search-enhancer-for-google)<br>
