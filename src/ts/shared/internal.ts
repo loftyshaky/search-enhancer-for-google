@@ -3,6 +3,7 @@ export * from 'shared/init_all';
 export * as d_settings from 'shared/settings/data';
 
 export * as s_css_vars from 'shared/css_vars/scripts';
+export * as s_env from 'shared/env/scripts';
 export * as s_icons from 'shared/icons/scripts';
 export * as s_suffix from 'shared/suffix/scripts';
 
