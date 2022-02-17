@@ -200,6 +200,9 @@ export class Main {
                                 include_help: true,
                                 parent: 'preview_img_viewer_img_action_bar_is_visible',
                                 alt_msg: ext.msg('img_viewer_copy_img_btn_is_visible_label_text'),
+                                alt_help_msg: ext.msg(
+                                    'img_viewer_copy_img_btn_is_visible_help_text',
+                                ),
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({

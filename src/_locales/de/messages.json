@@ -95,7 +95,7 @@
     "img_downloads_dir_help_text": {
         "message": "Ein Pfad zum Ordner im Download-Ordner, in dem die heruntergeladenen Grafiken gespeichert werden. Darf Unterordner enthalten. Darf jedoch keine vom Betriebssystem unzulässigen Zeichen enthalten. Wenn der Ordner nicht existiert, wird er beim ersten Herunterladen erstellt. Lassen Sie ihn leer, um Grafiken in den Standardordner herunterzuladen. Beispiel: !Google/Grafiken"
     },
-    "show_copy_img_btn_help_text": {
+    "img_viewer_copy_img_btn_is_visible_help_text": {
         "message": "Nicht alle Anwendungen akzeptieren Grafiken, die mit dieser Schaltfläche kopiert werden. In diesen Fällen müssen Sie die Grafiken auf dem üblichen Weg kopieren - über das Kontextmenü des Browsers."
     },
     "jump_to_related_searches_title": {

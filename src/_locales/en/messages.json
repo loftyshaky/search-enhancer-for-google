@@ -95,7 +95,7 @@
     "img_downloads_dir_help_text": {
         "message": "A path to the folder in the downloads folder, where downloaded images will go. May contain subfolders. Must not contain characters prohibited by the operating system. If the folder does not exist, it will be created on the first download. Leave empty to download images into the default folder. Example: !Google/Images"
     },
-    "show_copy_img_btn_help_text": {
+    "img_viewer_copy_img_btn_is_visible_help_text": {
         "message": "Not all apps will accept images copied with this button. In these cases you will need to copy images the usual way - via browser context menu."
     },
     "jump_to_related_searches_title": {
