@@ -9,7 +9,7 @@ we.runtime.onMessage.addListener(
             if (msg_str === 'update_settings') {
                 await s_data.Main.i().update_settings_debounce(
                     msg.settings,
-                    msg.rerun_actions,
+                    n(msg.rerun_actions) ? msg.rerun_actions : false,
                     n(msg.transform) ? msg.transform : false,
                 );
             } else if (msg_str === 'get_defaults') {
