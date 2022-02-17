@@ -14,25 +14,25 @@
     "enable_infinite_scrolling_label_text": {
         "message": "Включить автоматическую загрузку страниц"
     },
-    "show_enable_btn_label_text": {
+    "enable_btn_is_visible_label_text": {
         "message": "Показывать кнопку включения/выключения"
     },
-    "show_jump_to_related_searches_btn_label_text": {
+    "jump_to_related_searches_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Перейти к похожим запросам/кнопкам нумерации страниц\""
     },
-    "show_page_indicator_label_text": {
+    "page_indicator_is_visible_label_text": {
         "message": "Показывать индикатор общего числа загруженных страниц/текущей страницы"
     },
-    "show_page_separators_label_text": {
+    "page_separators_is_visible_label_text": {
         "message": "Показывать разделители страниц"
     },
-    "show_favicons_label_text": {
+    "favicons_is_visible_label_text": {
         "message": "Показывать иконки сайтов"
     },
-    "show_server_locations_label_text": {
+    "server_locations_is_visible_label_text": {
         "message": "Показывать местоположение серверов"
     },
-    "show_scroll_to_top_btn_label_text": {
+    "scroll_to_top_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Вверх\""
     },
     "keyword_color_label_text": {
@@ -50,34 +50,34 @@
     "allow_favicons_from_duckduckgo_label_text": {
         "message": "Разрешить получать фавиконы с помощью DuckDuckGo"
     },
-    "show_img_viewer_img_action_bar_label_text": {
+    "img_viewer_img_action_bar_is_visible_label_text": {
         "message": "Показать кнопки действий с изображением в обозревателе изображений"
     },
-    "show_preview_img_viewer_img_action_bar_label_text": {
+    "preview_img_viewer_img_action_bar_is_visible_label_text": {
         "message": "Показать кнопки действий с изображением в превью изображений (работает только для первых 100 изображений)"
     },
-    "show_img_action_bar_only_on_hover_label_text": {
+    "img_viewer_img_action_bar_is_visible_only_on_hover_label_text": {
         "message": "Показывать только при наведении на изображение"
     },
-    "show_view_img_btn_label_text": {
+    "img_viewer_view_img_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Открыть в полном размере\""
     },
-    "show_search_by_img_btn_label_text": {
+    "img_viewer_search_by_img_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Поиск по картинке\""
     },
-    "show_download_img_btn_label_text": {
+    "img_viewer_download_img_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Скачать картинку\""
     },
-    "show_save_img_as_btn_label_text": {
+    "img_viewer_save_img_as_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Сохранить картинку как...\""
     },
     "img_downloads_dir_label_text": {
         "message": "Папка загрузок для изображений"
     },
-    "show_copy_img_url_btn_label_text": {
+    "img_viewer_copy_img_url_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Копировать URL картинки\""
     },
-    "show_copy_img_btn_label_text": {
+    "img_viewer_copy_img_btn_is_visible_label_text": {
         "message": "Показывать кнопку \"Копировать картинку\""
     },
     "left_option_text": {

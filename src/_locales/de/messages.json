@@ -14,25 +14,25 @@
     "enable_infinite_scrolling_label_text": {
         "message": "Endlosen Bildlauf aktivieren"
     },
-    "show_enable_btn_label_text": {
+    "enable_btn_is_visible_label_text": {
         "message": "Schaltfläche zum Aktivieren/Deaktivieren anzeigen"
     },
-    "show_jump_to_related_searches_btn_label_text": {
+    "jump_to_related_searches_btn_is_visible_label_text": {
         "message": "Springen zu ähnlichen Suchanfragen/Schaltflächen für Seitenwechsel anzeigen"
     },
-    "show_page_indicator_label_text": {
+    "page_indicator_is_visible_label_text": {
         "message": "Anzeige der Gesamtzahl der geladenen Seiten/Anzeige der aktuellen Seite"
     },
-    "show_page_separators_label_text": {
+    "page_separators_is_visible_label_text": {
         "message": "Seitentrennungen anzeigen"
     },
-    "show_favicons_label_text": {
+    "favicons_is_visible_label_text": {
         "message": "Favicons anzeigen"
     },
-    "show_server_locations_label_text": {
+    "server_locations_is_visible_label_text": {
         "message": "Serverstandorte anzeigen"
     },
-    "show_scroll_to_top_btn_label_text": {
+    "scroll_to_top_btn_is_visible_label_text": {
         "message": "Schaltfläche „Nach oben blättern” anzeigen"
     },
     "keyword_color_label_text": {
@@ -50,34 +50,34 @@
     "allow_favicons_from_duckduckgo_label_text": {
         "message": "Favicons von DuckDuckGo zulassen"
     },
-    "show_img_viewer_img_action_bar_label_text": {
+    "img_viewer_img_action_bar_is_visible_label_text": {
         "message": "Show image action buttons in image viewer"
     },
-    "show_preview_img_viewer_img_action_bar_label_text": {
+    "preview_img_viewer_img_action_bar_is_visible_label_text": {
         "message": "Show image action buttons in image previews (works only for the first 100 images)"
     },
-    "show_img_action_bar_only_on_hover_label_text": {
+    "img_viewer_img_action_bar_is_visible_only_on_hover_label_text": {
         "message": "Show only when hovering over image"
     },
-    "show_view_img_btn_label_text": {
+    "img_viewer_view_img_btn_is_visible_label_text": {
         "message": "Schaltfläche „Grafik anzeigen” anzeigen"
     },
-    "show_search_by_img_btn_label_text": {
+    "img_viewer_search_by_img_btn_is_visible_label_text": {
         "message": "Schaltfläche „Nach Grafik suchen” anzeigen"
     },
-    "show_download_img_btn_label_text": {
+    "img_viewer_download_img_btn_is_visible_label_text": {
         "message": "Schaltfläche „Grafik herunterladen” anzeigen"
     },
-    "show_save_img_as_btn_label_text": {
+    "img_viewer_save_img_as_btn_is_visible_label_text": {
         "message": "Schaltfläche „Grafik speichern unter...” anzeigen"
     },
     "img_downloads_dir_label_text": {
         "message": "Ordner für das Herunterladen von Grafiken"
     },
-    "show_copy_img_btn_label_text": {
+    "img_viewer_copy_img_btn_is_visible_label_text": {
         "message": "Schaltfläche „Grafik kopieren” anzeigen"
     },
-    "show_copy_img_url_btn_label_text": {
+    "img_viewer_copy_img_url_btn_is_visible_label_text": {
         "message": "Schaltfläche „Grafik-Adresse kopieren” anzeigen"
     },
     "left_option_text": {

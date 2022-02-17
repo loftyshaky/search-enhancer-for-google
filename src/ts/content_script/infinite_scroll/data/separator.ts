@@ -22,7 +22,7 @@ export class Separator {
     public offset_left: string = '0';
 
     get none_cls() {
-        return data.settings.show_page_separators ? '' : 'none';
+        return data.settings.page_separators_is_visible ? '' : 'none';
     }
 
     public set_offset_left = (): void =>

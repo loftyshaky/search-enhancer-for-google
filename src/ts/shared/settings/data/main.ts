@@ -53,7 +53,7 @@ export class Main {
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
-            let settings = await ext.storage_get();
+            const settings = await ext.storage_get();
 
             if (_.isEmpty(settings)) {
                 const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
@@ -61,47 +61,8 @@ export class Main {
                 await ext.storage_set(default_settings);
             }
 
-            const result = this.update_schema({ restoring_from_back_up: false, settings });
-
-            if (result.updated_schema) {
-                settings = result.settings;
-
-                await ext.storage_set(settings);
-            }
-
             if (!_.isEqual(toJS(data.settings), settings)) {
                 this.set({ settings });
             }
         }, 'ges_1166');
-
-    public update_schema = ({
-        restoring_from_back_up,
-        settings,
-    }: {
-        restoring_from_back_up: boolean;
-        settings: t.AnyRecord;
-    }): { updated_schema: boolean; settings: i_data.Settings } =>
-        err(() => {
-            let updated_schema: boolean = false;
-            const keys_to_remove: string[] = [];
-
-            if (n(settings.show_color_help)) {
-                settings.color_help_is_visible = restoring_from_back_up
-                    ? settings.color_help_is_visible
-                    : settings.show_color_help;
-
-                delete settings.show_color_help;
-
-                keys_to_remove.push('show_color_help');
-
-                updated_schema = true;
-            }
-
-            if (updated_schema) {
-                we.storage.sync.remove(keys_to_remove);
-                we.storage.local.remove(keys_to_remove);
-            }
-
-            return { updated_schema, settings: settings as i_data.Settings };
-        }, 'ges_1185');
 }

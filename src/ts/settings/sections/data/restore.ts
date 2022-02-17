@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { runInAction } from 'mobx';
 
 import { t } from '@loftyshaky/shared';
-import { d_settings, i_data } from 'shared/internal';
+import { i_data } from 'shared/internal';
 
 export class Restore {
     private static i0: Restore;
@@ -39,15 +39,6 @@ export class Restore {
             } as i_data.Settings;
 
             settings = await this.set({ settings });
-
-            const result = d_settings.Main.i().update_schema({
-                restoring_from_back_up: true,
-                settings,
-            });
-
-            if (result.updated_schema) {
-                settings = result.settings;
-            }
 
             await ext.send_msg_resp({
                 msg: 'update_settings',

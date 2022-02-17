@@ -74,7 +74,7 @@ export class Main {
     private generate_favicon_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(
             async () => {
-                if (data.settings.show_favicons && this.favicons[url] !== 'placeholder') {
+                if (data.settings.favicons_is_visible && this.favicons[url] !== 'placeholder') {
                     runInAction(() =>
                         err(() => {
                             this.favicons[url] = 'pre_placeholder';
@@ -138,7 +138,7 @@ export class Main {
     private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
             if (
-                data.settings.show_server_locations &&
+                data.settings.server_locations_is_visible &&
                 this.server_locations[url] !== 'placeholder'
             ) {
                 runInAction(() =>
@@ -253,7 +253,7 @@ export class Main {
     ): string {
         return (
             (type === 'favicons' && s_location.Main.i().is_news_page) ||
-            data.settings[`show_${type}`]
+            data.settings[`${type}_is_visible`]
         );
     });
 }

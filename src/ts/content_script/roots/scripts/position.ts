@@ -23,11 +23,16 @@ export class Position {
 
                     this.remove_offset_classes({ title_el });
 
-                    if (data.settings.show_favicons && data.settings.show_server_locations) {
+                    if (
+                        data.settings.favicons_is_visible &&
+                        data.settings.server_locations_is_visible
+                    ) {
                         x.add_cls(title_el, this.offset_2_cls);
                     } else if (
-                        (data.settings.show_favicons && !data.settings.show_server_locations) ||
-                        (!data.settings.show_favicons && data.settings.show_server_locations)
+                        (data.settings.favicons_is_visible &&
+                            !data.settings.server_locations_is_visible) ||
+                        (!data.settings.favicons_is_visible &&
+                            data.settings.server_locations_is_visible)
                     ) {
                         x.add_cls(title_el, this.offset_1_cls);
                     }

@@ -193,7 +193,10 @@ export class Main {
 
     public get_img_viewer = (): void =>
         err(() => {
-            if (data.settings.show_img_viewer_img_action_bar && s_location.Main.i().is_imgs_page) {
+            if (
+                data.settings.img_viewer_img_action_bar_is_visible &&
+                s_location.Main.i().is_imgs_page
+            ) {
                 const links = sa<HTMLLinkElement>('a[role="link"]');
 
                 if (n(links)) {
@@ -219,7 +222,10 @@ export class Main {
 
     private get_img_viewer_w = (): void =>
         err(() => {
-            if (data.settings.show_img_viewer_img_action_bar && s_location.Main.i().is_imgs_page) {
+            if (
+                data.settings.img_viewer_img_action_bar_is_visible &&
+                s_location.Main.i().is_imgs_page
+            ) {
                 const parents: HTMLElement[] = [];
 
                 if (n(this.img_viewer)) {
@@ -248,7 +254,7 @@ export class Main {
     public get_preview_img_viewers = (): void =>
         err(() => {
             if (
-                data.settings.show_preview_img_viewer_img_action_bar &&
+                data.settings.preview_img_viewer_img_action_bar_is_visible &&
                 s_location.Main.i().is_imgs_page
             ) {
                 const imgs = sa<HTMLDivElement>('.rg_i[data-iml], .rg_i[data-ils]');

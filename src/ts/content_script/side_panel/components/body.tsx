@@ -26,14 +26,14 @@ export const Body: React.FunctionComponent = observer(() => {
                 d_side_panel.Scroll.i().stop_remember_scrolling_position_0_35_seconds_timeout
             }
         >
-            {data.settings.enable_infinite_scrolling && data.settings.show_enable_btn ? (
+            {data.settings.enable_infinite_scrolling && data.settings.enable_btn_is_visible ? (
                 <c_side_panel.Btn
                     name='enable_btn'
                     disabled_cls={d_side_panel.InfiniteScrollingState.i().disabled_cls}
                     on_click={d_side_panel.InfiniteScrollingState.i().change}
                 />
             ) : undefined}
-            {data.settings.show_scroll_to_top_btn ? (
+            {data.settings.scroll_to_top_btn_is_visible ? (
                 <c_side_panel.Btn
                     name={name_1}
                     position_remembered_cls={d_side_panel.Scroll.i().position_remembered_cls}
@@ -49,7 +49,7 @@ export const Body: React.FunctionComponent = observer(() => {
                     }}
                 />
             ) : undefined}
-            {data.settings.show_jump_to_related_searches_btn ? (
+            {data.settings.jump_to_related_searches_btn_is_visible ? (
                 <c_side_panel.Btn
                     name='jump_to_related_searches'
                     position_remembered_cls={
@@ -66,7 +66,7 @@ export const Body: React.FunctionComponent = observer(() => {
                     }}
                 />
             ) : undefined}
-            {data.settings.enable_infinite_scrolling && data.settings.show_page_indicator ? (
+            {data.settings.enable_infinite_scrolling && data.settings.page_indicator_is_visible ? (
                 <>
                     <c_side_panel.Page name='current' val={d_side_panel.Page.i().current} />
                     <c_side_panel.Page name='total' val={d_side_panel.Page.i().total} />

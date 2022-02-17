@@ -74,36 +74,36 @@ export class Main {
                                     d_sections.Val.i().restore_default_palette_callback,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_enable_btn',
+                                name: 'enable_btn_is_visible',
                                 parent: 'enable_infinite_scrolling',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_page_indicator',
+                                name: 'page_indicator_is_visible',
                                 parent: 'enable_infinite_scrolling',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_page_separators',
+                                name: 'page_separators_is_visible',
                                 parent: 'enable_infinite_scrolling',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_favicons',
+                                name: 'favicons_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_server_locations',
+                                name: 'server_locations_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_scroll_to_top_btn',
+                                name: 'scroll_to_top_btn_is_visible',
                                 include_help: true,
                                 alt_help_msg: ext.msg('scroll_to_top_title'),
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_jump_to_related_searches_btn',
+                                name: 'jump_to_related_searches_btn_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                         ],
@@ -112,40 +112,102 @@ export class Main {
                         name: 'imgs',
                         inputs: [
                             new o_inputs.Checkbox({
-                                name: 'show_img_viewer_img_action_bar',
+                                name: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_img_viewer_img_action_bar_only_on_hover',
-                                parent: 'show_img_viewer_img_action_bar',
-                                alt_msg: ext.msg('show_img_action_bar_only_on_hover_label_text'),
+                                name: 'img_viewer_img_action_bar_is_visible_only_on_hover',
+                                parent: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_preview_img_viewer_img_action_bar',
+                                name: 'img_viewer_view_img_btn_is_visible',
+                                parent: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_preview_img_viewer_img_action_bar_only_on_hover',
-                                parent: 'show_preview_img_viewer_img_action_bar',
-                                alt_msg: ext.msg('show_img_action_bar_only_on_hover_label_text'),
+                                name: 'img_viewer_search_by_img_btn_is_visible',
+                                parent: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_view_img_btn',
+                                name: 'img_viewer_download_img_btn_is_visible',
+                                parent: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({
-                                name: 'show_search_by_img_btn',
-                                event_callback: d_sections.Val.i().change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'show_download_img_btn',
-                                event_callback: d_sections.Val.i().change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'show_save_img_as_btn',
+                                name: 'img_viewer_save_img_as_btn_is_visible',
                                 is_cut: true,
+                                parent: 'img_viewer_img_action_bar_is_visible',
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'img_viewer_copy_img_btn_is_visible',
+                                include_help: true,
+                                parent: 'img_viewer_img_action_bar_is_visible',
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'img_viewer_copy_img_url_btn_is_visible',
+                                parent: 'img_viewer_img_action_bar_is_visible',
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_img_action_bar_is_visible',
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_img_action_bar_is_visible_only_on_hover',
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg(
+                                    'img_viewer_img_action_bar_is_visible_only_on_hover_label_text',
+                                ),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_view_img_btn_is_visible',
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg('img_viewer_view_img_btn_is_visible_label_text'),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_search_by_img_btn_is_visible',
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg(
+                                    'img_viewer_search_by_img_btn_is_visible_label_text',
+                                ),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_download_img_btn_is_visible',
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg(
+                                    'img_viewer_download_img_btn_is_visible_label_text',
+                                ),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_save_img_as_btn_is_visible',
+                                is_cut: true,
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg(
+                                    'img_viewer_save_img_as_btn_is_visible_label_text',
+                                ),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_copy_img_btn_is_visible',
+                                include_help: true,
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg('img_viewer_copy_img_btn_is_visible_label_text'),
+                                event_callback: d_sections.Val.i().change,
+                            }),
+                            new o_inputs.Checkbox({
+                                name: 'preview_img_viewer_copy_img_url_btn_is_visible',
+                                parent: 'preview_img_viewer_img_action_bar_is_visible',
+                                alt_msg: ext.msg(
+                                    'img_viewer_copy_img_url_btn_is_visible_label_text',
+                                ),
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Text({
@@ -154,15 +216,6 @@ export class Main {
                                 event_callback: d_sections.Val.i().change,
                                 warn_state_checker: d_sections.Val.i().validate_input,
                                 remove_val_callback: d_sections.Val.i().remove_val,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'show_copy_img_btn',
-                                include_help: true,
-                                event_callback: d_sections.Val.i().change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'show_copy_img_url_btn',
-                                event_callback: d_sections.Val.i().change,
                             }),
                         ],
                     }),

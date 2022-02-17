@@ -16,7 +16,8 @@ export class Scroll {
         err(() => {
             if (
                 data.settings.enable_infinite_scrolling &&
-                (data.settings.infinite_scrolling_enabled || !data.settings.show_enable_btn) &&
+                (data.settings.infinite_scrolling_enabled ||
+                    !data.settings.enable_btn_is_visible) &&
                 document.body.scrollHeight - document.documentElement.scrollTop <=
                     s_viewport.Main.i().get_dim({ dim: 'height' }) + 600
             ) {
