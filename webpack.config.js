@@ -73,8 +73,7 @@ module.exports = (env, argv) => {
                     ext_id,
                     hard: false,
                     play_sound: true,
-                    after_enable_delay: 300,
-                    full_reload_timeout: 1000,
+                    after_reload_delay: 1000,
                     hard_paths: [
                         `_locales${path.sep}`,
                         `shared${path.sep}`,
@@ -87,8 +86,7 @@ module.exports = (env, argv) => {
                     ext_id,
                     hard: true,
                     play_sound: true,
-                    after_enable_delay: 300,
-                    full_reload_timeout: 1000,
+                    after_reload_delay: 1000,
                 });
 
                 first_reload_completed = true;
