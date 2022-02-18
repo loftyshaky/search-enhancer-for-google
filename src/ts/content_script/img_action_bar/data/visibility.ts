@@ -1,4 +1,5 @@
 import { makeObservable, observable, action } from 'mobx';
+import { computedFn } from 'mobx-utils';
 
 import { i_img_action_bar } from 'content_script/internal';
 
@@ -76,25 +77,25 @@ export class Visibility {
     }): string =>
         err(() => (img_viewer_i === 'main' ? 'img_viewer' : 'preview_img_viewer'), 'ges_1200');
 
-    public visibility_cls = ({
-        img_viewer_i,
-    }: {
-        img_viewer_i: i_img_action_bar.ImgViewerI;
-    }): string =>
-        err(
-            () =>
-                (img_viewer_i === 'main' &&
-                    data.settings.img_viewer_img_action_bar_is_visible &&
-                    ((data.settings.img_viewer_img_action_bar_is_visible_only_on_hover &&
-                        this.is_visible[img_viewer_i]) ||
-                        !data.settings.img_viewer_img_action_bar_is_visible_only_on_hover)) ||
-                (img_viewer_i !== 'main' &&
-                    data.settings.preview_img_viewer_img_action_bar_is_visible &&
-                    ((data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover &&
-                        this.is_visible[img_viewer_i]) ||
-                        !data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover))
-                    ? ''
-                    : 'hidden',
-            'ges_1194',
-        );
+    public visibility_cls = computedFn(function (
+        this: Visibility,
+        {
+            img_viewer_i,
+        }: {
+            img_viewer_i: i_img_action_bar.ImgViewerI;
+        },
+    ): string {
+        return (img_viewer_i === 'main' &&
+            data.settings.img_viewer_img_action_bar_is_visible &&
+            ((data.settings.img_viewer_img_action_bar_is_visible_only_on_hover &&
+                this.is_visible[img_viewer_i]) ||
+                !data.settings.img_viewer_img_action_bar_is_visible_only_on_hover)) ||
+            (img_viewer_i !== 'main' &&
+                data.settings.preview_img_viewer_img_action_bar_is_visible &&
+                ((data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover &&
+                    this.is_visible[img_viewer_i]) ||
+                    !data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover))
+            ? ''
+            : 'hidden';
+    });
 }

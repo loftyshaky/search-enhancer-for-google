@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from 'mobx';
 
-import { s_el_parser, i_img_action_bar } from 'content_script/internal';
+import { i_img_action_bar } from 'content_script/internal';
 
 export class Size {
     private static i0: Size;
@@ -21,14 +21,14 @@ export class Size {
 
     public set_scale = ({
         img_viewer_i,
-        img_action_bar_ref,
-    }: {
+    }: // img_action_bar_ref,
+    {
         img_viewer_i: i_img_action_bar.ImgViewerI;
-        img_action_bar_ref: HTMLDivElement | null;
+        // img_action_bar_ref: HTMLDivElement | null;
     }): void =>
         err(() => {
             this.scale[img_viewer_i] = 'scale(100%)';
-
+            /*
             if (n(img_action_bar_ref)) {
                 if (img_viewer_i !== 'main') {
                     const img_viewer: HTMLElement =
@@ -49,5 +49,6 @@ export class Size {
                     }
                 }
             }
+            */
         }, 'ges_1196');
 }

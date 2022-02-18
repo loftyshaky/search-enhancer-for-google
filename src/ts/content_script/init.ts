@@ -37,6 +37,7 @@ export const init = (): Promise<void> =>
             if (s_location.Main.i().is_imgs_page) {
                 // "get_img_viewer_w" function called from "change" function causes infinite loop in "All" pages when clicking on cards: https://www.google.com/search?q=animals+list
                 x.bind(document, 'mousemove', d_img_action_bar.Visibility.i().change);
+                x.bind(document, 'scroll', d_img_action_bar.Position.i().set_bottom_all);
             }
         }
     }, 'ges_1082');
