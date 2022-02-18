@@ -12,7 +12,7 @@ export class Main {
     private constructor() {}
 
     public run = ({ type, img_url }: { type: string; img_url: string }): Promise<void> =>
-        new Promise(() =>
+        new Promise(() => {
             err_async(async () => {
                 if (['view_img', 'search_by_img'].includes(type)) {
                     we.tabs.create({ url: img_url });
@@ -58,6 +58,6 @@ export class Main {
                         await we.downloads.download(download_item);
                     }
                 }
-            }, 'ges_1015'),
-        );
+            }, 'ges_1015');
+        });
 }

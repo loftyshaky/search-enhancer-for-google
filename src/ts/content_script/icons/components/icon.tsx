@@ -55,7 +55,5 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
                 <svg.Yard />
             ) : undefined}
         </span>
-    ) : (
-        <></>
-    );
+    ) : null;
 });
