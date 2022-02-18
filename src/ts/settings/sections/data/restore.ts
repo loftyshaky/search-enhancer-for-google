@@ -39,7 +39,6 @@ export class Restore {
             } as i_data.Settings;
 
             settings = await this.set({ settings });
-
             await ext.send_msg_resp({
                 msg: 'update_settings',
                 settings,
