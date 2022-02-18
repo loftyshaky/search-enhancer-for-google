@@ -13,10 +13,7 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
     .side_panel_item {
         cursor: help;
         font-size: $font_size;
-        padding-top: 4px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-        padding-right: 9px;
+        padding: 4px 9px 3px 10px;
         color: white;
 
         &:not(:last-child) {
