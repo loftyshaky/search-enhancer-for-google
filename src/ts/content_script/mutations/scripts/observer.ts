@@ -1,5 +1,5 @@
 import { s_suffix } from 'shared/internal';
-import { s_actions } from 'content_script/internal';
+import { s_actions, s_infinite_scroll } from 'content_script/internal';
 
 const observer = new MutationObserver((mutations): void =>
     err(() => {
@@ -29,6 +29,8 @@ const observer = new MutationObserver((mutations): void =>
                     )
                 ) {
                     s_actions.Main.i().run_reload_actions_2_debounce();
+
+                    s_infinite_scroll.FooterEls.i().append_to_footer();
                 }
             }, 'ges_1087'),
         );
