@@ -1,0 +1,47 @@
+@import '../shared/vars';
+@import 'google';
+
+body {
+    overflow: hidden;
+
+    /* > remove padding and margin from top and bottom of search results body to set my own on my iframe elements */
+    #cnt,
+    #rso {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    &.all_#{$app_id}, &.videos_#{$app_id} {
+        #rso > div:last-child > .g {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &.news_#{$app_id} {
+        /* stylelint-disable-next-line selector-class-pattern */
+        #rso > div:last-child > g-card {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &.all_#{$app_id}, &.books_#{$app_id} {
+        #rso > div:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &.videos_#{$app_id} {
+        #rso > div:first-child {
+            margin-bottom: 0 !important;
+        }
+
+        /* < */
+    }
+}
+
+/* top stripe in "Videos" page */
+g-expandable-container {
+    display: none !important;
+}
+
+/* < */

@@ -13,6 +13,7 @@ import {
 export const init = (): Promise<void> =>
     err_async(async () => {
         if (s_location.Main.i().is_content_script_execution_page) {
+            s_location.Main.i().set_current_location();
             s_keep_alive.Tabs.i().add_on_connect_listener();
             x.insert_invisible_chars_in_title();
             s_tab_index.Main.i().bind_set_input_type_f({

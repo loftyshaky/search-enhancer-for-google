@@ -1,4 +1,25 @@
 .iframe_#{$app_id} {
+    display: block;
     border: 0;
     width: 100%;
+
+    &.all_#{$app_id} {
+        margin-bottom: $search_result_offset_all;
+    }
+
+    &.videos_#{$app_id} {
+        margin-bottom: $search_result_offset_videos;
+    }
+
+    &.books_#{$app_id} {
+        margin-bottom: $search_result_offset_books;
+    }
+
+    &.news_#{$app_id} {
+        margin-bottom: $search_result_offset_news;
+    }
+
+    &.shopping_#{$app_id} {
+        margin-bottom: $search_result_offset_shopping;
+    }
 }

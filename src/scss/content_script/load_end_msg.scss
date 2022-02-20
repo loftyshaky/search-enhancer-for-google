@@ -3,8 +3,8 @@
 
 .load_end_msg {
     position: relative;
-    bottom: 6px;
     font-size: 18px;
     width: 500px;
     color: red;
+    margin-bottom: $spinner_load_end_msg_margin_bottom;
 }

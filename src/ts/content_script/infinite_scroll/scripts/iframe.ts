@@ -50,6 +50,10 @@ export class Iframe {
                 const el_to_append_iframe_to = loading_first_iframe
                     ? s<HTMLElement>(`.${new s_suffix.Main('spinner').result}`)
                     : this.last_iframe;
+                const iframe_and_body_classes: string = x.cls([
+                    new s_suffix.Main(s_location.Main.i().current_location).result,
+                    loading_first_iframe ? new s_suffix.Main('first_inserted').result : undefined,
+                ]);
 
                 this.last_iframe = x.create(
                     'iframe',
@@ -57,6 +61,7 @@ export class Iframe {
                         new s_suffix.Main('iframe').result,
                         new s_suffix.Main('hidden').result,
                         new s_suffix.Main('opacity_0').result,
+                        iframe_and_body_classes,
                     ]),
                 );
 
@@ -82,6 +87,11 @@ export class Iframe {
                                                 this.last_iframe.contentDocument;
 
                                             if (n(iframe_doc)) {
+                                                iframe_doc.body.className = x.cls([
+                                                    iframe_doc.body.className,
+                                                    iframe_and_body_classes,
+                                                ]);
+
                                                 await s_roots.Main.i().append_root({
                                                     name: 'separator',
                                                     parent: iframe_doc.body,
@@ -176,7 +186,7 @@ export class Iframe {
                                     );
 
                                     x.css('content_script_css', iframe_doc.head);
-                                    const css = x.css('iframe_inner', iframe_doc.head);
+                                    const css = x.css('google_iframe_inner', iframe_doc.head);
 
                                     if (n(css)) {
                                         x.bind(css, 'load', show_page);

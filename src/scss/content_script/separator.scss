@@ -4,21 +4,26 @@
 .separator {
     color: $black;
     font-size: $font_size;
-    margin-bottom: 44px;
 
-    &.video {
-        margin-bottom: 31px;
+    /* background-color: red; */
+
+    &.all {
+        margin-bottom: $search_result_offset_all;
+    }
+
+    &.videos {
+        margin-bottom: $search_result_offset_videos;
     }
 
     &.books {
-        margin-bottom: 17px;
+        margin-bottom: $search_result_offset_books;
     }
 
     &.news {
-        margin-bottom: 19px;
+        margin-bottom: $search_result_offset_news;
     }
 
     &.shopping {
-        margin-bottom: 7px;
+        margin-bottom: $search_result_offset_shopping;
     }
 }

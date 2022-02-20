@@ -11,10 +11,7 @@ export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = o
             className={x.cls([
                 'separator',
                 d_infinite_scroll.Separator.i().none_cls,
-                s_location.Classes.i().videos_cls,
-                s_location.Classes.i().books_cls,
-                s_location.Classes.i().news_cls,
-                s_location.Classes.i().shopping_cls,
+                s_location.Main.i().current_location,
             ])}
             style={{ marginInlineStart: d_infinite_scroll.Separator.i().offset_left }}
         >

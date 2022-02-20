@@ -19,7 +19,7 @@ class Manifest {
                         'content_script_css.css',
                         'icons.css',
                         'separator.css',
-                        'iframe_inner.css',
+                        'google_iframe_inner.css',
                         'spinner.css',
                         'load_end_msg.css',
                         'side_panel.css',

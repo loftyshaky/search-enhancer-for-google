@@ -1,0 +1,26 @@
+/* > Titles width. If you don't edit these long titles won't fit because I put titles and icons in one line */
+#res {
+    [style='width:600px'] {
+        width: 652px !important;
+    }
+}
+
+/* < */
+
+/* > Search result text width.
+When I edit titles width above search result text becomes wider, which is undesirable. Here I restore normal width */
+#res .g [style='-webkit-line-clamp:2'] {
+    width: 600px;
+}
+
+/* < */
+
+/*
+.g {
+    background-color: red;
+}
+
+body.books_#{$app_id} #rso > div {
+    background-color: red;
+}
+*/
