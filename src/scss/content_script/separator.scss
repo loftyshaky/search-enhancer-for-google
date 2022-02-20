@@ -24,6 +24,6 @@
     }
 
     &.shopping {
-        margin-bottom: $search_result_offset_shopping;
+        margin-bottom: $search_result_offset_shopping - 8px;
     }
 }

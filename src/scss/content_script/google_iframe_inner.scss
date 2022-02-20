@@ -24,6 +24,21 @@ body {
         }
     }
 
+    &.shopping_#{$app_id} {
+        /* stylelint-disable-next-line selector-class-pattern */
+        .sh-sr__shop-result-group {
+            margin-top: 12px !important;
+        }
+
+        #rso {
+            margin-bottom: 0 !important;
+        }
+        /* stylelint-disable-next-line selector-class-pattern */
+        .sh-vrd__container {
+            margin-bottom: 0 !important;
+        }
+    }
+
     &.all_#{$app_id}, &.books_#{$app_id} {
         #rso > div:last-child {
             margin-bottom: 0 !important;

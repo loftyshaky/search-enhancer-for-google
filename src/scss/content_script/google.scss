@@ -23,4 +23,9 @@ When I edit titles width above search result text becomes wider, which is undesi
 body.books_#{$app_id} #rso > div {
     background-color: red;
 }
+
+.sh-vrd__container,
+.sh-sr__shop-result-group {
+    background-color: red;
+}
 */
