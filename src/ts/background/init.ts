@@ -1,11 +1,10 @@
 import { s_env } from 'shared/internal';
-import { s_data, s_icons } from 'background/internal';
+import { s_data } from 'background/internal';
 
 export const init = (): Promise<void> =>
     err_async(async () => {
         s_data.Main.i().init_defaults();
         await s_data.Main.i().set_from_storage({ transform: true });
-        await s_icons.Main.i().generate_ip_to_country_arr();
 
         if (s_env.Main.i().is_dev()) {
             ext.inject_js_and_css_in_content_script(

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { Tabs } from 'webextension-polyfill-ts';
 
 import { t } from '@loftyshaky/shared';
 
@@ -16,6 +17,8 @@ export class Main {
     private constructor() {}
 
     public ip_to_country: i_icons.IpToCountry[] = [];
+    public called_generate_ip_to_country_arr_f_once: boolean = false;
+    private fs_to_run_after_ip_to_country_arr_populated: t.CallbackVoid[] = [];
 
     private empty_favicons: t.StringRecord = {
         google: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABs0lEQVR4AWL4//8/RRjO8Iucx+noO0O2qmlbUEnt5r3Juas+hsQD6KaG7dqCKPgx72Pe9GIY27btZBrbtm3btm0nO12D7tVXe63jqtqqU/iDw9K58sEruKkngH0DBljOE+T/qqx/Ln718RZOFasxyd3XRbWzlFMxRbgOTx9QWFzHtZlD+aqLb108sOAIAai6+NbHW7lUHaZkDFJt+wp1DG7R1d0b7Z88EOL08oXwjokcOvvUxYMjBFCamWP5KjKBjKOpZx2HEPj+Ieod26U+dpg6lK2CIwTQH0oECGT5eHj+IgSueJ5fPaPg6PZrz6DGHiGAISE7QPrIvIKVrSvCe2DNHSsehIDatOBna/+OEOgTQE6WAy1AAFiVcf6PhgCGxEvlA9QngLlAQCkLsNWhBZIDz/zg4ggmjHfYxoPGEMPZECW+zjwmFk6Ih194y7VHYGOPvEYlTAJlQwI4MEhgTOzZGiNalRpGgsOYFw5lEfTKybgfBtmuTNdI3MrOTAQmYf/DNcAwDeycVjROgZFt18gMso6V5Z8JpcEk2LPKpOAH0/4bKMCAYnuqm7cHOGHJTBRhAEJN9d/t5zCxAAAAAElFTkSuQmCC',
@@ -73,15 +76,36 @@ export class Main {
             return base64;
         }, 'ges_1006');
 
-    public get_server_info = async ({ url }: { url: string }): Promise<i_icons.ServerInfo> =>
+    public get_server_info = async ({
+        url,
+        tab_id,
+    }: {
+        url: string;
+        tab_id?: number | undefined;
+    }): Promise<i_icons.ServerInfo> =>
         err_async(async () => {
+            let tab_id_final = tab_id;
+
+            if (!n(tab_id)) {
+                const tab: Tabs.Tab | undefined = await ext.get_active_tab();
+
+                if (n(tab)) {
+                    tab_id_final = tab.id;
+                }
+            }
             const empty_row = {
+                url,
                 ip: '',
                 country_code: '',
                 country_name: '',
             };
             try {
-                if (n(this.ip_to_country)) {
+                if (this.ip_to_country.length === 0) {
+                    this.fs_to_run_after_ip_to_country_arr_populated.push((): void => {
+                        this.get_server_info({ url, tab_id: tab_id_final });
+                    });
+                    this.generate_ip_to_country_arr();
+                } else if (n(this.ip_to_country)) {
                     const settings: i_data.Settings = await ext.storage_get();
                     const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
                         [
@@ -94,9 +118,9 @@ export class Main {
                     const response_2: Response = await fetch(
                         `https://dns.google/resolve?name=${url}`,
                     );
+
                     const json: any = await response_2.json();
                     const ip: string = (_.last(json.Answer) as any).data;
-
                     const record: i_icons.IpToCountry | undefined = _.findLast(
                         this.ip_to_country,
                         (item: i_icons.IpToCountry): boolean =>
@@ -106,12 +130,16 @@ export class Main {
                             ),
                     );
 
-                    if (n(record)) {
-                        return {
-                            ip,
-                            country_code: record.country_code,
-                            country_name: region_name.of(record.country_code),
-                        };
+                    if (n(record) && n(tab_id_final)) {
+                        ext.send_msg_to_tab(tab_id_final, {
+                            msg: 'process_server_info',
+                            server_info: {
+                                url,
+                                ip,
+                                country_code: record.country_code,
+                                country_name: region_name.of(record.country_code),
+                            },
+                        });
                     }
                 }
 
@@ -123,33 +151,47 @@ export class Main {
             }
         }, 'ges_1009');
 
-    public generate_ip_to_country_arr = (): Promise<void> =>
+    private generate_ip_to_country_arr = (): Promise<void> =>
         err_async(async () => {
-            const response = await fetch(we.runtime.getURL('ip_to_country_ipv4.csv'));
-            const ip_to_country_text: string = await response.text();
+            if (!this.called_generate_ip_to_country_arr_f_once) {
+                this.called_generate_ip_to_country_arr_f_once = true;
 
-            const ip_to_country_arr = ip_to_country_text.split(/\r?\n/);
-            const ip_to_country_db_arr: (i_icons.IpToCountry | undefined)[] = ip_to_country_arr.map(
-                (item: string): i_icons.IpToCountry | undefined =>
-                    err(() => {
-                        const item_arr: string[] = item.split(',');
+                const response = await fetch(we.runtime.getURL('ip_to_country_ipv4.csv'));
+                const ip_to_country_text: string = await response.text();
 
-                        if (n(item_arr) && n(item_arr[0]) && n(item_arr[2])) {
-                            return {
-                                ip_from: this.convert_ip_to_ip_number({
-                                    ip: item_arr[0],
-                                }),
-                                country_code: item_arr[2],
-                            };
-                        }
+                const ip_to_country_arr = ip_to_country_text.split(/\r?\n/);
+                const ip_to_country_db_arr: (i_icons.IpToCountry | undefined)[] =
+                    ip_to_country_arr.map((item: string): i_icons.IpToCountry | undefined =>
+                        err(() => {
+                            const item_arr: string[] = item.split(',');
 
-                        return undefined;
-                    }, 'ges_1010'),
-            );
+                            if (n(item_arr) && n(item_arr[0]) && n(item_arr[2])) {
+                                return {
+                                    ip_from: this.convert_ip_to_ip_number({
+                                        ip: item_arr[0],
+                                    }),
+                                    country_code: item_arr[2],
+                                };
+                            }
 
-            this.ip_to_country = ip_to_country_db_arr.filter(
-                (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'ges_1011'),
-            ) as i_icons.IpToCountry[];
+                            return undefined;
+                        }, 'ges_1010'),
+                    );
+
+                this.ip_to_country = ip_to_country_db_arr.filter(
+                    (item: i_icons.IpToCountry | undefined): boolean =>
+                        err(() => n(item), 'ges_1011'),
+                ) as i_icons.IpToCountry[];
+
+                this.fs_to_run_after_ip_to_country_arr_populated.forEach(
+                    (f: t.CallbackVoid): void =>
+                        err(() => {
+                            f();
+                        }, 'ges_1204'),
+                );
+
+                this.fs_to_run_after_ip_to_country_arr_populated = [];
+            }
         }, 'ges_1012');
 
     private convert_ip_to_ip_number = ({ ip }: { ip: string }): number =>

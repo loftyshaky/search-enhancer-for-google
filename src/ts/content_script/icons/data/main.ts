@@ -147,34 +147,42 @@ export class Main {
                     }, 'ges_1176'),
                 );
 
-                const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp({
+                ext.send_msg({
                     msg: 'get_server_info',
                     url,
                 });
-                const server_location_found: boolean =
-                    n(server_info) && server_info.country_code !== '';
-
-                const flag_path = server_location_found
-                    ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
-                    : 'placeholder';
-
-                runInAction(() =>
-                    err(() => {
-                        this.server_locations[url] = flag_path;
-
-                        if (server_location_found) {
-                            if (server_info.country_name !== '') {
-                                this.server_countries[url] = server_info.country_name;
-                            }
-
-                            if (server_info.ip !== '') {
-                                this.server_ips[url] = server_info.ip;
-                            }
-                        }
-                    }, 'ges_1048'),
-                );
             }
         }, 'ges_1049');
+
+    public process_server_info = ({
+        server_info,
+    }: {
+        server_info: i_icons_shared.ServerInfo;
+    }): void =>
+        err(() => {
+            const server_location_found: boolean =
+                n(server_info) && server_info.country_code !== '';
+
+            const flag_path = server_location_found
+                ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
+                : 'placeholder';
+
+            runInAction(() =>
+                err(() => {
+                    this.server_locations[server_info.url] = flag_path;
+
+                    if (server_location_found) {
+                        if (server_info.country_name !== '') {
+                            this.server_countries[server_info.url] = server_info.country_name;
+                        }
+
+                        if (server_info.ip !== '') {
+                            this.server_ips[server_info.url] = server_info.ip;
+                        }
+                    }
+                }, 'ges_1048'),
+            );
+        }, 'ges_1205');
 
     public generate_urls = ({ i }: { i: number }): void =>
         err(() => {
