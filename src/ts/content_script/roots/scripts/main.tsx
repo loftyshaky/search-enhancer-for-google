@@ -186,7 +186,14 @@ export class Main {
                         }
                     }
 
-                    x[append_f_name](parent, root);
+                    x[append_f_name](
+                        !s_location.Main.i().is_news_page &&
+                            name === 'icons' &&
+                            n(parent.firstChild)
+                            ? parent.firstChild
+                            : parent,
+                        root,
+                    );
 
                     root.attachShadow({ mode: 'open' });
 
