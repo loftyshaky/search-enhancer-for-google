@@ -1,12 +1,6 @@
 import { MouseEvent } from 'react';
 import { t } from '@loftyshaky/shared';
-import {
-    d_icons,
-    d_side_panel,
-    s_actions,
-    s_img_action_bar,
-    s_location,
-} from 'content_script/internal';
+import { d_side_panel, s_actions, s_img_action_bar, s_location } from 'content_script/internal';
 
 we.runtime.onMessage.addListener((msg: t.Msg): any =>
     err(() => {
@@ -45,9 +39,6 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
                         });
                     }
             }
-        }
-        if (msg_str === 'process_server_info') {
-            d_icons.Main.i().process_server_info({ server_info: msg.server_info });
         }
 
         return undefined;
