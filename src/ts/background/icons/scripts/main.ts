@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { Tabs } from 'webextension-polyfill-ts';
 
 import { t } from '@loftyshaky/shared';
 
@@ -76,23 +75,8 @@ export class Main {
             return base64;
         }, 'ges_1006');
 
-    public get_server_info = async ({
-        url,
-        tab_id,
-    }: {
-        url: string;
-        tab_id?: number | undefined;
-    }): Promise<i_icons.ServerInfo> =>
+    public get_server_info = async ({ url }: { url: string }): Promise<i_icons.ServerInfo> =>
         err_async(async () => {
-            let tab_id_final = tab_id;
-
-            if (!n(tab_id)) {
-                const tab: Tabs.Tab | undefined = await ext.get_active_tab();
-
-                if (n(tab)) {
-                    tab_id_final = tab.id;
-                }
-            }
             const empty_row = {
                 url,
                 ip: '',
@@ -102,7 +86,7 @@ export class Main {
             try {
                 if (this.ip_to_country.length === 0) {
                     this.fs_to_run_after_ip_to_country_arr_populated.push((): void => {
-                        this.get_server_info({ url, tab_id: tab_id_final });
+                        this.get_server_info({ url });
                     });
                     this.generate_ip_to_country_arr();
                 } else if (n(this.ip_to_country)) {
@@ -130,8 +114,8 @@ export class Main {
                             ),
                     );
 
-                    if (n(record) && n(tab_id_final)) {
-                        ext.send_msg_to_tab(tab_id_final, {
+                    if (n(record)) {
+                        ext.send_msg_to_all_tabs({
                             msg: 'process_server_info',
                             server_info: {
                                 url,
