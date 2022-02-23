@@ -16,6 +16,8 @@ export class Main {
     private constructor() {}
 
     public ip_to_country: i_icons.IpToCountry[] = [];
+    private generating_ip_to_country_arr = true;
+    private requested_server_location_before_ip_to_country_arr_was_ready = false;
 
     private empty_favicons: t.StringRecord = {
         google: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABs0lEQVR4AWL4//8/RRjO8Iucx+noO0O2qmlbUEnt5r3Juas+hsQD6KaG7dqCKPgx72Pe9GIY27btZBrbtm3btm0nO12D7tVXe63jqtqqU/iDw9K58sEruKkngH0DBljOE+T/qqx/Ln718RZOFasxyd3XRbWzlFMxRbgOTx9QWFzHtZlD+aqLb108sOAIAai6+NbHW7lUHaZkDFJt+wp1DG7R1d0b7Z88EOL08oXwjokcOvvUxYMjBFCamWP5KjKBjKOpZx2HEPj+Ieod26U+dpg6lK2CIwTQH0oECGT5eHj+IgSueJ5fPaPg6PZrz6DGHiGAISE7QPrIvIKVrSvCe2DNHSsehIDatOBna/+OEOgTQE6WAy1AAFiVcf6PhgCGxEvlA9QngLlAQCkLsNWhBZIDz/zg4ggmjHfYxoPGEMPZECW+zjwmFk6Ih194y7VHYGOPvEYlTAJlQwI4MEhgTOzZGiNalRpGgsOYFw5lEfTKybgfBtmuTNdI3MrOTAQmYf/DNcAwDeycVjROgZFt18gMso6V5Z8JpcEk2LPKpOAH0/4bKMCAYnuqm7cHOGHJTBRhAEJN9d/t5zCxAAAAAElFTkSuQmCC',
@@ -73,13 +75,24 @@ export class Main {
             return base64;
         }, 'ges_1006');
 
-    public get_server_info = async ({ url }: { url: string }): Promise<i_icons.ServerInfo> =>
+    public get_server_info = async ({
+        url,
+    }: {
+        url: string;
+    }): Promise<i_icons.ServerInfo | string> =>
         err_async(async () => {
+            if (this.generating_ip_to_country_arr) {
+                this.requested_server_location_before_ip_to_country_arr_was_ready = true;
+
+                return 'ip_to_country_arr_is_not_yet_generated';
+            }
+
             const empty_row = {
                 ip: '',
                 country_code: '',
                 country_name: '',
             };
+
             try {
                 if (n(this.ip_to_country)) {
                     const settings: i_data.Settings = await ext.storage_get();
@@ -150,6 +163,12 @@ export class Main {
             this.ip_to_country = ip_to_country_db_arr.filter(
                 (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'ges_1011'),
             ) as i_icons.IpToCountry[];
+
+            this.generating_ip_to_country_arr = false;
+
+            if (this.requested_server_location_before_ip_to_country_arr_was_ready) {
+                ext.send_msg_to_all_tabs({ msg: 'run_deferred_generate_server_location_url_fs' });
+            }
         }, 'ges_1012');
 
     private convert_ip_to_ip_number = ({ ip }: { ip: string }): number =>

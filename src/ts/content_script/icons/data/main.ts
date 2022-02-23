@@ -35,6 +35,7 @@ export class Main {
     public server_locations: t.StringRecord = {};
     private server_ips: t.StringRecord = {};
     private server_countries: t.StringRecord = {};
+    private generate_server_location_url_deferred: t.CallbackVoid[] = [];
 
     public server_data = computedFn(function (
         this: Main,
@@ -147,34 +148,55 @@ export class Main {
                     }, 'ges_1176'),
                 );
 
-                const server_info: i_icons_shared.ServerInfo = await ext.send_msg_resp({
+                const response: i_icons_shared.ServerInfo | string = await ext.send_msg_resp({
                     msg: 'get_server_info',
                     url,
                 });
-                const server_location_found: boolean =
-                    n(server_info) && server_info.country_code !== '';
 
-                const flag_path = server_location_found
-                    ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
-                    : 'placeholder';
+                if (response === 'ip_to_country_arr_is_not_yet_generated') {
+                    this.generate_server_location_url_deferred.push(() => {
+                        this.generate_server_location_url({ url });
+                    });
+                } else {
+                    const server_info: i_icons_shared.ServerInfo =
+                        response as i_icons_shared.ServerInfo;
 
-                runInAction(() =>
-                    err(() => {
-                        this.server_locations[url] = flag_path;
+                    const server_location_found: boolean =
+                        n(server_info) && server_info.country_code !== '';
 
-                        if (server_location_found) {
-                            if (server_info.country_name !== '') {
-                                this.server_countries[url] = server_info.country_name;
+                    const flag_path = server_location_found
+                        ? we.runtime.getURL(`flags/${server_info.country_code}.png`)
+                        : 'placeholder';
+
+                    runInAction(() =>
+                        err(() => {
+                            this.server_locations[url] = flag_path;
+
+                            if (server_location_found) {
+                                if (server_info.country_name !== '') {
+                                    this.server_countries[url] = server_info.country_name;
+                                }
+
+                                if (server_info.ip !== '') {
+                                    this.server_ips[url] = server_info.ip;
+                                }
                             }
-
-                            if (server_info.ip !== '') {
-                                this.server_ips[url] = server_info.ip;
-                            }
-                        }
-                    }, 'ges_1048'),
-                );
+                        }, 'ges_1048'),
+                    );
+                }
             }
         }, 'ges_1049');
+
+    public run_deferred_generate_server_location_url_fs = async (): Promise<void> =>
+        err_async(async () => {
+            this.generate_server_location_url_deferred.forEach((f: t.CallbackVoid): void =>
+                err(() => {
+                    f();
+                }, 'ges_1205'),
+            );
+
+            this.generate_server_location_url_deferred = [];
+        }, 'ges_1204');
 
     public generate_urls = ({ i }: { i: number }): void =>
         err(() => {

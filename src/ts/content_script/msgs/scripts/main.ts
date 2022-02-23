@@ -1,6 +1,12 @@
 import { MouseEvent } from 'react';
 import { t } from '@loftyshaky/shared';
-import { d_side_panel, s_actions, s_img_action_bar, s_location } from 'content_script/internal';
+import {
+    d_icons,
+    d_side_panel,
+    s_actions,
+    s_img_action_bar,
+    s_location,
+} from 'content_script/internal';
 
 we.runtime.onMessage.addListener((msg: t.Msg): any =>
     err(() => {
@@ -8,6 +14,8 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
 
         if (msg_str === 'rerun_actions') {
             s_actions.Main.i().run_reload_actions_2();
+        } else if (msg_str === 'run_deferred_generate_server_location_url_fs') {
+            d_icons.Main.i().run_deferred_generate_server_location_url_fs();
         } else if (msg_str === 'execute_command') {
             switch (msg.command) {
                 case 'enable_infinite_scrolling':
