@@ -68,6 +68,7 @@ export class Main {
             const base64: string = await x.convert_blob_to_base64(blob);
 
             const favicon_is_empty = this.empty_favicons[favicon_provider] === base64;
+
             if (favicon_is_empty) {
                 return undefined;
             }
