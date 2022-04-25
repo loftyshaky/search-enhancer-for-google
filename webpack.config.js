@@ -51,6 +51,7 @@ module.exports = (env, argv) => {
             },
             path.join('src', 'ip_to_country_ipv4.csv'),
         ],
+        enable_anouncement: false,
         callback_begin: () => {
             task_scheduler.unlock_dist({
                 package_name: 'Search Enhancer for Google',
