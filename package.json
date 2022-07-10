@@ -52,10 +52,10 @@
         "webpack-cli": "^4.10.0"
     },
     "dependencies": {
-        "@loftyshaky/shared": "0.0.43",
+        "@loftyshaky/shared": "0.0.44",
         "@simonwep/pickr": "^1.8.2",
         "@svgr/webpack": "^6.2.1",
-        "advanced-extension-reloader-watch-2": "^1.2.2",
+        "advanced-extension-reloader-watch-2": "^1.2.3",
         "confusing-browser-globals": "^1.0.11",
         "lodash": "^4.17.21",
         "mobx": "^6.6.1",
