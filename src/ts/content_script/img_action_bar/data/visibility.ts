@@ -1,7 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { i_img_action_bar } from 'content_script/internal';
+import { d_img_action_bar, i_img_action_bar } from 'content_script/internal';
 
 export class Visibility {
     private static i0: Visibility;
@@ -92,6 +92,7 @@ export class Visibility {
                 !data.settings.img_viewer_img_action_bar_is_visible_only_on_hover)) ||
             (img_viewer_i !== 'main' &&
                 data.settings.preview_img_viewer_img_action_bar_is_visible &&
+                n(d_img_action_bar.Position.i().bottom[img_viewer_i]) &&
                 ((data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover &&
                     this.is_visible[img_viewer_i]) ||
                     !data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover))
