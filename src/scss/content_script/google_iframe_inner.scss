@@ -18,12 +18,6 @@ body {
         }
     }
 
-    &.videos_#{$app_id} {
-        #rso > div:last-child .g {
-            margin-bottom: 0 !important;
-        }
-    }
-
     &.news_#{$app_id} {
         /* stylelint-disable-next-line selector-class-pattern */
         #rso > div:last-child > g-card {
@@ -55,6 +49,10 @@ body {
 
     &.videos_#{$app_id} {
         #rso > div:first-child {
+            margin-bottom: 0 !important;
+        }
+
+        #rso > div:last-child .g {
             margin-bottom: 0 !important;
         }
 

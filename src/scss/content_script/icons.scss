@@ -11,11 +11,11 @@ $icon_size: 16px;
     display: flex;
 }
 
-.icons:not(.news):not(:empty) {
+.icons:not(.news, :empty) {
     margin-right: $gap;
 }
 
-:host-context(html[dir='rtl']) .icons:not(.news):not(:empty) {
+:host-context(html[dir='rtl']) .icons:not(.news, :empty) {
     margin-right: 0;
     margin-left: $gap;
 }
