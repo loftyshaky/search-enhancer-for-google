@@ -6,5 +6,5 @@ import { init } from 'settings/internal';
     await d_settings.Main.i().set_from_storage();
 
     init_shared();
-    init();
+    await init();
 })();

@@ -34,76 +34,88 @@ export class InitAll {
     private side_panel_root: ShadowRoot | undefined = undefined;
 
     public init = (): Promise<void> =>
-        err_async(async () => {
-            const on_loading_screen_render = (): void =>
-                err(() => {
-                    const loading_screen_root_el = s<HTMLDivElement>(
-                        `.${new s_suffix.Main('loading_screen').result}`,
-                    );
-
-                    if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
-                        const loading_screen_css = x.css(
-                            'loading_screen',
-                            loading_screen_root_el.shadowRoot,
+        new Promise((reslove) => {
+            err_async(async () => {
+                const on_loading_screen_render = (): void =>
+                    err(() => {
+                        const loading_screen_root_el = s<HTMLDivElement>(
+                            `.${new s_suffix.Main('loading_screen').result}`,
                         );
 
-                        if (n(loading_screen_css)) {
-                            x.bind(loading_screen_css, 'load', (): void =>
-                                err(() => {
-                                    d_loading_screen.Main.i().show();
-                                }, 'ges_1158'),
+                        if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
+                            const loading_screen_css = x.css(
+                                'loading_screen',
+                                loading_screen_root_el.shadowRoot,
                             );
-                        }
-                    }
-                }, 'ges_1159');
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            __webpack_public_path__ = we.runtime.getURL('');
-
-            await d_settings.Main.i().set_from_storage();
-
-            if (page === 'settings') {
-                this.set_page_title();
-            }
-
-            s_css_vars.Main.i().set();
-
-            const error_root: ShadowRoot = this.create_root({ prefix: 'error' }) as ShadowRoot;
-            let loading_screen_root: ShadowRoot;
-
-            if (page === 'settings') {
-                loading_screen_root = this.create_root({ prefix: 'loading_screen' }) as ShadowRoot;
-                this.settings_root = this.create_root({
-                    prefix: 'settings',
-                    shadow_root: false,
-                }) as HTMLDivElement;
-            } else if (page === 'content_script') {
-                x.css('font_face', document.head, new s_suffix.Main('font_face_link').result);
-
-                this.spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
-                this.load_end_msg_root = this.create_root({ prefix: 'load_end_msg' }) as ShadowRoot;
-                this.side_panel_root = this.create_root({ prefix: 'side_panel' }) as ShadowRoot;
-            }
-
-            ReactDOM.createRoot(error_root).render(
-                <c_error.Body
-                    app_id={s_suffix.app_id}
-                    on_render={(): void =>
-                        err(() => {
-                            if (page === 'settings') {
-                                ReactDOM.createRoot(loading_screen_root).render(
-                                    <c_crash_handler.Body>
-                                        <c_loading_screen.Body
-                                            on_render={on_loading_screen_render}
-                                        />
-                                    </c_crash_handler.Body>,
+                            if (n(loading_screen_css)) {
+                                x.bind(loading_screen_css, 'load', (): void =>
+                                    err(() => {
+                                        d_loading_screen.Main.i().show();
+                                    }, 'ges_1158'),
                                 );
                             }
-                        }, 'ges_1206')
-                    }
-                />,
-            );
-        }, 'ges_1160');
+                        }
+                    }, 'ges_1159');
+
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                __webpack_public_path__ = we.runtime.getURL('');
+
+                await d_settings.Main.i().set_from_storage();
+
+                if (page === 'settings') {
+                    this.set_page_title();
+                }
+
+                s_css_vars.Main.i().set();
+
+                const error_root: ShadowRoot = this.create_root({ prefix: 'error' }) as ShadowRoot;
+                let loading_screen_root: ShadowRoot;
+
+                if (page === 'settings') {
+                    loading_screen_root = this.create_root({
+                        prefix: 'loading_screen',
+                    }) as ShadowRoot;
+                    this.settings_root = this.create_root({
+                        prefix: 'settings',
+                        shadow_root: false,
+                    }) as HTMLDivElement;
+                } else if (page === 'content_script') {
+                    x.css('font_face', document.head, new s_suffix.Main('font_face_link').result);
+
+                    this.spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
+                    this.load_end_msg_root = this.create_root({
+                        prefix: 'load_end_msg',
+                    }) as ShadowRoot;
+                    this.side_panel_root = this.create_root({ prefix: 'side_panel' }) as ShadowRoot;
+                }
+
+                ReactDOM.createRoot(error_root).render(
+                    <c_error.Body
+                        app_id={s_suffix.app_id}
+                        on_render={(): void =>
+                            err(() => {
+                                if (page === 'settings') {
+                                    ReactDOM.createRoot(loading_screen_root).render(
+                                        <c_crash_handler.Body>
+                                            <c_loading_screen.Body
+                                                on_render={(): void => {
+                                                    reslove();
+
+                                                    on_loading_screen_render();
+                                                }}
+                                            />
+                                        </c_crash_handler.Body>,
+                                    );
+                                } else {
+                                    reslove();
+                                }
+                            }, 'ges_1206')
+                        }
+                    />,
+                );
+            }, 'ges_1160');
+        });
 
     private create_root = ({
         prefix,
