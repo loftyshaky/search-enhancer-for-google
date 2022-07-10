@@ -30,10 +30,6 @@ export class Main {
             s_el_parser.Main.i().get_els();
             s_el_parser.Main.i().get_next_page_href();
 
-            if (!n(s_el_parser.Main.i().next_page_href)) {
-                d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
-            }
-
             await InitAll.i().init();
 
             if (s_location.Main.i().is_search_results) {
