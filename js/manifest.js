@@ -13,6 +13,7 @@ class Manifest {
             web_accessible_resources: [
                 {
                     resources: [
+                        'noto_sans.woff2',
                         'no_tr.css',
                         'font_face.css',
                         'error.css',
