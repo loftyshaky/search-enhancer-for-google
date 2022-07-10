@@ -11,8 +11,15 @@ body {
         margin-top: 0 !important;
     }
 
-    &.all_#{$app_id}, &.videos_#{$app_id} {
-        #rso > div:last-child > .g {
+    &.all_#{$app_id} {
+        #rso > div:not(.g),
+        #rso > div .g {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &.videos_#{$app_id} {
+        #rso > div:last-child .g {
             margin-bottom: 0 !important;
         }
     }
