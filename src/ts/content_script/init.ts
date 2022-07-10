@@ -1,5 +1,5 @@
 import { s_tab_index } from '@loftyshaky/shared';
-import { s_suffix } from 'shared/internal';
+import { InitAll, s_suffix } from 'shared/internal';
 import {
     d_img_action_bar,
     s_roots,
@@ -39,5 +39,9 @@ export const init = (): Promise<void> =>
                 x.bind(document, 'mousemove', d_img_action_bar.Visibility.i().change);
                 x.bind(document, 'scroll', d_img_action_bar.Position.i().set_bottom_all);
             }
+
+            InitAll.i().render_spinner();
+            InitAll.i().render_last_end_msg();
+            InitAll.i().render_side_panel();
         }
     }, 'ges_1082');

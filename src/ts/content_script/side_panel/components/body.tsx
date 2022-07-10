@@ -1,10 +1,11 @@
-import React, { MouseEvent, KeyboardEvent } from 'react';
+import React, { MouseEvent, KeyboardEvent, useEffect } from 'react';
 import { observer } from 'mobx-react';
 
 import { prevent_default } from '@loftyshaky/shared';
-import { c_side_panel, d_side_panel, s_tab_index } from 'content_script/internal';
+import { c_side_panel, d_side_panel, s_tab_index, p_side_panel } from 'content_script/internal';
 
-export const Body: React.FunctionComponent = observer(() => {
+export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props) => {
+    const { on_render } = props;
     const name_1 = 'scroll_to_top';
     const remember_scrolling_position_0_35_seconds = (e: MouseEvent) =>
         err(
@@ -17,6 +18,10 @@ export const Body: React.FunctionComponent = observer(() => {
                 ),
             'ges_1103',
         );
+
+    useEffect(() => {
+        on_render();
+    }, [on_render]);
 
     return (
         <div

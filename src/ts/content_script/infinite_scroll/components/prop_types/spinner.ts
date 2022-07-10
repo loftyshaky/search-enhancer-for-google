@@ -1,6 +1,5 @@
 import { t } from '@loftyshaky/shared';
 
-export interface Separator {
-    i: number;
+export interface Spinner {
     on_render: t.CallbackVoid;
 }

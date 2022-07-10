@@ -9,10 +9,17 @@ import {
 } from 'content_script/internal';
 
 export const Body: React.FunctionComponent<p_img_action_bar.Body> = observer((props) => {
-    const { img_viewer_i } = props;
+    const { img_viewer_i, on_render } = props;
+
     const img_action_bar_ref = useRef<HTMLDivElement>(null);
     const is_visible: boolean = d_img_action_bar.Visibility.i().is_visible[img_viewer_i];
     const { settings } = data;
+
+    useEffect(() => {
+        if (n(on_render)) {
+            on_render();
+        }
+    }, [on_render]);
 
     useEffect(() => {
         /*

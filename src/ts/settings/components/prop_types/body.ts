@@ -1,6 +1,5 @@
 import { t } from '@loftyshaky/shared';
 
-export interface Separator {
-    i: number;
+export interface Body {
     on_render: t.CallbackVoid;
 }

@@ -3,9 +3,15 @@ import { observer } from 'mobx-react';
 
 import { c_settings } from '@loftyshaky/shared/settings';
 import { d_inputs, i_inputs } from '@loftyshaky/shared/inputs';
-import { d_sections } from 'settings/internal';
+import { d_sections, p_settings } from 'settings/internal';
 
-export const Body: React.FunctionComponent = observer(() => {
+export const Body: React.FunctionComponent<p_settings.Body> = observer((props) => {
+    const { on_render } = props;
+
+    useEffect(() => {
+        on_render();
+    }, [on_render]);
+
     useEffect(
         () =>
             err(() => {

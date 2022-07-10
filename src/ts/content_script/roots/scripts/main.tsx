@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import { c_crash_handler } from '@loftyshaky/shared';
 import { s_suffix } from 'shared/internal';
@@ -208,12 +208,14 @@ export class Main {
                                 err(() => {
                                     const Component: FunctionComponent<any> = this.component[name];
 
-                                    render(
+                                    ReactDOM.createRoot(content).render(
                                         <c_crash_handler.Body>
-                                            <Component i={i} img_viewer_i={img_viewer_i} />
+                                            <Component
+                                                i={i}
+                                                img_viewer_i={img_viewer_i}
+                                                on_render={resolve}
+                                            />
                                         </c_crash_handler.Body>,
-                                        content,
-                                        resolve,
                                     );
                                 }, 'ges_1095'),
                             );
