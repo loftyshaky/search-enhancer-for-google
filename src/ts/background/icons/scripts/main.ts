@@ -94,47 +94,32 @@ export class Main {
                 country_name: '',
             };
 
-            try {
-                if (n(this.ip_to_country)) {
-                    const settings: i_data.Settings = await ext.storage_get();
-                    const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
-                        [
-                            settings.enable_cut_features
-                                ? we.i18n.getUILanguage()
-                                : navigator.language,
-                        ],
-                        { type: 'region' },
-                    );
-                    const response_2: Response = await fetch(
-                        `https://dns.google/resolve?name=${url}`,
-                    );
-                    const json: any = await response_2.json();
-                    const ip: string = (_.last(json.Answer) as any).data;
+            if (n(this.ip_to_country)) {
+                const settings: i_data.Settings = await ext.storage_get();
+                const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
+                    [settings.enable_cut_features ? we.i18n.getUILanguage() : navigator.language],
+                    { type: 'region' },
+                );
+                const response_2: Response = await fetch(`https://dns.google/resolve?name=${url}`);
+                const json: any = await response_2.json();
+                const ip: string = (_.last(json.Answer) as any).data;
 
-                    const record: i_icons.IpToCountry | undefined = _.findLast(
-                        this.ip_to_country,
-                        (item: i_icons.IpToCountry): boolean =>
-                            err(
-                                () => item.ip_from < this.convert_ip_to_ip_number({ ip }),
-                                'ges_1007',
-                            ),
-                    );
+                const record: i_icons.IpToCountry | undefined = _.findLast(
+                    this.ip_to_country,
+                    (item: i_icons.IpToCountry): boolean =>
+                        err(() => item.ip_from < this.convert_ip_to_ip_number({ ip }), 'ges_1007'),
+                );
 
-                    if (n(record)) {
-                        return {
-                            ip,
-                            country_code: record.country_code,
-                            country_name: region_name.of(record.country_code),
-                        };
-                    }
+                if (n(record)) {
+                    return {
+                        ip,
+                        country_code: record.country_code,
+                        country_name: region_name.of(record.country_code),
+                    };
                 }
-
-                return empty_row;
-            } catch (error_obj: any) {
-                show_err_ribbon(error_obj, 'ges_1008');
-
-                return empty_row;
             }
+
+            return empty_row;
         }, 'ges_1009');
 
     public generate_ip_to_country_arr = (): Promise<void> =>
