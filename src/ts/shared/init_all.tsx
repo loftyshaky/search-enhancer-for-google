@@ -52,6 +52,8 @@ export class InitAll {
                                 x.bind(loading_screen_css, 'load', (): void =>
                                     err(() => {
                                         d_loading_screen.Main.i().show();
+
+                                        reslove();
                                     }, 'ges_1158'),
                                 );
                             }
@@ -99,9 +101,8 @@ export class InitAll {
                                     ReactDOM.createRoot(loading_screen_root).render(
                                         <c_crash_handler.Body>
                                             <c_loading_screen.Body
+                                                app_id={s_suffix.app_id}
                                                 on_render={(): void => {
-                                                    reslove();
-
                                                     on_loading_screen_render();
                                                 }}
                                             />
@@ -160,7 +161,7 @@ export class InitAll {
                     });
                     d_inputs.InputWidth.i().set_max_width();
 
-                    d_loading_screen.Main.i().hide();
+                    d_loading_screen.Main.i().hide({ app_id: s_suffix.app_id });
 
                     s_tab_index.Main.i().bind_set_input_type_f();
                 }, 'ges_1148');
