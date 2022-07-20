@@ -29,7 +29,6 @@ const env_instance = new Env({ app_root });
 const locales = new Locales({ app_root });
 
 const ext_id = 'mfihhepjphokhfnlioficodoomlnhlbd';
-let first_reload_completed = false;
 
 module.exports = (env, argv) => {
     const paths = {
@@ -61,7 +60,7 @@ module.exports = (env, argv) => {
                 remove_dist: argv.mode === 'production',
             });
         },
-        callback_done: () => {
+        callback_done: (stats) => {
             manifest.generate({
                 mode: argv.mode,
                 test: env.test,
@@ -70,26 +69,15 @@ module.exports = (env, argv) => {
             env_instance.generate({ browser: env.browser });
             locales.merge();
 
-            if (first_reload_completed) {
-                reloader.reload({
-                    ext_id,
-                    hard: false,
-                    play_sound: true,
-                    hard_paths: [
-                        `_locales${path.sep}`,
-                        `shared${path.sep}`,
-                        `content_script${path.sep}`,
-                        `background${path.sep}`,
-                    ],
-                });
+            const an_error_occured = stats.compilation.errors.length !== 0;
+
+            if (an_error_occured) {
+                reloader.play_error_notification();
             } else {
                 reloader.reload({
                     ext_id,
-                    hard: true,
                     play_sound: true,
                 });
-
-                first_reload_completed = true;
             }
         },
     });
