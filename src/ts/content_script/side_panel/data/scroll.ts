@@ -26,8 +26,7 @@ export class Scroll {
 
     public remembered_position: i_side_panel.RememberedPosition = 'none';
     public position_overridden = false;
-    private remember_scrolling_position_0_35_seconds_timeout: boolean | number | NodeJS.Timeout =
-        false;
+    private remember_scrolling_position_0_35_seconds_timeout: boolean | number = false;
 
     private middle_button_holded_more_than_0_35_seconds: boolean = false;
 
@@ -48,7 +47,7 @@ export class Scroll {
         err(() => {
             const doc = document.documentElement;
 
-            return (self.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+            return (globalThis.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
         }, 'ges_1113');
 
     private remember_position = (): void =>
@@ -104,7 +103,7 @@ export class Scroll {
 
     public stop_remember_scrolling_position_0_35_seconds_timeout = (): void =>
         err(() => {
-            clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout as NodeJS.Timeout);
+            clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout as number);
         }, 'ges_1119');
 
     public scroll = (e: MouseEvent): void =>

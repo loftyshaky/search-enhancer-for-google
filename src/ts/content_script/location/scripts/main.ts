@@ -11,11 +11,11 @@ export class Main {
 
     public current_location: string = '';
     public imgs_param_val = 'isch';
-    private tbm: string | null = new URLSearchParams(self.location.href).get('tbm');
-    private search_string_is_present: boolean = self.location.href.includes('search?');
+    private tbm: string | null = new URLSearchParams(globalThis.location.href).get('tbm');
+    private search_string_is_present: boolean = globalThis.location.href.includes('search?');
 
     public is_content_script_execution_page: boolean =
-        /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(self.location.href);
+        /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(globalThis.location.href);
 
     public is_all_page: boolean =
         this.search_string_is_present && (!n(this.tbm) || this.tbm === '');
