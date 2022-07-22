@@ -47,7 +47,6 @@ export class Val {
                     await ext.send_msg_resp({
                         msg: 'update_settings',
                         settings: data.settings,
-                        rerun_actions: true,
                     });
                 }, 'ges_1137');
 
