@@ -9,6 +9,7 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
     overflow: hidden;
     text-align: center;
     width: fit-content;
+    z-index: 2147483647;
 
     .side_panel_item {
         cursor: help;
