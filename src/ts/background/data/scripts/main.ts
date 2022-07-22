@@ -84,12 +84,21 @@ export class Main {
         }, 'ges_1003');
 
     public update_settings_debounce = _.debounce(
-        (settings: i_data.Settings, rerun_actions: boolean = false, transform: boolean = false) =>
+        (
+            settings: i_data.Settings,
+            rerun_actions: boolean = false,
+            rerun_actions_content_script: boolean = false,
+            transform: boolean = false,
+        ) =>
             err_async(async () => {
                 await this.update_settings({ settings, transform });
 
                 if (rerun_actions) {
                     ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
+                }
+
+                if (rerun_actions_content_script) {
+                    ext.send_msg_to_all_tabs({ msg: 'rerun_actions_content_script' });
                 }
             }, 'ges_1177'),
         500,

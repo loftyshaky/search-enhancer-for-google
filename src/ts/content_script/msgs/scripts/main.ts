@@ -12,7 +12,7 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
     err(() => {
         const msg_str: string = msg.msg;
 
-        if (msg_str === 'rerun_actions') {
+        if (['rerun_actions', 'rerun_actions_content_script'].includes(msg_str)) {
             s_actions.Main.i().run_reload_actions_2();
         } else if (msg_str === 'run_deferred_generate_server_location_url_fs') {
             d_icons.Main.i().run_deferred_generate_server_location_url_fs();
