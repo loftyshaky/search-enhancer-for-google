@@ -5,14 +5,12 @@
     color: $black;
     font-size: $font_size;
 
-    /* background-color: red; */
-
     &.all {
         margin-bottom: $search_result_offset_all;
     }
 
     &.videos {
-        margin-bottom: $search_result_offset_videos;
+        margin-bottom: $search_result_offset_videos - 9px;
     }
 
     &.books {
