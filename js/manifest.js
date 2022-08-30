@@ -239,7 +239,7 @@ class Manifest {
             content_scripts: [
                 {
                     run_at: 'document_end',
-                    js: ['content_script.js'],
+                    js: ['env.js', 'content_script.js'],
                     css: ['content_script_css.css'],
                     matches: [
                         '*://www.google.com/*',
@@ -480,6 +480,7 @@ class Manifest {
 
         if (mode === 'development') {
             manifest.content_scripts[0].js.push(
+                'env.js',
                 'chunks/src_ts_content_script_internal_ts.js',
                 'chunks/src_ts_settings_internal_ts.js',
                 'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',

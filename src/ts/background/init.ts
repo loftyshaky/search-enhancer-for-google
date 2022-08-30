@@ -10,6 +10,7 @@ export const init = (): Promise<void> =>
         if (s_env.Main.i().is_dev()) {
             ext.inject_js_and_css_in_content_script(
                 [
+                    'env.js',
                     'content_script.js',
                     'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
                     'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
@@ -19,7 +20,7 @@ export const init = (): Promise<void> =>
             );
         } else {
             ext.inject_js_and_css_in_content_script(
-                ['content_script.js'],
+                ['env.js', 'content_script.js'],
                 ['content_script_css.css'],
             );
         }
