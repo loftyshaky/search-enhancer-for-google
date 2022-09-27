@@ -3,7 +3,7 @@
         @include outline_solid_thick;
 
         outline-color: $black;
-        outline-offset: -$outline_offset;
+        outline-offset: -2px;
     }
 
     .img_action_bar .btn:focus {
