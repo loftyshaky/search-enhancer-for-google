@@ -310,12 +310,13 @@ export class Main {
                                 );
 
                             // eslint-disable-next-line prefer-destructuring
-                            const img_data_initial = JSON.parse(img_data_el_html_no_after)[31];
+                            const img_data_initial = JSON.parse(img_data_el_html_no_after)[56];
+
                             // eslint-disable-next-line prefer-destructuring
                             this.img_data =
                                 img_data_initial[
                                     img_data_initial.length === 1 ? 0 : img_data_initial.length - 1
-                                ][12][2];
+                                ][0][0][1][0]; // array of image data that contains needed link to image
 
                             this.img_data = this.img_data.filter((not_used, i: number): boolean =>
                                 err(
@@ -419,9 +420,10 @@ export class Main {
         img_viewer_i: i_img_action_bar.ImgViewerI;
     }): string | undefined =>
         err(() => {
-            const data = _.get(this.img_data, `[${img_viewer_i}][1][3][0]`);
+            const data = _.get(this.img_data, `[${img_viewer_i}][0][0].444383007[1][3][0]`);
+
             if (typeof data === 'string') {
-                return data;
+                return data; // link to image
             }
 
             return undefined;
