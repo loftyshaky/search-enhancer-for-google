@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
-import { t } from '@loftyshaky/shared';
+import { t, o_schema, d_schema } from '@loftyshaky/shared';
 import { d_color } from '@loftyshaky/shared/inputs';
-import { o_schema, d_schema } from '@loftyshaky/shared/settings';
 import { i_data } from 'shared/internal';
 
 export class Main {
