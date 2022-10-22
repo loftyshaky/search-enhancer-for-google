@@ -1,4 +1,4 @@
-A browser extension that adds infinite scrolling, site icons, server locations, "View image" button, "Download image" button and more to Google search.
+A browser extension that adds infinite scrolling, favicons, server locations, "View image" button, "Download image" button and more to Google search.
 
 ## Links
 
