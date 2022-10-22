@@ -137,7 +137,6 @@ export class Main {
                             }),
                             new o_inputs.Checkbox({
                                 name: 'img_viewer_save_img_as_btn_is_visible',
-                                is_cut: true,
                                 parent: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
@@ -188,7 +187,6 @@ export class Main {
                             }),
                             new o_inputs.Checkbox({
                                 name: 'preview_img_viewer_save_img_as_btn_is_visible',
-                                is_cut: true,
                                 parent: 'preview_img_viewer_img_action_bar_is_visible',
                                 alt_msg: ext.msg(
                                     'img_viewer_save_img_as_btn_is_visible_label_text',
