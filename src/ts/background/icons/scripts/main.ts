@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { t } from '@loftyshaky/shared';
 
-import { s_icons, i_data, i_icons } from 'shared/internal';
+import { s_icons, i_icons } from 'shared/internal';
 
 export class Main {
     private static i0: Main;
@@ -95,9 +95,8 @@ export class Main {
             };
 
             if (n(this.ip_to_country)) {
-                const settings: i_data.Settings = await ext.storage_get();
                 const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
-                    [settings.enable_cut_features ? we.i18n.getUILanguage() : navigator.language],
+                    [we.i18n.getUILanguage()],
                     { type: 'region' },
                 );
                 const response_2: Response = await fetch(`https://dns.google/resolve?name=${url}`);
