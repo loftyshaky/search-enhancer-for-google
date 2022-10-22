@@ -3,7 +3,7 @@
         "message": "Search Enhancer for Google™"
     },
     "description": {
-        "message": "Adds infinite scroll, site icons, server locations, \"View image\" button, \"Download image\" button and more to Google search."
+        "message": "Adds infinite scroll, favicons, server locations, \"View image\" button, \"Download image\" button and more to Google search."
     },
     "all_section_text": {
         "message": "All"
