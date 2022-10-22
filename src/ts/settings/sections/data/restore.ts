@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import { runInAction } from 'mobx';
 
-import { t } from '@loftyshaky/shared';
-import { i_data } from 'shared/internal';
+import { t, s_theme } from '@loftyshaky/shared';
+import { s_css_vars, i_data } from 'shared/internal';
 
 export class Restore {
     private static i0: Restore;
@@ -30,6 +30,11 @@ export class Restore {
                     settings: settings_final,
                     rerun_actions: true,
                 });
+
+                s_theme.Main.i().set({
+                    name: data.settings.options_page_theme,
+                });
+                s_css_vars.Main.i().set();
             }
         }, 'ges_1130');
 
@@ -47,6 +52,11 @@ export class Restore {
                 rerun_actions: true,
                 transform: true,
             });
+
+            s_theme.Main.i().set({
+                name: data.settings.options_page_theme,
+            });
+            s_css_vars.Main.i().set();
         }, 'ges_1131');
 
     private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<i_data.Settings> =>
