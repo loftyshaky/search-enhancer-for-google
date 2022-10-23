@@ -21,7 +21,7 @@ export class Main {
         err(() => {
             this.defaults = {
                 current_section: 'all',
-                options_page_theme: 'light',
+                options_page_theme: 'lavender',
                 transition_duration: 200,
                 color_help_is_visible: true,
                 enable_cut_features: false,
