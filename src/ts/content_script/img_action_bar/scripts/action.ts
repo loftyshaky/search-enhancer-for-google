@@ -28,7 +28,7 @@ export class Action {
                 if (type === 'search_by_img') {
                     this.send_msg({
                         type,
-                        img_url: `https://www.google.com/searchbyimage?&image_url=${img_url}`,
+                        img_url: `https:www.google.com/searchbyimage?sbisrc=cr_1_5_2&image_url=${img_url}`,
                     });
                 } else if (type === 'copy_img_url') {
                     x.copy_text(img_url);
