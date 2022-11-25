@@ -239,7 +239,7 @@ export class Main {
             ];
 
             const settings_final: i_data.Settings = await d_schema.Main.i().transform({
-                settings: settings_copy,
+                data: settings_copy,
                 transform_items,
             });
 
