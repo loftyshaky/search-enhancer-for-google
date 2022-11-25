@@ -87,6 +87,7 @@ export class Visibility {
     ): string {
         return (img_viewer_i === 'main' &&
             data.settings.img_viewer_img_action_bar_is_visible &&
+            n(d_img_action_bar.Position.i().bottom[img_viewer_i]) &&
             ((data.settings.img_viewer_img_action_bar_is_visible_only_on_hover &&
                 this.is_visible[img_viewer_i]) ||
                 !data.settings.img_viewer_img_action_bar_is_visible_only_on_hover)) ||

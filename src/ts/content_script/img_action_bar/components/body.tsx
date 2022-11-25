@@ -30,6 +30,7 @@ export const Body: React.FunctionComponent<p_img_action_bar.Body> = observer((pr
         */
         d_img_action_bar.Position.i().set_bottom({
             img_viewer_i,
+            img_action_bar_el: img_action_bar_ref.current,
         });
     }, [img_viewer_i, is_visible, settings]);
 

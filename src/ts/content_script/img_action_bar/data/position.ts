@@ -20,21 +20,33 @@ export class Position {
 
     public bottom: { [index: string]: number } = {};
 
-    public set_bottom = ({ img_viewer_i }: { img_viewer_i: i_img_action_bar.ImgViewerI }): number =>
+    public set_bottom = ({
+        img_viewer_i,
+        img_action_bar_el,
+    }: {
+        img_viewer_i: i_img_action_bar.ImgViewerI;
+        img_action_bar_el?: HTMLDivElement | null;
+    }): void =>
         err(() => {
-            if (img_viewer_i !== 'main') {
+            if (img_viewer_i === 'main') {
+                const el_exists: boolean = n(s_el_parser.Main.i().img_viewer);
+
+                if (el_exists && n(img_action_bar_el)) {
+                    this.bottom[img_viewer_i] =
+                        s_el_parser.Main.i().img_viewer!.offsetHeight -
+                        img_action_bar_el.offsetHeight;
+                }
+            } else {
                 const el_exists: boolean = n(
                     s_el_parser.Main.i().preview_img_viewer_ws[img_viewer_i],
                 );
 
-                if (el_exists) {
+                if (el_exists && n(img_action_bar_el)) {
                     this.bottom[img_viewer_i] =
                         s_el_parser.Main.i().preview_img_viewer_ws[img_viewer_i].offsetHeight -
-                        s_el_parser.Main.i().preview_img_viewers[img_viewer_i].offsetHeight;
+                        img_action_bar_el.offsetHeight;
                 }
             }
-
-            return 0;
         }, 'ges_1193');
 
     public set_bottom_all = _.debounce(

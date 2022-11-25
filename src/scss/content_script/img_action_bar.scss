@@ -40,13 +40,13 @@ $small_icon_size: 13px;
 }
 
 .img_action_bar {
-    @include border_top;
+    @include border_bottom;
 
     position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-start-start-radius: $bar_border_radius;
+    border-end-start-radius: $bar_border_radius;
     border-color: white;
     transform-origin: bottom right;
 
