@@ -24,7 +24,7 @@
         "message": "Show jump to related searches/pagination buttons"
     },
     "page_indicator_is_visible_label_text": {
-        "message": "Show total total number of loaded pages/current page indicator"
+        "message": "Show total number of loaded pages/current page indicator"
     },
     "page_separators_is_visible_label_text": {
         "message": "Show page separators"
