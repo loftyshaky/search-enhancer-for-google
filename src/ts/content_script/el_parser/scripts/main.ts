@@ -2,7 +2,7 @@ import _ from 'lodash';
 import tinycolor from 'tinycolor2';
 
 import { t, s_viewport } from '@loftyshaky/shared';
-import { s_env, s_suffix } from 'shared/internal';
+import { s_suffix } from 'shared/internal';
 import {
     s_icons,
     s_infinite_scroll,
@@ -49,10 +49,6 @@ export class Main {
             this.get_preview_img_viewers();
             this.get_img_data();
             this.get_search_result_body();
-
-            if (s_env.Main.i().is_dev() && s_location.Main.i().is_imgs_page) {
-                l('preview_img_viewers:', this.preview_img_viewers, 'img_data:', this.img_data);
-            }
         }, 'ges_1022');
 
     private get_els_of_all_frames = ({ selector }: { selector: string }): HTMLElement[] =>
