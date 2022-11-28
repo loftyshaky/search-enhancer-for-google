@@ -3,7 +3,8 @@
     border: 0;
     width: 100%;
 
-    &.all_#{$app_id} {
+    &.all_#{$app_id},
+    &.search_by_img_#{$app_id} {
         margin-bottom: $search_result_offset_all;
     }
 

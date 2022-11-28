@@ -17,6 +17,13 @@ body {
         }
     }
 
+    &.search_by_img_#{$app_id} {
+        #rso .g:last-child,
+        #rso > div {
+            margin-bottom: 0 !important;
+        }
+    }
+
     &.news_#{$app_id} {
         /* stylelint-disable-next-line selector-class-pattern */
         #rso > div:last-child > g-card {

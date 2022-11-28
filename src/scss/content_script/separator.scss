@@ -5,7 +5,8 @@
     color: $black;
     font-size: $font_size;
 
-    &.all {
+    &.all,
+    &.search_by_img {
         margin-bottom: $search_result_offset_all;
     }
 
