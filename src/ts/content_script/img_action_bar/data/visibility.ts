@@ -98,6 +98,6 @@ export class Visibility {
                     this.is_visible[img_viewer_i]) ||
                     !data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover))
             ? ''
-            : 'hidden';
+            : 'visibility_hidden';
     });
 }
