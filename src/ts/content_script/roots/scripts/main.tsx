@@ -9,6 +9,7 @@ import {
     c_infinite_scroll,
     d_icons,
     s_el_parser,
+    s_img_action_bar,
     s_infinite_scroll,
     s_location,
     s_roots,
@@ -201,6 +202,15 @@ export class Main {
                     x.append(root.shadowRoot, content);
 
                     if (n(root.shadowRoot)) {
+                        const on_render = (): void =>
+                            err(() => {
+                                s_img_action_bar.Main.i().store_img_action_bar_el({
+                                    root,
+                                    img_viewer_i,
+                                });
+
+                                resolve();
+                            }, 'ges_1209');
                         const css = x.css(name, root.shadowRoot);
 
                         if (n(css)) {
@@ -213,7 +223,7 @@ export class Main {
                                             <Component
                                                 i={i}
                                                 img_viewer_i={img_viewer_i}
-                                                on_render={resolve}
+                                                on_render={on_render}
                                             />
                                         </c_crash_handler.Body>,
                                     );

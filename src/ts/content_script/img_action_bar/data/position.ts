@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 
-import { s_el_parser, i_img_action_bar } from 'content_script/internal';
+import { s_el_parser, s_img_action_bar, i_img_action_bar } from 'content_script/internal';
 
 export class Position {
     private static i0: Position;
@@ -20,31 +20,30 @@ export class Position {
 
     public bottom: { [index: string]: number } = {};
 
-    public set_bottom = ({
-        img_viewer_i,
-        img_action_bar_el,
-    }: {
-        img_viewer_i: i_img_action_bar.ImgViewerI;
-        img_action_bar_el?: HTMLDivElement | null;
-    }): void =>
+    public set_bottom = ({ img_viewer_i }: { img_viewer_i: i_img_action_bar.ImgViewerI }): void =>
         err(() => {
-            if (img_viewer_i === 'main') {
-                const el_exists: boolean = n(s_el_parser.Main.i().img_viewer);
+            const img_action_bar_el = s_img_action_bar.Main.i().img_action_bar_els[img_viewer_i];
 
-                if (el_exists && n(img_action_bar_el)) {
-                    this.bottom[img_viewer_i] =
-                        s_el_parser.Main.i().img_viewer!.offsetHeight -
-                        img_action_bar_el.offsetHeight;
-                }
-            } else {
-                const el_exists: boolean = n(
-                    s_el_parser.Main.i().preview_img_viewer_ws[img_viewer_i],
-                );
+            if (n(img_action_bar_el)) {
+                if (img_viewer_i === 'main') {
+                    const el_exists: boolean = n(s_el_parser.Main.i().img_viewer);
 
-                if (el_exists && n(img_action_bar_el)) {
-                    this.bottom[img_viewer_i] =
-                        s_el_parser.Main.i().preview_img_viewer_ws[img_viewer_i].offsetHeight -
-                        img_action_bar_el.offsetHeight;
+                    if (el_exists) {
+                        this.bottom[img_viewer_i] =
+                            s_el_parser.Main.i().img_viewer!.offsetHeight -
+                            img_action_bar_el.offsetHeight;
+                    }
+                } else {
+                    const el_exists: boolean = n(
+                        s_el_parser.Main.i().preview_img_viewer_ws[img_viewer_i],
+                    );
+
+                    if (el_exists) {
+                        const bottom: number =
+                            s_el_parser.Main.i().preview_img_viewer_ws[img_viewer_i].offsetHeight -
+                            img_action_bar_el.offsetHeight;
+                        this.bottom[img_viewer_i] = bottom < 0 ? 77 : bottom;
+                    }
                 }
             }
         }, 'ges_1193');
