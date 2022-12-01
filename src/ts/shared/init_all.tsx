@@ -8,11 +8,12 @@ import {
     c_loading_screen,
     d_loading_screen,
     s_no_tr,
+    d_settings,
     s_tab_index,
     s_theme as s_theme_shared,
 } from '@loftyshaky/shared';
 import { d_inputs, i_inputs } from '@loftyshaky/shared/inputs';
-import { d_settings, s_css_vars, s_suffix } from 'shared/internal';
+import { s_css_vars, s_suffix } from 'shared/internal';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
 declare let __webpack_public_path__: string;

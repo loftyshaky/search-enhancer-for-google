@@ -313,7 +313,7 @@ export class Main {
             data.settings.current_section = d_settings.Sections.i().current_section;
 
             ext.send_msg({
-                msg: 'update_settings',
+                msg: 'update_settings_background',
                 settings: { current_section: d_settings.Sections.i().current_section },
             });
         }, 'ges_1129');

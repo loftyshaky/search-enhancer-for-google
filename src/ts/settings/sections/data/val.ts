@@ -45,7 +45,7 @@ export class Val {
                     s_css_vars.Main.i().set();
 
                     await ext.send_msg_resp({
-                        msg: 'update_settings',
+                        msg: 'update_settings_background',
                         settings: data.settings,
                         rerun_actions_content_script: true,
                     });
@@ -79,7 +79,7 @@ export class Val {
                 s_css_vars.Main.i().set();
 
                 await ext.send_msg_resp({
-                    msg: 'update_settings',
+                    msg: 'update_settings_background',
                     settings: { colors },
                     rerun_actions: true,
                 });
@@ -146,7 +146,7 @@ export class Val {
     }): Promise<void> =>
         err_async(async () => {
             await ext.send_msg_resp({
-                msg: 'update_settings',
+                msg: 'update_settings_background',
                 settings: { [input.name]: i },
                 rerun_actions: true,
             });
@@ -155,7 +155,7 @@ export class Val {
     public remove_color_callback = ({ input }: { input: o_color.Color }): Promise<void> =>
         err_async(async () => {
             await ext.send_msg_resp({
-                msg: 'update_settings',
+                msg: 'update_settings_background',
                 settings: { [input.name]: '' },
                 rerun_actions: true,
             });
@@ -168,7 +168,7 @@ export class Val {
     }): Promise<void> =>
         err_async(async () => {
             await ext.send_msg_resp({
-                msg: 'update_settings',
+                msg: 'update_settings_background',
                 settings: { colors: default_colors },
                 rerun_actions: true,
             });

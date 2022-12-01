@@ -8,7 +8,7 @@ we.runtime.onMessage.addListener(
 
             if (msg_str === 'reload_ext') {
                 we.runtime.reload();
-            } else if (msg_str === 'update_settings') {
+            } else if (msg_str === 'update_settings_background') {
                 await s_data.Main.i().update_settings_debounce(
                     msg.settings,
                     n(msg.rerun_actions) ? msg.rerun_actions : false,

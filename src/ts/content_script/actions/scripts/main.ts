@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
-import { d_settings, s_css_vars } from 'shared/internal';
+import { d_settings } from '@loftyshaky/shared';
+import { d_settings as d_settings_shared, s_css_vars } from 'shared/internal';
 import {
     d_infinite_scroll,
     s_el_parser,
@@ -43,7 +44,7 @@ export class Main {
 
     public run_reload_actions = (): Promise<void> =>
         err_async(async () => {
-            if (d_settings.Main.i().allow_rerun_actions) {
+            if (d_settings_shared.Main.i().allow_rerun_actions) {
                 await d_settings.Main.i().set_from_storage();
                 s_css_vars.Main.i().set();
                 s_el_parser.Main.i().get_els();
@@ -63,7 +64,7 @@ export class Main {
                     s_roots.Main.i().init({ name: 'icons' });
                 }
             } else {
-                d_settings.Main.i().allow_rerun_actions = true;
+                d_settings_shared.Main.i().allow_rerun_actions = true;
             }
         }, 'ges_1019');
 
