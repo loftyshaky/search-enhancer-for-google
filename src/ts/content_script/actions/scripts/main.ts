@@ -27,6 +27,7 @@ export class Main {
     public run_initial_actions = (): Promise<void> =>
         err_async(async () => {
             await d_settings.Main.i().set_from_storage();
+            await show_unable_to_access_settings_error({ is_fullscreen: false });
             s_css_vars.Main.i().set();
             s_el_parser.Main.i().get_els();
             s_el_parser.Main.i().get_next_page_href();
