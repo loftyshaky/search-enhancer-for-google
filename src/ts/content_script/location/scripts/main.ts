@@ -22,7 +22,7 @@ export class Main {
         /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(globalThis.location.href);
 
     public is_all_page: boolean =
-        this.search_string_is_present && ((!n(this.tbs) && !n(this.tbm)) || this.tbm === '');
+        this.search_string_is_present && (!n(this.tbm) || this.tbm === '');
 
     public is_search_by_img_page: boolean =
         this.search_string_is_present && this.is_search_by_img_all_page;
@@ -58,10 +58,10 @@ export class Main {
 
     public set_current_location = (): void =>
         err(() => {
-            if (this.is_all_page) {
-                this.current_location = 'all';
-            } else if (this.is_search_by_img_page) {
+            if (this.is_search_by_img_page) {
                 this.current_location = 'search_by_img';
+            } else if (this.is_all_page) {
+                this.current_location = 'all';
             } else if (this.is_videos_page) {
                 this.current_location = 'videos';
             } else if (this.is_books_page) {
