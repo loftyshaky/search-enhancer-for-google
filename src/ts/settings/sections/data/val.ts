@@ -173,4 +173,13 @@ export class Val {
                 rerun_actions: true,
             });
         }, 'ges_1145');
+
+    public enable_developer_mode_save_callback = (): Promise<void> =>
+        err_async(async () => {
+            await ext.send_msg_resp({
+                msg: 'update_settings_background',
+                settings: { developer_mode: data.settings.developer_mode },
+                rerun_actions: true,
+            });
+        }, 'ges_1210');
 }

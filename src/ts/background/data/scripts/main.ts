@@ -24,7 +24,9 @@ export class Main {
                 options_page_theme: 'lavender',
                 transition_duration: 200,
                 color_help_is_visible: true,
+                developer_mode: false,
                 enable_cut_features: false,
+                offers_are_visible: true,
                 colors: d_color.Color.i().default_colors,
                 side_panel_position: 'right',
                 keyword_color: 2,
@@ -235,6 +237,14 @@ export class Main {
                 new o_schema.TransformItem({
                     new_key: 'preview_img_viewer_copy_img_url_btn_is_visible',
                     new_val: settings_copy.show_copy_img_url_btn,
+                }),
+                new o_schema.TransformItem({
+                    new_key: 'developer_mode',
+                    new_val: false,
+                }),
+                new o_schema.TransformItem({
+                    new_key: 'offers_are_visible',
+                    new_val: true,
                 }),
             ];
 
