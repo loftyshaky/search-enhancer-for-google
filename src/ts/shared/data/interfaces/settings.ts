@@ -7,6 +7,7 @@ export interface Settings {
     color_help_is_visible: boolean;
     developer_mode: boolean;
     enable_cut_features: boolean;
+    persistent_service_worker: boolean;
     offers_are_visible: boolean;
     offer_banner_type: 'horizontal' | 'vertical';
     colors: i_color.Color[];
