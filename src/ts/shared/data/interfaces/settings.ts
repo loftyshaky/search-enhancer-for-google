@@ -9,7 +9,6 @@ export interface Settings {
     enable_cut_features: boolean;
     persistent_service_worker: boolean;
     offers_are_visible: boolean;
-    offer_banner_type: 'horizontal' | 'vertical';
     colors: i_color.Color[];
     side_panel_position: string;
     keyword_color: number;

@@ -28,7 +28,6 @@ export class Main {
                 enable_cut_features: false,
                 persistent_service_worker: false,
                 offers_are_visible: true,
-                offer_banner_type: 'horizontal',
                 colors: d_color.Color.i().default_colors,
                 side_panel_position: 'right',
                 keyword_color: 2,
@@ -249,10 +248,6 @@ export class Main {
                 new o_schema.TransformItem({
                     new_key: 'offers_are_visible',
                     new_val: true,
-                }),
-                new o_schema.TransformItem({
-                    new_key: 'offer_banner_type',
-                    new_val: 'horizontal',
                 }),
                 new o_schema.TransformItem({
                     new_key: 'persistent_service_worker',
