@@ -101,23 +101,11 @@
     "jump_to_related_searches_title": {
         "message": "Klicken Sie hier, um zu ähnlichen Suchanfragen/Schaltflächen für Seitenwechsel zu springen. Klicken Sie erneut oder klicken Sie mit der mittleren Maustaste auf die Schaltfläche „Nach oben blättern”, um zur vorherigen Position zurückzukehren."
     },
-    "google_enhancement_suite_for_chrome_link_text": {
+    "search_enhancer_for_google_chrome_link_text": {
         "message": "⚗️ Search Enhancer for Google™ für Chrome"
     },
-    "google_enhancement_suite_for_edge_link_text": {
+    "search_enhancer_for_google_edge_link_text": {
         "message": "⚗️ Search Enhancer for Google™ für Edge"
-    },
-    "rate_chrome_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-rate"
-    },
-    "rate_edge_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-edge"
-    },
-    "google_enhancement_suite_for_chrome_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google"
-    },
-    "google_enhancement_suite_for_edge_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-edge"
     },
     "current_indicator_title": {
         "message": "Aktuelle Seite"

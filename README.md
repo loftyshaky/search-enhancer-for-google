@@ -2,8 +2,8 @@ A browser extension that adds infinite scrolling, favicons, server locations, "V
 
 ## Links
 
-[Chrome Web Store](https://bit.ly/search-enhancer-for-google)<br>
-[Edge Add-ons](https://bit.ly/search-enhancer-for-google-edge)
+[Chrome Web Store](https://chromewebstore.google.com/detail/pipbbdfondfipmjmdkmggihiknhmcfhd)<br>
+[Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/hfbafhkogonfgpkdopodhajncnodbbhd)
 
 ## Build steps
 

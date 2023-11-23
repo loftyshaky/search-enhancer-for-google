@@ -250,7 +250,7 @@ export class Main {
                         inputs: [
                             new o_inputs.Link({
                                 name: 'privacy_policy',
-                                href: 'https://bit.ly/extensions-privacy-policy',
+                                href: ext.msg('privacy_policy_link_href'),
                             }),
                             new o_inputs.Link({
                                 name: 'rate',
@@ -261,21 +261,21 @@ export class Main {
                                 ? []
                                 : [
                                       new o_inputs.Link({
-                                          name: 'google_enhancement_suite_for_chrome',
+                                          name: 'search_enhancer_for_googlei1i',
                                           browser: 'chrome',
                                       }),
                                       new o_inputs.Link({
-                                          name: 'google_enhancement_suite_for_edge',
+                                          name: 'search_enhancer_for_googlei2i',
                                           browser: 'edge',
                                       }),
                                   ]),
                             new o_inputs.Link({
                                 name: 'facebook_page',
-                                href: 'http://bit.ly/browservery',
+                                href: ext.msg('facebook_page_link_href'),
                             }),
                             new o_inputs.Link({
                                 name: 'support_page',
-                                href: 'http://bit.ly/browservery-support',
+                                href: ext.msg('support_page_link_href'),
                             }),
                         ],
                     }),

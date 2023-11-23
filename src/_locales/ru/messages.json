@@ -101,23 +101,11 @@
     "jump_to_related_searches_title": {
         "message": "Кликните, чтобы перейти к похожим запросам/кнопкам нумерации страниц. Кликните снова или кликните средней кнопкой мыши кнопку \"Вверх\" чтобы вернуться назад."
     },
-    "google_enhancement_suite_for_chrome_link_text": {
+    "search_enhancer_for_google_for_chrome_link_text": {
         "message": "⚗️ Search Enhancer for Google™ для Chrome"
     },
-    "google_enhancement_suite_for_edge_link_text": {
+    "search_enhancer_for_google_for_edge_link_text": {
         "message": "⚗️ Search Enhancer for Google™ для Edge"
-    },
-    "rate_chrome_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-rate-ru"
-    },
-    "rate_edge_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-edge"
-    },
-    "google_enhancement_suite_for_chrome_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-ru"
-    },
-    "google_enhancement_suite_for_edge_link_href": {
-        "message": "https://bit.ly/search-enhancer-for-google-edge"
     },
     "current_indicator_title": {
         "message": "Текущая страница"
