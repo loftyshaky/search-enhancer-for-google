@@ -4,20 +4,9 @@
 $icon_size: 16px;
 
 .content {
+    @include full_dims;
+
     inset-inline-end: 0;
-}
-
-.icons {
-    display: flex;
-}
-
-.icons:not(.news, :empty) {
-    margin-right: $gap;
-}
-
-:host-context(html[dir='rtl']) .icons:not(.news, :empty) {
-    margin-right: 0;
-    margin-left: $gap;
 }
 
 .icon_w {
@@ -45,4 +34,32 @@ $icon_size: 16px;
         width: $icon_size;
         height: $icon_size;
     }
+}
+
+.icons {
+    display: flex;
+
+    &.all {
+        @include full_dims;
+
+        .icon_w {
+            @include full_dims;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favicons {
+            display: none;
+        }
+    }
+}
+
+.icons:not(.all, .news, :empty) {
+    margin-right: $gap;
+}
+
+:host-context(html[dir='rtl']) .icons:not(.news, :empty) {
+    margin-right: 0;
+    margin-left: $gap;
 }

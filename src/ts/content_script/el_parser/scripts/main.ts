@@ -22,6 +22,8 @@ export class Main {
     private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
     public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
+    public favicon_els: (HTMLElement | undefined)[] = [];
+    public favicon_el_cls: string | undefined = undefined;
     public footer_el: HTMLElement | undefined = undefined;
     public related_searches_el: HTMLElement | undefined = undefined;
     public pagination_el: HTMLElement | undefined = undefined;
@@ -171,8 +173,85 @@ export class Main {
                 err(() => el.href, 'ges_1031'),
             );
 
+            this.get_favicon_els({ filtered_links });
+
             s_icons.Main.i().prevent_titles_and_icons_from_wrapping({ filtered_links });
         }, 'ges_1032');
+
+    private get_favicon_els = ({ filtered_links }: { filtered_links: HTMLLinkElement[] }): void =>
+        err(() => {
+            const get_favicon = ({
+                el,
+            }: {
+                el: HTMLElement | undefined | null;
+            }): HTMLElement | undefined =>
+                err(() => {
+                    const parent = ru(el);
+
+                    if (n(parent)) {
+                        const el_width: number = parent.offsetWidth;
+                        const el_height: number = parent.offsetHeight;
+
+                        if (el_width === el_height && el_width >= 24) {
+                            if (!n(this.favicon_el_cls)) {
+                                this.favicon_el_cls = parent.className;
+                            }
+
+                            const favicon_cls: string = new s_suffix.Main('favicon').result;
+
+                            if (!x.matches(parent, `.${favicon_cls}`)) {
+                                x.add_cls(parent, favicon_cls);
+                            }
+
+                            return parent;
+                        }
+                    }
+
+                    return undefined;
+                }, 'ges_1216');
+
+            const imgs: (HTMLImageElement | undefined)[] = filtered_links.map(
+                (filtered_link: HTMLLinkElement): HTMLImageElement | undefined =>
+                    err(() => sb(filtered_link, 'img'), 'ges_1217'),
+            );
+
+            if (n(imgs)) {
+                this.favicon_els = [...imgs].map(
+                    (img: HTMLImageElement | undefined): HTMLElement | undefined =>
+                        err(() => {
+                            if (n(img)) {
+                                const img_width: number = img.offsetWidth;
+                                const img_height: number = img.offsetHeight;
+
+                                if (
+                                    img_width === img_height &&
+                                    img_width >= 16 &&
+                                    img_width <= 20
+                                ) {
+                                    let parent = ru(img.parentElement);
+                                    let favicon: HTMLElement | undefined = get_favicon({
+                                        el: parent,
+                                    });
+
+                                    if (n(favicon)) {
+                                        return favicon;
+                                    }
+
+                                    while (n(parent) && parent.offsetHeight < 23) {
+                                        favicon = get_favicon({ el: parent.parentElement });
+
+                                        parent = ru(parent.parentElement);
+                                    }
+
+                                    return favicon;
+                                }
+                            }
+
+                            return undefined;
+                        }, 'ges_1215'),
+                );
+            }
+        }, 'ges_1214');
 
     private get_footer_el = (): void =>
         err(() => {

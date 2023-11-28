@@ -5,6 +5,7 @@ import { d_settings as d_settings_shared, s_css_vars } from 'shared/internal';
 import {
     d_infinite_scroll,
     s_el_parser,
+    s_icons,
     s_infinite_scroll,
     s_keywords,
     s_location,
@@ -63,6 +64,11 @@ export class Main {
 
                 if (s_location.Main.i().is_icons_search_results) {
                     s_roots.Main.i().init({ name: 'icons' });
+                }
+
+                if (s_location.Main.i().is_all_page) {
+                    s_icons.Main.i().insert_shadow_icon_duplicates();
+                    s_icons.Main.i().apply_or_remove_favicon_el_cls_to_icons_root();
                 }
             } else {
                 d_settings_shared.Main.i().allow_rerun_actions = true;

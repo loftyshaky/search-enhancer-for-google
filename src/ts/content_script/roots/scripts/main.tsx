@@ -73,29 +73,35 @@ export class Main {
                         remove_icons({ icon_roots });
                     }
                 } else {
-                    s_el_parser.Main.i().title_els.forEach((title_el, i): void =>
+                    const els = s_location.Main.i().is_all_page
+                        ? s_el_parser.Main.i().favicon_els
+                        : s_el_parser.Main.i().title_els;
+
+                    els.forEach((el, i): void =>
                         err(() => {
                             if (i >= start) {
                                 let icons_el: HTMLElement | undefined;
 
                                 d_icons.Main.i().generate_urls({ i });
 
-                                if (n(title_el.parentElement)) {
-                                    icons_el = sb(
-                                        title_el.parentElement,
-                                        `.${new s_suffix.Main(name).result}`,
-                                    );
-                                }
+                                if (n(el)) {
+                                    if (n(el.parentElement)) {
+                                        icons_el = sb(
+                                            el.parentElement,
+                                            `.${new s_suffix.Main(name).result}`,
+                                        );
+                                    }
 
-                                if (!n(icons_el)) {
-                                    this.append_root({
-                                        name,
-                                        parent: title_el,
-                                        i,
-                                        append_f_name: s_location.Main.i().is_news_page
-                                            ? 'as_first'
-                                            : 'before',
-                                    });
+                                    if (!n(icons_el)) {
+                                        this.append_root({
+                                            name,
+                                            parent: el,
+                                            i,
+                                            append_f_name: s_location.Main.i().is_news_page
+                                                ? 'as_first'
+                                                : 'before',
+                                        });
+                                    }
                                 }
                             }
                         }, 'ges_1092'),
@@ -188,7 +194,8 @@ export class Main {
                     }
 
                     x[append_f_name](
-                        !s_location.Main.i().is_news_page &&
+                        !s_location.Main.i().is_all_page &&
+                            !s_location.Main.i().is_news_page &&
                             name === 'icons' &&
                             n(parent.firstChild)
                             ? parent.firstChild
