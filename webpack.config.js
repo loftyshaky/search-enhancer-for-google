@@ -112,6 +112,14 @@ module.exports = (env, argv) => {
                 'content_script',
                 'img_action_bar.scss',
             ),
+            favicon_hidden: path.join(
+                app_root,
+                'src',
+                'scss',
+                'content_script',
+                'embed',
+                'favicon_hidden.scss',
+            ),
         },
     };
 

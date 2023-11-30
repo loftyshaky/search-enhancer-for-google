@@ -217,16 +217,19 @@ export class Main {
 
             const imgs: (HTMLImageElement | undefined)[] = filtered_links.map(
                 (filtered_link: HTMLLinkElement): HTMLImageElement | undefined =>
-                    err(() => sb(filtered_link, 'img'), 'ges_1217'),
+                    err(() => sb(filtered_link, 'img, svg'), 'ges_1217'),
             );
 
             if (n(imgs)) {
                 this.favicon_els = [...imgs].map(
-                    (img: HTMLImageElement | undefined): HTMLElement | undefined =>
+                    (
+                        img: HTMLImageElement | SVGGraphicsElement | undefined,
+                    ): HTMLElement | undefined =>
                         err(() => {
                             if (n(img)) {
-                                const img_width: number = img.offsetWidth;
-                                const img_height: number = img.offsetHeight;
+                                const rect = img.getBoundingClientRect();
+                                const img_width: number = rect.width;
+                                const img_height: number = rect.height;
 
                                 if (
                                     img_width === img_height &&

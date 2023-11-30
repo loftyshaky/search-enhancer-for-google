@@ -12,6 +12,18 @@ export class Main {
     // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
     private constructor() {}
 
+    public show_or_hide_native_favicons = (): void =>
+        err(() => {
+            const filename: string = 'favicon_hidden';
+            const cls: string = new s_suffix.Main(filename).result;
+
+            if (data.settings.favicons_is_visible) {
+                x.remove(s(`.${cls}`));
+            } else {
+                x.css(filename, document.head, cls);
+            }
+        }, 'ges_1227');
+
     public prevent_titles_and_icons_from_wrapping = ({
         filtered_links,
     }: {

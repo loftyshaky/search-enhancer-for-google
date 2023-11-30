@@ -66,6 +66,9 @@ export class Main {
                 if (s_location.Main.i().is_icons_search_results) {
                     s_roots.Main.i().init({ name: 'icons' });
                 }
+                if (s_location.Main.i().is_all_page || s_location.Main.i().is_news_page) {
+                    s_icons.Main.i().show_or_hide_native_favicons();
+                }
 
                 if (s_location.Main.i().is_all_page) {
                     s_icons.Main.i().insert_shadow_icon_duplicates();

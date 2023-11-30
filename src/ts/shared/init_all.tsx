@@ -68,6 +68,10 @@ export class InitAll {
 
                 if (page === 'settings') {
                     this.set_page_title();
+                } else if (page === 'content_script') {
+                    const { s_icons } = await import('content_script/internal');
+
+                    s_icons.Main.i().show_or_hide_native_favicons();
                 }
 
                 s_css_vars.Main.i().set();

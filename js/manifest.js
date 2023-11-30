@@ -25,6 +25,7 @@ class Manifest {
                         'load_end_msg.css',
                         'side_panel.css',
                         'img_action_bar.css',
+                        'favicon_hidden.css',
                         'dark_ui.css',
                         'flags/*',
                     ],
