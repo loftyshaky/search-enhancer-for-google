@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const LicensePlugin = require('webpack-license-plugin');
 
 const Reloader = require('advanced-extension-reloader-watch-2/umd/reloader');
 const { Env } = require('@loftyshaky/shared/js/env');
@@ -45,6 +46,7 @@ module.exports = (env, argv) => {
         MiniCssExtractPlugin,
         CssMinimizerPlugin,
         CopyWebpackPlugin,
+        LicensePlugin,
         copy_patters: [
             'FLAGS ICONS LICENSE.txt',
             {
