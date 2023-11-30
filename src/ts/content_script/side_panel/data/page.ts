@@ -68,13 +68,16 @@ export class Page {
 
     public set_total = (): void =>
         err(() => {
-            let page_count = 0;
+            let page_count: number = 0;
 
-            page_count = (
-                s_location.Main.i().is_all_page
-                    ? s_el_parser.Main.i().page_els
-                    : s_infinite_scroll.Iframe.i().iframes
-            ).length;
+            if (s_location.Main.i().is_all_page) {
+                page_count =
+                    s_el_parser.Main.i().page_els.length === 0
+                        ? 1
+                        : s_el_parser.Main.i().page_els.length;
+            } else {
+                page_count = s_infinite_scroll.Iframe.i().iframes.length;
+            }
 
             this.total = page_count + (s_location.Main.i().is_all_page ? 0 : 1);
         }, 'ges_1108');
