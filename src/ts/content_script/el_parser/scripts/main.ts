@@ -27,6 +27,7 @@ export class Main {
     public footer_el: HTMLElement | undefined = undefined;
     public related_searches_el: HTMLElement | undefined = undefined;
     public more_results_btn: HTMLElement | undefined = undefined;
+    public more_results_btn_spinner: HTMLElement | undefined = undefined;
     public pagination_el: HTMLElement | undefined = undefined;
     public page_els: HTMLElement[] = [];
     public img_viewer: HTMLLinkElement | undefined = undefined;
@@ -47,7 +48,7 @@ export class Main {
             this.get_title_els_and_hostnames();
             this.get_footer_el();
             this.get_related_searches_el();
-            this.get_related_more_results_btn();
+            this.get_more_results_btn();
             this.get_pagination_el();
             this.get_page_els();
             this.get_img_viewer();
@@ -267,7 +268,7 @@ export class Main {
             this.related_searches_el = s<HTMLElement>('#brs, #bres');
         }, 'ges_1034');
 
-    public get_related_more_results_btn = (): void =>
+    public get_more_results_btn = (): void =>
         err(() => {
             const more_results_svgs = sa<HTMLElement>(
                 'path[d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"]',
@@ -276,14 +277,10 @@ export class Main {
             if (n(more_results_svgs)) {
                 more_results_svgs.forEach((svg: HTMLElement): void =>
                     err(() => {
-                        const more_results_btn: HTMLElement | undefined = x.closest(svg, 'a');
-
-                        if (n(more_results_btn)) {
-                            this.more_results_btn =
-                                more_results_btn.style.transform === 'scale(0)'
-                                    ? undefined
-                                    : more_results_btn;
-                        }
+                        this.more_results_btn = x.closest(svg, 'a');
+                        this.more_results_btn_spinner = s(
+                            '[style*="www.gstatic.com/ui/v2/activityindicator/mspin_googcolor_medium.svg"]',
+                        );
                     }, 'ges_1224'),
                 );
             }
