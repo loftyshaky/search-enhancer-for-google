@@ -1,7 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 
 import { s_viewport } from '@loftyshaky/shared';
-import { d_side_panel, s_infinite_scroll } from 'content_script/internal';
+import { s_el_parser, d_side_panel, s_infinite_scroll, s_location } from 'content_script/internal';
 
 export class Page {
     private static i0: Page;
@@ -20,37 +20,42 @@ export class Page {
         });
     }
 
-    private offset: number = 400;
+    private offset: number = 300;
     public current: number = 1;
     public total: number = 1;
 
     public set_current = (): Promise<void> =>
         err_async(async () => {
-            let rendering_iframe_final: boolean = false;
+            let rendering_page_final: boolean = false;
+            const page_els: HTMLElement[] = s_location.Main.i().is_all_page
+                ? s_el_parser.Main.i().page_els
+                : s_infinite_scroll.Iframe.i().iframes;
+            const i_offset = s_location.Main.i().is_all_page ? 1 : 2;
 
-            const current_iframe_i: number = s_infinite_scroll.Iframe.i().iframes.findIndex(
-                (el: HTMLIFrameElement): boolean =>
+            const current_page_i: number = page_els.findIndex(
+                (el: HTMLElement, i: number): boolean =>
                     err(() => {
                         const page_height: number = s_viewport.Main.i().get_dim({
                             dim: 'height',
                         });
                         const rect = el.getBoundingClientRect();
-                        const rendering_iframe: boolean = rect.top > 50000;
+                        const rendering_page: boolean = rect.top > 50000;
 
-                        if (rendering_iframe) {
-                            rendering_iframe_final = rendering_iframe;
+                        if (rendering_page) {
+                            rendering_page_final = rendering_page;
                         }
 
                         return (
-                            !rendering_iframe &&
-                            rect.top <= page_height - this.offset &&
-                            rect.bottom >= page_height - this.offset
+                            !rendering_page &&
+                            ((rect.top <= page_height - this.offset &&
+                                rect.bottom >= page_height - (this.offset + 100)) ||
+                                (page_els.length - 1 === i && rect.bottom <= page_height))
                         );
                     }, 'ges_1106'),
             );
 
-            if (!rendering_iframe_final) {
-                this.current = current_iframe_i === -1 ? 1 : current_iframe_i + 2;
+            if (!rendering_page_final) {
+                this.current = current_page_i === -1 ? 1 : current_page_i + i_offset;
             }
 
             if (
@@ -63,8 +68,14 @@ export class Page {
 
     public set_total = (): void =>
         err(() => {
-            const iframe_count: number = s_infinite_scroll.Iframe.i().iframes.length;
+            let page_count = 0;
 
-            this.total = iframe_count + 1;
+            page_count = (
+                s_location.Main.i().is_all_page
+                    ? s_el_parser.Main.i().page_els
+                    : s_infinite_scroll.Iframe.i().iframes
+            ).length;
+
+            this.total = page_count + (s_location.Main.i().is_all_page ? 0 : 1);
         }, 'ges_1108');
 }
