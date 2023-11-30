@@ -1,5 +1,10 @@
 import { s_viewport } from '@loftyshaky/shared';
-import { d_infinite_scroll, s_el_parser, s_infinite_scroll } from 'content_script/internal';
+import {
+    d_infinite_scroll,
+    s_el_parser,
+    s_infinite_scroll,
+    s_location,
+} from 'content_script/internal';
 
 export class Scroll {
     private static i0: Scroll;
@@ -21,7 +26,11 @@ export class Scroll {
                 document.body.scrollHeight - document.documentElement.scrollTop <=
                     s_viewport.Main.i().get_dim({ dim: 'height' }) + 600
             ) {
-                s_infinite_scroll.Iframe.i().insert();
+                if (s_location.Main.i().is_all_page) {
+                    s_infinite_scroll.MoreResults.i().load_next_page();
+                } else {
+                    s_infinite_scroll.Iframe.i().insert();
+                }
             } else if (!n(s_el_parser.Main.i().next_page_href)) {
                 d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
