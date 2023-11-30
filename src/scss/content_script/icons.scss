@@ -39,7 +39,8 @@ $icon_size: 16px;
 .icons {
     display: flex;
 
-    &.all {
+    &.all,
+    &.search_by_img {
         @include full_dims;
 
         .icon_w {
@@ -55,7 +56,7 @@ $icon_size: 16px;
     }
 }
 
-.icons:not(.all, .news, :empty) {
+.icons:not(.all, .search_by_img, .news, :empty) {
     margin-right: $gap;
 }
 
