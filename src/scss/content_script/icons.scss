@@ -1,8 +1,6 @@
 @import '../shared/index';
 @import 'shared';
 
-$icon_size: 16px;
-
 .content {
     @include full_dims;
 
@@ -16,18 +14,38 @@ $icon_size: 16px;
         margin-inline-start: 10px;
     }
 
+    .svgs_w {
+        display: flex;
+    }
+
     svg {
         width: $icon_size;
         height: $icon_size;
         background-color: white;
+
+        &:nth-child(1) {
+            fill: white !important;
+            height: $icon_size_2;
+            width: $icon_size_2;
+            padding: 2px;
+        }
     }
 
     &.favicons svg {
-        fill: #4550ff;
+        fill: $icon_placeholder_color_1;
+
+        &:nth-child(1) {
+            background-color: $icon_placeholder_color_1;
+        }
     }
 
+    /* stylelint-disable-next-line no-descending-specificity */
     &.server_locations svg {
-        fill: #ff4b35;
+        fill: $icon_placeholder_color_2;
+
+        &:nth-child(1) {
+            background-color: $icon_placeholder_color_2;
+        }
     }
 
     .icon {

@@ -40,20 +40,22 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
                     src={src}
                 />
             )}
-            {d_icons.Main.i().show_placeholder({
-                pre: true,
-                type,
-                url,
-            }) ? (
-                <svg.RefreshInverse />
-            ) : undefined}
-            {d_icons.Main.i().show_placeholder({
-                pre: false,
-                type,
-                url,
-            }) ? (
-                <svg.Yard />
-            ) : undefined}
+            <span className='svgs_w'>
+                {d_icons.Main.i().show_placeholder({
+                    pre: true,
+                    type,
+                    url,
+                }) ? (
+                    <svg.Refresh />
+                ) : undefined}
+                {d_icons.Main.i().show_placeholder({
+                    pre: false,
+                    type,
+                    url,
+                }) ? (
+                    <svg.Yard />
+                ) : undefined}
+            </span>
         </span>
     ) : null;
 });

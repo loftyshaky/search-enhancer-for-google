@@ -13,7 +13,9 @@ const { Env } = require('@loftyshaky/shared/js/env');
 const { Locales } = require('@loftyshaky/shared/js/locales');
 const { shared_config } = require('@loftyshaky/shared/js/webpack.config');
 const { TaskScheduler } = require('@loftyshaky/shared/js/task_scheduler');
+const { Dependencies: DependenciesShared } = require('@loftyshaky/shared/js/dependencies');
 const { Manifest } = require('./js/manifest');
+const { Dependencies } = require('./js/dependencies');
 
 const reloader = new Reloader({
     port: 7220,
@@ -21,13 +23,15 @@ const reloader = new Reloader({
 
 reloader.watch();
 
-const task_scheduler = new TaskScheduler();
-
 const app_root = appRoot;
+
+const task_scheduler = new TaskScheduler();
+const dependencies_shared = new DependenciesShared({ app_root });
 
 const manifest = new Manifest({ app_root });
 const env_instance = new Env({ app_root });
 const locales = new Locales({ app_root });
+const dependencies = new Dependencies();
 
 const ext_id = 'mfihhepjphokhfnlioficodoomlnhlbd';
 
@@ -72,6 +76,9 @@ module.exports = (env, argv) => {
             });
             env_instance.generate({ browser: env.browser, mode: argv.mode, env: env_2 });
             locales.merge({ env: env_2 });
+            dependencies_shared.add_missing_dependesies({
+                extension_specific_missing_dependencies: dependencies.missing_dependencies,
+            });
 
             const an_error_occured = stats.compilation.errors.length !== 0;
 
@@ -92,6 +99,7 @@ module.exports = (env, argv) => {
             background: path.join(paths.ts, 'background', 'background.ts'),
             settings: path.join(paths.ts, 'settings', 'settings.ts'),
             content_script: path.join(paths.ts, 'content_script', 'content_script.ts'),
+            dependencies: path.join(paths.ts, 'dependencies', 'dependencies.ts'),
             settings_css: path.join(app_root, 'src', 'scss', 'settings', 'index.scss'),
             content_script_css: path.join(app_root, 'src', 'scss', 'content_script', 'index.scss'),
             icons: path.join(app_root, 'src', 'scss', 'content_script', 'icons.scss'),

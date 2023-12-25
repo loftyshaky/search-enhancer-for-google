@@ -13,7 +13,7 @@ export class Main {
 
     public set = (): void =>
         err(() => {
-            const roots = ['settings', 'content_script'].includes(page)
+            const roots = ['settings', 'content_script', 'dependencies'].includes(page)
                 ? [document.documentElement]
                 : [];
 

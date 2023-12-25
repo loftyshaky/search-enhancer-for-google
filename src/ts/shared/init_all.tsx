@@ -33,6 +33,7 @@ export class InitAll {
     private spinner_root: ShadowRoot | undefined = undefined;
     private load_end_msg_root: ShadowRoot | undefined = undefined;
     private side_panel_root: ShadowRoot | undefined = undefined;
+    private dependencies_root: HTMLDivElement | undefined = undefined;
 
     public init = (): Promise<void> =>
         new Promise((reslove) => {
@@ -52,6 +53,12 @@ export class InitAll {
                             if (n(loading_screen_css)) {
                                 x.bind(loading_screen_css, 'load', (): void =>
                                     err(() => {
+                                        if (page === 'dependencies') {
+                                            s_theme_shared.Main.i().set({
+                                                name: data.settings.options_page_theme,
+                                            });
+                                        }
+
                                         d_loading_screen.Main.i().show();
 
                                         reslove();
@@ -66,7 +73,7 @@ export class InitAll {
 
                 await d_settings.Main.i().set_from_storage();
 
-                if (page === 'settings') {
+                if (['settings', 'dependencies'].includes(page)) {
                     this.set_page_title();
                 } else if (page === 'content_script') {
                     const { s_icons } = await import('content_script/internal');
@@ -79,10 +86,13 @@ export class InitAll {
                 const error_root: ShadowRoot = this.create_root({ prefix: 'error' }) as ShadowRoot;
                 let loading_screen_root: ShadowRoot;
 
-                if (page === 'settings') {
+                if (['settings', 'dependencies'].includes(page)) {
                     loading_screen_root = this.create_root({
                         prefix: 'loading_screen',
                     }) as ShadowRoot;
+                }
+
+                if (page === 'settings') {
                     this.settings_root = this.create_root({
                         prefix: 'settings',
                         shadow_root: false,
@@ -95,6 +105,11 @@ export class InitAll {
                         prefix: 'load_end_msg',
                     }) as ShadowRoot;
                     this.side_panel_root = this.create_root({ prefix: 'side_panel' }) as ShadowRoot;
+                } else if (page === 'dependencies') {
+                    this.dependencies_root = this.create_root({
+                        prefix: 'dependencies',
+                        shadow_root: false,
+                    }) as HTMLDivElement;
                 }
 
                 ReactDOM.createRoot(error_root).render(
@@ -102,7 +117,7 @@ export class InitAll {
                         app_id={s_suffix.app_id}
                         on_render={(): void =>
                             err(() => {
-                                if (page === 'settings') {
+                                if (['settings', 'dependencies'].includes(page)) {
                                     ReactDOM.createRoot(loading_screen_root).render(
                                         <c_crash_handler.Body>
                                             <c_loading_screen.Body
@@ -266,4 +281,41 @@ export class InitAll {
                 );
             }
         }, 'ges_1157');
+
+    public render_dependencies = (): Promise<void> =>
+        err_async(async () => {
+            const { Body } = await import('dependencies/components/body');
+
+            const on_css_load = (): Promise<void> =>
+                err_async(async () => {
+                    d_loading_screen.Main.i().hide({ app_id: s_suffix.app_id });
+                }, 'ges_1230');
+
+            if (n(this.dependencies_root)) {
+                ReactDOM.createRoot(this.dependencies_root).render(
+                    <c_crash_handler.Body>
+                        <Body
+                            on_render={(): void =>
+                                err(() => {
+                                    const dependencies_css = x.css(
+                                        'dependencies_css',
+                                        document.head,
+                                    );
+
+                                    x.css(
+                                        `${data.settings.options_page_theme}_theme`,
+                                        document.head,
+                                        'theme_link',
+                                    );
+
+                                    if (n(dependencies_css)) {
+                                        x.bind(dependencies_css, 'load', on_css_load);
+                                    }
+                                }, 'ges_1231')
+                            }
+                        />
+                    </c_crash_handler.Body>,
+                );
+            }
+        }, 'ges_1228');
 }

@@ -13,11 +13,12 @@ class Manifest {
             web_accessible_resources: [
                 {
                     resources: [
-                        'noto_sans.woff2',
+                        'NotoSans-Regular.ttf',
                         'no_tr.css',
                         'font_face.css',
                         'error.css',
                         'content_script_css.css',
+                        'dependencies_css.css',
                         'icons.css',
                         'separator.css',
                         'google_iframe_inner.css',
@@ -483,7 +484,7 @@ class Manifest {
             manifest.content_scripts[0].js.push(
                 'env.js',
                 'chunks/src_ts_content_script_internal_ts.js',
-                'chunks/src_ts_settings_internal_ts.js',
+                'chunks/vendors-node_modules_lodash_lodash_js.js',
                 'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
                 'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
             );

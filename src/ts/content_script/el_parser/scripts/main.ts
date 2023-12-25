@@ -199,7 +199,7 @@ export class Main {
 
                         if (el_width === el_height && el_width >= 24) {
                             if (!n(this.favicon_el_cls)) {
-                                this.favicon_el_cls = parent.className;
+                                [this.favicon_el_cls] = parent.classList;
                             }
 
                             const favicon_cls: string = new s_suffix.Main('favicon').result;
