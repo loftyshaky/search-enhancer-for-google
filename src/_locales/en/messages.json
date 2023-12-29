@@ -95,6 +95,12 @@
     "scroll_to_top_title": {
         "message": "Left-click to go to top. (Tab: Enter)\n\nRight-click to go to bottom. (Tab: Ctrl + Enter)\n\nWhen you go to top or bottom Search Enhancer for Google™ remembers your position. To return to this position middle-click. (Tab: Shift + Enter)\n\nYou can also remember your position without going to top or bottom. To do this, middle-click, if Search Enhancer for Google™ doesn't have a position remembered, or click and hold middle button for 0.35 second if it does. (Tab: Alt + Enter)"
     },
+    "enable_infinite_scrolling_help_text": {
+        "message": "Google now has a native infinite scroll feature in the \"All\" section, but if you scroll long enough, it stops loading new pages, showing a \"More results\" button instead. If you enable this option, Search Enhancer for Google™ will click on this button automatically as you scroll. This option also adds infinite scroll to the non-\"All\" sections."
+    },
+    "page_separators_is_visible_help_text": {
+        "message": "Separators won't work in the \"All\" section."
+    },
     "img_downloads_dir_help_text": {
         "message": "A path to the folder in the downloads folder, where downloaded images will go. May contain subfolders. Must not contain characters prohibited by the operating system. If the folder does not exist, it will be created on the first download. Leave empty to download images into the default folder. Example: !Google/Images"
     },
