@@ -1,3 +1,5 @@
+@import '../../../node_modules/@loftyshaky/shared/scss/shared/vars';
+
 $font_size: 18px;
 $btn_size: 31px;
 $icon_size: 16px;
@@ -11,5 +13,6 @@ $search_result_offset_videos: 32px;
 $search_result_offset_books: 18px;
 $search_result_offset_news: 29px;
 $search_result_offset_shopping: 20px;
+$img_action_bar_button_opacity: 0.65;
 $icon_placeholder_color_1: #4550ff;
 $icon_placeholder_color_2: #ff4b35;

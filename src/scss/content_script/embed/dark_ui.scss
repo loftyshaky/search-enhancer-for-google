@@ -1,9 +1,27 @@
+@import '../vars';
+
 .side_panel {
-    filter: brightness(74%);
+    .btn {
+        background-color: #7b3a89 !important;
+    }
+
+    .enable_btn {
+        background-color: #358b46 !important;
+    }
+
+    .side_panel_item {
+        &.current {
+            background-color: #5064b9 !important;
+        }
+
+        &.total {
+            background-color: #53a4d9 !important;
+        }
+    }
 }
 
-.img_action_bar {
-    filter: brightness(80%);
+.img_action_bar .btn {
+    background-color: rgba(38, 90, 175, $img_action_bar_button_opacity) !important;
 }
 
 .separator {
