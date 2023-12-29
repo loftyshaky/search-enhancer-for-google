@@ -182,60 +182,66 @@ export class Main {
     }): Promise<void> =>
         new Promise((resolve) => {
             err(() => {
-                const root_cls = new s_suffix.Main(name).result;
+                if (!ext.ext_context_invalidated()) {
+                    const root_cls = new s_suffix.Main(name).result;
 
-                if (!sb(parent, `.${root_cls}`)) {
-                    const root: HTMLDivElement = x.create('div', new s_suffix.Main(name).result);
+                    if (!sb(parent, `.${root_cls}`)) {
+                        const root: HTMLDivElement = x.create(
+                            'div',
+                            new s_suffix.Main(name).result,
+                        );
 
-                    if (name === 'icons') {
-                        if (s_location.Main.i().is_news_page) {
-                            x.add_cls(root, new s_suffix.Main('news').result);
+                        if (name === 'icons') {
+                            if (s_location.Main.i().is_news_page) {
+                                x.add_cls(root, new s_suffix.Main('news').result);
+                            }
                         }
-                    }
 
-                    x[append_f_name](
-                        !s_location.Main.i().is_all_page &&
-                            !s_location.Main.i().is_news_page &&
-                            name === 'icons' &&
-                            n(parent.firstChild)
-                            ? parent.firstChild
-                            : parent,
-                        root,
-                    );
+                        x[append_f_name](
+                            !s_location.Main.i().is_all_page &&
+                                !s_location.Main.i().is_news_page &&
+                                name === 'icons' &&
+                                n(parent.firstChild)
+                                ? parent.firstChild
+                                : parent,
+                            root,
+                        );
 
-                    root.attachShadow({ mode: 'open' });
+                        root.attachShadow({ mode: 'open' });
 
-                    const content = x.create('div', 'content');
-                    x.append(root.shadowRoot, content);
+                        const content = x.create('div', 'content');
+                        x.append(root.shadowRoot, content);
 
-                    if (n(root.shadowRoot)) {
-                        const on_render = (): void =>
-                            err(() => {
-                                s_img_action_bar.Main.i().store_img_action_bar_el({
-                                    root,
-                                    img_viewer_i,
-                                });
-
-                                resolve();
-                            }, 'ges_1209');
-                        const css = x.css(name, root.shadowRoot);
-
-                        if (n(css)) {
-                            x.bind(css, 'load', (): void =>
+                        if (n(root.shadowRoot)) {
+                            const on_render = (): void =>
                                 err(() => {
-                                    const Component: FunctionComponent<any> = this.component[name];
+                                    s_img_action_bar.Main.i().store_img_action_bar_el({
+                                        root,
+                                        img_viewer_i,
+                                    });
 
-                                    ReactDOM.createRoot(content).render(
-                                        <c_crash_handler.Body>
-                                            <Component
-                                                i={i}
-                                                img_viewer_i={img_viewer_i}
-                                                on_render={on_render}
-                                            />
-                                        </c_crash_handler.Body>,
-                                    );
-                                }, 'ges_1095'),
-                            );
+                                    resolve();
+                                }, 'ges_1209');
+                            const css = x.css(name, root.shadowRoot);
+
+                            if (n(css)) {
+                                x.bind(css, 'load', (): void =>
+                                    err(() => {
+                                        const Component: FunctionComponent<any> =
+                                            this.component[name];
+
+                                        ReactDOM.createRoot(content).render(
+                                            <c_crash_handler.Body>
+                                                <Component
+                                                    i={i}
+                                                    img_viewer_i={img_viewer_i}
+                                                    on_render={on_render}
+                                                />
+                                            </c_crash_handler.Body>,
+                                        );
+                                    }, 'ges_1095'),
+                                );
+                            }
                         }
                     }
                 }
