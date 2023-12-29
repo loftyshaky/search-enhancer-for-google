@@ -1,7 +1,8 @@
+@import '../../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
 @import '../../shared/vars';
 
 .favicon_#{$app_id},
 .favicon_shadow_clone_#{$app_id},
 .news_#{$app_id} g-img {
-    display: none !important;
+    @include hidden;
 }
