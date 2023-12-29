@@ -41,7 +41,7 @@ export class Main {
 
     public insert_shadow_icon_duplicates = (): void =>
         err(() => {
-            if (s_location.Main.i().is_all_page) {
+            if (s_location.Main.i().is_all_page && n(s_el_parser.Main.i().favicon_el_cls)) {
                 const favicon_shadow_clone_cls: string = new s_suffix.Main('favicon_shadow_clone')
                     .result;
                 const favicon_shadow_els = sa<HTMLElement>(

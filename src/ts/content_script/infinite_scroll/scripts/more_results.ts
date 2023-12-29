@@ -40,6 +40,6 @@ export class MoreResults {
                 return more_results_btn.style.transform === 'scale(0)';
             }
 
-            return false;
+            return true;
         }, 'ges_1226');
 }

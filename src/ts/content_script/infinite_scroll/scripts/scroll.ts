@@ -31,7 +31,10 @@ export class Scroll {
                 } else {
                     s_infinite_scroll.Iframe.i().insert();
                 }
-            } else if (!n(s_el_parser.Main.i().next_page_href)) {
+            } else if (
+                !n(s_el_parser.Main.i().next_page_href) &&
+                s_infinite_scroll.MoreResults.i().check_if_last_page_or_loading()
+            ) {
                 d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
         }, 'ges_1080');
