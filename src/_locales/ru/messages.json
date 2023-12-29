@@ -113,6 +113,9 @@
     "search_enhancer_for_google_for_edge_link_text": {
         "message": "⚗️ Search Enhancer for Google™ для Edge"
     },
+    "github_link_text": {
+        "message": "😼 Search Enhancer for Google™ на Github"
+    },
     "current_indicator_title": {
         "message": "Текущая страница"
     },
