@@ -25,6 +25,7 @@ export class InfiniteScrollingState {
     public change = (): void =>
         err(() => {
             const new_state: boolean = !data.settings.infinite_scrolling_enabled;
+
             d_settings.Main.i().change({
                 key: 'infinite_scrolling_enabled',
                 val: new_state,
@@ -33,5 +34,11 @@ export class InfiniteScrollingState {
             if (new_state) {
                 s_infinite_scroll.Scroll.i().observe();
             }
+
+            ext.send_msg_resp({
+                msg: 'update_settings_background',
+                settings: { ...data.settings, ...{ infinite_scrolling_enabled: new_state } },
+                rerun_actions: true,
+            });
         }, 'ges_1105');
 }

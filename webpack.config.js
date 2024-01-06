@@ -18,7 +18,7 @@ const { Manifest } = require('./js/manifest');
 const { Dependencies } = require('./js/dependencies');
 
 const reloader = new Reloader({
-    port: 7220,
+    port: 7222,
 });
 
 reloader.watch();
@@ -99,7 +99,6 @@ module.exports = (env, argv) => {
             background: path.join(paths.ts, 'background', 'background.ts'),
             settings: path.join(paths.ts, 'settings', 'settings.ts'),
             content_script: path.join(paths.ts, 'content_script', 'content_script.ts'),
-            dependencies: path.join(paths.ts, 'dependencies', 'dependencies.ts'),
             settings_css: path.join(app_root, 'src', 'scss', 'settings', 'index.scss'),
             content_script_css: path.join(app_root, 'src', 'scss', 'content_script', 'index.scss'),
             icons: path.join(app_root, 'src', 'scss', 'content_script', 'embed', 'icons.scss'),

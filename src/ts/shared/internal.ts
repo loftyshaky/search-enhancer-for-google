@@ -1,3 +1,6 @@
+// eslint-disable-next-line spaced-comment
+/// <reference types="../@loftyshaky/shared/globals.d.ts" />
+
 export * from 'shared/init_all';
 
 export * as d_settings from 'shared/settings/data';

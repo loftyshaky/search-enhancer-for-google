@@ -15,7 +15,7 @@ import {
 import { d_inputs, i_inputs } from '@loftyshaky/shared/inputs';
 import { s_css_vars, s_suffix } from 'shared/internal';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
+// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, @typescript-eslint/no-unused-vars
 declare let __webpack_public_path__: string;
 
 export class InitAll {
@@ -26,7 +26,7 @@ export class InitAll {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private settings_root: HTMLDivElement | undefined = undefined;

@@ -47,7 +47,8 @@ body {
         }
     }
 
-    &.all_#{$app_id}, &.books_#{$app_id} {
+    &.all_#{$app_id},
+    &.books_#{$app_id} {
         #rso > div:last-child {
             margin-bottom: 0 !important;
         }

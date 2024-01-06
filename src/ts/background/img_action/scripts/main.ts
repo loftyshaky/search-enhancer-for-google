@@ -1,3 +1,5 @@
+import { Downloads } from 'webextension-polyfill';
+
 import { i_data } from 'shared/internal';
 
 export class Main {
@@ -8,7 +10,7 @@ export class Main {
         return this.i0 || (this.i0 = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, @typescript-eslint/no-empty-function
+    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public run = ({ type, img_url }: { type: string; img_url: string }): Promise<void> =>
@@ -34,12 +36,11 @@ export class Main {
                         };
 
                         if (env.browser !== 'firefox') {
-                            const storage: i_data.Settings = await ext.storage_get(
-                                'img_downloads_dir',
-                            );
+                            const storage: i_data.Settings =
+                                await ext.storage_get('img_downloads_dir');
 
                             const suggest_dir = (
-                                download_item_2: browser.downloads.DownloadItem,
+                                download_item_2: Downloads.DownloadItem,
                                 suggest: ({ filename }: { filename: string }) => void,
                             ): void =>
                                 err(() => {
@@ -47,12 +48,10 @@ export class Main {
                                         filename: `${storage.img_downloads_dir}/${download_item_2.filename}`,
                                     });
 
-                                    (we.downloads as any).onDeterminingFilename.removeListener(
-                                        suggest_dir,
-                                    );
+                                    we.downloads.onDeterminingFilename.removeListener(suggest_dir);
                                 }, 'ges_1014');
 
-                            (we.downloads as any).onDeterminingFilename.addListener(suggest_dir);
+                            we.downloads.onDeterminingFilename.addListener(suggest_dir);
                         }
 
                         await we.downloads.download(download_item);

@@ -486,7 +486,7 @@ class Manifest {
                 'chunks/src_ts_content_script_internal_ts.js',
                 'chunks/vendors-node_modules_lodash_lodash_js.js',
                 'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
-                'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_tinycolor_js.js',
+                'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_esm_tinycolor_js.js',
             );
         }
 
