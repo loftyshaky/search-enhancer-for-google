@@ -46,7 +46,7 @@ export class Position {
                     }
                 }
             }
-        }, 'ges_1193');
+        }, 'seg_1193');
 
     public set_bottom_all = _.debounce(
         (): void =>
@@ -54,9 +54,9 @@ export class Position {
                 s_el_parser.Main.i().img_data.forEach((not_used: any, i: number): void =>
                     err(() => {
                         this.set_bottom({ img_viewer_i: i });
-                    }, 'ges_1203'),
+                    }, 'seg_1203'),
                 );
-            }, 'ges_1202'),
+            }, 'seg_1202'),
         500,
     );
 }

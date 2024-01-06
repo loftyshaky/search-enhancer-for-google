@@ -28,5 +28,5 @@ export class Main {
                     this.img_action_bar_els[img_viewer_i] = img_action_bar;
                 }
             }
-        }, 'ges_1208');
+        }, 'seg_1208');
 }

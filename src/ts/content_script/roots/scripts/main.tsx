@@ -37,7 +37,7 @@ export class Main {
                 separator: c_infinite_scroll.Separator,
                 img_action_bar: c_img_action_bar.Body,
             };
-        }, 'ges_1089');
+        }, 'seg_1089');
 
     public init = ({ name, start = 0 }: { name: string; start?: number }): void =>
         err(() => {
@@ -50,7 +50,7 @@ export class Main {
                     const remove_icons = ({ icon_roots }: { icon_roots: NodeList }): void =>
                         err(() => {
                             x.remove(icon_roots);
-                        }, 'ges_1090');
+                        }, 'seg_1090');
 
                     s_infinite_scroll.Iframe.i().iframes.forEach((iframe: HTMLIFrameElement) =>
                         err(() => {
@@ -64,7 +64,7 @@ export class Main {
                                     remove_icons({ icon_roots });
                                 }
                             }
-                        }, 'ges_1091'),
+                        }, 'seg_1091'),
                     );
 
                     const icon_roots = sa<HTMLDivElement>(`.${new s_suffix.Main(name).result}`);
@@ -104,7 +104,7 @@ export class Main {
                                     }
                                 }
                             }
-                        }, 'ges_1092'),
+                        }, 'seg_1092'),
                     );
                 }
             } else if (name === 'img_action_bar') {
@@ -144,7 +144,7 @@ export class Main {
                         );
 
                         s_theme.Main.i().adapt_panel_to_dark_theme();
-                    }, 'ges_1093');
+                    }, 'seg_1093');
 
                 if (n(img_viewer)) {
                     const next_el: Element | null = img_viewer.nextElementSibling;
@@ -165,7 +165,7 @@ export class Main {
 
                 append({ append_only_to_preview_img_viewers: true });
             }
-        }, 'ges_1094');
+        }, 'seg_1094');
 
     public append_root = ({
         name,
@@ -221,7 +221,7 @@ export class Main {
                                     });
 
                                     resolve();
-                                }, 'ges_1209');
+                                }, 'seg_1209');
                             const css = x.css(name, root.shadowRoot);
 
                             if (n(css)) {
@@ -239,13 +239,13 @@ export class Main {
                                                 />
                                             </c_crash_handler.Body>,
                                         );
-                                    }, 'ges_1095'),
+                                    }, 'seg_1095'),
                                 );
                             }
                         }
                     }
                 }
-            }, 'ges_1096');
+            }, 'seg_1096');
         });
 
     public apply_root_parent_cls_to_title_els = (): void =>
@@ -253,9 +253,9 @@ export class Main {
             s_el_parser.Main.i().title_els.forEach((title_el): void =>
                 err(() => {
                     this.apply_root_parent_cls_to_title_el({ title_el });
-                }, 'ges_1097'),
+                }, 'seg_1097'),
             );
-        }, 'ges_1098');
+        }, 'seg_1098');
 
     public apply_root_parent_cls_to_title_el = ({ title_el }: { title_el: HTMLElement }): void =>
         err(() => {
@@ -264,5 +264,5 @@ export class Main {
             if (s_location.Main.i().is_news_page) {
                 x.add_cls(title_el, new s_suffix.Main('news').result);
             }
-        }, 'ges_1099');
+        }, 'seg_1099');
 }

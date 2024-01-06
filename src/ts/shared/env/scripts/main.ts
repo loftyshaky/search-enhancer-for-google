@@ -10,5 +10,5 @@ export class Main {
     private constructor() {}
 
     public is_dev = (): boolean =>
-        err(() => we.runtime.id === 'mfihhepjphokhfnlioficodoomlnhlbd', 'ges_1201');
+        err(() => we.runtime.id === 'mfihhepjphokhfnlioficodoomlnhlbd', 'seg_1201');
 }

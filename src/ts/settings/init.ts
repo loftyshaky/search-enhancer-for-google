@@ -9,4 +9,4 @@ export const init = (): Promise<void> =>
         d_sections.Main.i().init_sections();
 
         InitAll.i().render_settings();
-    }, 'ges_1125');
+    }, 'seg_1125');

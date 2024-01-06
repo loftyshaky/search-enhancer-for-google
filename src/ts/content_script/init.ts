@@ -44,4 +44,4 @@ export const init = (): Promise<void> =>
             InitAll.i().render_last_end_msg();
             InitAll.i().render_side_panel();
         }
-    }, 'ges_1082');
+    }, 'seg_1082');

@@ -30,7 +30,7 @@ export class MoreResults {
                     more_results_btn.click();
                 }
             }
-        }, 'ges_1223');
+        }, 'seg_1223');
 
     public check_if_last_page_or_loading = (): boolean =>
         err(() => {
@@ -41,5 +41,5 @@ export class MoreResults {
             }
 
             return true;
-        }, 'ges_1226');
+        }, 'seg_1226');
 }

@@ -16,7 +16,7 @@ export class Main {
         err(() => {
             this.adapt_panel_to_dark_theme();
             this.adapt_all_separators_to_dark_theme();
-        }, 'ges_1184');
+        }, 'seg_1184');
 
     public adapt_panel_to_dark_theme = (): void =>
         err(() => {
@@ -32,10 +32,10 @@ export class Main {
                 panel_roots.forEach((panel_root) => {
                     err(() => {
                         this.apply_css({ roots: [panel_root] });
-                    }, 'ges_1198');
+                    }, 'seg_1198');
                 });
             }
-        }, 'ges_1183');
+        }, 'seg_1183');
 
     public adapt_separator_to_dark_theme = ({ iframe_doc }: { iframe_doc: Document }): void =>
         err(() => {
@@ -45,7 +45,7 @@ export class Main {
             );
 
             this.apply_css({ roots: [separator_root] });
-        }, 'ges_1182');
+        }, 'seg_1182');
 
     private adapt_all_separators_to_dark_theme = (): void =>
         err(() => {
@@ -60,11 +60,11 @@ export class Main {
                         }
 
                         return undefined;
-                    }, 'ges_1180'),
+                    }, 'seg_1180'),
                 );
 
             this.apply_css({ roots: separator_roots });
-        }, 'ges_1178');
+        }, 'seg_1178');
 
     private apply_css = ({ roots }: { roots: (HTMLDivElement | undefined)[] }): void =>
         err(() => {
@@ -83,8 +83,8 @@ export class Main {
                                 x.css(css_file_name, root.shadowRoot, css_class);
                             }
                         }
-                    }, 'ges_1179'),
+                    }, 'seg_1179'),
                 );
             }
-        }, 'ges_1181');
+        }, 'seg_1181');
 }

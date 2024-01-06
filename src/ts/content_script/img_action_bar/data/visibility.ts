@@ -50,7 +50,7 @@ export class Visibility {
                             }
                         }
                     }
-                }, 'ges_1195');
+                }, 'seg_1195');
 
             const previous_img_viewer: HTMLElement | undefined = x.closest(
                 this.previous_target,
@@ -68,14 +68,14 @@ export class Visibility {
             if (n(current_img_viewer)) {
                 this.previous_target = e.target as any;
             }
-        }, 'ges_1058');
+        }, 'seg_1058');
 
     public img_viever_type = ({
         img_viewer_i,
     }: {
         img_viewer_i: i_img_action_bar.ImgViewerI;
     }): string =>
-        err(() => (img_viewer_i === 'main' ? 'img_viewer' : 'preview_img_viewer'), 'ges_1200');
+        err(() => (img_viewer_i === 'main' ? 'img_viewer' : 'preview_img_viewer'), 'seg_1200');
 
     public visibility_cls = computedFn(function (
         this: Visibility,

@@ -20,7 +20,7 @@ export class Main {
             [...s_el_parser.Main.i().keyword_els].forEach((keyword_el: HTMLElement): void =>
                 err(() => {
                     x.add_cls(keyword_el, cls);
-                }, 'ges_1083'),
+                }, 'seg_1083'),
             );
             [document, ...s_infinite_scroll.Iframe.i().iframes].forEach(
                 (base_el: Document | HTMLIFrameElement): void =>
@@ -41,7 +41,7 @@ export class Main {
                                 })}!important }`,
                             );
                         }
-                    }, 'ges_1084'),
+                    }, 'seg_1084'),
             );
-        }, 'ges_1085');
+        }, 'seg_1085');
 }

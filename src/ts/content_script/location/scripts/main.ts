@@ -73,5 +73,5 @@ export class Main {
             } else if (this.is_imgs_page) {
                 this.current_location = 'imgs';
             }
-        }, 'ges_64357');
+        }, 'seg_64357');
 }

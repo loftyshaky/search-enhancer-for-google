@@ -48,7 +48,7 @@ export class Main {
             }
 
             return icon_url;
-        }, 'ges_1005');
+        }, 'seg_1005');
 
     private get_favicon_url_inner = ({
         url,
@@ -74,7 +74,7 @@ export class Main {
             }
 
             return base64;
-        }, 'ges_1006');
+        }, 'seg_1006');
 
     public get_server_info = async ({
         url,
@@ -106,7 +106,7 @@ export class Main {
                 const record: i_icons.IpToCountry | undefined = _.findLast(
                     this.ip_to_country,
                     (item: i_icons.IpToCountry): boolean =>
-                        err(() => item.ip_from < this.convert_ip_to_ip_number({ ip }), 'ges_1007'),
+                        err(() => item.ip_from < this.convert_ip_to_ip_number({ ip }), 'seg_1007'),
                 );
 
                 if (n(record)) {
@@ -119,7 +119,7 @@ export class Main {
             }
 
             return empty_row;
-        }, 'ges_1009');
+        }, 'seg_1009');
 
     public generate_ip_to_country_arr = (): Promise<void> =>
         err_async(async () => {
@@ -142,11 +142,11 @@ export class Main {
                         }
 
                         return undefined;
-                    }, 'ges_1010'),
+                    }, 'seg_1010'),
             );
 
             this.ip_to_country = ip_to_country_db_arr.filter(
-                (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'ges_1011'),
+                (item: i_icons.IpToCountry | undefined): boolean => err(() => n(item), 'seg_1011'),
             ) as i_icons.IpToCountry[];
 
             this.generating_ip_to_country_arr = false;
@@ -154,7 +154,7 @@ export class Main {
             if (this.requested_server_location_before_ip_to_country_arr_was_ready) {
                 ext.send_msg_to_all_tabs({ msg: 'run_deferred_generate_server_location_url_fs' });
             }
-        }, 'ges_1012');
+        }, 'seg_1012');
 
     private convert_ip_to_ip_number = ({ ip }: { ip: string }): number =>
         err(() => {
@@ -166,5 +166,5 @@ export class Main {
                 +ip_sub_blocks[3];
 
             return ip_number;
-        }, 'ges_1013');
+        }, 'seg_1013');
 }

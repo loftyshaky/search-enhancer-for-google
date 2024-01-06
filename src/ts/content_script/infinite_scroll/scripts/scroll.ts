@@ -37,5 +37,5 @@ export class Scroll {
             ) {
                 d_infinite_scroll.LoadEndMsg.i().change_visibility({ is_visible: true });
             }
-        }, 'ges_1080');
+        }, 'seg_1080');
 }

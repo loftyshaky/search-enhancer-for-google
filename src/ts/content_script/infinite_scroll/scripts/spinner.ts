@@ -27,5 +27,5 @@ export class Spinner {
                     `@keyframes bounce_spinner {0% {transform: scale(1);background-color: ${spinner_color};}100% {transform: scale(0.3);background-color: #ffffff;}`,
                 );
             }
-        }, 'ges_1081');
+        }, 'seg_1081');
 }

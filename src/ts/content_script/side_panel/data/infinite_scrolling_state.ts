@@ -40,5 +40,5 @@ export class InfiniteScrollingState {
                 settings: { ...data.settings, ...{ infinite_scrolling_enabled: new_state } },
                 rerun_actions: true,
             });
-        }, 'ges_1105');
+        }, 'seg_1105');
 }

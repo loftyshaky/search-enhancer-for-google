@@ -50,5 +50,5 @@ export class Size {
                 }
             }
             */
-        }, 'ges_1196');
+        }, 'seg_1196');
 }

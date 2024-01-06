@@ -15,5 +15,5 @@ export class Visibility {
                 msg: 'update_settings_background',
                 settings: { color_help_is_visible: false },
             });
-        }, 'ges_1146');
+        }, 'seg_1146');
 }

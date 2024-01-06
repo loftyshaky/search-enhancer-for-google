@@ -36,7 +36,7 @@ export class Restore {
                 });
                 s_css_vars.Main.i().set();
             }
-        }, 'ges_1130');
+        }, 'seg_1130');
 
     public restore_back_up = ({ data_objs }: { data_objs: t.AnyRecord[] }): Promise<void> =>
         err_async(async () => {
@@ -57,7 +57,7 @@ export class Restore {
                 name: data.settings.options_page_theme,
             });
             s_css_vars.Main.i().set();
-        }, 'ges_1131');
+        }, 'seg_1131');
 
     private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<i_data.Settings> =>
         err_async(async () => {
@@ -75,14 +75,14 @@ export class Restore {
                 runInAction(() =>
                     err(() => {
                         data.settings = settings_final;
-                    }, 'ges_1132'),
+                    }, 'seg_1132'),
                 );
 
                 return settings_final;
             };
 
             return set_inner();
-        }, 'ges_1133');
+        }, 'seg_1133');
 
     public get_unchanged_settings = (): t.AnyRecord =>
         err(
@@ -91,6 +91,6 @@ export class Restore {
                 color_help_is_visible: data.settings.color_help_is_visible,
                 last_ip_to_country_csv_char_count: data.settings.last_ip_to_country_csv_char_count,
             }),
-            'ges_1135',
+            'seg_1135',
         );
 }

@@ -29,6 +29,6 @@ export class Main {
                 favicon_provider === 'duckduckgo'
                     ? `${this.favicon_providers[favicon_provider]}${new URL(url).hostname}.ico`
                     : `${this.favicon_providers[favicon_provider]}${url}`,
-            'ges_1171',
+            'seg_1171',
         );
 }

@@ -23,7 +23,7 @@ export class Btns {
                 this.btns,
                 (value: o_img_action_bar.Btn) => svg[value.svg_name as keyof SvgType],
             );
-        }, 'ges_1056');
+        }, 'seg_1056');
 
     public btns: o_img_action_bar.Btn[] | Record<string, o_img_action_bar.Btn> = [];
 
@@ -65,5 +65,5 @@ export class Btns {
             this.btns = s_utils.Main.i().to_object({
                 arr: this.btns as o_img_action_bar.Btn[],
             });
-        }, 'ges_1057');
+        }, 'seg_1057');
 }

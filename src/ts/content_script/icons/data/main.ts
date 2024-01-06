@@ -79,7 +79,7 @@ export class Main {
                     runInAction(() =>
                         err(() => {
                             this.favicons[url] = 'pre_placeholder';
-                        }, 'ges_1175'),
+                        }, 'seg_1175'),
                     );
 
                     const favicon_providers: string[] = Object.keys(
@@ -103,7 +103,7 @@ export class Main {
                                         resolve(undefined);
                                     };
                                     img.src = icon_url;
-                                }, 'ges_1170');
+                                }, 'seg_1170');
                             });
 
                             break;
@@ -122,11 +122,11 @@ export class Main {
                             } else {
                                 this.favicons[url] = 'placeholder';
                             }
-                        }, 'ges_1046'),
+                        }, 'seg_1046'),
                     );
                 }
             },
-            'ges_1047',
+            'seg_1047',
             { silent: true },
         );
 
@@ -139,7 +139,7 @@ export class Main {
                 runInAction(() =>
                     err(() => {
                         this.server_locations[url] = 'pre_placeholder';
-                    }, 'ges_1176'),
+                    }, 'seg_1176'),
                 );
 
                 const response: i_icons_shared.ServerInfo | string = await ext.send_msg_resp({
@@ -175,22 +175,22 @@ export class Main {
                                     this.server_ips[url] = server_info.ip;
                                 }
                             }
-                        }, 'ges_1048'),
+                        }, 'seg_1048'),
                     );
                 }
             }
-        }, 'ges_1049');
+        }, 'seg_1049');
 
     public run_deferred_generate_server_location_url_fs = async (): Promise<void> =>
         err_async(async () => {
             this.generate_server_location_url_deferred.forEach((f: t.CallbackVoid): void =>
                 err(() => {
                     f();
-                }, 'ges_1205'),
+                }, 'seg_1205'),
             );
 
             this.generate_server_location_url_deferred = [];
-        }, 'ges_1204');
+        }, 'seg_1204');
 
     public generate_urls = ({ i }: { i: number }): void =>
         err(() => {
@@ -216,14 +216,14 @@ export class Main {
                             url: that[key_1][i],
                         });
                     }
-                }, 'ges_1050');
+                }, 'seg_1050');
 
             generate_url_if_its_doesnt_exist({ key_1: 'hostnames', key_2: 'server_location' });
             generate_url_if_its_doesnt_exist({ key_1: 'hrefs', key_2: 'favicon' });
-        }, 'ges_1051');
+        }, 'seg_1051');
 
     public get_url = ({ i, type }: { i: number; type: i_icons.IconType }): string =>
-        err(() => s_el_parser.Main.i()[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'ges_1052');
+        err(() => s_el_parser.Main.i()[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'seg_1052');
 
     public get_show_icon_bool = ({ type, url }: { type: i_icons.IconType; url: string }): boolean =>
         err(() => {
@@ -235,13 +235,13 @@ export class Main {
                     ((type === 'favicons' && !s_location.Main.i().is_news_page) ||
                         type === 'server_locations'),
             );
-        }, 'ges_1053');
+        }, 'seg_1053');
 
     public icon_visibility_cls = ({ show_icon }: { show_icon: boolean }): string =>
-        err(() => (show_icon ? '' : 'none'), 'ges_1054');
+        err(() => (show_icon ? '' : 'none'), 'seg_1054');
 
     public is_any_placeholder = ({ src }: { src: string }): boolean =>
-        err(() => ['pre_placeholder', 'placeholder'].includes(src), 'ges_1055');
+        err(() => ['pre_placeholder', 'placeholder'].includes(src), 'seg_1055');
 
     public show_placeholder = ({
         pre,
@@ -261,7 +261,7 @@ export class Main {
                 (type === 'server_locations' ||
                     (type === 'favicons' && !s_location.Main.i().is_news_page))
             );
-        }, 'ges_1055');
+        }, 'seg_1055');
 
     public show_icon_w = computedFn(function (
         this: Main,

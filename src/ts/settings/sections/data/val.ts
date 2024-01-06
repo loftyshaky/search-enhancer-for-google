@@ -24,7 +24,7 @@ export class Val {
             const platform_info = await we.runtime.getPlatformInfo();
 
             this.os = platform_info.os;
-        }, 'ges_1136');
+        }, 'seg_1136');
 
     public change = ({ input, i }: { input: i_inputs.Input; i?: i_color.I }): Promise<void> =>
         err_async(async () => {
@@ -49,7 +49,7 @@ export class Val {
                         settings: data.settings,
                         rerun_actions_content_script: true,
                     });
-                }, 'ges_1137');
+                }, 'seg_1137');
 
             if (input.type === 'color' && n(i)) {
                 val = d_color.Color.i().access({
@@ -84,7 +84,7 @@ export class Val {
                     rerun_actions: true,
                 });
             }
-        }, 'ges_1138');
+        }, 'seg_1138');
 
     public validate_input = ({ input }: { input: i_inputs.Input }): boolean =>
         err(() => {
@@ -98,7 +98,7 @@ export class Val {
                     if (this.os === 'win') {
                         const dir_path_has_forbidden_characters: boolean =
                             windows_forbidden_chars.some((char: string): boolean =>
-                                err(() => val.includes(char), 'ges_1140'),
+                                err(() => val.includes(char), 'seg_1140'),
                             );
 
                         if (dir_path_has_forbidden_characters) {
@@ -130,12 +130,12 @@ export class Val {
             }
 
             return false;
-        }, 'ges_1141');
+        }, 'seg_1141');
 
     public remove_val = ({ input }: { input: i_inputs.Input }): Promise<void> =>
         err_async(async () => {
             this.change({ input });
-        }, 'ges_1142');
+        }, 'seg_1142');
 
     public save_selected_palette_color = ({
         input,
@@ -150,7 +150,7 @@ export class Val {
                 settings: { [input.name]: i },
                 rerun_actions: true,
             });
-        }, 'ges_1143');
+        }, 'seg_1143');
 
     public remove_color_callback = ({ input }: { input: o_color.Color }): Promise<void> =>
         err_async(async () => {
@@ -159,7 +159,7 @@ export class Val {
                 settings: { [input.name]: '' },
                 rerun_actions: true,
             });
-        }, 'ges_1144');
+        }, 'seg_1144');
 
     public restore_default_palette_callback = ({
         default_colors,
@@ -172,7 +172,7 @@ export class Val {
                 settings: { colors: default_colors },
                 rerun_actions: true,
             });
-        }, 'ges_1145');
+        }, 'seg_1145');
 
     public enable_developer_mode_save_callback = (): Promise<void> =>
         err_async(async () => {
@@ -181,5 +181,5 @@ export class Val {
                 settings: { developer_mode: data.settings.developer_mode },
                 rerun_actions: true,
             });
-        }, 'ges_1210');
+        }, 'seg_1210');
 }

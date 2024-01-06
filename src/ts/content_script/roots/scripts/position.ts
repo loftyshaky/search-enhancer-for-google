@@ -36,14 +36,14 @@ export class Position {
                     ) {
                         x.add_cls(title_el, this.offset_1_cls);
                     }
-                }, 'ges_1100'),
+                }, 'seg_1100'),
             );
-        }, 'ges_1101');
+        }, 'seg_1101');
 
     private remove_offset_classes = ({ title_el }: { title_el: HTMLElement }): void =>
         err(() => {
             // needed when changing facvicons/server locatiions display settings.
             x.remove_cls(title_el, s_roots.Position.i().offset_1_cls);
             x.remove_cls(title_el, s_roots.Position.i().offset_2_cls);
-        }, 'ges_1102');
+        }, 'seg_1102');
 }

@@ -62,11 +62,11 @@ export class InitAll {
                                         d_loading_screen.Main.i().show();
 
                                         reslove();
-                                    }, 'ges_1158'),
+                                    }, 'seg_1158'),
                                 );
                             }
                         }
-                    }, 'ges_1159');
+                    }, 'seg_1159');
 
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 __webpack_public_path__ = we.runtime.getURL('');
@@ -131,11 +131,11 @@ export class InitAll {
                                 } else {
                                     reslove();
                                 }
-                            }, 'ges_1206')
+                            }, 'seg_1206')
                         }
                     />,
                 );
-            }, 'ges_1160');
+            }, 'seg_1160');
         });
 
     private create_root = ({
@@ -158,7 +158,7 @@ export class InitAll {
             }
 
             return root;
-        }, 'ges_1161');
+        }, 'seg_1161');
 
     private set_page_title = (): void =>
         err(() => {
@@ -167,7 +167,7 @@ export class InitAll {
             if (n(title_el)) {
                 title_el.textContent = ext.msg(`${page}_title_text`);
             }
-        }, 'ges_1162');
+        }, 'seg_1162');
 
     public render_settings = (): Promise<void> =>
         err_async(async () => {
@@ -184,7 +184,7 @@ export class InitAll {
                     d_loading_screen.Main.i().hide({ app_id: s_suffix.app_id });
 
                     s_tab_index.Main.i().bind_set_input_type_f();
-                }, 'ges_1148');
+                }, 'seg_1148');
 
             if (n(this.settings_root)) {
                 ReactDOM.createRoot(this.settings_root).render(
@@ -201,13 +201,13 @@ export class InitAll {
                                     if (n(settings_css)) {
                                         x.bind(settings_css, 'load', on_css_load);
                                     }
-                                }, 'ges_1149')
+                                }, 'seg_1149')
                             }
                         />
                     </c_crash_handler.Body>,
                 );
             }
-        }, 'ges_1150');
+        }, 'seg_1150');
 
     public render_spinner = (): Promise<void> =>
         err_async(async () => {
@@ -220,13 +220,13 @@ export class InitAll {
                             on_render={(): void =>
                                 err(() => {
                                     x.css('spinner', this.spinner_root);
-                                }, 'ges_1151')
+                                }, 'seg_1151')
                             }
                         />
                     </c_crash_handler.Body>,
                 );
             }
-        }, 'ges_1152');
+        }, 'seg_1152');
 
     public render_last_end_msg = (): Promise<void> =>
         err_async(async () => {
@@ -239,13 +239,13 @@ export class InitAll {
                             on_render={(): void =>
                                 err(() => {
                                     x.css('load_end_msg', this.load_end_msg_root);
-                                }, 'ges_1153')
+                                }, 'seg_1153')
                             }
                         />
                     </c_crash_handler.Body>,
                 );
             }
-        }, 'ges_1154');
+        }, 'seg_1154');
 
     public render_side_panel = (): Promise<void> =>
         err_async(async () => {
@@ -271,16 +271,16 @@ export class InitAll {
                                                 s_no_tr.Main.i().disable({
                                                     el: this.side_panel_root,
                                                 });
-                                            }, 'ges_1155'),
+                                            }, 'seg_1155'),
                                         );
                                     }
-                                }, 'ges_1156')
+                                }, 'seg_1156')
                             }
                         />
                     </c_crash_handler.Body>,
                 );
             }
-        }, 'ges_1157');
+        }, 'seg_1157');
 
     public render_dependencies = (): Promise<void> =>
         err_async(async () => {
@@ -289,7 +289,7 @@ export class InitAll {
             const on_css_load = (): Promise<void> =>
                 err_async(async () => {
                     d_loading_screen.Main.i().hide({ app_id: s_suffix.app_id });
-                }, 'ges_1230');
+                }, 'seg_1230');
 
             if (n(this.dependencies_root)) {
                 ReactDOM.createRoot(this.dependencies_root).render(
@@ -311,11 +311,11 @@ export class InitAll {
                                     if (n(dependencies_css)) {
                                         x.bind(dependencies_css, 'load', on_css_load);
                                     }
-                                }, 'ges_1231')
+                                }, 'seg_1231')
                             }
                         />
                     </c_crash_handler.Body>,
                 );
             }
-        }, 'ges_1228');
+        }, 'seg_1228');
 }

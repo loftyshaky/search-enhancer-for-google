@@ -34,10 +34,10 @@ export class LoadEndMsg {
     public change_visibility = ({ is_visible }: { is_visible: boolean }): void =>
         err(() => {
             this.is_visible = is_visible;
-        }, 'ges_1061');
+        }, 'seg_1061');
 
     public change_type = ({ type }: { type: i_infinite_scroll.LoadEndMsgType }): void =>
         err(() => {
             this.type = type;
-        }, 'ges_1062');
+        }, 'seg_1062');
 }

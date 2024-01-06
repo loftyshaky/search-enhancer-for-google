@@ -27,5 +27,5 @@ export class Main {
                 name: 'offset_from_header',
                 val: '147px',
             });
-        }, 'ges_1147');
+        }, 'seg_1147');
 }

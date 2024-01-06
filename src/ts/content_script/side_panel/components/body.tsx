@@ -16,7 +16,7 @@ export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props)
                     },
                     e,
                 ),
-            'ges_1103',
+            'seg_1103',
         );
 
     useEffect(() => {

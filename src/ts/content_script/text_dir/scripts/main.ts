@@ -18,5 +18,5 @@ export class Main {
             if (dir !== '') {
                 this.dir = dir;
             }
-        }, 'ges_1122');
+        }, 'seg_1122');
 }

@@ -24,13 +24,13 @@ export class ImgLinks {
 
                 x.bind(img_links, 'click', this.open_img_link);
             }
-        }, 'ges_1078');
+        }, 'seg_1078');
 
     private open_img_link = function (this: HTMLLinkElement): void {
         err(() => {
             if (n(globalThis.top)) {
                 globalThis.top.location.href = this.href;
             }
-        }, 'ges_1079');
+        }, 'seg_1079');
     };
 }

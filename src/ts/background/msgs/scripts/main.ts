@@ -33,5 +33,5 @@ we.runtime.onMessage.addListener(
             }
 
             return true;
-        }, 'ges_1017'),
+        }, 'seg_1017'),
 );

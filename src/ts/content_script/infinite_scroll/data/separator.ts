@@ -38,5 +38,5 @@ export class Separator {
                     );
                 }
             }
-        }, 'ges_1063');
+        }, 'seg_1063');
 }

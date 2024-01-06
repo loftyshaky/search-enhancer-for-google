@@ -56,7 +56,7 @@ export class Main {
             this.get_preview_img_viewers();
             this.get_img_data();
             this.get_search_result_body();
-        }, 'ges_1022');
+        }, 'seg_1022');
 
     private get_els_of_all_frames = ({ selector }: { selector: string }): HTMLElement[] =>
         err(() => {
@@ -80,11 +80,11 @@ export class Main {
                     if (n(els)) {
                         all_els = [...all_els, ...els];
                     }
-                }, 'ges_1023'),
+                }, 'seg_1023'),
             );
 
             return all_els;
-        }, 'ges_1024');
+        }, 'seg_1024');
 
     private get_keyword_els = (): void =>
         err(() => {
@@ -95,17 +95,17 @@ export class Main {
             this.keyword_els.forEach((keyword_el: HTMLElement): void =>
                 err(() => {
                     x.remove_cls(keyword_el, new s_suffix.Main('keyword').result);
-                }, 'ges_1025'),
+                }, 'seg_1025'),
             );
 
             this.keyword_els = bold_els.filter((el: HTMLElement): boolean =>
                 err(
                     () => this.text_is_bold({ el }) && this.check_if_el_has_immediate_text({ el }),
                     // additional search results under search result (in blue). Ex: https://www.google.com/search?q=javascript+stack+overflow+declare+variable
-                    'ges_1026',
+                    'seg_1026',
                 ),
             );
-        }, 'ges_1027');
+        }, 'seg_1027');
 
     private get_title_els_and_hostnames = (): void =>
         err(() => {
@@ -163,25 +163,25 @@ export class Main {
                                     filtered_links.push(el as HTMLLinkElement);
                                     this.title_els.push(el_2);
                                 }
-                            }, 'ges_1028'),
+                            }, 'seg_1028'),
                         );
                     }
 
                     return false;
-                }, 'ges_1029'),
+                }, 'seg_1029'),
             );
 
             this.hostnames = filtered_links.map((el: HTMLLinkElement): string =>
-                err(() => new URL(el.href).hostname, 'ges_1030'),
+                err(() => new URL(el.href).hostname, 'seg_1030'),
             );
             this.hrefs = filtered_links.map((el: HTMLLinkElement): string =>
-                err(() => el.href, 'ges_1031'),
+                err(() => el.href, 'seg_1031'),
             );
 
             this.get_favicon_els({ filtered_links });
 
             s_icons.Main.i().prevent_titles_and_icons_from_wrapping({ filtered_links });
-        }, 'ges_1032');
+        }, 'seg_1032');
 
     private get_favicon_els = ({ filtered_links }: { filtered_links: HTMLLinkElement[] }): void =>
         err(() => {
@@ -213,11 +213,11 @@ export class Main {
                     }
 
                     return undefined;
-                }, 'ges_1216');
+                }, 'seg_1216');
 
             const imgs: (HTMLImageElement | undefined)[] = filtered_links.map(
                 (filtered_link: HTMLLinkElement): HTMLImageElement | undefined =>
-                    err(() => sb(filtered_link, 'img, svg'), 'ges_1217'),
+                    err(() => sb(filtered_link, 'img, svg'), 'seg_1217'),
             );
 
             if (n(imgs)) {
@@ -256,20 +256,20 @@ export class Main {
                             }
 
                             return undefined;
-                        }, 'ges_1215'),
+                        }, 'seg_1215'),
                 );
             }
-        }, 'ges_1214');
+        }, 'seg_1214');
 
     private get_footer_el = (): void =>
         err(() => {
             this.footer_el = s<HTMLElement>('#footcnt');
-        }, 'ges_1033');
+        }, 'seg_1033');
 
     private get_related_searches_el = (): void =>
         err(() => {
             this.related_searches_el = s<HTMLElement>('#brs, #bres');
-        }, 'ges_1034');
+        }, 'seg_1034');
 
     public get_more_results_btn = (): void =>
         err(() => {
@@ -284,15 +284,15 @@ export class Main {
                         this.more_results_btn_spinner = s(
                             '[style*="www.gstatic.com/ui/v2/activityindicator/mspin_googcolor_medium.svg"]',
                         );
-                    }, 'ges_1224'),
+                    }, 'seg_1224'),
                 );
             }
-        }, 'ges_1225');
+        }, 'seg_1225');
 
     private get_pagination_el = (): void =>
         err(() => {
             this.pagination_el = s<HTMLElement>('#xjs');
-        }, 'ges_1035');
+        }, 'seg_1035');
 
     private get_page_els = (): void =>
         err(() => {
@@ -301,7 +301,7 @@ export class Main {
             if (n(page_els)) {
                 this.page_els = [...page_els];
             }
-        }, 'ges_1222');
+        }, 'seg_1222');
 
     public get_img_viewer = (): void =>
         err(() => {
@@ -323,14 +323,14 @@ export class Main {
                             }
 
                             return false;
-                        }, 'ges_1036'),
+                        }, 'seg_1036'),
                     );
                 }
             }
-        }, 'ges_1037');
+        }, 'seg_1037');
 
     public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
-        err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'ges_1038');
+        err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'seg_1038');
 
     private get_img_viewer_w = (): void =>
         err(() => {
@@ -361,7 +361,7 @@ export class Main {
                     this.img_viewer_w.dataset.img_viewer_i = 'main';
                 }
             }
-        }, 'ges_1172');
+        }, 'seg_1172');
 
     public get_preview_img_viewers = (): void =>
         err(() => {
@@ -387,11 +387,11 @@ export class Main {
                                     this.preview_img_viewers.length - 1
                                 ).toString();
                             }
-                        }, 'ges_1191'),
+                        }, 'seg_1191'),
                     );
                 }
             }
-        }, 'ges_1189');
+        }, 'seg_1189');
 
     private get_img_data = (): void =>
         err(() => {
@@ -431,19 +431,19 @@ export class Main {
                             this.img_data = this.img_data.filter((not_used, i: number): boolean =>
                                 err(
                                     () => n(this.get_preview_img_url({ img_viewer_i: i })),
-                                    'ges_1192',
+                                    'seg_1192',
                                 ),
                             );
                         }
                     }
                 }
             }
-        }, 'ges_1188');
+        }, 'seg_1188');
 
     public get_search_result_body = (): void =>
         err(() => {
             this.search_result_body = s<HTMLElement>('#center_col');
-        }, 'ges_1039');
+        }, 'seg_1039');
 
     public get_next_page_href = (): void =>
         err(() => {
@@ -481,7 +481,7 @@ export class Main {
                     }
                 }
             }
-        }, 'ges_1040');
+        }, 'seg_1040');
 
     private check_if_el_has_immediate_text = ({ el }: { el: HTMLElement }): boolean =>
         err(() => {
@@ -492,24 +492,24 @@ export class Main {
                     () =>
                         el_2.nodeType === Node.TEXT_NODE ||
                         x.matches(el_2 as HTMLElement, `.${new s_suffix.Main('icons').result}`),
-                    'ges_1041',
+                    'seg_1041',
                 ),
             );
-        }, 'ges_1042');
+        }, 'seg_1042');
 
     public get_el_hsv_color = ({ el, key }: { el: HTMLElement; key: string }): t.AnyRecord =>
         err(() => {
             const color_hex: string = x.get_css_val(el, key);
 
             return tinycolor(color_hex).toHsv();
-        }, 'ges_1043');
+        }, 'seg_1043');
 
     private text_is_bold = ({ el }: { el: HTMLElement }): boolean =>
         err(() => {
             const font_weight: number = x.get_numeric_css_val(el, 'font-weight');
 
             return font_weight >= 600;
-        }, 'ges_1044');
+        }, 'seg_1044');
 
     private get_page_val = ({ next_page_href }: { next_page_href: string | undefined }): number =>
         err(() => {
@@ -522,7 +522,7 @@ export class Main {
             }
 
             return 0;
-        }, 'ges_1045');
+        }, 'seg_1045');
 
     public get_preview_img_url = ({
         img_viewer_i,
@@ -537,5 +537,5 @@ export class Main {
             }
 
             return undefined;
-        }, 'ges_1190');
+        }, 'seg_1190');
 }

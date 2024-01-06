@@ -25,4 +25,4 @@ export const init = (): Promise<void> =>
                 ['content_script_css.css'],
             );
         }
-    }, 'ges_1016');
+    }, 'seg_1016');

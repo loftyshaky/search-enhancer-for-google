@@ -37,9 +37,9 @@ const observer = new MutationObserver((mutations): void =>
                             s_infinite_scroll.FooterEls.i().append_to_footer();
                         }
                     }
-                }, 'ges_1087'),
+                }, 'seg_1087'),
         );
-    }, 'ges_1088'),
+    }, 'seg_1088'),
 );
 
 observer.observe(document.body, {

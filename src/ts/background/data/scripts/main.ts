@@ -65,7 +65,7 @@ export class Main {
                 infinite_scrolling_enabled: true,
                 last_ip_to_country_csv_char_count: 0,
             };
-        }, 'ges_1002');
+        }, 'seg_1002');
 
     public update_settings = ({
         settings,
@@ -85,7 +85,7 @@ export class Main {
             await ext.storage_set(settings_final, transform);
 
             s_service_worker.ServiceWorker.i().make_persistent();
-        }, 'ges_1003');
+        }, 'seg_1003');
 
     public update_settings_debounce = _.debounce(
         (
@@ -104,7 +104,7 @@ export class Main {
                 if (rerun_actions_content_script) {
                     ext.send_msg_to_all_tabs({ msg: 'rerun_actions_content_script' });
                 }
-            }, 'ges_1177'),
+            }, 'seg_1177'),
         500,
     );
 
@@ -119,7 +119,7 @@ export class Main {
             } else if (transform) {
                 await this.update_settings({ settings, transform });
             }
-        }, 'ges_1004');
+        }, 'seg_1004');
 
     private transform = ({ settings }: { settings: i_data.Settings }): Promise<i_data.Settings> =>
         err_async(async () => {
@@ -261,5 +261,5 @@ export class Main {
             });
 
             return settings_final;
-        }, 'ges_1199');
+        }, 'seg_1199');
 }

@@ -51,7 +51,7 @@ export class Page {
                                 rect.bottom >= page_height - (this.offset + 100)) ||
                                 (page_els.length - 1 === i && rect.bottom <= page_height))
                         );
-                    }, 'ges_1106'),
+                    }, 'seg_1106'),
             );
 
             if (!rendering_page_final) {
@@ -64,7 +64,7 @@ export class Page {
             ) {
                 d_side_panel.RelatedSearches.i().reset_position();
             }
-        }, 'ges_1107');
+        }, 'seg_1107');
 
     public set_total = (): void =>
         err(() => {
@@ -80,5 +80,5 @@ export class Page {
             }
 
             this.total = page_count + (s_location.Main.i().is_all_page ? 0 : 1);
-        }, 'ges_1108');
+        }, 'seg_1108');
 }

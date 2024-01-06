@@ -22,7 +22,7 @@ export class Main {
             } else {
                 x.css(filename, document.head, cls);
             }
-        }, 'ges_1227');
+        }, 'seg_1227');
 
     public prevent_titles_and_icons_from_wrapping = ({
         filtered_links,
@@ -34,10 +34,10 @@ export class Main {
                 filtered_links.forEach((el: HTMLLinkElement): void =>
                     err(() => {
                         x.add_cls(el, new s_suffix.Main('white_space').result);
-                    }, 'ges_1186'),
+                    }, 'seg_1186'),
                 );
             }
-        }, 'ges_1187');
+        }, 'seg_1187');
 
     public insert_shadow_icon_duplicates = (): void =>
         err(() => {
@@ -82,11 +82,11 @@ export class Main {
                             } else {
                                 x.remove(sa(`.${favicon_shadow_clone_cls}`));
                             }
-                        }, 'ges_1219'),
+                        }, 'seg_1219'),
                     );
                 }
             }
-        }, 'ges_1218');
+        }, 'seg_1218');
 
     public apply_or_remove_favicon_el_cls_to_icons_root = (): void =>
         err(() => {
@@ -99,8 +99,8 @@ export class Main {
                             icons_el,
                             rs(s_el_parser.Main.i().favicon_el_cls),
                         );
-                    }, 'ges_1220'),
+                    }, 'seg_1220'),
                 );
             }
-        }, 'ges_1221');
+        }, 'seg_1221');
 }

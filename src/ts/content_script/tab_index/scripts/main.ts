@@ -45,5 +45,5 @@ export class Main {
                     callback();
                 }
             }
-        }, 'ges_1121');
+        }, 'seg_1121');
 }

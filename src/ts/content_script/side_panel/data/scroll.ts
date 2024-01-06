@@ -41,24 +41,24 @@ export class Scroll {
     public scroll_to_position = ({ position }: { position: number }): void =>
         err(() => {
             document.documentElement.scrollTop = position;
-        }, 'ges_1112');
+        }, 'seg_1112');
 
     public get_current_position = (): number =>
         err(() => {
             const doc = document.documentElement;
 
             return (globalThis.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-        }, 'ges_1113');
+        }, 'seg_1113');
 
     private remember_position = (): void =>
         err(() => {
             this.remembered_position = this.get_current_position();
-        }, 'ges_1114');
+        }, 'seg_1114');
 
     private reset_position = (): void =>
         err(() => {
             this.remembered_position = 'none';
-        }, 'ges_1115');
+        }, 'seg_1115');
 
     public remember_scrolling_position_0_35_seconds = (
         { keyboard_call }: { keyboard_call: boolean },
@@ -81,7 +81,7 @@ export class Scroll {
                         runInAction(() =>
                             err(() => {
                                 this.position_overridden = true;
-                            }, 'ges_1116'),
+                            }, 'seg_1116'),
                         );
 
                         await x.delay(
@@ -93,18 +93,18 @@ export class Scroll {
                         runInAction(() =>
                             err(() => {
                                 this.position_overridden = false;
-                            }, 'ges_1117'),
+                            }, 'seg_1117'),
                         );
                     },
                     keyboard_call ? 0 : 350,
                 );
             }
-        }, 'ges_1118');
+        }, 'seg_1118');
 
     public stop_remember_scrolling_position_0_35_seconds_timeout = (): void =>
         err(() => {
             clearTimeout(this.remember_scrolling_position_0_35_seconds_timeout as number);
-        }, 'ges_1119');
+        }, 'seg_1119');
 
     public scroll = (e: MouseEvent): void =>
         err(() => {
@@ -138,5 +138,5 @@ export class Scroll {
                     this.reset_position();
                 }
             }
-        }, 'ges_1120');
+        }, 'seg_1120');
 }

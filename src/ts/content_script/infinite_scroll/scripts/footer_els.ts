@@ -29,5 +29,5 @@ export class FooterEls {
 
                 x.bind(self, 'scroll', s_infinite_scroll.Scroll.i().observe);
             }
-        }, 'ges_1064');
+        }, 'seg_1064');
 }

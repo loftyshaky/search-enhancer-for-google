@@ -50,5 +50,5 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
         }
 
         return undefined;
-    }, 'ges_1086'),
+    }, 'seg_1086'),
 );

@@ -49,7 +49,7 @@ export class Main {
                                     });
 
                                     we.downloads.onDeterminingFilename.removeListener(suggest_dir);
-                                }, 'ges_1014');
+                                }, 'seg_1014');
 
                             we.downloads.onDeterminingFilename.addListener(suggest_dir);
                         }
@@ -57,6 +57,6 @@ export class Main {
                         await we.downloads.download(download_item);
                     }
                 }
-            }, 'ges_1015');
+            }, 'seg_1015');
         });
 }

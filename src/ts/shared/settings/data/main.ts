@@ -18,5 +18,5 @@ export class Main {
             this.allow_rerun_actions = false;
 
             await d_settings.Main.i().change({ key, val });
-        }, 'ges_1165');
+        }, 'seg_1165');
 }
