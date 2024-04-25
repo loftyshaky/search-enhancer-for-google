@@ -6,7 +6,6 @@ import {
     d_side_panel,
     s_actions,
     s_el_parser,
-    s_infinite_scroll,
     s_location,
     s_roots,
     s_theme,
@@ -125,8 +124,6 @@ export class Iframe {
                                         const is_last_page: boolean = !n(
                                             s_el_parser.Main.i().next_page_href,
                                         );
-
-                                        s_infinite_scroll.ImgLinks.i().bind_all();
 
                                         if (is_last_page) {
                                             show_load_end_msg();

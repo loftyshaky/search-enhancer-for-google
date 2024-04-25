@@ -36,10 +36,15 @@ $small_icon_size: 13px;
     &:active {
         background-color: rgba(219, 68, 55, $img_action_bar_button_opacity);
     }
+
+    &:not(:first-child) {
+        @include border_top;
+    }
 }
 
 .img_action_bar {
     @include border_bottom;
+    @include border_left;
 
     position: relative;
     display: flex;
@@ -60,18 +65,8 @@ $small_icon_size: 13px;
     }
 }
 
-:host-context([dir='ltr']) .img_action_bar {
-    @include border_left;
-}
-
 :host-context([dir='rtl']) .img_action_bar {
     @include border_right;
-}
 
-:host-context([dir='ltr']) .btn:not(:first-child) {
-    @include border_top;
-}
-
-:host-context([dir='rtl']) .btn:not(:last-child) {
-    @include border_top;
+    border-left: 0;
 }

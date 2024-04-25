@@ -315,8 +315,9 @@ export class Main {
                     this.img_viewer = [...links].find((link: HTMLLinkElement): boolean =>
                         err(() => {
                             const img = sb<HTMLImageElement>(link, 'img');
+                            const inside_div = sb<HTMLElement>(link, 'div');
 
-                            if (n(img)) {
+                            if (n(img) && !n(inside_div)) {
                                 return (
                                     Boolean(img.offsetWidth) && n(img.style) && n(img.style.height)
                                 );
@@ -369,7 +370,7 @@ export class Main {
                 data.settings.preview_img_viewer_img_action_bar_is_visible &&
                 s_location.Main.i().is_imgs_page
             ) {
-                const imgs = sa<HTMLDivElement>('.rg_i[data-iml], .rg_i[data-ils]');
+                const imgs = sa<HTMLDivElement>('#rso [id^=dimg_]');
 
                 if (n(imgs)) {
                     this.preview_img_viewers = [];
@@ -377,7 +378,7 @@ export class Main {
 
                     imgs.forEach((img): void =>
                         err(() => {
-                            const link: HTMLLinkElement | undefined = x.closest(img, 'a');
+                            const link: HTMLLinkElement | undefined = x.closest(img, 'g-img');
 
                             if (n(link) && n(link.parentElement)) {
                                 this.preview_img_viewers.push(link);
@@ -395,6 +396,7 @@ export class Main {
 
     private get_img_data = (): void =>
         err(() => {
+            /*
             if (!this.attempted_to_acquire_img_data) {
                 this.attempted_to_acquire_img_data = true;
 
@@ -438,6 +440,7 @@ export class Main {
                     }
                 }
             }
+*/
         }, 'seg_1188');
 
     public get_search_result_body = (): void =>
