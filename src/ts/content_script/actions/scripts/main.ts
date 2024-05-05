@@ -74,11 +74,6 @@ export class Main {
                 }
 
                 if (s_location.Main.i().is_all_page) {
-                    s_icons.Main.i().insert_shadow_icon_duplicates();
-                    s_icons.Main.i().apply_or_remove_favicon_el_cls_to_icons_root();
-                }
-
-                if (s_location.Main.i().is_all_page) {
                     d_side_panel.Page.i().set_total();
                 }
             } else {

@@ -23,7 +23,6 @@ export class Main {
     public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
     public favicon_els: (HTMLElement | undefined)[] = [];
-    public favicon_el_cls: string | undefined = undefined;
     public footer_el: HTMLElement | undefined = undefined;
     public related_searches_el: HTMLElement | undefined = undefined;
     public more_results_btn: HTMLElement | undefined = undefined;
@@ -128,6 +127,7 @@ export class Main {
 
                                 if (
                                     !x.matches(el_2, `.${new s_suffix.Main('icons').result}`) &&
+                                    !n(el_2.getAttribute('aria-hidden')) &&
                                     ((s_location.Main.i().is_news_page &&
                                         el_2.offsetHeight <= 40 &&
                                         el_2.firstElementChild &&
@@ -198,10 +198,6 @@ export class Main {
                         const el_height: number = parent.offsetHeight;
 
                         if (el_width === el_height && el_width >= 24) {
-                            if (!n(this.favicon_el_cls)) {
-                                [this.favicon_el_cls] = parent.classList;
-                            }
-
                             const favicon_cls: string = new s_suffix.Main('favicon').result;
 
                             if (!x.matches(parent, `.${favicon_cls}`)) {
@@ -234,9 +230,14 @@ export class Main {
                                 if (
                                     img_width === img_height &&
                                     img_width >= 16 &&
-                                    img_width <= 20
+                                    img_width <= 32 &&
+                                    img.tagName === 'IMG'
                                 ) {
-                                    let parent = ru(img.parentElement);
+                                    let parent = ru(
+                                        img_width >= 20 && n(img.parentElement)
+                                            ? img.parentElement.parentElement
+                                            : img.parentElement,
+                                    );
                                     let favicon: HTMLElement | undefined = get_favicon({
                                         el: parent,
                                     });

@@ -73,11 +73,7 @@ export class Main {
                         remove_icons({ icon_roots });
                     }
                 } else {
-                    const els = s_location.Main.i().is_all_page
-                        ? s_el_parser.Main.i().favicon_els
-                        : s_el_parser.Main.i().title_els;
-
-                    els.forEach((el, i): void =>
+                    s_el_parser.Main.i().title_els.forEach((el, i): void =>
                         err(() => {
                             if (i >= start) {
                                 let icons_el: HTMLElement | undefined;

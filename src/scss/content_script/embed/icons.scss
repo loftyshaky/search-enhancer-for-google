@@ -59,22 +59,13 @@
 
     &.all,
     &.search_by_img {
-        @include full_dims;
-
-        .icon_w {
-            @include full_dims;
-
-            align-items: center;
-            justify-content: center;
-        }
-
         .favicons {
             display: none;
         }
     }
 }
 
-.icons:not(.all, .search_by_img, .news, :empty) {
+.icons:not(.news, :empty) {
     margin-right: $gap;
 }
 

@@ -268,8 +268,9 @@ export class Main {
         { type }: { type: i_icons.IconType },
     ): string {
         return (
-            (type === 'favicons' && s_location.Main.i().is_news_page) ||
-            data.settings[`${type}_is_visible`]
+            (!s_location.Main.i().is_all_page || type === 'server_locations') &&
+            ((type === 'favicons' && s_location.Main.i().is_news_page) ||
+                data.settings[`${type}_is_visible`])
         );
     });
 }
