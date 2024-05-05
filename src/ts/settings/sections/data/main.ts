@@ -153,6 +153,7 @@ export class Main {
                                 parent: 'img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
                             }),
+                            /*
                             new o_inputs.Checkbox({
                                 name: 'preview_img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.i().change,
@@ -212,7 +213,7 @@ export class Main {
                                     'img_viewer_copy_img_url_btn_is_visible_label_text',
                                 ),
                                 event_callback: d_sections.Val.i().change,
-                            }),
+                            }), */
                             new o_inputs.Text({
                                 name: 'img_downloads_dir',
                                 include_help: true,
