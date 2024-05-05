@@ -13,22 +13,12 @@ export class Main {
     private params = new URLSearchParams(globalThis.location.search);
     private tbm: string | null = this.params.get('tbm');
     private tbs: string | null = this.params.get('tbs');
-    private sclient: string | null = this.params.get('sclient');
-    private prmd: string | null = this.params.get('prmd');
     private search_string_is_present: boolean = globalThis.location.href.includes('search?');
     private is_search_by_img_all_page: boolean = n(this.tbs) && this.tbs.includes('sbi:');
-    private is_search_by_img_imgs_page: boolean = n(this.tbs) && this.tbs.includes('simg:');
+    private data_push_down_results = s<HTMLElement>('#top_nav[data-push-down-results]');
 
     public is_content_script_execution_page: boolean =
         /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(globalThis.location.href);
-
-    public is_imgs_page: boolean =
-        this.search_string_is_present &&
-        !n(this.tbm) &&
-        (this.sclient === 'gws-wiz-serp' || n(this.prmd) || this.is_search_by_img_imgs_page);
-
-    public is_all_page: boolean =
-        this.search_string_is_present && (!n(this.tbm) || this.tbm === '') && !this.is_imgs_page;
 
     public is_search_by_img_page: boolean =
         this.search_string_is_present && this.is_search_by_img_all_page;
@@ -40,6 +30,16 @@ export class Main {
     public is_news_page: boolean = this.search_string_is_present && this.tbm === 'nws';
 
     public is_shopping_page: boolean = this.search_string_is_present && this.tbm === 'shop';
+
+    public is_imgs_page: boolean = n(this.data_push_down_results);
+
+    public is_all_page: boolean =
+        !this.is_imgs_page &&
+        !this.is_search_by_img_page &&
+        !this.is_videos_page &&
+        !this.is_books_page &&
+        !this.is_news_page &&
+        !this.is_shopping_page;
 
     public is_search_results: boolean =
         this.is_all_page ||
