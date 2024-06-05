@@ -15,7 +15,7 @@ export class Main {
     private tbs: string | null = this.params.get('tbs');
     private search_string_is_present: boolean = globalThis.location.href.includes('search?');
     private is_search_by_img_all_page: boolean = n(this.tbs) && this.tbs.includes('sbi:');
-    private data_push_down_results = s<HTMLElement>('#top_nav[data-push-down-results]');
+    private imgs = sa<HTMLImageElement>('#search img');
 
     public is_content_script_execution_page: boolean =
         /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(globalThis.location.href);
@@ -31,7 +31,7 @@ export class Main {
 
     public is_shopping_page: boolean = this.search_string_is_present && this.tbm === 'shop';
 
-    public is_imgs_page: boolean = n(this.data_push_down_results);
+    public is_imgs_page: boolean = n(this.imgs) ? this.imgs.length >= 100 : false;
 
     public is_all_page: boolean =
         !this.is_imgs_page &&
