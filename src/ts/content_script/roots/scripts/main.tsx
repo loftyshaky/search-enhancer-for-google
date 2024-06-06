@@ -9,6 +9,7 @@ import {
     c_infinite_scroll,
     d_icons,
     s_el_parser,
+    s_icons,
     s_img_action_bar,
     s_infinite_scroll,
     s_location,
@@ -100,6 +101,8 @@ export class Main {
                                     }
                                 }
                             }
+
+                            s_icons.Main.i().fix_overlapping_favicon_and_server_location({ el });
                         }, 'seg_1092'),
                     );
                 }

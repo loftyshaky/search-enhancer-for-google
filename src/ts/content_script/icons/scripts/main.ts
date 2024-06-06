@@ -38,4 +38,19 @@ export class Main {
                 );
             }
         }, 'seg_1187');
+
+    public fix_overlapping_favicon_and_server_location = ({
+        el,
+    }: {
+        el: HTMLElement;
+    }): void => // put titles and icons on one line (without this title may wrap on second line if it's too long)
+        err(() => {
+            if (s_location.Main.i().is_all_page) {
+                const title_display = x.get_css_val(el, 'display');
+
+                if (title_display === '-webkit-box') {
+                    el.style.setProperty('display', 'inline-flex', 'important');
+                }
+            }
+        }, 'seg_1234');
 }
