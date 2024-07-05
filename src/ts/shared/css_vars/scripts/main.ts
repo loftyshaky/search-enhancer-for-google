@@ -25,7 +25,7 @@ export class Main {
             s_css_vars.Main.i().set_var({
                 roots,
                 name: 'offset_from_header',
-                val: '147px',
+                val: '193px',
             });
         }, 'seg_1147');
 }
