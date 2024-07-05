@@ -60,7 +60,7 @@ export class Main {
                             }),
                             new o_inputs.Checkbox({
                                 name: 'enable_infinite_scrolling',
-                                include_help: true,
+                                //  include_help: true,
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_color.Color({
@@ -87,7 +87,7 @@ export class Main {
                             new o_inputs.Checkbox({
                                 name: 'page_separators_is_visible',
                                 parent: 'enable_infinite_scrolling',
-                                include_help: true,
+                                // include_help: true,
                                 event_callback: d_sections.Val.i().change,
                             }),
                             new o_inputs.Checkbox({

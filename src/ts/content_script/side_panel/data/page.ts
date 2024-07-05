@@ -1,7 +1,7 @@
 import { makeObservable, observable, action } from 'mobx';
 
 import { s_viewport } from '@loftyshaky/shared';
-import { s_el_parser, d_side_panel, s_infinite_scroll, s_location } from 'content_script/internal';
+import { d_side_panel, s_infinite_scroll } from 'content_script/internal';
 
 export class Page {
     private static i0: Page;
@@ -27,10 +27,13 @@ export class Page {
     public set_current = (): Promise<void> =>
         err_async(async () => {
             let rendering_page_final: boolean = false;
-            const page_els: HTMLElement[] = s_location.Main.i().is_all_page
+            /* const page_els: HTMLElement[] = s_location.Main.i().is_all_page
                 ? s_el_parser.Main.i().page_els
                 : s_infinite_scroll.Iframe.i().iframes;
-            const i_offset = s_location.Main.i().is_all_page ? 1 : 2;
+               const i_offset = s_location.Main.i().is_all_page ? 1 : 2;
+            */
+            const page_els: HTMLElement[] = s_infinite_scroll.Iframe.i().iframes;
+            const i_offset = 2;
 
             const current_page_i: number = page_els.findIndex(
                 (el: HTMLElement, i: number): boolean =>
@@ -70,6 +73,7 @@ export class Page {
         err(() => {
             let page_count: number = 0;
 
+            /*
             if (s_location.Main.i().is_all_page) {
                 page_count =
                     s_el_parser.Main.i().page_els.length === 0
@@ -80,5 +84,10 @@ export class Page {
             }
 
             this.total = page_count + (s_location.Main.i().is_all_page ? 0 : 1);
+           */
+
+            page_count = s_infinite_scroll.Iframe.i().iframes.length;
+
+            this.total = page_count + 1;
         }, 'seg_1108');
 }
