@@ -1,5 +1,5 @@
 import { s_suffix } from 'shared/internal';
-import { s_location } from 'content_script/internal';
+import { s_infinite_scroll, s_location } from 'content_script/internal';
 
 export class Main {
     private static i0: Main;
@@ -17,11 +17,20 @@ export class Main {
             const filename: string = 'favicon_hidden';
             const cls: string = new s_suffix.Main(filename).result;
 
-            if (data.settings.favicons_is_visible) {
-                x.remove(s(`.${cls}`));
-            } else {
-                x.css(filename, document.head, cls);
-            }
+            const iframe_docs: Document[] = s_infinite_scroll.Iframe.i().iframes.flatMap(
+                (iframe: HTMLIFrameElement): Document[] =>
+                    n(iframe) && n(iframe.contentDocument) ? [iframe.contentDocument] : [],
+            );
+
+            [document, ...iframe_docs].forEach((doc: Document): void =>
+                err(() => {
+                    if (data.settings.favicons_is_visible) {
+                        x.remove(sb(doc.head, `.${cls}`));
+                    } else {
+                        x.css(filename, doc.head, cls);
+                    }
+                }, 'seg_1235'),
+            );
         }, 'seg_1227');
 
     public prevent_titles_and_icons_from_wrapping = ({
