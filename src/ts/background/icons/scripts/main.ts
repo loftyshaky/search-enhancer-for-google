@@ -1,8 +1,9 @@
-import _ from 'lodash';
+import last from 'lodash/last';
+import findLast from 'lodash/findLast';
 
-import { t } from '@loftyshaky/shared';
+import { t } from '@loftyshaky/shared/shared_clean';
 
-import { s_icons, i_icons } from 'shared/internal';
+import { s_icons, i_icons } from 'shared_clean/internal';
 
 export class Main {
     private static i0: Main;
@@ -99,11 +100,12 @@ export class Main {
                     [we.i18n.getUILanguage()],
                     { type: 'region' },
                 );
+
                 const response_2: Response = await fetch(`https://dns.google/resolve?name=${url}`);
                 const json: any = await response_2.json();
-                const ip: string = (_.last(json.Answer) as any).data;
+                const ip: string = (last(json.Answer) as any).data;
 
-                const record: i_icons.IpToCountry | undefined = _.findLast(
+                const record: i_icons.IpToCountry | undefined = findLast(
                     this.ip_to_country,
                     (item: i_icons.IpToCountry): boolean =>
                         err(() => item.ip_from < this.convert_ip_to_ip_number({ ip }), 'seg_1007'),

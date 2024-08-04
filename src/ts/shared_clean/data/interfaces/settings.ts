@@ -1,4 +1,4 @@
-import { i_color } from '@loftyshaky/shared/inputs';
+import { i_color } from '@loftyshaky/shared/shared_clean';
 
 export interface Settings {
     current_section: string;

@@ -1,5 +1,6 @@
-import { s_tab_index } from '@loftyshaky/shared';
-import { InitAll, s_suffix } from 'shared/internal';
+import { s_tab_index } from '@loftyshaky/shared/shared';
+import { s_suffix } from 'shared_clean/internal';
+import { InitAll } from 'shared/internal';
 import {
     d_img_action_bar,
     s_roots,

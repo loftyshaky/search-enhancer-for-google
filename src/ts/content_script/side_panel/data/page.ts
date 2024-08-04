@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from 'mobx';
 
-import { s_viewport } from '@loftyshaky/shared';
+import { s_viewport } from '@loftyshaky/shared/shared';
 import { d_side_panel, s_infinite_scroll } from 'content_script/internal';
 
 export class Page {

@@ -1,4 +1,4 @@
-import { t, d_settings } from '@loftyshaky/shared';
+import { t, d_settings } from '@loftyshaky/shared/shared_clean';
 
 export class Main {
     private static i0: Main;

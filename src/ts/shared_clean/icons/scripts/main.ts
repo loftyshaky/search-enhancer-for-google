@@ -1,4 +1,4 @@
-import { t } from '@loftyshaky/shared';
+import { t } from '@loftyshaky/shared/shared_clean';
 
 export class Main {
     private static i0: Main;

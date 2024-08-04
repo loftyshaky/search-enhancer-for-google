@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { t } from '@loftyshaky/shared';
+import { t } from '@loftyshaky/shared/shared';
 import {
     d_icons,
     d_side_panel,

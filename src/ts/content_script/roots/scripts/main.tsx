@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { c_crash_handler } from '@loftyshaky/shared';
-import { s_suffix } from 'shared/internal';
+import { c_crash_handler } from '@loftyshaky/shared/shared';
+import { s_suffix } from 'shared_clean/internal';
 import {
     c_icons,
     c_img_action_bar,

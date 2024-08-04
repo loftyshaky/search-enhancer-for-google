@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
 import { action, makeObservable, observable } from 'mobx';
 
 import { s_el_parser, s_img_action_bar, i_img_action_bar } from 'content_script/internal';
@@ -48,7 +48,7 @@ export class Position {
             }
         }, 'seg_1193');
 
-    public set_bottom_all = _.debounce(
+    public set_bottom_all = debounce(
         (): void =>
             err(() => {
                 s_el_parser.Main.i().img_data.forEach((not_used: any, i: number): void =>

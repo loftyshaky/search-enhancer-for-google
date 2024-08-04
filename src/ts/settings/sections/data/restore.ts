@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { runInAction } from 'mobx';
 
-import { t, s_theme } from '@loftyshaky/shared';
-import { s_css_vars, i_data } from 'shared/internal';
+import { t, s_theme } from '@loftyshaky/shared/shared';
+import { s_css_vars, i_data } from 'shared_clean/internal';
 
 export class Restore {
     private static i0: Restore;
@@ -63,7 +63,7 @@ export class Restore {
         err_async(async () => {
             let settings_final: i_data.Settings;
 
-            if (_.isEmpty(settings)) {
+            if (isEmpty(settings)) {
                 const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
 
                 settings_final = { ...default_settings, ...this.get_unchanged_settings() };

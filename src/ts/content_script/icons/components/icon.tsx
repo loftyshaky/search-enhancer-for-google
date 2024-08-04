@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { svg } from 'shared/svg';
+import { svg } from 'shared/internal';
 
 import { d_icons, p_icons } from 'content_script/internal';
 

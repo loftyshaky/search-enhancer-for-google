@@ -1,6 +1,6 @@
 import { makeObservable, computed, action } from 'mobx';
 
-import { d_settings } from 'shared/internal';
+import { d_settings } from 'shared_clean/internal';
 import { s_infinite_scroll } from 'content_script/internal';
 
 export class InfiniteScrollingState {

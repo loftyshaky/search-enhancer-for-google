@@ -1,4 +1,4 @@
-import { t, d_settings } from '@loftyshaky/shared';
+import { t, d_settings } from '@loftyshaky/shared/shared';
 
 we.runtime.onMessage.addListener((msg: t.Msg): any =>
     err(() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { prevent_default } from '@loftyshaky/shared';
+import { prevent_default } from '@loftyshaky/shared/shared';
 import { d_img_action_bar, p_img_action_bar } from 'content_script/internal';
 
 export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((props) => {
@@ -18,6 +18,7 @@ export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((prop
                 className='btn'
                 type='button'
                 title={ext.msg(`${btn.name}_title`)}
+                aria-label='Image action bar button'
                 onClick={(): void => {
                     btn.event_callback({ type: btn.name, img_viewer_i });
                 }}

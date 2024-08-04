@@ -483,10 +483,10 @@ class Manifest {
         if (mode === 'development') {
             manifest.content_scripts[0].js.push(
                 'env.js',
+                'chunks/vendors-node_modules_lodash__baseKeys_js-node_modules_lodash__getTag_js-node_modules_lodash_i-8f8f3d.js',
+                'chunks/vendors-node_modules_lodash_clone_js-node_modules_lodash_debounce_js-node_modules_lodash_last-0fa715.js',
+                'chunks/src_ts_shared_internal_ts.js',
                 'chunks/src_ts_content_script_internal_ts.js',
-                'chunks/vendors-node_modules_lodash_lodash_js.js',
-                'chunks/vendors-node_modules_mobx-react_dist_mobxreact_esm_js.js',
-                'chunks/vendors-node_modules_mobx-utils_mobx-utils_module_js-node_modules_tinycolor2_esm_tinycolor_js.js',
             );
         }
 

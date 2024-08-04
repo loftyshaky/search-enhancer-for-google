@@ -1,4 +1,4 @@
-import { s_suffix } from 'shared/internal';
+import { s_suffix } from 'shared_clean/internal';
 import { s_actions, s_infinite_scroll, s_location } from 'content_script/internal';
 
 const observer = new MutationObserver((mutations): void =>

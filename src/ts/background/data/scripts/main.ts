@@ -1,8 +1,9 @@
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 
-import { t, o_schema, d_schema, s_service_worker } from '@loftyshaky/shared';
-import { d_color } from '@loftyshaky/shared/inputs';
-import { i_data } from 'shared/internal';
+import { t, o_schema, d_schema, s_color, s_service_worker } from '@loftyshaky/shared/shared_clean';
+
+import { i_data } from 'shared_clean/internal';
 
 export class Main {
     private static i0: Main;
@@ -28,7 +29,7 @@ export class Main {
                 enable_cut_features: false,
                 persistent_service_worker: false,
                 offers_are_visible: true,
-                colors: d_color.Color.i().default_colors,
+                colors: s_color.Color.i().default_colors,
                 side_panel_position: 'right',
                 keyword_color: 2,
                 spinner_color: 15,
@@ -87,7 +88,7 @@ export class Main {
             s_service_worker.ServiceWorker.i().make_persistent();
         }, 'seg_1003');
 
-    public update_settings_debounce = _.debounce(
+    public update_settings_debounce = debounce(
         (
             settings: i_data.Settings,
             rerun_actions: boolean = false,
@@ -114,7 +115,7 @@ export class Main {
         err_async(async () => {
             const settings: i_data.Settings = await ext.storage_get();
 
-            if (_.isEmpty(settings)) {
+            if (isEmpty(settings)) {
                 await this.update_settings({ transform });
             } else if (transform) {
                 await this.update_settings({ settings, transform });
@@ -262,4 +263,9 @@ export class Main {
 
             return settings_final;
         }, 'seg_1199');
+
+    public set_session_access_level = (): void =>
+        err(() => {
+            we.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
+        }, 'seg_1236');
 }

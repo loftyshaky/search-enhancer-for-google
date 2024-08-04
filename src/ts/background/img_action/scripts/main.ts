@@ -1,6 +1,6 @@
 import { Downloads } from 'webextension-polyfill';
 
-import { i_data } from 'shared/internal';
+import { i_data } from 'shared_clean/internal';
 
 export class Main {
     private static i0: Main;

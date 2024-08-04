@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
 
-import { d_settings } from '@loftyshaky/shared';
-import { d_settings as d_settings_shared, s_css_vars } from 'shared/internal';
+import { d_settings as d_settings_loftyshaky_shared } from '@loftyshaky/shared/shared';
+import { d_settings, s_css_vars } from 'shared_clean/internal';
 import {
     d_infinite_scroll,
     s_el_parser,
@@ -28,7 +28,7 @@ export class Main {
 
     public run_initial_actions = (): Promise<void> =>
         err_async(async () => {
-            await d_settings.Main.i().set_from_storage();
+            await d_settings_loftyshaky_shared.Main.i().set_from_storage();
             await show_unable_to_access_settings_error({ is_fullscreen: false });
             s_css_vars.Main.i().set();
             s_el_parser.Main.i().get_els();
@@ -50,8 +50,8 @@ export class Main {
 
     public run_reload_actions = (): Promise<void> =>
         err_async(async () => {
-            if (d_settings_shared.Main.i().allow_rerun_actions) {
-                await d_settings.Main.i().set_from_storage();
+            if (d_settings.Main.i().allow_rerun_actions) {
+                await d_settings_loftyshaky_shared.Main.i().set_from_storage();
                 s_css_vars.Main.i().set();
                 s_el_parser.Main.i().get_els();
 
@@ -77,11 +77,11 @@ export class Main {
                     d_side_panel.Page.i().set_total();
                 }
             } else {
-                d_settings_shared.Main.i().allow_rerun_actions = true;
+                d_settings.Main.i().allow_rerun_actions = true;
             }
         }, 'seg_1019');
 
-    private run_reload_actions_debounce = _.debounce(
+    private run_reload_actions_debounce = debounce(
         (): void =>
             err(() => {
                 this.run_reload_actions();
@@ -92,7 +92,7 @@ export class Main {
     public run_reload_actions_2 = (): Promise<void> =>
         err_async(async () => {
             if (s_location.Main.i().is_imgs_page) {
-                await d_settings.Main.i().set_from_storage();
+                await d_settings_loftyshaky_shared.Main.i().set_from_storage();
                 s_el_parser.Main.i().get_img_viewer();
                 s_el_parser.Main.i().get_preview_img_viewers();
                 s_roots.Main.i().init({ name: 'img_action_bar' });
@@ -101,7 +101,7 @@ export class Main {
             this.run_reload_actions_debounce();
         }, 'seg_1021');
 
-    public run_reload_actions_2_debounce = _.debounce(
+    public run_reload_actions_2_debounce = debounce(
         (): void =>
             err(() => {
                 this.run_reload_actions_2();

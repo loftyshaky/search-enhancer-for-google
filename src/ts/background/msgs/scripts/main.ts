@@ -1,4 +1,4 @@
-import { t } from '@loftyshaky/shared';
+import { t } from '@loftyshaky/shared/shared_clean';
 import { s_data, s_icons, s_img_action } from 'background/internal';
 
 we.runtime.onMessage.addListener(

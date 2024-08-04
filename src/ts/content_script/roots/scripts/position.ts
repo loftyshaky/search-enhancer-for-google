@@ -1,4 +1,4 @@
-import { s_suffix } from 'shared/internal';
+import { s_suffix } from 'shared_clean/internal';
 import { s_el_parser, s_roots } from 'content_script/internal';
 
 export class Position {

@@ -11,9 +11,9 @@ import {
     d_settings,
     s_tab_index,
     s_theme as s_theme_shared,
-} from '@loftyshaky/shared';
+} from '@loftyshaky/shared/shared';
 import { d_inputs, i_inputs } from '@loftyshaky/shared/inputs';
-import { s_css_vars, s_suffix } from 'shared/internal';
+import { s_css_vars, s_suffix } from 'shared_clean/internal';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, @typescript-eslint/no-unused-vars
 declare let __webpack_public_path__: string;

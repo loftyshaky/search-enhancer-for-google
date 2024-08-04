@@ -1,5 +1,5 @@
 import { d_color } from '@loftyshaky/shared/inputs';
-import { s_suffix } from 'shared/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 export class Spinner {
     private static i0: Spinner;

@@ -1,6 +1,6 @@
 import { makeObservable, observable } from 'mobx';
 
-import { t } from '@loftyshaky/shared';
+import { t } from '@loftyshaky/shared/shared';
 
 export class Btn {
     public name: string;

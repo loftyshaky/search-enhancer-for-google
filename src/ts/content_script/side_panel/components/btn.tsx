@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { t } from '@loftyshaky/shared';
-import { svg } from 'shared/svg';
+import { t } from '@loftyshaky/shared/shared';
+import { svg } from 'shared/internal';
 import { d_side_panel, p_side_panel } from 'content_script/internal';
 
 const component: t.AnyRecord = {
@@ -39,6 +39,7 @@ export const Btn: React.FunctionComponent<p_side_panel.Btn> = observer(
                 ])}
                 type='button'
                 title={d_side_panel.Btn.i().msg({ name })}
+                aria-label='Side panel button'
                 onClick={on_click}
                 onMouseDown={on_mouse_down}
                 onMouseUp={on_mouse_up}

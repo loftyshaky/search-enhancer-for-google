@@ -1,6 +1,6 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 
-import { s_suffix } from 'shared/internal';
+import { s_suffix } from 'shared_clean/internal';
 import {
     d_infinite_scroll,
     d_side_panel,

@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import clone from 'lodash/clone';
 import { MouseEvent, KeyboardEvent } from 'react';
 import { makeObservable, observable, computed, action } from 'mobx';
 
-import { s_css_vars } from '@loftyshaky/shared';
+import { s_css_vars } from '@loftyshaky/shared/shared';
 import { d_side_panel, s_el_parser, i_side_panel } from 'content_script/internal';
 
 export class RelatedSearches {
@@ -72,7 +72,7 @@ export class RelatedSearches {
                     this.last_related_searches_position = document.documentElement.scrollTop;
                 }
             } else {
-                const old_position = _.clone(this.remembered_position);
+                const old_position = clone(this.remembered_position);
 
                 this.remember_position();
 

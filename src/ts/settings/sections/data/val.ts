@@ -1,7 +1,7 @@
-import { i_data } from '@loftyshaky/shared';
-import { o_color, d_inputs, d_color, i_inputs, i_color } from '@loftyshaky/shared/inputs';
+import { i_color as i_color_loftyshaky_color, i_data } from '@loftyshaky/shared/shared';
+import { o_color, d_inputs, d_color, i_color, i_inputs } from '@loftyshaky/shared/inputs';
 import { s_settings } from '@loftyshaky/shared/settings';
-import { s_css_vars } from 'shared/internal';
+import { s_css_vars } from 'shared_clean/internal';
 import { d_sections } from 'settings/internal';
 
 export class Val {
@@ -164,7 +164,7 @@ export class Val {
     public restore_default_palette_callback = ({
         default_colors,
     }: {
-        default_colors: i_color.Color[];
+        default_colors: i_color_loftyshaky_color.Color[];
     }): Promise<void> =>
         err_async(async () => {
             await ext.send_msg_resp({

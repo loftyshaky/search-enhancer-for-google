@@ -1,8 +1,8 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from '@loftyshaky/shared';
-import { s_icons, i_icons as i_icons_shared } from 'shared/internal';
+import { t } from '@loftyshaky/shared/shared';
+import { s_icons, i_icons as i_icons_shared } from 'shared_clean/internal';
 import { s_el_parser, s_location, i_icons } from 'content_script/internal';
 
 export class Main {
@@ -146,7 +146,6 @@ export class Main {
                     msg: 'get_server_info',
                     url,
                 });
-
                 if (response === 'ip_to_country_arr_is_not_yet_generated') {
                     this.generate_server_location_url_deferred.push(() => {
                         this.generate_server_location_url({ url });

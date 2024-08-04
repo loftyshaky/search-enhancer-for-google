@@ -1,8 +1,9 @@
-import _ from 'lodash';
+import last from 'lodash/last';
+import get from 'lodash/get';
 import tinycolor from 'tinycolor2';
 
-import { t, s_viewport } from '@loftyshaky/shared';
-import { s_suffix } from 'shared/internal';
+import { t, s_viewport } from '@loftyshaky/shared/shared';
+import { s_suffix } from 'shared_clean/internal';
 import {
     s_icons,
     s_infinite_scroll,
@@ -347,12 +348,12 @@ export class Main {
 
                     while (
                         this.img_viewer.getBoundingClientRect().bottom ===
-                        _.last(parents)!.getBoundingClientRect().bottom
+                        last(parents)!.getBoundingClientRect().bottom
                     ) {
-                        const last = _.last(parents);
+                        const last_2 = last(parents);
 
-                        if (n(last) && n(last.parentElement)) {
-                            parents.push(last.parentElement);
+                        if (n(last_2) && n(last_2.parentElement)) {
+                            parents.push(last_2.parentElement);
                         }
                     }
                 }
@@ -405,7 +406,7 @@ export class Main {
                     const script_els = sa<HTMLScriptElement>('script');
 
                     if (n(script_els)) {
-                        const img_data_el: HTMLScriptElement | undefined = _.findLast(
+                        const img_data_el: HTMLScriptElement | undefined = findLast(
                             script_els,
                             (script_el: HTMLScriptElement): boolean =>
                                 script_el.innerHTML.startsWith('AF_initDataCallback'),
@@ -460,7 +461,7 @@ export class Main {
                 );
 
                 if (n(page_btn_els)) {
-                    const next_page_el = _.last(page_btn_els);
+                    const next_page_el = last(page_btn_els);
 
                     if (n(next_page_el)) {
                         const omnibox_start_val: number = this.get_page_val({
@@ -534,7 +535,7 @@ export class Main {
         img_viewer_i: i_img_action_bar.ImgViewerI;
     }): string | undefined =>
         err(() => {
-            const data = _.get(this.img_data, `[${img_viewer_i}][0][0].444383007[1][3][0]`);
+            const data = get(this.img_data, `[${img_viewer_i}][0][0].444383007[1][3][0]`);
 
             if (typeof data === 'string') {
                 return data; // link to image

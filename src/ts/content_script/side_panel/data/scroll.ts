@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import { makeObservable, observable, computed, action, runInAction } from 'mobx';
 
-import { s_css_vars } from '@loftyshaky/shared';
+import { s_css_vars } from '@loftyshaky/shared/shared';
 import { i_side_panel } from 'content_script/internal';
 
 export class Scroll {

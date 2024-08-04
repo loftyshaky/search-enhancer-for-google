@@ -1,4 +1,4 @@
-import { t } from '@loftyshaky/shared';
+import { t } from '@loftyshaky/shared/shared';
 import { i_img_action_bar } from 'content_script/internal';
 
 export interface Body {

@@ -1,4 +1,4 @@
-import { s_viewport } from '@loftyshaky/shared';
+import { s_viewport } from '@loftyshaky/shared/shared';
 import { d_infinite_scroll, s_el_parser, s_infinite_scroll } from 'content_script/internal';
 
 export class Scroll {

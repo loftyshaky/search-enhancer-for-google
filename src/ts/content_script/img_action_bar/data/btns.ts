@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import mapValues from 'lodash/mapValues';
 
-import { t, s_utils } from '@loftyshaky/shared';
-import { svg, SvgType } from 'shared/svg';
+import { t, s_utils } from '@loftyshaky/shared/shared';
+import { svg, SvgType } from 'shared/internal';
 import { o_img_action_bar, s_img_action_bar } from 'content_script/internal';
 
 export class Btns {
@@ -19,7 +19,7 @@ export class Btns {
 
     public init_component = (): void =>
         err(() => {
-            this.component = _.mapValues(
+            this.component = mapValues(
                 this.btns,
                 (value: o_img_action_bar.Btn) => svg[value.svg_name as keyof SvgType],
             );
