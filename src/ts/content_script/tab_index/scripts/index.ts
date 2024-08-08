@@ -1,1 +1,1 @@
-export * from 'content_script/tab_index/scripts/main';
+export * from 'content_script/tab_index/scripts/tab_index';

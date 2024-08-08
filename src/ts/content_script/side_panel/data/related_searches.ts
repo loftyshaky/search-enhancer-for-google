@@ -5,16 +5,15 @@ import { makeObservable, observable, computed, action } from 'mobx';
 import { s_css_vars } from '@loftyshaky/shared/shared';
 import { d_side_panel, s_el_parser, i_side_panel } from 'content_script/internal';
 
-export class RelatedSearches {
-    private static i0: RelatedSearches;
+class Class {
+    private static instance: Class;
 
-    public static i(): RelatedSearches {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<RelatedSearches, 'remembered_position' | 'remember_position'>(this, {
+        makeObservable<Class, 'remembered_position' | 'remember_position'>(this, {
             remembered_position: observable,
             position_remembered_cls: computed,
             remember_position: action,
@@ -31,10 +30,10 @@ export class RelatedSearches {
 
     private remember_position = (): void =>
         err(() => {
-            const current_position: number = d_side_panel.Scroll.i().get_current_position();
+            const current_position: number = d_side_panel.Scroll.get_current_position();
 
             this.remembered_position = current_position;
-            d_side_panel.Scroll.i().remembered_position = current_position;
+            d_side_panel.Scroll.remembered_position = current_position;
         }, 'seg_1109');
 
     public reset_position = (): void =>
@@ -51,10 +50,10 @@ export class RelatedSearches {
             if (this.remembered_position === 'none') {
                 let el_to_jump_to: HTMLElement | undefined;
 
-                if (n(s_el_parser.Main.i().related_searches_el)) {
-                    el_to_jump_to = s_el_parser.Main.i().related_searches_el;
-                } else if (n(s_el_parser.Main.i().pagination_el)) {
-                    el_to_jump_to = s_el_parser.Main.i().pagination_el;
+                if (n(s_el_parser.ElParser.related_searches_el)) {
+                    el_to_jump_to = s_el_parser.ElParser.related_searches_el;
+                } else if (n(s_el_parser.ElParser.pagination_el)) {
+                    el_to_jump_to = s_el_parser.ElParser.pagination_el;
                 }
 
                 if (n(el_to_jump_to)) {
@@ -63,9 +62,9 @@ export class RelatedSearches {
                     const new_position: number =
                         document.documentElement.scrollTop +
                         el_to_jump_to.getBoundingClientRect().top -
-                        parseInt(s_css_vars.Main.i().get({ name: 'offset_from_header' }), 10);
+                        parseInt(s_css_vars.CssVars.get({ name: 'offset_from_header' }), 10);
 
-                    d_side_panel.Scroll.i().scroll_to_position({
+                    d_side_panel.Scroll.scroll_to_position({
                         position: new_position,
                     });
 
@@ -76,9 +75,11 @@ export class RelatedSearches {
 
                 this.remember_position();
 
-                d_side_panel.Scroll.i().scroll_to_position({ position: old_position });
+                d_side_panel.Scroll.scroll_to_position({ position: old_position });
 
                 this.reset_position();
             }
         }, 'seg_1111');
 }
+
+export const RelatedSearches = Class.get_instance();

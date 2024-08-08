@@ -3,12 +3,11 @@ import { makeObservable, observable, computed, action } from 'mobx';
 import { s_viewport } from '@loftyshaky/shared/shared';
 import { s_el_parser, s_text_dir } from 'content_script/internal';
 
-export class Separator {
-    private static i0: Separator;
+class Class {
+    private static instance: Class;
 
-    public static i(): Separator {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -27,16 +26,18 @@ export class Separator {
 
     public set_offset_left = (): void =>
         err(() => {
-            if (n(s_el_parser.Main.i().search_result_body)) {
-                const rect = s_el_parser.Main.i().search_result_body!.getBoundingClientRect();
+            if (n(s_el_parser.ElParser.search_result_body)) {
+                const rect = s_el_parser.ElParser.search_result_body!.getBoundingClientRect();
 
-                if (s_text_dir.Main.i().dir === 'ltr') {
+                if (s_text_dir.TextDir.dir === 'ltr') {
                     this.offset_left = x.px(rect.left);
-                } else if (s_text_dir.Main.i().dir === 'rtl') {
+                } else if (s_text_dir.TextDir.dir === 'rtl') {
                     this.offset_left = x.px(
-                        s_viewport.Main.i().get_dim({ dim: 'width' }) - rect.right,
+                        s_viewport.Viewport.get_dim({ dim: 'width' }) - rect.right,
                     );
                 }
             }
         }, 'seg_1063');
 }
+
+export const Separator = Class.get_instance();

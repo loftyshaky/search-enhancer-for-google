@@ -11,12 +11,11 @@ import {
     s_theme,
 } from 'content_script/internal';
 
-export class Iframe {
-    private static i0: Iframe;
+class Class {
+    private static instance: Class;
 
-    public static i(): Iframe {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -30,10 +29,7 @@ export class Iframe {
     public last_iframe: HTMLIFrameElement | undefined;
     private cur_iframe_i: number = 0;
     public inserting_iframe: boolean = false;
-    private search_results_w_selector: string = s_location.Main.i().is_shopping_page
-        ? '#rso'
-        : '#search';
-
+    private search_results_w_selector: string = '';
     private captcha_error_occurred_once: boolean = false;
 
     public insert = (): void =>
@@ -41,32 +37,34 @@ export class Iframe {
             if (
                 !this.captcha_error_occurred_once &&
                 !this.inserting_iframe &&
-                n(s_el_parser.Main.i().next_page_href)
+                n(s_el_parser.ElParser.next_page_href)
             ) {
                 this.inserting_iframe = true;
 
                 const loading_first_iframe: boolean = !n(this.last_iframe);
                 const el_to_append_iframe_to = loading_first_iframe
-                    ? s<HTMLElement>(`.${new s_suffix.Main('spinner').result}`)
+                    ? s<HTMLElement>(`.${new s_suffix.Suffix('spinner').result}`)
                     : this.last_iframe;
                 const iframe_and_body_classes: string = x.cls([
-                    new s_suffix.Main(s_location.Main.i().current_location).result,
-                    loading_first_iframe ? new s_suffix.Main('first_inserted').result : undefined,
+                    new s_suffix.Suffix(s_location.Location.current_location).result,
+                    loading_first_iframe ? new s_suffix.Suffix('first_inserted').result : undefined,
                 ]);
 
                 this.last_iframe = x.create(
                     'iframe',
                     x.cls([
-                        new s_suffix.Main('iframe').result,
-                        new s_suffix.Main('hidden').result,
-                        new s_suffix.Main('opacity_0').result,
+                        new s_suffix.Suffix('iframe').result,
+                        new s_suffix.Suffix('hidden').result,
+                        new s_suffix.Suffix('opacity_0').result,
                         iframe_and_body_classes,
                     ]),
                 );
 
-                this.iframes.push(this.last_iframe);
+                if (n(this.last_iframe)) {
+                    this.iframes.push(this.last_iframe);
 
-                this.last_iframe.src = s_el_parser.Main.i().next_page_href!;
+                    this.last_iframe.src = s_el_parser.ElParser.next_page_href!;
+                }
 
                 x[loading_first_iframe ? 'before' : 'after'](
                     el_to_append_iframe_to,
@@ -79,7 +77,7 @@ export class Iframe {
                             globalThis.requestAnimationFrame(
                                 async (): Promise<void> =>
                                     err_async(async () => {
-                                        s_actions.Main.i().run_reload_actions();
+                                        s_actions.Actions.run_reload_actions();
 
                                         if (this.last_iframe) {
                                             const iframe_doc: Document | null =
@@ -91,14 +89,14 @@ export class Iframe {
                                                     iframe_and_body_classes,
                                                 ]);
 
-                                                await s_roots.Main.i().append_root({
+                                                await s_roots.Roots.append_root({
                                                     name: 'separator',
                                                     parent: iframe_doc.body,
                                                     i: this.cur_iframe_i + 2,
                                                     append_f_name: 'as_first',
                                                 });
 
-                                                s_theme.Main.i().adapt_separator_to_dark_theme({
+                                                s_theme.Theme.adapt_separator_to_dark_theme({
                                                     iframe_doc,
                                                 });
                                             }
@@ -110,19 +108,19 @@ export class Iframe {
 
                                         x.remove_cls(
                                             this.last_iframe,
-                                            new s_suffix.Main('hidden').result,
+                                            new s_suffix.Suffix('hidden').result,
                                         );
                                         x.remove_cls(
                                             this.last_iframe,
-                                            new s_suffix.Main('opacity_0').result,
+                                            new s_suffix.Suffix('opacity_0').result,
                                         );
 
                                         this.cur_iframe_i += 1;
 
-                                        d_side_panel.Page.i().set_total();
+                                        d_side_panel.Page.set_total();
 
                                         const is_last_page: boolean = !n(
-                                            s_el_parser.Main.i().next_page_href,
+                                            s_el_parser.ElParser.next_page_href,
                                         );
 
                                         if (is_last_page) {
@@ -140,7 +138,7 @@ export class Iframe {
 
                         const show_load_end_msg = (): void =>
                             err(() => {
-                                d_infinite_scroll.LoadEndMsg.i().change_visibility({
+                                d_infinite_scroll.LoadEndMsg.change_visibility({
                                     is_visible: true,
                                 });
                             }, 'seg_1067');
@@ -164,12 +162,12 @@ export class Iframe {
                                 }, 'seg_1069'),
                             );
 
-                            d_infinite_scroll.LoadEndMsg.i().change_type({ type: 'error' });
+                            d_infinite_scroll.LoadEndMsg.change_type({ type: 'error' });
                             show_load_end_msg();
                         } else {
                             this.hide_everything_from_iframe_except_search_results();
 
-                            s_el_parser.Main.i().get_next_page_href();
+                            s_el_parser.ElParser.get_next_page_href();
 
                             if (this.last_iframe) {
                                 const iframe_doc: Document | null =
@@ -179,7 +177,7 @@ export class Iframe {
                                     x.css(
                                         'font_face',
                                         iframe_doc.head,
-                                        new s_suffix.Main('font_face_link').result,
+                                        new s_suffix.Suffix('font_face_link').result,
                                     );
 
                                     x.css('content_script_css', iframe_doc.head);
@@ -220,7 +218,7 @@ export class Iframe {
             if (n(iframe_doc)) {
                 const separator_root = sb<HTMLIFrameElement>(
                     iframe_doc.body,
-                    `.${new s_suffix.Main('separator').result}`,
+                    `.${new s_suffix.Suffix('separator').result}`,
                 );
 
                 if (n(separator_root) && n(separator_root.shadowRoot)) {
@@ -318,4 +316,13 @@ export class Iframe {
 
             return undefined;
         }, 'seg_1077');
+
+    public set_search_results_w_selector_var = (): void =>
+        err(() => {
+            this.search_results_w_selector = s_location.Location.is_shopping_page
+                ? '#rso'
+                : '#search';
+        }, 'seg_1237');
 }
+
+export const Iframe = Class.get_instance();

@@ -1,1 +1,1 @@
-export * from 'content_script/icons/scripts/main';
+export * from 'content_script/icons/scripts/icons';

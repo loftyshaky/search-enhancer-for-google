@@ -1,1 +1,1 @@
-export * from 'content_script/location/scripts/main';
+export * from 'content_script/location/scripts/location';

@@ -1,1 +1,1 @@
-import 'content_script/msgs/scripts/main';
+import 'content_script/msgs/scripts/events';

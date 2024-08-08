@@ -1,1 +1,1 @@
-export * from 'shared_clean/icons/scripts/main';
+export * from 'shared_clean/icons/scripts/icon';

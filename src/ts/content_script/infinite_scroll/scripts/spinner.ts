@@ -1,12 +1,11 @@
 import { d_color } from '@loftyshaky/shared/inputs';
 import { s_suffix } from 'shared_clean/internal';
 
-export class Spinner {
-    private static i0: Spinner;
+class Class {
+    private static instance: Class;
 
-    public static i(): Spinner {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -14,10 +13,10 @@ export class Spinner {
 
     public set_color = (): void =>
         err(() => {
-            const spinner = s<HTMLElement>(`.${new s_suffix.Main('spinner').result}`);
+            const spinner = s<HTMLElement>(`.${new s_suffix.Suffix('spinner').result}`);
 
             if (n(spinner) && n(spinner.shadowRoot)) {
-                const spinner_color: string = d_color.Color.i().access_from_val({
+                const spinner_color: string = d_color.Color.access_from_val({
                     val: data.settings.spinner_color,
                 });
 
@@ -29,3 +28,5 @@ export class Spinner {
             }
         }, 'seg_1081');
 }
+
+export const Spinner = Class.get_instance();

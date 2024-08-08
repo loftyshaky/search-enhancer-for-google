@@ -5,17 +5,16 @@ import { t } from '@loftyshaky/shared/shared';
 import { s_icons, i_icons as i_icons_shared } from 'shared_clean/internal';
 import { s_el_parser, s_location, i_icons } from 'content_script/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
         makeObservable<
-            Main,
+            Class,
             | 'server_ips'
             | 'server_countries'
             | 'generate_favicon_url'
@@ -38,7 +37,7 @@ export class Main {
     private generate_server_location_url_deferred: t.CallbackVoid[] = [];
 
     public server_data = computedFn(function (
-        this: Main,
+        this: Class,
         {
             type,
             url,
@@ -83,13 +82,13 @@ export class Main {
                     );
 
                     const favicon_providers: string[] = Object.keys(
-                        s_icons.Main.i().favicon_providers,
+                        s_icons.Icons.favicon_providers,
                     );
 
                     // eslint-disable-next-line no-restricted-syntax
                     for await (const favicon_provider of favicon_providers) {
                         if (data.settings.favicon_providers[favicon_provider]) {
-                            const icon_url: string = s_icons.Main.i().construct_favicon_url({
+                            const icon_url: string = s_icons.Icons.construct_favicon_url({
                                 favicon_provider,
                                 url,
                             });
@@ -201,7 +200,7 @@ export class Main {
                 key_2: string;
             }): void =>
                 err(() => {
-                    const that = s_el_parser.Main.i() as any;
+                    const that = s_el_parser.ElParser as any;
                     const that_2 = this as any;
                     const key_2_plural: string = `${key_2}s`;
                     const url: string = that[key_1][i];
@@ -222,7 +221,7 @@ export class Main {
         }, 'seg_1051');
 
     public get_url = ({ i, type }: { i: number; type: i_icons.IconType }): string =>
-        err(() => s_el_parser.Main.i()[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'seg_1052');
+        err(() => s_el_parser.ElParser[type === 'favicons' ? 'hrefs' : 'hostnames'][i], 'seg_1052');
 
     public get_show_icon_bool = ({ type, url }: { type: i_icons.IconType; url: string }): boolean =>
         err(() => {
@@ -231,7 +230,7 @@ export class Main {
             return Boolean(
                 n(src) &&
                     src !== 'placeholder' &&
-                    ((type === 'favicons' && !s_location.Main.i().is_news_page) ||
+                    ((type === 'favicons' && !s_location.Location.is_news_page) ||
                         type === 'server_locations'),
             );
         }, 'seg_1053');
@@ -258,18 +257,20 @@ export class Main {
                 n(src) &&
                 src === `${pre ? 'pre_' : ''}placeholder` &&
                 (type === 'server_locations' ||
-                    (type === 'favicons' && !s_location.Main.i().is_news_page))
+                    (type === 'favicons' && !s_location.Location.is_news_page))
             );
         }, 'seg_1055');
 
     public show_icon_w = computedFn(function (
-        this: Main,
+        this: Class,
         { type }: { type: i_icons.IconType },
     ): string {
         return (
-            (!s_location.Main.i().is_all_page || type === 'server_locations') &&
-            ((type === 'favicons' && s_location.Main.i().is_news_page) ||
+            (!s_location.Location.is_all_page || type === 'server_locations') &&
+            ((type === 'favicons' && s_location.Location.is_news_page) ||
                 data.settings[`${type}_is_visible`])
         );
     });
 }
+
+export const Icons = Class.get_instance();

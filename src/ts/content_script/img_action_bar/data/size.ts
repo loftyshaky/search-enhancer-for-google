@@ -2,12 +2,11 @@ import { makeObservable, observable, action } from 'mobx';
 
 import { i_img_action_bar } from 'content_script/internal';
 
-export class Size {
-    private static i0: Size;
+class Class {
+    private static instance: Class;
 
-    public static i(): Size {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -32,7 +31,7 @@ export class Size {
             if (n(img_action_bar_ref)) {
                 if (img_viewer_i !== 'main') {
                     const img_viewer: HTMLElement =
-                        s_el_parser.Main.i().preview_img_viewers[img_viewer_i];
+                        s_el_parser.Main.preview_img_viewers[img_viewer_i];
 
                     const img_action_bar_height = img_action_bar_ref.offsetHeight;
                     const img_viewer_height = img_viewer.offsetHeight;
@@ -52,3 +51,5 @@ export class Size {
             */
         }, 'seg_1196');
 }
+
+export const Size = Class.get_instance();

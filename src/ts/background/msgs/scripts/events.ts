@@ -9,24 +9,24 @@ we.runtime.onMessage.addListener(
             if (msg_str === 'reload_ext') {
                 we.runtime.reload();
             } else if (msg_str === 'update_settings_background') {
-                await s_data.Main.i().update_settings_debounce(
+                await s_data.Data.update_settings_debounce(
                     msg.settings,
                     n(msg.rerun_actions) ? msg.rerun_actions : false,
                     n(msg.rerun_actions_content_script) ? msg.rerun_actions_content_script : false,
                     n(msg.transform) ? msg.transform : false,
                 );
             } else if (msg_str === 'get_defaults') {
-                return s_data.Main.i().defaults;
+                return s_data.Data.defaults;
             } else if (msg_str === 'get_favicon_url') {
-                return s_icons.Main.i().get_favicon_url({
+                return s_icons.Icons.get_favicon_url({
                     url: msg.url as string,
                 });
             } else if (msg_str === 'get_server_info') {
-                return s_icons.Main.i().get_server_info({
+                return s_icons.Icons.get_server_info({
                     url: msg.url as string,
                 });
             } else if (msg_str === 'run_img_action') {
-                return s_img_action.Main.i().run({
+                return s_img_action.ImgAction.run({
                     type: msg.type as string,
                     img_url: msg.img_url as string,
                 });

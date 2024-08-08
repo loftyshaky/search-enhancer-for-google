@@ -5,12 +5,11 @@ import { t } from '@loftyshaky/shared/shared_clean';
 
 import { s_icons, i_icons } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -30,7 +29,7 @@ export class Main {
     public get_favicon_url = ({ url }: { url: string }): Promise<string | undefined> =>
         err_async(async () => {
             const settings = await ext.storage_get();
-            const favicon_providers: string[] = Object.keys(s_icons.Main.i().favicon_providers);
+            const favicon_providers: string[] = Object.keys(s_icons.Icons.favicon_providers);
             let icon_url: string | undefined;
 
             // eslint-disable-next-line no-restricted-syntax
@@ -59,7 +58,7 @@ export class Main {
         favicon_provider: string;
     }): Promise<string | undefined> =>
         err_async(async () => {
-            const icon_url: string = s_icons.Main.i().construct_favicon_url({
+            const icon_url: string = s_icons.Icons.construct_favicon_url({
                 favicon_provider,
                 url,
             });
@@ -170,3 +169,5 @@ export class Main {
             return ip_number;
         }, 'seg_1013');
 }
+
+export const Icons = Class.get_instance();

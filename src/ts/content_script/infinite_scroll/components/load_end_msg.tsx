@@ -13,17 +13,13 @@ export const LoadEndMsg: React.FunctionComponent<p_infinite_scroll.LoadEndMsg> =
 
         return (
             <div
-                className={x.cls([
-                    'content',
-                    'load_end_msg',
-                    d_infinite_scroll.LoadEndMsg.i().type,
-                ])}
+                className={x.cls(['content', 'load_end_msg', d_infinite_scroll.LoadEndMsg.type])}
                 style={{
-                    display: d_infinite_scroll.LoadEndMsg.i().visibility_cls,
-                    marginInlineStart: d_infinite_scroll.Separator.i().offset_left,
+                    display: d_infinite_scroll.LoadEndMsg.visibility_cls,
+                    marginInlineStart: d_infinite_scroll.Separator.offset_left,
                 }}
             >
-                {ext.msg(`load_end_msg_${d_infinite_scroll.LoadEndMsg.i().type}_text`)}
+                {ext.msg(`load_end_msg_${d_infinite_scroll.LoadEndMsg.type}_text`)}
             </div>
         );
     },

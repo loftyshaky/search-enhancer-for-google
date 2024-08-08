@@ -1,11 +1,10 @@
 import { i_img_action_bar } from 'content_script/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -30,3 +29,5 @@ export class Main {
             }
         }, 'seg_1208');
 }
+
+export const ImgActionBar = Class.get_instance();

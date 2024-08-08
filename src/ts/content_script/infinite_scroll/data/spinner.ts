@@ -2,12 +2,11 @@ import { makeObservable, computed } from 'mobx';
 
 import { s_infinite_scroll } from 'content_script/internal';
 
-export class Spinner {
-    private static i0: Spinner;
+class Class {
+    private static instance: Class;
 
-    public static i(): Spinner {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -17,6 +16,8 @@ export class Spinner {
     }
 
     public get visibility_cls() {
-        return s_infinite_scroll.Iframe.i().inserting_iframe ? '' : 'none';
+        return s_infinite_scroll.Iframe.inserting_iframe ? '' : 'none';
     }
 }
+
+export const Spinner = Class.get_instance();

@@ -3,12 +3,11 @@ import { makeObservable, computed, action } from 'mobx';
 import { d_settings } from 'shared_clean/internal';
 import { s_infinite_scroll } from 'content_script/internal';
 
-export class InfiniteScrollingState {
-    private static i0: InfiniteScrollingState;
+class Class {
+    private static instance: Class;
 
-    public static i(): InfiniteScrollingState {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
@@ -26,13 +25,13 @@ export class InfiniteScrollingState {
         err(() => {
             const new_state: boolean = !data.settings.infinite_scrolling_enabled;
 
-            d_settings.Main.i().change({
+            d_settings.Settings.change({
                 key: 'infinite_scrolling_enabled',
                 val: new_state,
             });
 
             if (new_state) {
-                s_infinite_scroll.Scroll.i().observe();
+                s_infinite_scroll.Scroll.observe();
             }
 
             ext.send_msg_resp({
@@ -42,3 +41,5 @@ export class InfiniteScrollingState {
             });
         }, 'seg_1105');
 }
+
+export const InfiniteScrollingState = Class.get_instance();

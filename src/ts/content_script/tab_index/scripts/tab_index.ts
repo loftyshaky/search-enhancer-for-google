@@ -2,12 +2,11 @@ import { KeyboardEvent, MouseEvent } from 'react';
 import { t } from '@loftyshaky/shared/shared';
 import { d_side_panel } from 'content_script/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public simulate_side_panel_btn_click_on_enter = (
@@ -34,12 +33,12 @@ export class Main {
                     }
 
                     if (e.altKey) {
-                        d_side_panel.Scroll.i().remember_scrolling_position_0_35_seconds(
+                        d_side_panel.Scroll.remember_scrolling_position_0_35_seconds(
                             { keyboard_call: true },
                             e_2 as MouseEvent,
                         );
                     } else {
-                        d_side_panel.Scroll.i().scroll(e_2 as MouseEvent);
+                        d_side_panel.Scroll.scroll(e_2 as MouseEvent);
                     }
                 } else if (n(callback)) {
                     callback();
@@ -47,3 +46,5 @@ export class Main {
             }
         }, 'seg_1121');
 }
+
+export const TabIndex = Class.get_instance();

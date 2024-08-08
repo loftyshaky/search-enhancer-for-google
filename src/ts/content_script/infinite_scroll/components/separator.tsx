@@ -14,10 +14,10 @@ export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = o
         <div
             className={x.cls([
                 'separator',
-                d_infinite_scroll.Separator.i().none_cls,
-                s_location.Main.i().current_location,
+                d_infinite_scroll.Separator.none_cls,
+                s_location.Location.current_location,
             ])}
-            style={{ marginInlineStart: d_infinite_scroll.Separator.i().offset_left }}
+            style={{ marginInlineStart: d_infinite_scroll.Separator.offset_left }}
         >
             {`${ext.msg('page_text')} ${i}`}
         </div>

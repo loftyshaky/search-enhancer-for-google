@@ -38,7 +38,7 @@ export const Btn: React.FunctionComponent<p_side_panel.Btn> = observer(
                     position_overridden_cls,
                 ])}
                 type='button'
-                title={d_side_panel.Btn.i().msg({ name })}
+                title={d_side_panel.Btn.msg({ name })}
                 aria-label='Side panel button'
                 onClick={on_click}
                 onMouseDown={on_mouse_down}
