@@ -1,9 +1,8 @@
-export class Btn {
-    private static i0: Btn;
+class Class {
+    private static instance: Class;
 
-    public static i(): Btn {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -12,3 +11,5 @@ export class Btn {
     public msg = ({ name }: { name: string }): string =>
         err(() => ext.msg(`${name}_title`), 'seg_1104');
 }
+
+export const Btn = Class.get_instance();

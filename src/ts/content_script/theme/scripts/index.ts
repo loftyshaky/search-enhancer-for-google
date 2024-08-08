@@ -1,1 +1,1 @@
-export * from 'content_script/theme/scripts/main';
+export * from 'content_script/theme/scripts/theme';

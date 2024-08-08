@@ -18,12 +18,11 @@ import { s_css_vars, s_suffix } from 'shared_clean/internal';
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, @typescript-eslint/no-unused-vars
 declare let __webpack_public_path__: string;
 
-export class InitAll {
-    private static i0: InitAll;
+class Class {
+    private static instance: Class;
 
-    public static i(): InitAll {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -41,7 +40,7 @@ export class InitAll {
                 const on_loading_screen_render = (): void =>
                     err(() => {
                         const loading_screen_root_el = s<HTMLDivElement>(
-                            `.${new s_suffix.Main('loading_screen').result}`,
+                            `.${new s_suffix.Suffix('loading_screen').result}`,
                         );
 
                         if (n(loading_screen_root_el) && n(loading_screen_root_el.shadowRoot)) {
@@ -54,12 +53,12 @@ export class InitAll {
                                 x.bind(loading_screen_css, 'load', (): void =>
                                     err(() => {
                                         if (page === 'dependencies') {
-                                            s_theme_shared.Main.i().set({
+                                            s_theme_shared.Theme.set({
                                                 name: data.settings.options_page_theme,
                                             });
                                         }
 
-                                        d_loading_screen.Main.i().show();
+                                        d_loading_screen.Visibility.show();
 
                                         reslove();
                                     }, 'seg_1158'),
@@ -71,17 +70,17 @@ export class InitAll {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 __webpack_public_path__ = we.runtime.getURL('');
 
-                await d_settings.Main.i().set_from_storage();
+                await d_settings.Settings.set_from_storage();
 
                 if (['settings', 'dependencies'].includes(page)) {
                     this.set_page_title();
                 } else if (page === 'content_script') {
                     const { s_icons } = await import('content_script/internal');
 
-                    s_icons.Main.i().show_or_hide_native_favicons();
+                    s_icons.icons.show_or_hide_native_favicons();
                 }
 
-                s_css_vars.Main.i().set();
+                s_css_vars.CssVars.set();
 
                 const error_root: ShadowRoot = this.create_root({ prefix: 'error' }) as ShadowRoot;
                 let loading_screen_root: ShadowRoot;
@@ -98,7 +97,7 @@ export class InitAll {
                         shadow_root: false,
                     }) as HTMLDivElement;
                 } else if (page === 'content_script') {
-                    x.css('font_face', document.head, new s_suffix.Main('font_face_link').result);
+                    x.css('font_face', document.head, new s_suffix.Suffix('font_face_link').result);
 
                     this.spinner_root = this.create_root({ prefix: 'spinner' }) as ShadowRoot;
                     this.load_end_msg_root = this.create_root({
@@ -148,7 +147,7 @@ export class InitAll {
         err(() => {
             const root = x.create(
                 'div',
-                x.cls([new s_suffix.Main('root').result, new s_suffix.Main(prefix).result]),
+                x.cls([new s_suffix.Suffix('root').result, new s_suffix.Suffix(prefix).result]),
             );
 
             x.append(document.body, root);
@@ -176,14 +175,14 @@ export class InitAll {
                 err_async(async () => {
                     const { d_sections } = await import('settings/internal');
 
-                    d_inputs.InputWidth.i().calculate_for_all_sections({
-                        sections: d_sections.Main.i().sections as i_inputs.Sections,
+                    d_inputs.InputWidth.calculate_for_all_sections({
+                        sections: d_sections.Sections.sections as i_inputs.Sections,
                     });
-                    d_inputs.InputWidth.i().set_max_width();
+                    d_inputs.InputWidth.set_max_width();
 
-                    d_loading_screen.Main.i().hide({ app_id: s_suffix.app_id });
+                    d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
 
-                    s_tab_index.Main.i().bind_set_input_type_f();
+                    s_tab_index.TabIndex.bind_set_input_type_f();
                 }, 'seg_1148');
 
             if (n(this.settings_root)) {
@@ -194,7 +193,7 @@ export class InitAll {
                                 err(() => {
                                     const settings_css = x.css('settings_css', document.head);
 
-                                    s_theme_shared.Main.i().set({
+                                    s_theme_shared.Theme.set({
                                         name: data.settings.options_page_theme,
                                     });
 
@@ -251,15 +250,15 @@ export class InitAll {
         err_async(async () => {
             const { c_side_panel, s_location, s_theme } = await import('content_script/internal');
 
-            if (n(this.side_panel_root) && s_location.Main.i().is_search_results) {
+            if (n(this.side_panel_root) && s_location.Location.is_search_results) {
                 ReactDOM.createRoot(this.side_panel_root).render(
                     <c_crash_handler.Body>
                         <c_side_panel.Body
                             on_render={(): void =>
                                 err(() => {
-                                    s_no_tr.Main.i().enable({ el: this.side_panel_root });
+                                    s_no_tr.State.enable({ el: this.side_panel_root });
 
-                                    s_theme.Main.i().adapt_panel_to_dark_theme();
+                                    s_theme.Theme.adapt_panel_to_dark_theme();
                                     const side_panel_css = x.css(
                                         'side_panel',
                                         this.side_panel_root,
@@ -268,7 +267,7 @@ export class InitAll {
                                     if (n(side_panel_css)) {
                                         x.bind(side_panel_css, 'load', (): void =>
                                             err(() => {
-                                                s_no_tr.Main.i().disable({
+                                                s_no_tr.State.disable({
                                                     el: this.side_panel_root,
                                                 });
                                             }, 'seg_1155'),
@@ -288,7 +287,7 @@ export class InitAll {
 
             const on_css_load = (): Promise<void> =>
                 err_async(async () => {
-                    d_loading_screen.Main.i().hide({ app_id: s_suffix.app_id });
+                    d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
                 }, 'seg_1230');
 
             if (n(this.dependencies_root)) {
@@ -319,3 +318,5 @@ export class InitAll {
             }
         }, 'seg_1228');
 }
+
+export const InitAll = Class.get_instance();

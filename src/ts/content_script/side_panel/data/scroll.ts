@@ -4,16 +4,15 @@ import { makeObservable, observable, computed, action, runInAction } from 'mobx'
 import { s_css_vars } from '@loftyshaky/shared/shared';
 import { i_side_panel } from 'content_script/internal';
 
-export class Scroll {
-    private static i0: Scroll;
+class Class {
+    private static instance: Class;
 
-    public static i(): Scroll {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<Scroll, 'remember_position' | 'reset_position'>(this, {
+        makeObservable<Class, 'remember_position' | 'reset_position'>(this, {
             remembered_position: observable,
             position_overridden: observable,
             position_remembered_cls: computed,
@@ -85,7 +84,7 @@ export class Scroll {
                         );
 
                         await x.delay(
-                            +s_css_vars.Main.i().get({
+                            +s_css_vars.CssVars.get({
                                 name: 'transition_duration',
                             }) + 150,
                         );
@@ -140,3 +139,5 @@ export class Scroll {
             }
         }, 'seg_1120');
 }
+
+export const Scroll = Class.get_instance();

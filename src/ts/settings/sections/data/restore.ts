@@ -4,12 +4,11 @@ import { runInAction } from 'mobx';
 import { t, s_theme } from '@loftyshaky/shared/shared';
 import { s_css_vars, i_data } from 'shared_clean/internal';
 
-export class Restore {
-    private static i0: Restore;
+class Class {
+    private static instance: Class;
 
-    public static i(): Restore {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -31,10 +30,10 @@ export class Restore {
                     rerun_actions: true,
                 });
 
-                s_theme.Main.i().set({
+                s_theme.Theme.set({
                     name: data.settings.options_page_theme,
                 });
-                s_css_vars.Main.i().set();
+                s_css_vars.CssVars.set();
             }
         }, 'seg_1130');
 
@@ -53,10 +52,10 @@ export class Restore {
                 transform: true,
             });
 
-            s_theme.Main.i().set({
+            s_theme.Theme.set({
                 name: data.settings.options_page_theme,
             });
-            s_css_vars.Main.i().set();
+            s_css_vars.CssVars.set();
         }, 'seg_1131');
 
     private set = ({ settings }: { settings?: i_data.Settings } = {}): Promise<i_data.Settings> =>
@@ -94,3 +93,5 @@ export class Restore {
             'seg_1135',
         );
 }
+
+export const Restore = Class.get_instance();

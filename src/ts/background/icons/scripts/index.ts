@@ -1,1 +1,1 @@
-export * from 'background/icons/scripts/main';
+export * from 'background/icons/scripts/icons';

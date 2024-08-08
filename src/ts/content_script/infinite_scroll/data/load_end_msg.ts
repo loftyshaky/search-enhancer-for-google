@@ -2,16 +2,15 @@ import { makeObservable, observable, computed, action } from 'mobx';
 
 import { d_infinite_scroll, s_location, i_infinite_scroll } from 'content_script/internal';
 
-export class LoadEndMsg {
-    private static i0: LoadEndMsg;
+class Class {
+    private static instance: Class;
 
-    public static i(): LoadEndMsg {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<LoadEndMsg, 'is_visible'>(this, {
+        makeObservable<Class, 'is_visible'>(this, {
             type: observable,
             is_visible: observable,
             visibility_cls: computed,
@@ -25,8 +24,8 @@ export class LoadEndMsg {
 
     public get visibility_cls() {
         return this.is_visible &&
-            s_location.Main.i().is_search_results &&
-            d_infinite_scroll.Separator.i().offset_left !== '0'
+            s_location.Location.is_search_results &&
+            d_infinite_scroll.Separator.offset_left !== '0'
             ? ''
             : 'none';
     }
@@ -41,3 +40,5 @@ export class LoadEndMsg {
             this.type = type;
         }, 'seg_1062');
 }
+
+export const LoadEndMsg = Class.get_instance();

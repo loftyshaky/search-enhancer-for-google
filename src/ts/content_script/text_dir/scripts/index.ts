@@ -1,1 +1,1 @@
-export * from 'content_script/text_dir/scripts/main';
+export * from 'content_script/text_dir/scripts/text_dir';

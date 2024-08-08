@@ -10,14 +10,20 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
+        "skipLibCheck": true,
         "paths": {
             "shared_clean/*": ["./ts/shared_clean/*"],
             "shared/*": ["./ts/shared/*"],
+            "announcement/*": ["./ts/announcement/*"],
             "background/*": ["./ts/background/*"],
             "settings/*": ["./ts/settings/*"],
             "content_script/*": ["./ts/content_script/*"],
+            "new_tab/*": ["./ts/new_tab/*"],
+            "offscreen/*": ["./ts/offscreen/*"],
+            "sandbox/*": ["./ts/sandbox/*"],
             "dependencies/*": ["./ts/dependencies/*"]
-        }
+        },
+        "plugins": [{ "transform": "typescript-transform-paths", "afterDeclarations": true }]
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]

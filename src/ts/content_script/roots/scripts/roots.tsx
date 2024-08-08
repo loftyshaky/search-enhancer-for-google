@@ -18,12 +18,11 @@ import {
     i_img_action_bar,
 } from 'content_script/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -42,23 +41,23 @@ export class Main {
 
     public init = ({ name, start = 0 }: { name: string; start?: number }): void =>
         err(() => {
-            const { img_viewer } = s_el_parser.Main.i();
+            const { img_viewer } = s_el_parser.ElParser;
 
             if (name === 'icons') {
-                s_roots.Position.i().position_title_el();
+                s_roots.Position.position_title_el();
 
-                if (s_el_parser.Main.i().title_els.length === 0) {
+                if (s_el_parser.ElParser.title_els.length === 0) {
                     const remove_icons = ({ icon_roots }: { icon_roots: NodeList }): void =>
                         err(() => {
                             x.remove(icon_roots);
                         }, 'seg_1090');
 
-                    s_infinite_scroll.Iframe.i().iframes.forEach((iframe: HTMLIFrameElement) =>
+                    s_infinite_scroll.Iframe.iframes.forEach((iframe: HTMLIFrameElement) =>
                         err(() => {
                             if (n(iframe.contentDocument)) {
                                 const icon_roots = sab<HTMLDivElement>(
                                     iframe.contentDocument,
-                                    `.${new s_suffix.Main(name).result}`,
+                                    `.${new s_suffix.Suffix(name).result}`,
                                 );
 
                                 if (n(icon_roots)) {
@@ -68,24 +67,24 @@ export class Main {
                         }, 'seg_1091'),
                     );
 
-                    const icon_roots = sa<HTMLDivElement>(`.${new s_suffix.Main(name).result}`);
+                    const icon_roots = sa<HTMLDivElement>(`.${new s_suffix.Suffix(name).result}`);
 
                     if (n(icon_roots)) {
                         remove_icons({ icon_roots });
                     }
                 } else {
-                    s_el_parser.Main.i().title_els.forEach((el, i): void =>
+                    s_el_parser.ElParser.title_els.forEach((el, i): void =>
                         err(() => {
                             if (i >= start) {
                                 let icons_el: HTMLElement | undefined;
 
-                                d_icons.Main.i().generate_urls({ i });
+                                d_icons.Icons.generate_urls({ i });
 
                                 if (n(el)) {
                                     if (n(el.parentElement)) {
                                         icons_el = sb(
                                             el.parentElement,
-                                            `.${new s_suffix.Main(name).result}`,
+                                            `.${new s_suffix.Suffix(name).result}`,
                                         );
                                     }
 
@@ -94,7 +93,7 @@ export class Main {
                                             name,
                                             parent: el,
                                             i,
-                                            append_f_name: s_location.Main.i().is_news_page
+                                            append_f_name: s_location.Location.is_news_page
                                                 ? 'as_first'
                                                 : 'before',
                                         });
@@ -102,7 +101,7 @@ export class Main {
                                 }
                             }
 
-                            s_icons.Main.i().fix_overlapping_favicon_and_server_location({ el });
+                            s_icons.icons.fix_overlapping_favicon_and_server_location({ el });
                         }, 'seg_1092'),
                     );
                 }
@@ -123,10 +122,10 @@ export class Main {
                             });
                         }
 
-                        s_el_parser.Main.i().preview_img_viewer_ws.forEach(
+                        s_el_parser.ElParser.preview_img_viewer_ws.forEach(
                             (preview_img_viewer_ws: HTMLElement, i: number) => {
                                 const preview_img_url: string | undefined =
-                                    s_el_parser.Main.i().get_preview_img_url({
+                                    s_el_parser.ElParser.get_preview_img_url({
                                         img_viewer_i: i,
                                     });
 
@@ -142,7 +141,7 @@ export class Main {
                             },
                         );
 
-                        s_theme.Main.i().adapt_panel_to_dark_theme();
+                        s_theme.Theme.adapt_panel_to_dark_theme();
                     }, 'seg_1093');
 
                 if (n(img_viewer)) {
@@ -151,7 +150,7 @@ export class Main {
                     if (n(next_el)) {
                         const next_el_is_img_action_bar: boolean = x.matches(
                             next_el as HTMLElement,
-                            `.${new s_suffix.Main(name).result}`,
+                            `.${new s_suffix.Suffix(name).result}`,
                         );
 
                         if (!next_el_is_img_action_bar) {
@@ -182,23 +181,23 @@ export class Main {
         new Promise((resolve) => {
             err(() => {
                 if (!ext.ext_context_invalidated()) {
-                    const root_cls = new s_suffix.Main(name).result;
+                    const root_cls = new s_suffix.Suffix(name).result;
 
                     if (!sb(parent, `.${root_cls}`)) {
                         const root: HTMLDivElement = x.create(
                             'div',
-                            new s_suffix.Main(name).result,
+                            new s_suffix.Suffix(name).result,
                         );
 
                         if (name === 'icons') {
-                            if (s_location.Main.i().is_news_page) {
-                                x.add_cls(root, new s_suffix.Main('news').result);
+                            if (s_location.Location.is_news_page) {
+                                x.add_cls(root, new s_suffix.Suffix('news').result);
                             }
                         }
 
                         x[append_f_name](
-                            !s_location.Main.i().is_all_page &&
-                                !s_location.Main.i().is_news_page &&
+                            !s_location.Location.is_all_page &&
+                                !s_location.Location.is_news_page &&
                                 name === 'icons' &&
                                 n(parent.firstChild)
                                 ? parent.firstChild
@@ -214,7 +213,7 @@ export class Main {
                         if (n(root.shadowRoot)) {
                             const on_render = (): void =>
                                 err(() => {
-                                    s_img_action_bar.Main.i().store_img_action_bar_el({
+                                    s_img_action_bar.ImgActionBar.store_img_action_bar_el({
                                         root,
                                         img_viewer_i,
                                     });
@@ -249,7 +248,7 @@ export class Main {
 
     public apply_root_parent_cls_to_title_els = (): void =>
         err(() => {
-            s_el_parser.Main.i().title_els.forEach((title_el): void =>
+            s_el_parser.ElParser.title_els.forEach((title_el): void =>
                 err(() => {
                     this.apply_root_parent_cls_to_title_el({ title_el });
                 }, 'seg_1097'),
@@ -258,10 +257,12 @@ export class Main {
 
     public apply_root_parent_cls_to_title_el = ({ title_el }: { title_el: HTMLElement }): void =>
         err(() => {
-            x.add_cls(title_el, new s_suffix.Main('root_parent').result);
+            x.add_cls(title_el, new s_suffix.Suffix('root_parent').result);
 
-            if (s_location.Main.i().is_news_page) {
-                x.add_cls(title_el, new s_suffix.Main('news').result);
+            if (s_location.Location.is_news_page) {
+                x.add_cls(title_el, new s_suffix.Suffix('news').result);
             }
         }, 'seg_1099');
 }
+
+export const Roots = Class.get_instance();

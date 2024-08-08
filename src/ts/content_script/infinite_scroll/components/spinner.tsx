@@ -11,7 +11,7 @@ export const Spinner: React.FunctionComponent<p_infinite_scroll.Spinner> = obser
     }, [on_render]);
 
     return (
-        <div id='spinner' className={d_infinite_scroll.Spinner.i().visibility_cls}>
+        <div id='spinner' className={d_infinite_scroll.Spinner.visibility_cls}>
             {Array(8)
                 .fill(undefined)
                 .map((item, i) => (

@@ -5,12 +5,11 @@ import { t, o_schema, d_schema, s_color, s_service_worker } from '@loftyshaky/sh
 
 import { i_data } from 'shared_clean/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -29,7 +28,7 @@ export class Main {
                 enable_cut_features: false,
                 persistent_service_worker: false,
                 offers_are_visible: true,
-                colors: s_color.Color.i().default_colors,
+                colors: s_color.Colors.default_colors,
                 side_panel_position: 'right',
                 keyword_color: 2,
                 spinner_color: 15,
@@ -85,7 +84,7 @@ export class Main {
 
             await ext.storage_set(settings_final, transform);
 
-            s_service_worker.ServiceWorker.i().make_persistent();
+            s_service_worker.ServiceWorker.make_persistent();
         }, 'seg_1003');
 
     public update_settings_debounce = debounce(
@@ -256,7 +255,7 @@ export class Main {
                 }),
             ];
 
-            const settings_final: i_data.Settings = await d_schema.Main.i().transform({
+            const settings_final: i_data.Settings = await d_schema.Schema.transform({
                 data: settings_copy,
                 transform_items,
             });
@@ -269,3 +268,5 @@ export class Main {
             we.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
         }, 'seg_1236');
 }
+
+export const Data = Class.get_instance();

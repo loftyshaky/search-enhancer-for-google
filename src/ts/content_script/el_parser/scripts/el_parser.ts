@@ -12,12 +12,11 @@ import {
     i_img_action_bar,
 } from 'content_script/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
@@ -62,7 +61,7 @@ export class Main {
         err(() => {
             const base_els: (Document | HTMLIFrameElement)[] = [
                 document,
-                ...s_infinite_scroll.Iframe.i().iframes,
+                ...s_infinite_scroll.Iframe.iframes,
             ];
             let all_els: HTMLElement[] = [];
 
@@ -71,7 +70,7 @@ export class Main {
                     const els = sab<HTMLElement>(
                         base_el.nodeType === 9
                             ? base_el
-                            : s_infinite_scroll.Iframe.i().get_content_document({
+                            : s_infinite_scroll.Iframe.get_content_document({
                                   base_el: base_el as HTMLIFrameElement,
                               }),
                         selector,
@@ -94,7 +93,7 @@ export class Main {
 
             this.keyword_els.forEach((keyword_el: HTMLElement): void =>
                 err(() => {
-                    x.remove_cls(keyword_el, new s_suffix.Main('keyword').result);
+                    x.remove_cls(keyword_el, new s_suffix.Suffix('keyword').result);
                 }, 'seg_1025'),
             );
 
@@ -114,7 +113,7 @@ export class Main {
             });
             const filtered_links: HTMLLinkElement[] = [];
             this.title_els = [];
-            const viewport_width: number = s_viewport.Main.i().get_dim({ dim: 'width' });
+            const viewport_width: number = s_viewport.Viewport.get_dim({ dim: 'width' });
 
             links.forEach((el: HTMLElement): boolean =>
                 err(() => {
@@ -127,9 +126,9 @@ export class Main {
                                 const news_icon_selector: string = 'g-img';
 
                                 if (
-                                    !x.matches(el_2, `.${new s_suffix.Main('icons').result}`) &&
+                                    !x.matches(el_2, `.${new s_suffix.Suffix('icons').result}`) &&
                                     !n(el_2.getAttribute('aria-hidden')) &&
-                                    ((s_location.Main.i().is_news_page &&
+                                    ((s_location.Location.is_news_page &&
                                         el_2.offsetHeight <= 40 &&
                                         el_2.firstElementChild &&
                                         (x.matches(
@@ -142,19 +141,19 @@ export class Main {
                                                     .nextElementSibling as HTMLElement,
                                                 news_icon_selector,
                                             ))) ||
-                                        (!s_location.Main.i().is_non_standard_search_results &&
+                                        (!s_location.Location.is_non_standard_search_results &&
                                             font_size >= 18 &&
                                             !this.text_is_bold({ el: el_2 }) && // ex (bold text after "Did you mean:"): https://www.google.com/search?q=jghj&oq=jghj&aqs=chrome.0.     69i59j0i10l3j0j0i10i395l2j0i395l3.731j1j1&sourceid=chrome&ie=UTF-8
-                                            ((s_text_dir.Main.i().dir === 'ltr' &&
+                                            ((s_text_dir.TextDir.dir === 'ltr' &&
                                                 el_2.getBoundingClientRect().left <= 300) ||
-                                                (s_text_dir.Main.i().dir === 'rtl' &&
+                                                (s_text_dir.TextDir.dir === 'rtl' &&
                                                     viewport_width -
                                                         el_2.getBoundingClientRect().right <=
                                                         300)) &&
-                                            ((!s_location.Main.i().is_news_page &&
+                                            ((!s_location.Location.is_news_page &&
                                                 /H[0-6]/.test(el_2.tagName) &&
                                                 !el_2.hasAttribute('role')) || // !el_2.hasAttribute('role')) === not "Images for ..."
-                                                (s_location.Main.i().is_news_page &&
+                                                (s_location.Location.is_news_page &&
                                                     this.check_if_el_has_immediate_text({
                                                         el: el_2,
                                                     }))) &&
@@ -181,7 +180,7 @@ export class Main {
 
             this.get_favicon_els({ filtered_links });
 
-            s_icons.Main.i().prevent_titles_and_icons_from_wrapping({ filtered_links });
+            s_icons.icons.prevent_titles_and_icons_from_wrapping({ filtered_links });
         }, 'seg_1032');
 
     private get_favicon_els = ({ filtered_links }: { filtered_links: HTMLLinkElement[] }): void =>
@@ -199,7 +198,7 @@ export class Main {
                         const el_height: number = parent.offsetHeight;
 
                         if (el_width === el_height && el_width >= 24) {
-                            const favicon_cls: string = new s_suffix.Main('favicon').result;
+                            const favicon_cls: string = new s_suffix.Suffix('favicon').result;
 
                             if (!x.matches(parent, `.${favicon_cls}`)) {
                                 x.add_cls(parent, favicon_cls);
@@ -309,7 +308,7 @@ export class Main {
         err(() => {
             if (
                 data.settings.img_viewer_img_action_bar_is_visible &&
-                s_location.Main.i().is_imgs_page
+                s_location.Location.is_imgs_page
             ) {
                 const links = sa<HTMLLinkElement>('a[role="link"]');
 
@@ -339,7 +338,7 @@ export class Main {
         err(() => {
             if (
                 data.settings.img_viewer_img_action_bar_is_visible &&
-                s_location.Main.i().is_imgs_page
+                s_location.Location.is_imgs_page
             ) {
                 const parents: HTMLElement[] = [];
 
@@ -370,7 +369,7 @@ export class Main {
         err(() => {
             if (
                 data.settings.preview_img_viewer_img_action_bar_is_visible &&
-                s_location.Main.i().is_imgs_page
+                s_location.Location.is_imgs_page
             ) {
                 const imgs = sa<HTMLDivElement>('#rso [id^=dimg_]');
 
@@ -402,7 +401,7 @@ export class Main {
             if (!this.attempted_to_acquire_img_data) {
                 this.attempted_to_acquire_img_data = true;
 
-                if (s_location.Main.i().is_imgs_page) {
+                if (s_location.Main.is_imgs_page) {
                     const script_els = sa<HTMLScriptElement>('script');
 
                     if (n(script_els)) {
@@ -453,8 +452,7 @@ export class Main {
     public get_next_page_href = (): void =>
         err(() => {
             if (!this.loaded_all_pages) {
-                const iframe_doc: Document | undefined =
-                    s_infinite_scroll.Iframe.i().get_iframe_doc();
+                const iframe_doc: Document | undefined = s_infinite_scroll.Iframe.get_iframe_doc();
                 const page_btn_els = sab<HTMLLinkElement>(
                     iframe_doc || document,
                     '[href*="start="]',
@@ -496,7 +494,7 @@ export class Main {
                 err(
                     () =>
                         el_2.nodeType === Node.TEXT_NODE ||
-                        x.matches(el_2 as HTMLElement, `.${new s_suffix.Main('icons').result}`),
+                        x.matches(el_2 as HTMLElement, `.${new s_suffix.Suffix('icons').result}`),
                     'seg_1041',
                 ),
             );
@@ -544,3 +542,5 @@ export class Main {
             return undefined;
         }, 'seg_1190');
 }
+
+export const ElParser = Class.get_instance();

@@ -1,12 +1,11 @@
 import { s_suffix } from 'shared_clean/internal';
 import { s_infinite_scroll, s_location } from 'content_script/internal';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -15,9 +14,9 @@ export class Main {
     public show_or_hide_native_favicons = (): void =>
         err(() => {
             const filename: string = 'favicon_hidden';
-            const cls: string = new s_suffix.Main(filename).result;
+            const cls: string = new s_suffix.Suffix(filename).result;
 
-            const iframe_docs: Document[] = s_infinite_scroll.Iframe.i().iframes.flatMap(
+            const iframe_docs: Document[] = s_infinite_scroll.Iframe.iframes.flatMap(
                 (iframe: HTMLIFrameElement): Document[] =>
                     n(iframe) && n(iframe.contentDocument) ? [iframe.contentDocument] : [],
             );
@@ -39,10 +38,10 @@ export class Main {
         filtered_links: HTMLLinkElement[];
     }): void => // put titles and icons on one line (without this title may wrap on second line if it's too long)
         err(() => {
-            if (!s_location.Main.i().is_news_page) {
+            if (!s_location.Location.is_news_page) {
                 filtered_links.forEach((el: HTMLLinkElement): void =>
                     err(() => {
-                        x.add_cls(el, new s_suffix.Main('white_space').result);
+                        x.add_cls(el, new s_suffix.Suffix('white_space').result);
                     }, 'seg_1186'),
                 );
             }
@@ -54,7 +53,7 @@ export class Main {
         el: HTMLElement;
     }): void => // put titles and icons on one line (without this title may wrap on second line if it's too long)
         err(() => {
-            if (s_location.Main.i().is_all_page) {
+            if (s_location.Location.is_all_page) {
                 const title_display = x.get_css_val(el, 'display');
 
                 if (title_display === '-webkit-box') {
@@ -63,3 +62,5 @@ export class Main {
             }
         }, 'seg_1234');
 }
+
+export const icons = Class.get_instance();

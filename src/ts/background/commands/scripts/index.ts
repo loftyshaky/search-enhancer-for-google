@@ -1,1 +1,1 @@
-import 'background/commands/scripts/main';
+import 'background/commands/scripts/events';

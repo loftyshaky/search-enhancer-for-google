@@ -1,11 +1,10 @@
 import { s_el_parser, i_img_action_bar } from 'content_script/internal';
 
-export class Action {
-    private static i0: Action;
+class Class {
+    private static instance: Class;
 
-    public static i(): Action {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     public run = ({
@@ -17,12 +16,12 @@ export class Action {
     }): void =>
         err(() => {
             const img_el: HTMLImageElement | undefined =
-                s_el_parser.Main.i().get_img_in_img_viewer();
+                s_el_parser.ElParser.get_img_in_img_viewer();
 
             const img_url: string | undefined =
                 img_viewer_i === 'main' && img_el
                     ? img_el.src
-                    : s_el_parser.Main.i().get_preview_img_url({ img_viewer_i });
+                    : s_el_parser.ElParser.get_preview_img_url({ img_viewer_i });
 
             if (n(img_url)) {
                 if (type === 'search_by_img') {
@@ -52,3 +51,5 @@ export class Action {
             });
         }, 'seg_1060');
 }
+
+export const Action = Class.get_instance();

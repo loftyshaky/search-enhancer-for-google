@@ -1,1 +1,1 @@
-export * from 'background/img_action/scripts/main';
+export * from 'background/img_action/scripts/img_action';

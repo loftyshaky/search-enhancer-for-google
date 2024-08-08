@@ -9,32 +9,32 @@ const observer = new MutationObserver((mutations): void =>
                     if (
                         !x.matches(
                             mutation.target as HTMLElement,
-                            `.${new s_suffix.Main('root_parent').result}`,
+                            `.${new s_suffix.Suffix('root_parent').result}`,
                         ) &&
                         !x.matches(
                             mutation.target as HTMLElement,
-                            `.${new s_suffix.Main('icons').result}`,
+                            `.${new s_suffix.Suffix('icons').result}`,
                         ) &&
                         n(mutation.addedNodes[0]) &&
                         !x.matches(
                             mutation.addedNodes[0] as HTMLElement,
-                            `.${new s_suffix.Main('icons').result}`,
+                            `.${new s_suffix.Suffix('icons').result}`,
                         ) &&
                         !x.matches(
                             mutation.addedNodes[0] as HTMLElement,
-                            `.${new s_suffix.Main('img_action_bar').result}`,
+                            `.${new s_suffix.Suffix('img_action_bar').result}`,
                         ) &&
                         !x.matches(
                             mutation.addedNodes[0] as HTMLElement,
-                            `.${new s_suffix.Main('spinner').result}`,
+                            `.${new s_suffix.Suffix('spinner').result}`,
                         )
                     ) {
-                        s_actions.Main.i().run_reload_actions_2_debounce();
+                        s_actions.Actions.run_reload_actions_2_debounce();
 
-                        if (s_location.Main.i().is_shopping_page) {
+                        if (s_location.Location.is_shopping_page) {
                             await x.delay(1000);
 
-                            s_infinite_scroll.FooterEls.i().append_to_footer();
+                            s_infinite_scroll.FooterEls.append_to_footer();
                         }
                     }
                 }, 'seg_1087'),

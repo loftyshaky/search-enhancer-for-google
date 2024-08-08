@@ -1,1 +1,1 @@
-export * from 'content_script/keywords/scripts/main';
+export * from 'content_script/keywords/scripts/keywords';

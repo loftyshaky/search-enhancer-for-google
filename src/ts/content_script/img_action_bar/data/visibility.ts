@@ -3,16 +3,15 @@ import { computedFn } from 'mobx-utils';
 
 import { d_img_action_bar, i_img_action_bar } from 'content_script/internal';
 
-export class Visibility {
-    private static i0: Visibility;
+class Class {
+    private static instance: Class;
 
-    public static i(): Visibility {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     private constructor() {
-        makeObservable<Visibility, 'is_visible'>(this, {
+        makeObservable<Class, 'is_visible'>(this, {
             is_visible: observable,
             change: action,
         });
@@ -78,7 +77,7 @@ export class Visibility {
         err(() => (img_viewer_i === 'main' ? 'img_viewer' : 'preview_img_viewer'), 'seg_1200');
 
     public visibility_cls = computedFn(function (
-        this: Visibility,
+        this: Class,
         {
             img_viewer_i,
         }: {
@@ -87,13 +86,13 @@ export class Visibility {
     ): string {
         return (img_viewer_i === 'main' &&
             data.settings.img_viewer_img_action_bar_is_visible &&
-            n(d_img_action_bar.Position.i().bottom[img_viewer_i]) &&
+            n(d_img_action_bar.Position.bottom[img_viewer_i]) &&
             ((data.settings.img_viewer_img_action_bar_is_visible_only_on_hover &&
                 this.is_visible[img_viewer_i]) ||
                 !data.settings.img_viewer_img_action_bar_is_visible_only_on_hover)) ||
             (img_viewer_i !== 'main' &&
                 data.settings.preview_img_viewer_img_action_bar_is_visible &&
-                n(d_img_action_bar.Position.i().bottom[img_viewer_i]) &&
+                n(d_img_action_bar.Position.bottom[img_viewer_i]) &&
                 ((data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover &&
                     this.is_visible[img_viewer_i]) ||
                     !data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover))
@@ -101,3 +100,5 @@ export class Visibility {
             : 'visibility_hidden';
     });
 }
+
+export const Visibility = Class.get_instance();

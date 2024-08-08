@@ -1,1 +1,1 @@
-export * from 'shared_clean/settings/data/main';
+export * from 'shared_clean/settings/data/settings';

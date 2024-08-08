@@ -5,7 +5,7 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
         const msg_str: string = msg.msg;
 
         if (msg_str === 'rerun_actions') {
-            d_settings.Main.i().set_from_storage();
+            d_settings.Settings.set_from_storage();
         }
 
         return undefined;

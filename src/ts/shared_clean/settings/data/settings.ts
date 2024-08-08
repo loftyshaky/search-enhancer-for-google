@@ -1,11 +1,10 @@
 import { t, d_settings } from '@loftyshaky/shared/shared_clean';
 
-export class Main {
-    private static i0: Main;
+class Class {
+    private static instance: Class;
 
-    public static i(): Main {
-        // eslint-disable-next-line no-return-assign
-        return this.i0 || (this.i0 = new this());
+    public static get_instance(): Class {
+        return this.instance || (this.instance = new this());
     }
 
     // eslint-disable-next-line no-useless-constructor, no-empty-function
@@ -17,6 +16,8 @@ export class Main {
         err_async(async () => {
             this.allow_rerun_actions = false;
 
-            await d_settings.Main.i().change({ key, val });
+            await d_settings.Settings.change({ key, val });
         }, 'seg_1165');
 }
+
+export const Settings = Class.get_instance();
