@@ -45,11 +45,13 @@ class Class {
             } as i_data.Settings;
 
             settings = await this.set({ settings });
+
             await ext.send_msg_resp({
                 msg: 'update_settings_background',
                 settings,
                 rerun_actions: true,
                 transform: true,
+                transform_force: true,
             });
 
             s_theme.Theme.set({
