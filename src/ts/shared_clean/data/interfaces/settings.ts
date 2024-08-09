@@ -1,6 +1,7 @@
 import { i_color } from '@loftyshaky/shared/shared_clean';
 
 export interface Settings {
+    version: string;
     current_section: string;
     options_page_theme: string;
     transition_duration: number;

@@ -20,6 +20,7 @@ class Class {
     public init_defaults = (): void =>
         err(() => {
             this.defaults = {
+                version: ext.get_app_version(),
                 current_section: 'all',
                 options_page_theme: 'lavender',
                 transition_duration: 200,
@@ -70,7 +71,12 @@ class Class {
     public update_settings = ({
         settings,
         transform = false,
-    }: { settings?: i_data.Settings; transform?: boolean } = {}): Promise<void> =>
+        transform_force = false,
+    }: {
+        settings?: i_data.Settings;
+        transform?: boolean;
+        transform_force?: boolean;
+    } = {}): Promise<void> =>
         err_async(async () => {
             const settings_2: i_data.Settings = n(settings)
                 ? settings
@@ -79,7 +85,10 @@ class Class {
             let settings_final: i_data.Settings = settings_2;
 
             if (transform) {
-                settings_final = await this.transform({ settings: settings_2 });
+                settings_final = await this.transform({
+                    settings: settings_2,
+                    force: transform_force,
+                });
             }
 
             await ext.storage_set(settings_final, transform);
@@ -93,9 +102,10 @@ class Class {
             rerun_actions: boolean = false,
             rerun_actions_content_script: boolean = false,
             transform: boolean = false,
+            transform_force: boolean = false,
         ) =>
             err_async(async () => {
-                await this.update_settings({ settings, transform });
+                await this.update_settings({ settings, transform, transform_force });
 
                 if (rerun_actions) {
                     ext.send_msg_to_all_tabs({ msg: 'rerun_actions' });
@@ -121,7 +131,13 @@ class Class {
             }
         }, 'seg_1004');
 
-    private transform = ({ settings }: { settings: i_data.Settings }): Promise<i_data.Settings> =>
+    private transform = ({
+        settings,
+        force = false,
+    }: {
+        settings: i_data.Settings;
+        force?: boolean;
+    }): Promise<i_data.Settings> =>
         err_async(async () => {
             const settings_copy: any = settings;
             const always_show_img_action_bar_reverse: boolean = n(
@@ -258,7 +274,12 @@ class Class {
             const settings_final: i_data.Settings = await d_schema.Schema.transform({
                 data: settings_copy,
                 transform_items,
+                force,
             });
+
+            settings_final.version = ext.get_app_version();
+
+            await d_schema.Schema.replace({ data: settings_final });
 
             return settings_final;
         }, 'seg_1199');

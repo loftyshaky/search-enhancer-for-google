@@ -14,6 +14,7 @@ we.runtime.onMessage.addListener(
                     n(msg.rerun_actions) ? msg.rerun_actions : false,
                     n(msg.rerun_actions_content_script) ? msg.rerun_actions_content_script : false,
                     n(msg.transform) ? msg.transform : false,
+                    n(msg.transform_force) ? msg.transform_force : false,
                 );
             } else if (msg_str === 'get_defaults') {
                 return s_data.Data.defaults;
