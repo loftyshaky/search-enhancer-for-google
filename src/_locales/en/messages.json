@@ -5,6 +5,9 @@
     "description": {
         "message": "Enhance Google™ search with infinite scroll, server country icons, \"View Image\" and \"Download Image\" buttons, and more."
     },
+    "input_min_width_css": {
+        "message": "382"
+    },
     "all_section_text": {
         "message": "All"
     },
