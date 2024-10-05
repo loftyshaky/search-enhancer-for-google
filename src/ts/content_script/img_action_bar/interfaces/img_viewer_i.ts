@@ -1,1 +1,1 @@
-export type ImgViewerI = 'main' | number;
+export type ImgViewerI = 'main_img_viewer' | number;

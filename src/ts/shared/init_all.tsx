@@ -8,7 +8,7 @@ import {
     c_loading_screen,
     d_loading_screen,
     s_no_tr,
-    d_settings,
+    d_data,
     s_tab_index,
     s_theme as s_theme_shared,
 } from '@loftyshaky/shared/shared';
@@ -54,7 +54,7 @@ class Class {
                                     err(() => {
                                         if (page === 'dependencies') {
                                             s_theme_shared.Theme.set({
-                                                name: data.settings.options_page_theme,
+                                                name: data.settings.prefs.options_page_theme,
                                             });
                                         }
 
@@ -70,7 +70,7 @@ class Class {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 __webpack_public_path__ = we.runtime.getURL('');
 
-                await d_settings.Settings.set_from_storage();
+                await d_data.Settings.set_from_storage();
 
                 if (['settings', 'dependencies'].includes(page)) {
                     this.set_page_title();
@@ -189,7 +189,7 @@ class Class {
                                     const settings_css = x.css('settings_css', document.head);
 
                                     s_theme_shared.Theme.set({
-                                        name: data.settings.options_page_theme,
+                                        name: data.settings.prefs.options_page_theme,
                                     });
 
                                     if (n(settings_css)) {
@@ -297,7 +297,7 @@ class Class {
                                     );
 
                                     x.css(
-                                        `${data.settings.options_page_theme}_theme`,
+                                        `${data.settings.prefs.options_page_theme}_theme`,
                                         document.head,
                                         'theme_link',
                                     );

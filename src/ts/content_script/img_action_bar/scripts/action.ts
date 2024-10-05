@@ -19,7 +19,7 @@ class Class {
                 s_el_parser.ElParser.get_img_in_img_viewer();
 
             const img_url: string | undefined =
-                img_viewer_i === 'main' && img_el
+                img_viewer_i === 'main_img_viewer' && img_el
                     ? img_el.src
                     : s_el_parser.ElParser.get_preview_img_url({ img_viewer_i });
 

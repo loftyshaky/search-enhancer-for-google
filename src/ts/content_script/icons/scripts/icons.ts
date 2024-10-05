@@ -23,7 +23,7 @@ class Class {
 
             [document, ...iframe_docs].forEach((doc: Document): void =>
                 err(() => {
-                    if (data.settings.favicons_is_visible) {
+                    if (data.settings.prefs.favicons_is_visible) {
                         x.remove(sb(doc.head, `.${cls}`));
                     } else {
                         x.css(filename, doc.head, cls);

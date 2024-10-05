@@ -118,7 +118,7 @@ class Class {
                                 parent: img_viewer,
                                 i: 0,
                                 append_f_name: 'after',
-                                img_viewer_i: 'main',
+                                img_viewer_i: 'main_img_viewer',
                             });
                         }
 

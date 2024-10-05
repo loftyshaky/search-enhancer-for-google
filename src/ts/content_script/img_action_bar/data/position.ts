@@ -25,7 +25,7 @@ class Class {
                 s_img_action_bar.ImgActionBar.img_action_bar_els[img_viewer_i];
 
             if (n(img_action_bar_el)) {
-                if (img_viewer_i === 'main') {
+                if (img_viewer_i === 'main_img_viewer') {
                     const el_exists: boolean = n(s_el_parser.ElParser.img_viewer);
 
                     if (el_exists) {

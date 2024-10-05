@@ -36,7 +36,7 @@ class Class {
                                 document_2.head,
                                 cls,
                                 `.${cls} { color: ${d_color.Color.access_from_val({
-                                    val: data.settings.keyword_color,
+                                    val: data.settings.prefs.keyword_color,
                                 })}!important }`,
                             );
                         }

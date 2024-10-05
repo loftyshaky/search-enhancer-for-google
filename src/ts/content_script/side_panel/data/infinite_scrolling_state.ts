@@ -1,6 +1,6 @@
-import { makeObservable, computed, action } from 'mobx';
+import { makeObservable, computed, action, runInAction } from 'mobx';
 
-import { d_settings } from 'shared_clean/internal';
+import { d_data } from 'shared_clean/internal';
 import { s_infinite_scroll } from 'content_script/internal';
 
 class Class {
@@ -18,26 +18,29 @@ class Class {
     }
 
     get disabled_cls() {
-        return data.settings.infinite_scrolling_enabled ? '' : 'disabled';
+        return data.settings.prefs.infinite_scrolling_enabled ? '' : 'disabled';
     }
 
-    public change = (): void =>
-        err(() => {
-            const new_state: boolean = !data.settings.infinite_scrolling_enabled;
+    public change = (): Promise<void> =>
+        err_async(async () => {
+            d_data.Manipulation.allow_load_settings = false;
 
-            d_settings.Settings.change({
-                key: 'infinite_scrolling_enabled',
-                val: new_state,
-            });
+            const new_state: boolean = !data.settings.prefs.infinite_scrolling_enabled;
+
+            runInAction(() =>
+                err(() => {
+                    data.settings.prefs.infinite_scrolling_enabled = new_state;
+                }, 'seg_1245'),
+            );
 
             if (new_state) {
                 s_infinite_scroll.Scroll.observe();
             }
 
-            ext.send_msg_resp({
-                msg: 'update_settings_background',
-                settings: { ...data.settings, ...{ infinite_scrolling_enabled: new_state } },
-                rerun_actions: true,
+            await d_data.Manipulation.send_msg_to_update_settings({
+                settings: data.settings,
+                load_settings: true,
+                update_instantly: true,
             });
         }, 'seg_1105');
 }

@@ -17,7 +17,7 @@ class Class {
 
             if (n(spinner) && n(spinner.shadowRoot)) {
                 const spinner_color: string = d_color.Color.access_from_val({
-                    val: data.settings.spinner_color,
+                    val: data.settings.prefs.spinner_color,
                 });
 
                 x.dynamic_css(

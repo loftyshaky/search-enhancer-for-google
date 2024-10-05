@@ -14,9 +14,9 @@ class Class {
     public observe = (): void =>
         err(() => {
             if (
-                data.settings.enable_infinite_scrolling &&
-                (data.settings.infinite_scrolling_enabled ||
-                    !data.settings.enable_btn_is_visible) &&
+                data.settings.prefs.enable_infinite_scrolling &&
+                (data.settings.prefs.infinite_scrolling_enabled ||
+                    !data.settings.prefs.enable_btn_is_visible) &&
                 document.body.scrollHeight - document.documentElement.scrollTop <=
                     s_viewport.Viewport.get_dim({ dim: 'height' }) + 600
             ) {

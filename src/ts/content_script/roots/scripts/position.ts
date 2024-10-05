@@ -23,15 +23,15 @@ class Class {
                     this.remove_offset_classes({ title_el });
 
                     if (
-                        data.settings.favicons_is_visible &&
-                        data.settings.server_locations_is_visible
+                        data.settings.prefs.favicons_is_visible &&
+                        data.settings.prefs.server_locations_is_visible
                     ) {
                         x.add_cls(title_el, this.offset_2_cls);
                     } else if (
-                        (data.settings.favicons_is_visible &&
-                            !data.settings.server_locations_is_visible) ||
-                        (!data.settings.favicons_is_visible &&
-                            data.settings.server_locations_is_visible)
+                        (data.settings.prefs.favicons_is_visible &&
+                            !data.settings.prefs.server_locations_is_visible) ||
+                        (!data.settings.prefs.favicons_is_visible &&
+                            data.settings.prefs.server_locations_is_visible)
                     ) {
                         x.add_cls(title_el, this.offset_1_cls);
                     }

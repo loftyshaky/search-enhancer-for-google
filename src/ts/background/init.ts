@@ -1,11 +1,13 @@
+import { s_data as s_data_loftyshaky_shared_clean } from '@loftyshaky/shared/shared_clean';
 import { s_env } from 'shared_clean/internal';
 import { s_data, s_icons } from 'background/internal';
 
 export const init = (): Promise<void> =>
     err_async(async () => {
-        s_data.Data.set_session_access_level();
-        s_data.Data.init_defaults();
-        await s_data.Data.set_from_storage({ transform: true });
+        s_data.Manipulation.set_session_access_level();
+        s_data.Settings.init_defaults();
+        await s_data_loftyshaky_shared_clean.Cache.set_data();
+        await s_data.Manipulation.on_init_set_from_storage();
         await s_icons.Icons.generate_ip_to_country_arr();
 
         if (s_env.Env.is_dev()) {

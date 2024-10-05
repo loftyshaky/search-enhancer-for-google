@@ -1,7 +1,5 @@
 import { Downloads } from 'webextension-polyfill';
 
-import { i_data } from 'shared_clean/internal';
-
 class Class {
     private static instance: Class;
 
@@ -35,16 +33,13 @@ class Class {
                         };
 
                         if (env.browser !== 'firefox') {
-                            const storage: i_data.Settings =
-                                await ext.storage_get('img_downloads_dir');
-
                             const suggest_dir = (
                                 download_item_2: Downloads.DownloadItem,
                                 suggest: ({ filename }: { filename: string }) => void,
                             ): void =>
                                 err(() => {
                                     suggest({
-                                        filename: `${storage.img_downloads_dir}/${download_item_2.filename}`,
+                                        filename: `${data.settings.prefs.img_downloads_dir}/${download_item_2.filename}`,
                                     });
 
                                     we.downloads.onDeterminingFilename.removeListener(suggest_dir);

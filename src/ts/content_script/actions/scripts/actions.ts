@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
 
-import { d_settings as d_settings_loftyshaky_shared } from '@loftyshaky/shared/shared';
-import { d_settings, s_css_vars } from 'shared_clean/internal';
+import { d_data as d_data_loftyshaky_shared } from '@loftyshaky/shared/shared';
+import { d_data, s_css_vars } from 'shared_clean/internal';
 import {
     d_infinite_scroll,
     s_el_parser,
@@ -27,7 +27,7 @@ class Class {
 
     public run_initial_actions = (): Promise<void> =>
         err_async(async () => {
-            await d_settings_loftyshaky_shared.Settings.set_from_storage();
+            await d_data_loftyshaky_shared.Settings.set_from_storage();
             await show_unable_to_access_settings_error({ is_fullscreen: false });
             s_css_vars.CssVars.set();
             s_el_parser.ElParser.get_els();
@@ -49,8 +49,8 @@ class Class {
 
     public run_reload_actions = (): Promise<void> =>
         err_async(async () => {
-            if (d_settings.Settings.allow_rerun_actions) {
-                await d_settings_loftyshaky_shared.Settings.set_from_storage();
+            if (d_data.Manipulation.allow_load_settings) {
+                await d_data_loftyshaky_shared.Settings.set_from_storage();
                 s_css_vars.CssVars.set();
                 s_el_parser.ElParser.get_els();
 
@@ -76,7 +76,7 @@ class Class {
                     d_side_panel.Page.set_total();
                 }
             } else {
-                d_settings.Settings.allow_rerun_actions = true;
+                d_data.Manipulation.allow_load_settings = true;
             }
         }, 'seg_1019');
 
@@ -91,7 +91,7 @@ class Class {
     public run_reload_actions_2 = (): Promise<void> =>
         err_async(async () => {
             if (s_location.Location.is_imgs_page) {
-                await d_settings_loftyshaky_shared.Settings.set_from_storage();
+                await d_data_loftyshaky_shared.Settings.set_from_storage();
                 s_el_parser.ElParser.get_img_viewer();
                 s_el_parser.ElParser.get_preview_img_viewers();
                 s_roots.Roots.init({ name: 'img_action_bar' });

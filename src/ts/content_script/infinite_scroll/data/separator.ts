@@ -21,7 +21,7 @@ class Class {
     public offset_left: string = '0';
 
     get none_cls() {
-        return data.settings.page_separators_is_visible ? '' : 'none';
+        return data.settings.prefs.page_separators_is_visible ? '' : 'none';
     }
 
     public set_offset_left = (): void =>

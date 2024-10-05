@@ -74,7 +74,10 @@ class Class {
     }: {
         img_viewer_i: i_img_action_bar.ImgViewerI;
     }): string =>
-        err(() => (img_viewer_i === 'main' ? 'img_viewer' : 'preview_img_viewer'), 'seg_1200');
+        err(
+            () => (img_viewer_i === 'main_img_viewer' ? 'img_viewer' : 'preview_img_viewer'),
+            'seg_1200',
+        );
 
     public visibility_cls = computedFn(function (
         this: Class,
@@ -84,18 +87,19 @@ class Class {
             img_viewer_i: i_img_action_bar.ImgViewerI;
         },
     ): string {
-        return (img_viewer_i === 'main' &&
-            data.settings.img_viewer_img_action_bar_is_visible &&
+        return (img_viewer_i === 'main_img_viewer' &&
+            data.settings.prefs.img_viewer_img_action_bar_is_visible &&
             n(d_img_action_bar.Position.bottom[img_viewer_i]) &&
-            ((data.settings.img_viewer_img_action_bar_is_visible_only_on_hover &&
+            ((data.settings.prefs.img_viewer_img_action_bar_is_visible_only_on_hover &&
                 this.is_visible[img_viewer_i]) ||
-                !data.settings.img_viewer_img_action_bar_is_visible_only_on_hover)) ||
-            (img_viewer_i !== 'main' &&
-                data.settings.preview_img_viewer_img_action_bar_is_visible &&
+                !data.settings.prefs.img_viewer_img_action_bar_is_visible_only_on_hover)) ||
+            (img_viewer_i !== 'main_img_viewer' &&
+                data.settings.prefs.preview_img_viewer_img_action_bar_is_visible &&
                 n(d_img_action_bar.Position.bottom[img_viewer_i]) &&
-                ((data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover &&
+                ((data.settings.prefs.preview_img_viewer_img_action_bar_is_visible_only_on_hover &&
                     this.is_visible[img_viewer_i]) ||
-                    !data.settings.preview_img_viewer_img_action_bar_is_visible_only_on_hover))
+                    !data.settings.prefs
+                        .preview_img_viewer_img_action_bar_is_visible_only_on_hover))
             ? ''
             : 'visibility_hidden';
     });

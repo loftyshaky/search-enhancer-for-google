@@ -39,7 +39,7 @@ class Class {
     public img_data: t.AnyRecord[] = [];
     public loaded_all_pages: boolean = false;
     public search_result_body: HTMLElement | undefined = undefined;
-    private attempted_to_acquire_img_data: boolean = false;
+    //  private attempted_to_acquire_img_data: boolean = false;
 
     public get_els = (): void =>
         err(() => {
@@ -307,7 +307,7 @@ class Class {
     public get_img_viewer = (): void =>
         err(() => {
             if (
-                data.settings.img_viewer_img_action_bar_is_visible &&
+                data.settings.prefs.img_viewer_img_action_bar_is_visible &&
                 s_location.Location.is_imgs_page
             ) {
                 const links = sa<HTMLLinkElement>('a[role="link"]');
@@ -337,7 +337,7 @@ class Class {
     private get_img_viewer_w = (): void =>
         err(() => {
             if (
-                data.settings.img_viewer_img_action_bar_is_visible &&
+                data.settings.prefs.img_viewer_img_action_bar_is_visible &&
                 s_location.Location.is_imgs_page
             ) {
                 const parents: HTMLElement[] = [];
@@ -360,7 +360,7 @@ class Class {
                 this.img_viewer_w = parents[parents.length - 2];
 
                 if (n(this.img_viewer_w)) {
-                    this.img_viewer_w.dataset.img_viewer_i = 'main';
+                    this.img_viewer_w.dataset.img_viewer_i = 'main_img_viewer';
                 }
             }
         }, 'seg_1172');
@@ -368,7 +368,7 @@ class Class {
     public get_preview_img_viewers = (): void =>
         err(() => {
             if (
-                data.settings.preview_img_viewer_img_action_bar_is_visible &&
+                data.settings.prefs.preview_img_viewer_img_action_bar_is_visible &&
                 s_location.Location.is_imgs_page
             ) {
                 const imgs = sa<HTMLDivElement>('#rso [id^=dimg_]');

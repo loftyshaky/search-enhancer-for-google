@@ -29,7 +29,7 @@ class Class {
             this.scale[img_viewer_i] = 'scale(100%)';
             /*
             if (n(img_action_bar_ref)) {
-                if (img_viewer_i !== 'main') {
+                if (img_viewer_i !== 'main_img_viewer') {
                     const img_viewer: HTMLElement =
                         s_el_parser.Main.preview_img_viewers[img_viewer_i];
 

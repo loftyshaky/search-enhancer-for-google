@@ -28,13 +28,12 @@ class Class {
 
     public get_favicon_url = ({ url }: { url: string }): Promise<string | undefined> =>
         err_async(async () => {
-            const settings = await ext.storage_get();
             const favicon_providers: string[] = Object.keys(s_icons.Icons.favicon_providers);
             let icon_url: string | undefined;
 
             // eslint-disable-next-line no-restricted-syntax
             for await (const favicon_provider of favicon_providers) {
-                if (settings.favicon_providers[favicon_provider]) {
+                if (data.settings.prefs.favicon_providers[favicon_provider]) {
                     icon_url = await this.get_favicon_url_inner({
                         url,
                         favicon_provider,

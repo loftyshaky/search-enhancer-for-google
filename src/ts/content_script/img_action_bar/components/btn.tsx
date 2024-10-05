@@ -9,7 +9,7 @@ export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((prop
     const Component = d_img_action_bar.Btns.component[btn.name];
 
     return (
-        data.settings[
+        data.settings.prefs[
             `${d_img_action_bar.Visibility.img_viever_type({ img_viewer_i })}_${
                 btn.name
             }_btn_is_visible`

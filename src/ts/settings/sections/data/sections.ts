@@ -2,7 +2,8 @@ import { makeObservable, computed } from 'mobx';
 
 import { s_utils } from '@loftyshaky/shared/shared';
 import { o_inputs, o_color, i_inputs } from '@loftyshaky/shared/inputs';
-import { d_settings } from '@loftyshaky/shared/settings';
+import { d_sections as d_sections_loftyshaky_settings } from '@loftyshaky/shared/settings';
+import { d_data } from 'shared_clean/internal';
 import { d_sections } from 'settings/internal';
 
 class Class {
@@ -19,7 +20,7 @@ class Class {
     }
 
     public get current_section() {
-        return n(data.settings.current_section) ? data.settings.current_section : 'all';
+        return n(data.settings.prefs.current_section) ? data.settings.prefs.current_section : 'all';
     }
 
     public sections: o_inputs.Section[] | i_inputs.Sections = [];
@@ -212,7 +213,7 @@ class Class {
                         ],
                     }),
                 ],
-                ...d_settings.Sections.make_shared_sections({
+                ...d_sections_loftyshaky_settings.Sections.make_shared_sections({
                     download_back_up_callback: ext.storage_get,
                     upload_back_up_callback: d_sections.Restore.restore_back_up,
                     restore_defaults_callback: () => d_sections.Restore.restore_confirm(),
@@ -220,17 +221,17 @@ class Class {
                     admin_inputs: [
                         new o_inputs.Checkbox({
                             name: 'allow_favicons_from_google',
-                            val_accessor: 'settings.favicon_providers.google',
+                            val_accessor: 'settings.prefs.favicon_providers.google',
                             event_callback: d_sections.Val.change,
                         }),
                         new o_inputs.Checkbox({
                             name: 'allow_favicons_from_yandex',
-                            val_accessor: 'settings.favicon_providers.yandex',
+                            val_accessor: 'settings.prefs.favicon_providers.yandex',
                             event_callback: d_sections.Val.change,
                         }),
                         new o_inputs.Checkbox({
                             name: 'allow_favicons_from_duckduckgo',
-                            val_accessor: 'settings.favicon_providers.duckduckgo',
+                            val_accessor: 'settings.prefs.favicon_providers.duckduckgo',
                             event_callback: d_sections.Val.change,
                         }),
                     ],
@@ -287,9 +288,6 @@ class Class {
             this.sections = s_utils.Utils.to_object({
                 arr: this.sections as o_inputs.Section[],
             });
-            this.sections.back_up.inputs = s_utils.Utils.to_object({
-                arr: this.sections.back_up.inputs as o_inputs.Section[],
-            });
             this.sections.restore.inputs = s_utils.Utils.to_object({
                 arr: this.sections.restore.inputs as o_inputs.Section[],
             });
@@ -312,11 +310,17 @@ class Class {
 
     public change_current_section_val = (): void =>
         err(() => {
-            data.settings.current_section = d_settings.Sections.current_section;
+            data.settings.prefs.current_section =
+                d_sections_loftyshaky_settings.Sections.current_section;
 
-            ext.send_msg({
-                msg: 'update_settings_background',
-                settings: { current_section: d_settings.Sections.current_section },
+            d_data.Manipulation.send_msg_to_update_settings({
+                settings: {
+                    prefs: {
+                        ...data.settings.prefs,
+                        current_section: d_sections_loftyshaky_settings.Sections.current_section,
+                    },
+                },
+                update_instantly: true,
             });
         }, 'seg_1129');
 }

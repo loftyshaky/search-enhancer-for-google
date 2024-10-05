@@ -25,18 +25,19 @@ export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props)
 
     return (
         <div
-            className={x.cls(['content', 'side_panel', data.settings.side_panel_position])}
+            className={x.cls(['content', 'side_panel', data.settings.prefs.side_panel_position])}
             role='none'
             onMouseUp={d_side_panel.Scroll.stop_remember_scrolling_position_0_35_seconds_timeout}
         >
-            {data.settings.enable_infinite_scrolling && data.settings.enable_btn_is_visible ? (
+            {data.settings.prefs.enable_infinite_scrolling &&
+            data.settings.prefs.enable_btn_is_visible ? (
                 <c_side_panel.Btn
                     name='enable_btn'
                     disabled_cls={d_side_panel.InfiniteScrollingState.disabled_cls}
                     on_click={d_side_panel.InfiniteScrollingState.change}
                 />
             ) : undefined}
-            {data.settings.scroll_to_top_btn_is_visible ? (
+            {data.settings.prefs.scroll_to_top_btn_is_visible ? (
                 <c_side_panel.Btn
                     name={name_1}
                     position_remembered_cls={d_side_panel.Scroll.position_remembered_cls}
@@ -52,7 +53,7 @@ export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props)
                     }}
                 />
             ) : undefined}
-            {data.settings.jump_to_related_searches_btn_is_visible ? (
+            {data.settings.prefs.jump_to_related_searches_btn_is_visible ? (
                 <c_side_panel.Btn
                     name='jump_to_related_searches'
                     position_remembered_cls={d_side_panel.RelatedSearches.position_remembered_cls}
@@ -67,7 +68,8 @@ export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props)
                     }}
                 />
             ) : undefined}
-            {data.settings.enable_infinite_scrolling && data.settings.page_indicator_is_visible ? (
+            {data.settings.prefs.enable_infinite_scrolling &&
+            data.settings.prefs.page_indicator_is_visible ? (
                 <>
                     <c_side_panel.Page name='current' val={d_side_panel.Page.current} />
                     <c_side_panel.Page name='total' val={d_side_panel.Page.total} />

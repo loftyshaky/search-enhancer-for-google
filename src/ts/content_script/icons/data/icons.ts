@@ -74,7 +74,10 @@ class Class {
     private generate_favicon_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(
             async () => {
-                if (data.settings.favicons_is_visible && this.favicons[url] !== 'placeholder') {
+                if (
+                    data.settings.prefs.favicons_is_visible &&
+                    this.favicons[url] !== 'placeholder'
+                ) {
                     runInAction(() =>
                         err(() => {
                             this.favicons[url] = 'pre_placeholder';
@@ -87,7 +90,7 @@ class Class {
 
                     // eslint-disable-next-line no-restricted-syntax
                     for await (const favicon_provider of favicon_providers) {
-                        if (data.settings.favicon_providers[favicon_provider]) {
+                        if (data.settings.prefs.favicon_providers[favicon_provider]) {
                             const icon_url: string = s_icons.Icons.construct_favicon_url({
                                 favicon_provider,
                                 url,
@@ -132,7 +135,7 @@ class Class {
     private generate_server_location_url = async ({ url }: { url: string }): Promise<void> =>
         err_async(async () => {
             if (
-                data.settings.server_locations_is_visible &&
+                data.settings.prefs.server_locations_is_visible &&
                 this.server_locations[url] !== 'placeholder'
             ) {
                 runInAction(() =>
@@ -268,7 +271,7 @@ class Class {
         return (
             (!s_location.Location.is_all_page || type === 'server_locations') &&
             ((type === 'favicons' && s_location.Location.is_news_page) ||
-                data.settings[`${type}_is_visible`])
+                data.settings.prefs[`${type}_is_visible`])
         );
     });
 }

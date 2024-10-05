@@ -12,7 +12,7 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
     err(() => {
         const msg_str: string = msg.msg;
 
-        if (['rerun_actions', 'rerun_actions_content_script'].includes(msg_str)) {
+        if (['load_settings', 'load_settings_content_script'].includes(msg_str)) {
             s_actions.Actions.run_reload_actions_2();
         } else if (msg_str === 'run_deferred_generate_server_location_url_fs') {
             d_icons.Icons.run_deferred_generate_server_location_url_fs();
@@ -43,7 +43,7 @@ we.runtime.onMessage.addListener((msg: t.Msg): any =>
                     if (s_location.Location.is_imgs_page) {
                         s_img_action_bar.Action.run({
                             type: msg.command,
-                            img_viewer_i: 'main',
+                            img_viewer_i: 'main_img_viewer',
                         });
                     }
             }
