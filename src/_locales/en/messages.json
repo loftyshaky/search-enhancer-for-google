@@ -15,7 +15,7 @@
         "message": "Images"
     },
     "side_panel_position_label_text": {
-        "message": "Side panel position"
+        "message": "Side panel position \u200E"
     },
     "enable_infinite_scrolling_label_text": {
         "message": "Enable infinite scrolling"
@@ -24,10 +24,10 @@
         "message": "Show enable/disable button"
     },
     "jump_to_related_searches_btn_is_visible_label_text": {
-        "message": "Show jump to related searches/pagination buttons"
+        "message": "Show jump to related searches/pagination"
     },
     "page_indicator_is_visible_label_text": {
-        "message": "Show total number of loaded pages/current page indicator"
+        "message": "Show current page/total number of loaded pages indicators"
     },
     "page_separators_is_visible_label_text": {
         "message": "Show page separators"
@@ -57,13 +57,13 @@
         "message": "Allow favicons from DuckDuckGo"
     },
     "img_viewer_img_action_bar_is_visible_label_text": {
-        "message": "Show image action buttons in image viewer"
+        "message": "Show image action buttons in the image viewer"
     },
     "preview_img_viewer_img_action_bar_is_visible_label_text": {
         "message": "Show image action buttons in image previews (works only for the first 100 images)"
     },
     "img_viewer_img_action_bar_is_visible_only_on_hover_label_text": {
-        "message": "Show only when hovering over image"
+        "message": "Show only when hovering over image."
     },
     "img_viewer_view_img_btn_is_visible_label_text": {
         "message": "Show \"View image\" button"
@@ -78,7 +78,7 @@
         "message": "Show \"Save image as...\" button"
     },
     "img_downloads_dir_label_text": {
-        "message": "Image downloads folder"
+        "message": "Path to the images download folder"
     },
     "img_viewer_copy_img_btn_is_visible_label_text": {
         "message": "Show \"Copy image\" button"
@@ -96,22 +96,16 @@
         "message": "Enable/disable infinite scrolling"
     },
     "scroll_to_top_title": {
-        "message": "Left-click to go to top. (Tab: Enter)\n\nRight-click to go to bottom. (Tab: Ctrl + Enter)\n\nWhen you go to top or bottom Search Enhancer for Google™ remembers your position. To return to this position middle-click. (Tab: Shift + Enter)\n\nYou can also remember your position without going to top or bottom. To do this, middle-click, if Search Enhancer for Google™ doesn't have a position remembered, or click and hold middle button for 0.35 second if it does. (Tab: Alt + Enter)"
-    },
-    "enable_infinite_scrolling_help_text": {
-        "message": "Google now has a native infinite scroll feature in the \"All\" section, but if you scroll long enough, it stops loading new pages, showing a \"More results\" button instead. If you enable this option, Search Enhancer for Google™ will click on this button automatically as you scroll. This option also adds infinite scroll to the non-\"All\" sections."
-    },
-    "page_separators_is_visible_help_text": {
-        "message": "Separators won't work in the \"All\" section."
+        "message": "Left-click to scroll to the top. (Keyboard: Press Tab to select the button, then press Enter.)\n\nRight-click to scroll to the bottom. (Keyboard: Press Tab to select the button, then press Ctrl + Enter.)\n\nWhen you scroll to the top or bottom, Search Enhancer for Google™ remembers your position. To return to this position, middle-click. (Keyboard: Press Tab to select the button, then press Shift + Enter.)\n\nYou can also remember your position without scrolling to the top or bottom. To do this, middle-click if Search Enhancer for Google™ doesn't already have a position remembered. If it does, click and hold the middle button for 0.35 seconds. (Keyboard: Press Tab to select the button, then press Alt + Enter.)"
     },
     "img_downloads_dir_help_text": {
-        "message": "A path to the folder in the downloads folder, where downloaded images will go. May contain subfolders. Must not contain characters prohibited by the operating system. If the folder does not exist, it will be created on the first download. Leave empty to download images into the default folder. Example: !Google/Images"
+        "message": "A path to the folder within the Downloads folder where downloaded images will be saved. This path may include subfolders but must not contain characters prohibited by the operating system. If the folder does not exist, it will be created upon the first download. Leave this field empty to save images in the default Downloads folder. Example: !Google/Images."
     },
     "img_viewer_copy_img_btn_is_visible_help_text": {
-        "message": "Not all apps will accept images copied with this button. In these cases you will need to copy images the usual way - via browser context menu."
+        "message": "Not all apps will accept images copied using this button. In such cases, you will need to copy images the traditional way - via the browser's context menu."
     },
     "jump_to_related_searches_title": {
-        "message": "Click to jump to related searches/pagination buttons. Click again or middle-click the scroll to top button to return to the previous position."
+        "message": "Left-click to jump to related searches/pagination. Left-click again or middle-click the scroll-to-top button to return to your previous position."
     },
     "github_link_href": {
         "message": "https://github.com/loftyshaky/search-enhancer-for-google"
@@ -162,7 +156,7 @@
         "message": "Last page"
     },
     "load_end_msg_error_text": {
-        "message": "An error occured. Google thinks you're a robot. Reload the page and solve the captcha.\u200E"
+        "message": "An error occurred. Google thinks you're a robot. Please reload the page and complete the CAPTCHA to continue.\u200E"
     },
     "scroll_to_top_hotkey": {
         "message": "Scroll to top"
@@ -171,12 +165,12 @@
         "message": "Scroll to bottom"
     },
     "remember_scroll_position_hotkey": {
-        "message": "Remember scroll position/return to the remembered scroll position"
+        "message": "Remember the scroll position or return to the remembered scroll position"
     },
     "remember_scroll_position_forced_hotkey": {
-        "message": "Remember scroll position (if Search Enhancer for Google™ already have a position remembered)"
+        "message": "Remember the scroll position (if Search Enhancer for Google™ already has a remembered position)"
     },
     "jump_to_related_searches_hotkey": {
-        "message": "Jump to related searches/pagination buttons"
+        "message": "Jump to related searches/pagination"
     }
 }
