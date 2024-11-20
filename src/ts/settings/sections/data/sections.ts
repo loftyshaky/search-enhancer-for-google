@@ -40,6 +40,7 @@ class Class {
                             new o_color.Color({
                                 name: 'keyword_color',
                                 event_callback: d_sections.Val.change,
+                                include_remove_color_btn: true,
                                 select_palette_color_callback:
                                     d_sections.Val.save_selected_palette_color,
                                 hide_color_help_callback: d_sections.Visibility.hide_color_help,
