@@ -93,9 +93,11 @@ class Class {
                                             name,
                                             parent: el,
                                             i,
-                                            append_f_name: s_location.Location.is_news_page
-                                                ? 'as_first'
-                                                : 'before',
+                                            append_f_name:
+                                                s_location.Location.is_all_page ||
+                                                s_location.Location.is_news_page
+                                                    ? 'as_first'
+                                                    : 'before',
                                         });
                                     }
                                 }
