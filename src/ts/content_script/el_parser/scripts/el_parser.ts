@@ -455,7 +455,7 @@ class Class {
                 const iframe_doc: Document | undefined = s_infinite_scroll.Iframe.get_iframe_doc();
                 const page_btn_els = sab<HTMLLinkElement>(
                     iframe_doc || document,
-                    '[href*="start="]',
+                    '[href*="start="]:not([ping])', // :not([ping]) - prevent selecting "Try without personalisation" link in the footer
                 );
 
                 if (n(page_btn_els)) {
@@ -518,7 +518,6 @@ class Class {
         err(() => {
             if (n(next_page_href)) {
                 const match: RegExpMatchArray | null = next_page_href.match(/start=\d*/);
-
                 if (n(match)) {
                     return +match[0].replace(/start=/, '');
                 }
