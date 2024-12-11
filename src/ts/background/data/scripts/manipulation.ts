@@ -28,6 +28,7 @@ class Class {
         transform = false,
         transform_force = false,
         load_settings = false,
+        load_settings_content_script = false,
         restore_back_up = false,
     }: {
         settings?: i_data.Settings;
@@ -35,6 +36,7 @@ class Class {
         transform?: boolean;
         transform_force?: boolean;
         load_settings?: boolean;
+        load_settings_content_script?: boolean;
         restore_back_up?: boolean;
     } = {}): Promise<void> =>
         err_async(async () => {
@@ -64,6 +66,10 @@ class Class {
 
             if (load_settings) {
                 await ext.send_msg_resp({ msg: 'load_settings', restore_back_up });
+            }
+
+            if (load_settings_content_script) {
+                ext.send_msg_to_all_tabs({ msg: 'load_settings_content_script' });
             }
 
             s_service_worker.ServiceWorker.make_persistent();

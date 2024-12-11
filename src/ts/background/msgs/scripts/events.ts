@@ -16,6 +16,9 @@ we.runtime.onMessage.addListener(
                         transform: n(msg.transform) ? msg.transform : false,
                         transform_force: n(msg.transform_force) ? msg.transform_force : false,
                         load_settings: n(msg.load_settings) ? msg.load_settings : false,
+                        load_settings_content_script: n(msg.load_settings_content_script)
+                            ? msg.load_settings_content_script
+                            : false,
                         restore_back_up: n(msg.restore_back_up) ? msg.restore_back_up : false,
                     })
                         .then(() => true)

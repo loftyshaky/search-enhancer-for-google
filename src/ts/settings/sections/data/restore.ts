@@ -29,6 +29,7 @@ class Class {
                     replace: true,
                     update_instantly: true,
                     load_settings: true,
+                    load_settings_content_script: true,
                 });
 
                 s_theme.Theme.set({
@@ -47,6 +48,7 @@ class Class {
                 transform: true,
                 transform_force: true,
                 load_settings: true,
+                load_settings_content_script: true,
                 restore_back_up: true,
             });
         }, 'seg_1131');
