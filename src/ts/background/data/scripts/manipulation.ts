@@ -121,7 +121,7 @@ class Class {
         transform = false,
     }: { transform?: boolean } = {}): Promise<void> =>
         err_async(async () => {
-            if (!x.prefs_are_filled() && !x.settings_are_filled()) {
+            if (!x.prefs_are_filled() && !x.found_old_settings()) {
                 await this.update_settings({ transform });
             } else if (transform) {
                 await this.update_settings({ settings: data.settings, transform });
