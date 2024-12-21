@@ -19,7 +19,7 @@ class Class {
                 prefs: {
                     version: ext.get_app_version(),
                     current_section: 'all',
-                    options_page_theme: 'lavender',
+                    options_page_theme: 'ruby',
                     transition_duration: 200,
                     color_help_is_visible: true,
                     developer_mode: false,
