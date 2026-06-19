@@ -1,3 +1,5 @@
+@use '../shared/vars';
+
 /* > Titles width. If you don't edit these long titles won't fit because I put titles and icons in one line */
 #res {
     [style='width:600px'] {
@@ -20,7 +22,7 @@ When I edit titles width above search result text becomes wider, which is undesi
     background-color: red;
 }
 
-body.books_#{$app_id} #rso > div {
+body.books_#{vars.$app_id} #rso > div {
     background-color: red;
 }
 
@@ -30,7 +32,7 @@ body.books_#{$app_id} #rso > div {
 }
 */
 
-.news_#{$app_id} {
+.news_#{vars.$app_id} {
     display: inline-block !important;
 
     [id^='dimg_6'],

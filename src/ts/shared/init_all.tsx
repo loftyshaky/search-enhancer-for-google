@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@loftyshaky/shared/ext';
+import { d_inputs } from '@loftyshaky/shared/inputs';
 import {
     c_crash_handler,
     c_error,
@@ -11,11 +12,7 @@ import {
     s_tab_index,
     s_theme as s_theme_shared,
 } from '@loftyshaky/shared/shared';
-import { d_inputs } from '@loftyshaky/shared/inputs';
 import { s_css_vars, s_suffix } from 'shared_clean/internal';
-
-// eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, @typescript-eslint/no-unused-vars
-declare let __webpack_public_path__: string;
 
 class Class {
     private static instance: Class;
@@ -27,6 +24,7 @@ class Class {
     // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
+    private announcement_root: HTMLDivElement | undefined = undefined;
     private settings_root: HTMLDivElement | undefined = undefined;
     private spinner_root: ShadowRoot | undefined = undefined;
     private load_end_msg_root: ShadowRoot | undefined = undefined;
@@ -66,9 +64,6 @@ class Class {
                         }
                     }, 'seg_1159');
 
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                __webpack_public_path__ = we.runtime.getURL('');
-
                 if (['settings', 'dependencies'].includes(page)) {
                     this.set_page_title();
                 } else if (page === 'content_script') {
@@ -88,7 +83,12 @@ class Class {
                     }) as ShadowRoot;
                 }
 
-                if (page === 'settings') {
+                if (page === 'announcement') {
+                    this.announcement_root = this.create_root({
+                        prefix: 'announcement',
+                        shadow_root: false,
+                    }) as HTMLDivElement;
+                } else if (page === 'settings') {
                     this.settings_root = this.create_root({
                         prefix: 'settings',
                         shadow_root: false,
@@ -164,6 +164,42 @@ class Class {
                 title_el.textContent = ext.msg(`${page}_title_text`);
             }
         }, 'seg_1162');
+
+    public render_announcement = (): Promise<void> =>
+        err_async(async () => {
+            const { Body } = await import('announcement/components/body');
+
+            const on_css_load = (): Promise<void> =>
+                err_async(async () => {
+                    await d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
+                }, 'cnt_1354');
+
+            if (n(this.announcement_root)) {
+                ReactDOM.createRoot(this.announcement_root).render(
+                    <c_crash_handler.Body>
+                        <Body
+                            on_render={(): void =>
+                                err(() => {
+                                    const announcement_css = x.css(
+                                        'announcement_css',
+                                        document.head,
+                                    );
+
+                                    void s_theme_shared.Theme.set({
+                                        name: data.settings.prefs.options_page_theme,
+                                        additional_theme_callback: s_theme.Theme.set,
+                                    });
+
+                                    if (n(announcement_css)) {
+                                        x.bind(announcement_css, 'load', on_css_load);
+                                    }
+                                }, 'seg_1252')
+                            }
+                        />
+                    </c_crash_handler.Body>,
+                );
+            }
+        }, 'seg_1253');
 
     public render_settings = (): Promise<void> =>
         err_async(async () => {

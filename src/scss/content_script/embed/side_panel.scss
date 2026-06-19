@@ -1,5 +1,7 @@
-@import '../../shared/index';
-@import '../shared';
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
+@use '../../shared/index';
+@use '../shared';
+@use '../vars';
 
 $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
@@ -13,12 +15,12 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
     .side_panel_item {
         cursor: help;
-        font-size: $font_size;
+        font-size: vars.$font_size;
         padding: 4px 9px 3px 10px;
         color: white;
 
         &:not(:last-child) {
-            @include border_bottom;
+            @include mixins.border_bottom;
 
             border-color: white;
         }
@@ -34,30 +36,30 @@ $side_panel_box_shadow: 0 1px 6px rgb(0 0 0 / 36%);
 
     &.left {
         box-shadow: $side_panel_box_shadow;
-        border-start-end-radius: $bar_border_radius;
-        border-end-end-radius: $bar_border_radius;
+        border-start-end-radius: vars.$bar_border_radius;
+        border-end-end-radius: vars.$bar_border_radius;
     }
 
     &.right {
         box-shadow: $side_panel_box_shadow;
         inset-inline-end: 0;
-        border-start-start-radius: $bar_border_radius;
-        border-end-start-radius: $bar_border_radius;
+        border-start-start-radius: vars.$bar_border_radius;
+        border-end-start-radius: vars.$bar_border_radius;
     }
 
     .btn {
-        @include btn;
+        @include mixins.btn;
 
         display: flex;
         justify-content: center;
         align-items: center;
-        height: $btn_size;
-        min-width: $btn_size;
+        height: vars.$btn_size;
+        min-width: vars.$btn_size;
         width: 100%;
         background-color: #b349ca;
 
         svg {
-            @include text_btn_svg;
+            @include mixins.text_btn_svg;
 
             fill: white;
         }

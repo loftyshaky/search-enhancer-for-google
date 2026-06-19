@@ -1,7 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
 
-import { d_infinite_scroll, p_infinite_scroll } from 'content_script/internal';
+import type { p_infinite_scroll } from 'content_script/internal';
+import { d_infinite_scroll } from 'content_script/internal';
 
 export const LoadEndMsg: React.FunctionComponent<p_infinite_scroll.LoadEndMsg> = observer(
     (props) => {

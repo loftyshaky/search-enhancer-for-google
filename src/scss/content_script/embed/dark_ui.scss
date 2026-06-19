@@ -1,4 +1,4 @@
-@import '../vars';
+@use '../vars';
 
 .side_panel {
     .btn {
@@ -21,7 +21,7 @@
 }
 
 .img_action_bar .btn {
-    background-color: rgba(38, 90, 175, $img_action_bar_button_opacity) !important;
+    background-color: rgba(38, 90, 175, vars.$img_action_bar_button_opacity) !important;
 }
 
 .separator {

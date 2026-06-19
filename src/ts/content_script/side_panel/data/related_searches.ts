@@ -1,9 +1,10 @@
 import clone from 'lodash/clone';
-import { MouseEvent, KeyboardEvent } from 'react';
-import { makeObservable, observable, computed, action } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
+import type { KeyboardEvent, MouseEvent } from 'react';
 
 import { s_css_vars } from '@loftyshaky/shared/shared';
-import { d_side_panel, s_el_parser, i_side_panel } from 'content_script/internal';
+import type { i_side_panel } from 'content_script/internal';
+import { d_side_panel, s_el_parser } from 'content_script/internal';
 
 class Class {
     private static instance: Class;

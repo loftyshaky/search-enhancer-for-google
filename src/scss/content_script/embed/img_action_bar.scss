@@ -1,5 +1,8 @@
-@import '../../shared/index';
-@import '../shared';
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/vars' as loftyshaky_vars;
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
+@use '../../shared/index';
+@use '../shared';
+@use '../vars';
 
 $small_btn_size: 24px;
 $small_icon_size: 13px;
@@ -11,19 +14,19 @@ $small_icon_size: 13px;
 }
 
 .img_action_bar {
-    @include border_bottom;
-    @include border_left;
+    @include mixins.border_bottom;
+    @include mixins.border_left;
 
     position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-end-start-radius: $bar_border_radius;
+    border-end-start-radius: vars.$bar_border_radius;
     border-color: white;
     transform-origin: bottom right;
 
     .btn {
-        @include input_basic;
+        @include mixins.input_basic;
 
         height: $small_btn_size;
         width: $small_btn_size;
@@ -32,7 +35,7 @@ $small_icon_size: 13px;
         align-items: center;
         border: 0;
         cursor: pointer;
-        background-color: rgba(66, 133, 244, $img_action_bar_button_opacity);
+        background-color: rgba(66, 133, 244, vars.$img_action_bar_button_opacity);
         border-color: white;
 
         svg {
@@ -42,31 +45,31 @@ $small_icon_size: 13px;
         }
 
         &:hover {
-            background-color: rgba(15, 157, 88, $img_action_bar_button_opacity);
+            background-color: rgba(15, 157, 88, vars.$img_action_bar_button_opacity);
         }
 
         &:active {
-            background-color: rgba(219, 68, 55, $img_action_bar_button_opacity);
+            background-color: rgba(219, 68, 55, vars.$img_action_bar_button_opacity);
         }
 
         &:not(:first-child) {
-            @include border_top;
+            @include mixins.border_top;
         }
     }
 
     &.main_img_viewer .btn {
-        height: $btn_size;
-        width: $btn_size;
+        height: vars.$btn_size;
+        width: vars.$btn_size;
 
         svg {
-            height: $icon_size;
-            width: $icon_size;
+            height: vars.$icon_size;
+            width: vars.$icon_size;
         }
     }
 }
 
-:host-context([dir='rtl']) .img_action_bar {
-    @include border_right;
+:host(:has([dir='rtl'])) .img_action_bar {
+    @include mixins.border_right;
 
     border-left: 0;
 }

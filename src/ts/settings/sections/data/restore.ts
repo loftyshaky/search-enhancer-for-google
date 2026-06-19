@@ -1,4 +1,5 @@
-import { t, s_data, s_theme } from '@loftyshaky/shared/shared';
+import type { t} from '@loftyshaky/shared/shared';
+import { s_data, s_theme } from '@loftyshaky/shared/shared';
 import { d_data, s_css_vars } from 'shared_clean/internal';
 
 class Class {

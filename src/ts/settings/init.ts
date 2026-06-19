@@ -1,5 +1,5 @@
-import { InitAll } from 'shared/internal';
 import { d_sections } from 'settings/internal';
+import { InitAll } from 'shared/internal';
 
 export const init = (): Promise<void> =>
     err_async(async () => {

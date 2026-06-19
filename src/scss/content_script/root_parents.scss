@@ -1,3 +1,5 @@
-.root_parent_#{$app_id} {
+@use '../shared/vars';
+
+.root_parent_#{vars.$app_id} {
     white-space: nowrap;
 }

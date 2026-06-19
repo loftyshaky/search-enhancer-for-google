@@ -1,9 +1,9 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { observer } from 'mobx-react';
 
+import type { p_icons } from 'content_script/internal';
+import { d_icons } from 'content_script/internal';
 import { svg } from 'shared/internal';
-
-import { d_icons, p_icons } from 'content_script/internal';
 
 export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
     const { type, i } = props;

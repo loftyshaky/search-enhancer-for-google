@@ -1,2 +1,2 @@
-@import '../shared/index';
-@import 'index';
+@use '../shared/index' as shared_index;
+@use 'index';

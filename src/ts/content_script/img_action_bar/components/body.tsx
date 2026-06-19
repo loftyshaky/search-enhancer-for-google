@@ -1,12 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef } from 'react';
-import { observer } from 'mobx-react';
 
-import {
-    c_img_action_bar,
-    o_img_action_bar,
-    d_img_action_bar,
-    p_img_action_bar,
-} from 'content_script/internal';
+import type { o_img_action_bar, p_img_action_bar } from 'content_script/internal';
+import { c_img_action_bar, d_img_action_bar } from 'content_script/internal';
 
 export const Body: React.FunctionComponent<p_img_action_bar.Body> = observer((props) => {
     const { img_viewer_i, on_render } = props;

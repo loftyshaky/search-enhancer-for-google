@@ -1,8 +1,11 @@
-@import '../../shared/index';
-@import '../shared';
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/vars' as loftyshaky_vars;
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
+@use '../../shared/index';
+@use '../shared';
+@use '../vars';
 
 .content {
-    @include full_dims;
+    @include mixins.full_dims;
 
     inset-inline-end: 0;
 }
@@ -19,38 +22,38 @@
     }
 
     svg {
-        width: $icon_size;
-        height: $icon_size;
+        width: vars.$icon_size;
+        height: vars.$icon_size;
         background-color: white;
 
         &.refresh_svg__refresh:nth-child(1) {
             fill: white !important;
-            height: $icon_size_2;
-            width: $icon_size_2;
+            height: vars.$icon_size_2;
+            width: vars.$icon_size_2;
             padding: 2px;
         }
     }
 
     &.favicons svg {
-        fill: $icon_placeholder_color_1;
+        fill: vars.$icon_placeholder_color_1;
 
         &.refresh_svg__refresh:nth-child(1) {
-            background-color: $icon_placeholder_color_1;
+            background-color: vars.$icon_placeholder_color_1;
         }
     }
 
     /* stylelint-disable-next-line no-descending-specificity */
     &.server_locations svg {
-        fill: $icon_placeholder_color_2;
+        fill: vars.$icon_placeholder_color_2;
 
         &.refresh_svg__refresh:nth-child(1) {
-            background-color: $icon_placeholder_color_2;
+            background-color: vars.$icon_placeholder_color_2;
         }
     }
 
     .icon {
-        width: $icon_size;
-        height: $icon_size;
+        width: vars.$icon_size;
+        height: vars.$icon_size;
     }
 }
 
@@ -66,10 +69,10 @@
 }
 
 .icons:not(.news, :empty) {
-    margin-right: $gap;
+    margin-right: loftyshaky_vars.$gap;
 }
 
-:host-context(html[dir='rtl']) .icons:not(.news, :empty) {
+:host(:has(html[dir='rtl'])) .icons:not(.news, :empty) {
     margin-right: 0;
-    margin-left: $gap;
+    margin-left: loftyshaky_vars.$gap;
 }

@@ -1,7 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
 
-import { c_infinite_scroll, d_infinite_scroll, p_infinite_scroll } from 'content_script/internal';
+import type { p_infinite_scroll } from 'content_script/internal';
+import { c_infinite_scroll, d_infinite_scroll } from 'content_script/internal';
 
 export const Spinner: React.FunctionComponent<p_infinite_scroll.Spinner> = observer((props) => {
     const { on_render } = props;

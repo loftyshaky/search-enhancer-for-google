@@ -1,7 +1,7 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { observer } from 'mobx-react';
 
-import { p_infinite_scroll } from 'content_script/internal';
+import type { p_infinite_scroll } from 'content_script/internal';
 
 export const SpinnerItem: React.FunctionComponent<p_infinite_scroll.SpinnerItem> = observer(
     (props) => {

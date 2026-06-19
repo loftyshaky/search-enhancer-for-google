@@ -1,8 +1,10 @@
 import mapValues from 'lodash/mapValues';
 
-import { t, s_utils } from '@loftyshaky/shared/shared';
-import { svg, SvgType } from 'shared/internal';
+import type { t} from '@loftyshaky/shared/shared';
+import { s_utils } from '@loftyshaky/shared/shared';
 import { o_img_action_bar, s_img_action_bar } from 'content_script/internal';
+import type { SvgType } from 'shared/internal';
+import { svg } from 'shared/internal';
 
 class Class {
     private static instance: Class;

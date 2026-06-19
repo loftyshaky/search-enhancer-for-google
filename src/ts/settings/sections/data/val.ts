@@ -1,8 +1,9 @@
-import { i_color as i_color_loftyshaky_color, i_data } from '@loftyshaky/shared/shared';
-import { o_color, d_inputs, d_color, i_color, i_inputs } from '@loftyshaky/shared/inputs';
+import type { o_color, i_color, i_inputs } from '@loftyshaky/shared/inputs';
+import { d_inputs, d_color } from '@loftyshaky/shared/inputs';
 import { s_sections } from '@loftyshaky/shared/settings';
-import { d_data, s_css_vars } from 'shared_clean/internal';
+import type { i_color as i_color_loftyshaky_color, i_data } from '@loftyshaky/shared/shared';
 import { d_sections } from 'settings/internal';
+import { d_data, s_css_vars } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

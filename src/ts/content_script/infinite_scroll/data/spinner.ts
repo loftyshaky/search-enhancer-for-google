@@ -1,4 +1,4 @@
-import { makeObservable, computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 
 import { s_infinite_scroll } from 'content_script/internal';
 

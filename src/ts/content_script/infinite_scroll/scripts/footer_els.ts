@@ -1,5 +1,5 @@
-import { s_suffix } from 'shared_clean/internal';
 import { s_el_parser, s_infinite_scroll } from 'content_script/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

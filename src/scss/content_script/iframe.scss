@@ -1,20 +1,23 @@
-.iframe_#{$app_id} {
+@use '../shared/vars' as shared_vars;
+@use 'vars';
+
+.iframe_#{shared_vars.$app_id} {
     display: block;
     border: 0;
     width: 100%;
 
-    &.all_#{$app_id},
-    &.search_by_img_#{$app_id},
-    &.forums_#{$app_id},
-    &.web_#{$app_id} {
-        margin-bottom: $search_result_iframe_offset_all;
+    &.all_#{shared_vars.$app_id},
+    &.search_by_img_#{shared_vars.$app_id},
+    &.forums_#{shared_vars.$app_id},
+    &.web_#{shared_vars.$app_id} {
+        margin-bottom: vars.$search_result_iframe_offset_all;
     }
 
-    &.books_#{$app_id} {
-        margin-bottom: $search_result_iframe_offset_books;
+    &.books_#{shared_vars.$app_id} {
+        margin-bottom: vars.$search_result_iframe_offset_books;
     }
 
-    &.news_#{$app_id} {
-        margin-bottom: $search_result_iframe_offset_news;
+    &.news_#{shared_vars.$app_id} {
+        margin-bottom: vars.$search_result_iframe_offset_news;
     }
 }

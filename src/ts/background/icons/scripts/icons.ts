@@ -1,9 +1,9 @@
-import last from 'lodash/last';
 import findLast from 'lodash/findLast';
+import last from 'lodash/last';
 
-import { t } from '@loftyshaky/shared/shared_clean';
-
-import { s_icons, i_icons } from 'shared_clean/internal';
+import type { t } from '@loftyshaky/shared/shared_clean';
+import type { i_icons } from 'shared_clean/internal';
+import { s_icons } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

@@ -1,5 +1,6 @@
-import { t, s_color } from '@loftyshaky/shared/shared_clean';
-import { i_data } from 'shared_clean/internal';
+import type { t} from '@loftyshaky/shared/shared_clean';
+import { s_color } from '@loftyshaky/shared/shared_clean';
+import type { i_data } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

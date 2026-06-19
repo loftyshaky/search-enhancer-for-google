@@ -1,4 +1,4 @@
-import { makeObservable, observable, computed, action } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 import { s_viewport } from '@loftyshaky/shared/shared';
 import { s_el_parser, s_text_dir } from 'content_script/internal';

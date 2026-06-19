@@ -1,5 +1,5 @@
-import { s_suffix } from 'shared_clean/internal';
 import { s_infinite_scroll, s_location } from 'content_script/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -36,7 +36,8 @@ class Class {
         filtered_links,
     }: {
         filtered_links: HTMLLinkElement[];
-    }): void => // put titles and icons on one line (without this title may wrap on second line if it's too long)
+    }): void =>
+        // put titles and icons on one line (without this title may wrap on second line if it's too long)
         err(() => {
             if (!s_location.Location.is_news_page) {
                 filtered_links.forEach((el: HTMLLinkElement): void =>
@@ -47,11 +48,8 @@ class Class {
             }
         }, 'seg_1187');
 
-    public fix_overlapping_favicon_and_server_location = ({
-        el,
-    }: {
-        el: HTMLElement;
-    }): void => // put titles and icons on one line (without this title may wrap on second line if it's too long)
+    public fix_overlapping_favicon_and_server_location = ({ el }: { el: HTMLElement }): void =>
+        // put titles and icons on one line (without this title may wrap on second line if it's too long)
         err(() => {
             if (s_location.Location.is_all_page) {
                 const title_display = x.get_css_val(el, 'display');

@@ -1,7 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
 
-import { c_icons, s_location, p_icons } from 'content_script/internal';
+import type { p_icons } from 'content_script/internal';
+import { c_icons, s_location } from 'content_script/internal';
 
 export const Icons: React.FunctionComponent<p_icons.Icons> = observer((props) => {
     const { i, on_render } = props;

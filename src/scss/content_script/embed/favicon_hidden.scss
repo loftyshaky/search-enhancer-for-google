@@ -1,10 +1,10 @@
-@import '../../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
-@import '../../shared/vars';
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
+@use '../../shared/vars';
 
-.favicon_#{$app_id},
-.favicon_shadow_clone_#{$app_id},
-.news_#{$app_id} [id^='dimg_6'],
-.news_#{$app_id} [width^='16'],
-.news_#{$app_id} [height^='16'] {
-    @include hidden;
+.favicon_#{vars.$app_id},
+.favicon_shadow_clone_#{vars.$app_id},
+.news_#{vars.$app_id} [id^='dimg_6'],
+.news_#{vars.$app_id} [width^='16'],
+.news_#{vars.$app_id} [height^='16'] {
+    @include mixins.hidden;
 }

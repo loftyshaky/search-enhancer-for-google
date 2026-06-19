@@ -1,6 +1,5 @@
-import { makeObservable, observable, action, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
-import { s_suffix } from 'shared_clean/internal';
 import {
     d_infinite_scroll,
     d_side_panel,
@@ -10,6 +9,7 @@ import {
     s_roots,
     s_theme,
 } from 'content_script/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

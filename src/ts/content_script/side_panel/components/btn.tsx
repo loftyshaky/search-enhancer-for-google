@@ -1,9 +1,10 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { observer } from 'mobx-react';
 
-import { t } from '@loftyshaky/shared/shared';
+import type { t } from '@loftyshaky/shared/shared';
+import type { p_side_panel } from 'content_script/internal';
+import { d_side_panel } from 'content_script/internal';
 import { svg } from 'shared/internal';
-import { d_side_panel, p_side_panel } from 'content_script/internal';
 
 const component: t.AnyRecord = {
     enable_btn: svg.PowerSettingsNew,

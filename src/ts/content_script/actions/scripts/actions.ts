@@ -1,9 +1,9 @@
 import debounce from 'lodash/debounce';
 
 import { d_data as d_data_loftyshaky_shared } from '@loftyshaky/shared/shared';
-import { d_data, s_css_vars } from 'shared_clean/internal';
 import {
     d_infinite_scroll,
+    d_side_panel,
     s_ai_block,
     s_el_parser,
     s_icons,
@@ -11,10 +11,9 @@ import {
     s_keywords,
     s_location,
     s_roots,
-    d_side_panel,
 } from 'content_script/internal';
-
 import { InitAll } from 'shared/internal';
+import { d_data, s_css_vars } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

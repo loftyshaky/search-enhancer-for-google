@@ -1,14 +1,15 @@
 /* stylelint-disable property-no-vendor-prefix */
 
-@import '../../shared/index';
-@import '../shared';
+@use '../../shared/index';
+@use '../shared';
+@use '../vars';
 
 #spinner {
     position: relative;
     height: 13px;
     width: 106px;
     margin-inline-start: 426px;
-    margin-bottom: $spinner_load_end_msg_margin_bottom;
+    margin-bottom: vars.$spinner_load_end_msg_margin_bottom;
 }
 
 /* > css from spinner generator */

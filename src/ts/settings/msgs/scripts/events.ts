@@ -1,4 +1,4 @@
-import { t } from '@loftyshaky/shared/shared';
+import type { t } from '@loftyshaky/shared/shared';
 import { d_data, d_sections } from 'settings/internal';
 
 we.runtime.onMessage.addListener((msg: t.Msg): any =>

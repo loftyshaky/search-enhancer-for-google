@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { c_crash_handler } from '@loftyshaky/shared/shared';
-import { s_suffix } from 'shared_clean/internal';
+import type {
+    i_img_action_bar} from 'content_script/internal';
 import {
     c_icons,
     c_img_action_bar,
@@ -14,9 +16,9 @@ import {
     s_infinite_scroll,
     s_location,
     s_roots,
-    s_theme,
-    i_img_action_bar,
+    s_theme
 } from 'content_script/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

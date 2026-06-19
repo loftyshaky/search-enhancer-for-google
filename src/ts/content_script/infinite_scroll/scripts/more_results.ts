@@ -1,4 +1,4 @@
-import { s_el_parser, d_infinite_scroll } from 'content_script/internal';
+import { d_infinite_scroll, s_el_parser } from 'content_script/internal';
 
 class Class {
     private static instance: Class;

@@ -1,7 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import { observer } from 'mobx-react';
 
-import { d_infinite_scroll, s_location, p_infinite_scroll } from 'content_script/internal';
+import type { p_infinite_scroll } from 'content_script/internal';
+import { d_infinite_scroll, s_location } from 'content_script/internal';
 
 export const Separator: React.FunctionComponent<p_infinite_scroll.Separator> = observer((props) => {
     const { i, on_render } = props;

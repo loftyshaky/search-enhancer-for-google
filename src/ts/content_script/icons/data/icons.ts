@@ -1,9 +1,11 @@
-import { makeObservable, observable, action, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
-import { t } from '@loftyshaky/shared/shared';
-import { s_icons, i_icons as i_icons_shared } from 'shared_clean/internal';
-import { s_el_parser, s_location, i_icons } from 'content_script/internal';
+import type { t } from '@loftyshaky/shared/shared';
+import type { i_icons } from 'content_script/internal';
+import { s_el_parser, s_location } from 'content_script/internal';
+import type { i_icons as i_icons_shared } from 'shared_clean/internal';
+import { s_icons } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;
@@ -232,9 +234,9 @@ class Class {
 
             return Boolean(
                 n(src) &&
-                    src !== 'placeholder' &&
-                    ((type === 'favicons' && !s_location.Location.is_news_page) ||
-                        type === 'server_locations'),
+                src !== 'placeholder' &&
+                ((type === 'favicons' && !s_location.Location.is_news_page) ||
+                    type === 'server_locations'),
             );
         }, 'seg_1053');
 

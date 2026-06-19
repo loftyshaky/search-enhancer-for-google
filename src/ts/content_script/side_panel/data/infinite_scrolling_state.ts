@@ -1,7 +1,7 @@
-import { makeObservable, computed, action, runInAction } from 'mobx';
+import { action, computed, makeObservable, runInAction } from 'mobx';
 
-import { d_data } from 'shared_clean/internal';
 import { s_infinite_scroll } from 'content_script/internal';
+import { d_data } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

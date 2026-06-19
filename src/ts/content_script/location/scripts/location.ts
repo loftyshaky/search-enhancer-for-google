@@ -132,7 +132,6 @@ class Class {
             } else if (this.is_imgs_page) {
                 this.current_location = 'imgs';
             }
-
         }, 'seg_64357');
 }
 

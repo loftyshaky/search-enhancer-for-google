@@ -1,5 +1,5 @@
 import '@loftyshaky/shared/ext';
-import { init_shared, d_data } from '@loftyshaky/shared/shared';
+import { d_data, init_shared } from '@loftyshaky/shared/shared';
 import { init } from 'settings/internal';
 
 (async () => {

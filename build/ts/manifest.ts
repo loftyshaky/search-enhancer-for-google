@@ -1,12 +1,15 @@
-const appRoot = require('app-root-path').path;
+import appRoot from 'app-root-path';
 
-const { Manifest: ManifestShared } = require('@loftyshaky/shared/js/ext/manifest');
+import { Manifest as ManifestShared } from '@loftyshaky/shared/build/ts/ext/manifest';
 
-const manifest_shared = new ManifestShared({ app_root: appRoot });
+const app_root = appRoot.path;
 
-class Manifest {
-    generate = ({ mode, test, browser }) => {
-        const manifest = {
+const manifest_shared = new ManifestShared({ app_root });
+
+export class Manifest {
+    generate = ({ env }: { env: Record<string, string> }) => {
+        // oxlint-disable-next-line typescript/no-explicit-any
+        const manifest: Record<string, any> = {
             manifest_version: 3,
             name: 'Search Enhancer for Google™',
             description: '__MSG_description__',
@@ -18,7 +21,7 @@ class Manifest {
                         'font_face.css',
                         'error.css',
                         'content_script_css.css',
-                        ...(browser === 'edge' ? [] : ['dependencies_css.css']),
+                        ...(env.browser === 'edge' ? [] : ['dependencies_css.css']),
                         'icons.css',
                         'separator.css',
                         'google_iframe_inner.css',
@@ -34,7 +37,8 @@ class Manifest {
                 },
             ],
             background: {
-                service_worker: 'background.js',
+                service_worker: 'background.mjs',
+                type: 'module',
             },
             options_ui: {
                 page: 'settings.html',
@@ -241,7 +245,7 @@ class Manifest {
             content_scripts: [
                 {
                     run_at: 'document_start',
-                    js: ['env.js', 'content_script.js'],
+                    js: ['content_script.js'],
                     css: ['content_script_css.css'],
                     matches: [
                         '*://www.google.com/*',
@@ -475,24 +479,13 @@ class Manifest {
             },
         };
 
-        if (test) {
+        if (env.test === 'true' && env.browser !== 'firefox') {
             manifest.key =
                 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC27ja1uH21PA7IcyxrOcz3I/419Bkc0GDxpDqr17EEJGP8tBSTMLextmK/z5GJ4aWOQ8zoDGKU4lDovc4QiqV90yRIhCBTG8WKcvenMR+fa+wJjlFOHlF4bmTwMf2mXUVC75KmSOxjHELYy8aWLB3itrPZdaP32oXqrNcmmAEKg7x6fIBmjsiValV/fWpJ7dJhwZ4jodH3CGHyDTsqBKtLd8ufXUfd2yt/LYErh0STLp9fTClk7Pcn5ajIvtwdSNH2f1KzDAxjKKQRjqlHnrud5gLplJ0+OYxRobCGITbSl2gEsv44bnwImyhvaM4Qe9u8k8in8u3P+RDZ2N7cM+G1AgMBAAECggEADlxY4ivOGC5TUMXHgASlHeYiKYH0slZ8TdJuCRohNOlW1u21ZP3tmQXWIcDw5+MIseIjuDg34wB5u2CIyIBB6d6FM8YsZxBAK636QCwmLRTcjlfkWetQy2rYAYoP8IGg+gmM7AEmJ/x94owfMAaqZlps3kHGGHAvLcZzPrEVkwm1E+jSl/8eSU6VBW09588mWmJLnKzXNj2nJNCggEyhQY2ahzhNFwDk/kktAvWqkyRho7j/4ezEd046gLfLngZIWmP++F4VuDL49958GFzc41z0eKkoU9X06lygtwjCiDvPeIPnLfwh7c10qgYB5jNy4DGuDwg97/c4Z/dO287V/wKBgQDj22w8ufXS23ixceSwSHa3CsxB3qihI/4NEJASeyK8u8sAzGhRZafb9bWk9DT5vAH8YRQcYeib0dKbxaFAyC/OSzDDwozpFZX4fc8uLBjhpAeaHttXUzVOBWKi0slRd40IPcTv87569Mu3JV2s4OA7I51Ier5foAqKuv7UFa3KhwKBgQDNhkOdTWej/NNB1x5OKuky5f7R0v69SD9CiqcVj1CELKnbhEXom1IGxt28IqXp+KD8nKvglOZpsViHC95Ay/WsHcXSAAiHxnNRvzbEfkUMkFCh0uCsDn/y/Pg9M5IslurNbXJHKEFTp27jhlOkDx+d2Ub/H6QnefLp+b8YznNU4wKBgQCZh90LogXImUde0S5Vtc4AEg+FhsE7KuRg6zsYqM3EPAlSNWlJB2UuqgZF6qLTb2IrK0KAyVwRujTd7zFzVDAaIcHu9eU6nOfbcvIp2168k2jn6UjEM3XkZ26J5dvuv85QskZDpIpBkTa+5jeTaEbOsnWlQ8eI6W6RAeT5BM6AewKBgAZs+TY00lW1NOGtGRx2iP33ZOUohKBkXt30uc6ZwXmwb8sWMp1YJdNialJUfv12sYnUWCdYYG/ThKIMQ/GgrtinwaSULbAZC0f2A39XN09yP6MflbirZ2KweA5py1sriMHNdzI0Vv6HkJb6fyj09BcaUPbvBVHapTadgVUEN2TjAoGANuw/bOMidrD/GVXILPG2Mgl2k+m4U9R4siI4q1dQmpCOXG2uXDc7Pt8Q0sQE9K8YZ4gTTrj/DYKlB30iO6Ip15E4hAkC8VMgnzONWa5P/pyRWC+7CH4Vryx8GFK4zok4qCDcUvUr1McYuI3/RpTavaT/XoDK7QWOpoaqMOSDpbw=';
         }
 
-        if (mode === 'development') {
-            manifest.content_scripts[0].js.push(
-                'chunks/vendors-node_modules_lodash_clone_js-node_modules_lodash_debounce_js-node_modules_lodash_last-0fa715.js',
-                'chunks/src_ts_settings_internal_ts.js',
-                'chunks/src_ts_content_script_internal_ts.js',
-            );
-        }
-
         manifest_shared.generate({
             manifest,
-            browser,
         });
     };
 }
-
-module.exports = { Manifest };

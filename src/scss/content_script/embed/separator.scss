@@ -1,22 +1,24 @@
-@import '../../shared/index';
-@import '../shared';
+@use '../../../../node_modules/@loftyshaky/shared/scss/shared/vars' as loftyshaky_vars;
+@use '../../shared/index';
+@use '../shared';
+@use '../vars';
 
 .separator {
-    color: $black;
-    font-size: $font_size;
+    color: loftyshaky_vars.$black;
+    font-size: vars.$font_size;
 
     &.all,
     &.search_by_img,
     &.forums,
     &.web {
-        margin-bottom: $search_result_separator_offset_all;
+        margin-bottom: vars.$search_result_separator_offset_all;
     }
 
     &.books {
-        margin-bottom: $search_result_separator_offset_books;
+        margin-bottom: vars.$search_result_separator_offset_books;
     }
 
     &.news {
-        margin-bottom: $search_result_separator_offset_news;
+        margin-bottom: vars.$search_result_separator_offset_news;
     }
 }

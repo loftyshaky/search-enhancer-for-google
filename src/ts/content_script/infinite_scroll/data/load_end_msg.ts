@@ -1,6 +1,7 @@
-import { makeObservable, observable, computed, action } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
-import { d_infinite_scroll, s_location, i_infinite_scroll } from 'content_script/internal';
+import type { i_infinite_scroll } from 'content_script/internal';
+import { d_infinite_scroll, s_location } from 'content_script/internal';
 
 class Class {
     private static instance: Class;

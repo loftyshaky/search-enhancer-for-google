@@ -1,26 +1,32 @@
-.icons_#{$app_id} {
-    &.news_#{$app_id} {
+@use '../../../node_modules/@loftyshaky/shared/scss/shared/vars' as loftyshaky_vars;
+@use '../shared/vars' as shared_vars;
+@use 'vars';
+
+.icons_#{shared_vars.$app_id} {
+    &.news_#{shared_vars.$app_id} {
         display: inline-flex;
         vertical-align: top;
     }
 
-    &:not(.news_#{$app_id}) {
+    &:not(.news_#{shared_vars.$app_id}) {
         display: inline-block;
         vertical-align: -1px;
     }
 }
 
-html[dir='rtl'] .root_parent_#{$app_id} {
-    &.offset_1_#{$app_id} .icons_#{$app_id}:not(.news_#{$app_id}) {
-        margin-left: calc(100% + #{$gap + $icon_offset_1});
+html[dir='rtl'] .root_parent_#{shared_vars.$app_id} {
+    &.offset_1_#{shared_vars.$app_id}
+        .icons_#{shared_vars.$app_id}:not(.news_#{shared_vars.$app_id}) {
+        margin-left: calc(100% + #{loftyshaky_vars.$gap + vars.$icon_offset_1});
     }
 
-    &.offset_2_#{$app_id} .icons_#{$app_id}:not(.news_#{$app_id}) {
-        margin-left: calc(100% + #{$gap + $icon_offset_2});
+    &.offset_2_#{shared_vars.$app_id}
+        .icons_#{shared_vars.$app_id}:not(.news_#{shared_vars.$app_id}) {
+        margin-left: calc(100% + #{loftyshaky_vars.$gap + vars.$icon_offset_2});
     }
 }
 
-.img_action_bar_#{$app_id} {
+.img_action_bar_#{shared_vars.$app_id} {
     position: absolute;
     inset-inline-end: 0;
     bottom: 0;

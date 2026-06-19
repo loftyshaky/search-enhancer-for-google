@@ -1,6 +1,6 @@
-import { makeObservable, observable, action } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
-import { i_img_action_bar } from 'content_script/internal';
+import type { i_img_action_bar } from 'content_script/internal';
 
 class Class {
     private static instance: Class;

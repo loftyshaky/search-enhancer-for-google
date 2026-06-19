@@ -1,5 +1,6 @@
-@import '../../shared/vars';
-@import '../google';
+@use '../../shared/vars';
+@use '../google';
+@use '../../shared/vars' as shared_vars;
 
 body {
     overflow: hidden;
@@ -11,27 +12,27 @@ body {
         margin-top: 0 !important;
     }
 
-    &.all_#{$app_id} {
+    &.all_#{shared_vars.$app_id} {
         #rso > div:last-child .g {
             margin-bottom: 0 !important;
         }
     }
 
-    &.search_by_img_#{$app_id} {
+    &.search_by_img_#{shared_vars.$app_id} {
         #rso .g:last-child,
         #rso > div {
             margin-bottom: 0 !important;
         }
     }
 
-    &.news_#{$app_id} {
+    &.news_#{shared_vars.$app_id} {
         /* stylelint-disable-next-line selector-class-pattern */
         #rso > div:last-child > g-card {
             margin-bottom: 0 !important;
         }
     }
 
-    &.shopping_#{$app_id} {
+    &.shopping_#{shared_vars.$app_id} {
         /* stylelint-disable-next-line selector-class-pattern */
         .sh-sr__shop-result-group {
             margin-top: 12px !important;
@@ -47,14 +48,14 @@ body {
         }
     }
 
-    &.all_#{$app_id},
-    &.books_#{$app_id} {
+    &.all_#{shared_vars.$app_id},
+    &.books_#{shared_vars.$app_id} {
         #rso > div:last-child {
             margin-bottom: 0 !important;
         }
     }
 
-    &.videos_#{$app_id} {
+    &.videos_#{shared_vars.$app_id} {
         #rso > div:first-child {
             margin-bottom: 0 !important;
         }

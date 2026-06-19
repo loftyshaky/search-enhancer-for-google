@@ -1,15 +1,15 @@
 import { s_tab_index } from '@loftyshaky/shared/shared';
-import { s_suffix } from 'shared_clean/internal';
-import { InitAll } from 'shared/internal';
 import {
     d_img_action_bar,
-    s_roots,
     d_side_panel,
     s_actions,
     s_infinite_scroll,
     s_location,
+    s_roots,
     s_text_dir,
 } from 'content_script/internal';
+import { InitAll } from 'shared/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 export const init = (): Promise<void> =>
     err_async(async () => {

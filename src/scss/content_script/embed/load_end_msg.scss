@@ -1,10 +1,11 @@
-@import '../../shared/index';
-@import '../shared';
+@use '../../shared/index';
+@use '../shared';
+@use '../vars';
 
 .load_end_msg {
     position: relative;
     font-size: 18px;
     width: 500px;
     color: red;
-    margin-bottom: $spinner_load_end_msg_margin_bottom;
+    margin-bottom: vars.$spinner_load_end_msg_margin_bottom;
 }

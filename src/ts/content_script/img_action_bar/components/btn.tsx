@@ -1,8 +1,9 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { observer } from 'mobx-react';
 
 import { prevent_default } from '@loftyshaky/shared/shared';
-import { d_img_action_bar, p_img_action_bar } from 'content_script/internal';
+import type { p_img_action_bar } from 'content_script/internal';
+import { d_img_action_bar } from 'content_script/internal';
 
 export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((props) => {
     const { btn, img_viewer_i } = props;

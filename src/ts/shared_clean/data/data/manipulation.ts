@@ -1,5 +1,5 @@
 import { s_data } from '@loftyshaky/shared/shared_clean';
-import { i_data } from 'shared_clean/internal';
+import type { i_data } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

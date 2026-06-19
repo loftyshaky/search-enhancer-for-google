@@ -1,14 +1,11 @@
-import React, { MouseEvent, KeyboardEvent, useEffect } from 'react';
-import { observer } from 'mobx-react';
+import type { KeyboardEvent, MouseEvent } from 'react';
+
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
 
 import { prevent_default } from '@loftyshaky/shared/shared';
-import {
-    c_side_panel,
-    d_side_panel,
-    s_location,
-    s_tab_index,
-    p_side_panel,
-} from 'content_script/internal';
+import type { p_side_panel } from 'content_script/internal';
+import { c_side_panel, d_side_panel, s_location, s_tab_index } from 'content_script/internal';
 
 export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props) => {
     const { on_render } = props;

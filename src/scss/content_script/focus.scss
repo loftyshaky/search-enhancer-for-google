@@ -1,8 +1,12 @@
-:host-context(.keyboard_#{$app_id}) {
-    .btn:focus {
-        @include outline_solid_thick;
+@use '../../../node_modules/@loftyshaky/shared/scss/shared/vars' as loftyshaky_vars;
+@use '../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
+@use '../shared/vars';
 
-        outline-color: $black;
+:host(:has(.keyboard_#{vars.$app_id})) {
+    .btn:focus {
+        @include mixins.outline_solid_thick;
+
+        outline-color: loftyshaky_vars.$black;
         outline-offset: -2px;
     }
 

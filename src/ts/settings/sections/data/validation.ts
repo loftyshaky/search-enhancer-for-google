@@ -1,5 +1,6 @@
-import { i_data } from '@loftyshaky/shared/shared';
-import { d_inputs, i_inputs } from '@loftyshaky/shared/inputs';
+import type { i_inputs } from '@loftyshaky/shared/inputs';
+import { d_inputs } from '@loftyshaky/shared/inputs';
+import type { i_data } from '@loftyshaky/shared/shared';
 import { d_sections } from 'settings/internal';
 
 class Class {

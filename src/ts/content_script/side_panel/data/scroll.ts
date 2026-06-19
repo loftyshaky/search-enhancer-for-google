@@ -1,8 +1,8 @@
-import { MouseEvent } from 'react';
-import { makeObservable, observable, computed, action, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import type { MouseEvent } from 'react';
 
 import { s_css_vars } from '@loftyshaky/shared/shared';
-import { i_side_panel } from 'content_script/internal';
+import type { i_side_panel } from 'content_script/internal';
 
 class Class {
     private static instance: Class;

@@ -1,10 +1,11 @@
-import { makeObservable, computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 
-import { s_utils } from '@loftyshaky/shared/shared';
-import { o_inputs, o_color, i_inputs } from '@loftyshaky/shared/inputs';
+import type { i_inputs } from '@loftyshaky/shared/inputs';
+import { o_inputs, o_color } from '@loftyshaky/shared/inputs';
 import { d_sections as d_sections_loftyshaky_settings } from '@loftyshaky/shared/settings';
-import { d_data } from 'shared_clean/internal';
+import { s_utils } from '@loftyshaky/shared/shared';
 import { d_sections } from 'settings/internal';
+import { d_data } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

@@ -1,4 +1,6 @@
-.iframe_#{$app_id} {
+@use '../shared/vars';
+
+.iframe_#{vars.$app_id} {
     transition: var(--transition);
     transition-property: opacity;
 }

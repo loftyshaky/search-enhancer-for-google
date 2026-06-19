@@ -2,13 +2,14 @@ import cloneDeep from 'lodash/cloneDeep';
 import debounce from 'lodash/debounce';
 
 import {
-    o_schema,
     d_schema,
+    o_schema,
     s_data as s_data_loftyshaky_shared_clean,
     s_service_worker,
 } from '@loftyshaky/shared/shared_clean';
-import { s_data as s_data_shared_clean, i_data } from 'shared_clean/internal';
 import { s_data } from 'background/internal';
+import type { i_data } from 'shared_clean/internal';
+import { s_data as s_data_shared_clean } from 'shared_clean/internal';
 
 class Class {
     private static instance: Class;

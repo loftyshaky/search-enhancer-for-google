@@ -1,5 +1,6 @@
-import { KeyboardEvent, MouseEvent } from 'react';
-import { t } from '@loftyshaky/shared/shared';
+import type { KeyboardEvent, MouseEvent } from 'react';
+
+import type { t } from '@loftyshaky/shared/shared';
 import { d_side_panel } from 'content_script/internal';
 
 class Class {

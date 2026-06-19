@@ -1,4 +1,4 @@
-import { Downloads } from 'webextension-polyfill';
+import type { Downloads } from 'webextension-polyfill';
 
 class Class {
     private static instance: Class;

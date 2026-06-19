@@ -1,4 +1,6 @@
-.opacity_0_#{$app_id} {
+@use '../shared/vars';
+
+.opacity_0_#{vars.$app_id} {
     opacity: 0 !important;
 }
 
@@ -6,12 +8,12 @@
     display: none !important;
 }
 
-.hidden_#{$app_id} {
+.hidden_#{vars.$app_id} {
     position: fixed !important;
     visibility: hidden !important;
     top: 99999px !important;
 }
 
-.white_space_#{$app_id} {
+.white_space_#{vars.$app_id} {
     white-space: nowrap;
 }
