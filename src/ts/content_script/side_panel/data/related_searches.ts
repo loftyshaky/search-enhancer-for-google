@@ -1,6 +1,7 @@
+import type { KeyboardEvent, MouseEvent } from 'react';
+
 import clone from 'lodash/clone';
 import { action, computed, makeObservable, observable } from 'mobx';
-import type { KeyboardEvent, MouseEvent } from 'react';
 
 import { s_css_vars } from '@loftyshaky/shared/shared';
 import type { i_side_panel } from 'content_script/internal';

@@ -1,8 +1,10 @@
+import type { Storage } from 'webextension-polyfill';
+
 import { s_data as s_data_loftyshaky_sharded_clean } from '@loftyshaky/shared/shared_clean';
 import { s_data } from 'background/internal';
 
 we.storage.sync.onChanged.addListener(
-    (changes: any): Promise<void> =>
+    (changes: Storage.StorageChange): Promise<void> =>
         err_async(async () => {
             await s_data_loftyshaky_sharded_clean.Sync.react_sync({
                 changes,

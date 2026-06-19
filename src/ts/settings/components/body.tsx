@@ -24,7 +24,7 @@ export const Body: React.FunctionComponent<p_settings.Body> = observer((props) =
                         });
                     }, 'seg_1123');
 
-                run();
+                void run();
             }, 'seg_1124'),
         [],
     );

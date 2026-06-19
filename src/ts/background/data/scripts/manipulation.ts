@@ -18,7 +18,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public set_from_storage_run_prevented: boolean = false;
@@ -70,10 +69,10 @@ class Class {
             }
 
             if (load_settings_content_script) {
-                ext.send_msg_to_all_tabs({ msg: 'load_settings_content_script' });
+                void ext.send_msg_to_all_tabs({ msg: 'load_settings_content_script' });
             }
 
-            s_service_worker.ServiceWorker.make_persistent();
+            void s_service_worker.ServiceWorker.make_persistent();
         }, 'seg_1003');
 
     public react_to_settings_change = (): Promise<void> =>
@@ -84,7 +83,7 @@ class Class {
             });
 
             await ext.send_msg_resp({ msg: 'load_settings', transform: true });
-            s_service_worker.ServiceWorker.make_persistent();
+            void s_service_worker.ServiceWorker.make_persistent();
         }, 'seg_1239');
 
     public update_settings_debounce = debounce(
@@ -108,11 +107,11 @@ class Class {
                 });
 
                 if (load_settings) {
-                    ext.send_msg_to_all_tabs({ msg: 'load_settings' });
+                    void ext.send_msg_to_all_tabs({ msg: 'load_settings' });
                 }
 
                 if (load_settings_content_script) {
-                    ext.send_msg_to_all_tabs({ msg: 'load_settings_content_script' });
+                    void ext.send_msg_to_all_tabs({ msg: 'load_settings_content_script' });
                 }
             }, 'seg_1177'),
         250,
@@ -414,12 +413,12 @@ class Class {
                     new_val: true,
                 }),
             ];
-            const updated_prefs: i_data.Prefs = await d_schema.Schema.transform({
+            const updated_prefs: i_data.Prefs = (await d_schema.Schema.transform({
                 data_obj: updated_settings.prefs,
                 version,
                 transform_items: transform_items_prefs,
                 force,
-            });
+            })) as i_data.Prefs;
 
             updated_prefs.version = ext.get_app_version();
 

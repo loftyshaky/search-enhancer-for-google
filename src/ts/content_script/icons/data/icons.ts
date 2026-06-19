@@ -91,7 +91,7 @@ class Class {
                     );
 
                     // eslint-disable-next-line no-restricted-syntax
-                    for await (const favicon_provider of favicon_providers) {
+                    for (const favicon_provider of favicon_providers) {
                         if (data.settings.prefs.favicon_providers[favicon_provider]) {
                             const icon_url: string = s_icons.Icons.construct_favicon_url({
                                 favicon_provider,
@@ -114,10 +114,14 @@ class Class {
                         }
                     }
 
-                    const favicon_url: string = await ext.send_msg_resp({
+                    const get_favicon_url_response = await ext.send_msg_resp({
                         msg: 'get_favicon_url',
                         url,
                     });
+                    const favicon_url: string =
+                        typeof get_favicon_url_response === 'string'
+                            ? get_favicon_url_response
+                            : '';
 
                     runInAction(() =>
                         err(() => {
@@ -146,13 +150,13 @@ class Class {
                     }, 'seg_1176'),
                 );
 
-                const response: i_icons_shared.ServerInfo | string = await ext.send_msg_resp({
+                const response: i_icons_shared.ServerInfo | string = (await ext.send_msg_resp({
                     msg: 'get_server_info',
                     url,
-                });
+                })) as i_icons_shared.ServerInfo | string;
                 if (response === 'ip_to_country_arr_is_not_yet_generated') {
                     this.generate_server_location_url_deferred.push(() => {
-                        this.generate_server_location_url({ url });
+                        void this.generate_server_location_url({ url });
                     });
                 } else {
                     const server_info: i_icons_shared.ServerInfo =
@@ -205,8 +209,8 @@ class Class {
                 key_2: string;
             }): void =>
                 err(() => {
-                    const that = s_el_parser.ElParser as any;
-                    const that_2 = this as any;
+                    const that = s_el_parser.ElParser as t.AnyRecord;
+                    const that_2 = this as t.AnyRecord;
                     const key_2_plural: string = `${key_2}s`;
                     const url: string = that[key_1][i];
 

@@ -1,4 +1,4 @@
-import type { t} from '@loftyshaky/shared/shared';
+import type { t } from '@loftyshaky/shared/shared';
 import { s_data, s_theme } from '@loftyshaky/shared/shared';
 import { d_data, s_css_vars } from 'shared_clean/internal';
 
@@ -9,7 +9,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public restore_confirm = (): Promise<void> =>
@@ -22,7 +21,7 @@ class Class {
             if (confirmed_restore) {
                 const default_settings = await ext.send_msg_resp({ msg: 'get_defaults' });
                 const default_settings_final = s_data.Settings.apply_unchanged_prefs({
-                    settings: default_settings,
+                    settings: default_settings as t.AnyRecord,
                 });
 
                 await d_data.Manipulation.send_msg_to_update_settings({
@@ -33,7 +32,7 @@ class Class {
                     load_settings_content_script: true,
                 });
 
-                s_theme.Theme.set({
+                void s_theme.Theme.set({
                     name: data.settings.prefs.options_page_theme,
                 });
                 s_css_vars.CssVars.set();
@@ -54,9 +53,9 @@ class Class {
             });
         }, 'seg_1131');
 
-    public restore_back_up_react = (): Promise<void> =>
-        err_async(async () => {
-            s_theme.Theme.set({
+    public restore_back_up_react = (): void =>
+        err(() => {
+            void s_theme.Theme.set({
                 name: data.settings.prefs.options_page_theme,
             });
             s_css_vars.CssVars.set();

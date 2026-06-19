@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
 
 import { prevent_default } from '@loftyshaky/shared/shared';
 import type { p_img_action_bar } from 'content_script/internal';

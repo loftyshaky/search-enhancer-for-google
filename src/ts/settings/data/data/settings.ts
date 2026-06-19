@@ -8,14 +8,13 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
-            d_data.Settings.set_from_storage();
+            void d_data.Settings.set_from_storage();
 
-            s_theme.Theme.set({
+            void s_theme.Theme.set({
                 name: data.settings.prefs.options_page_theme,
             });
             s_css_vars.CssVars.set();

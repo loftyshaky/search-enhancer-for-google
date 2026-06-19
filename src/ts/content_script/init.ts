@@ -41,8 +41,8 @@ export const init = (): Promise<void> =>
                 x.bind(document, 'scroll', d_img_action_bar.Position.set_bottom_all);
             }
 
-            InitAll.render_spinner();
-            InitAll.render_last_end_msg();
-            InitAll.render_side_panel();
+            void InitAll.render_spinner();
+            void InitAll.render_last_end_msg();
+            void InitAll.render_side_panel();
         }
     }, 'seg_1082');

@@ -22,13 +22,12 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public run_initial_actions = (): Promise<void> =>
         err_async(async () => {
             await d_data_loftyshaky_shared.Settings.set_from_storage();
-            await show_unable_to_access_settings_error({ is_fullscreen: false });
+            show_unable_to_access_settings_error({ is_fullscreen: false });
             s_css_vars.CssVars.set();
             s_el_parser.ElParser.get_els();
             s_el_parser.ElParser.get_next_page_href();
@@ -51,7 +50,7 @@ class Class {
         err_async(async () => {
             if (d_data.Manipulation.allow_load_settings) {
                 await d_data_loftyshaky_shared.Settings.set_from_storage();
-                s_ai_block.Visibility.set();
+                void s_ai_block.Visibility.set();
                 s_css_vars.CssVars.set();
                 s_el_parser.ElParser.get_els();
 
@@ -85,7 +84,7 @@ class Class {
     private run_reload_actions_debounce = debounce(
         (): void =>
             err(() => {
-                this.run_reload_actions();
+                void this.run_reload_actions();
             }, 'seg_1020'),
         200,
     );
@@ -105,7 +104,7 @@ class Class {
     public run_reload_actions_2_debounce = debounce(
         (): void =>
             err(() => {
-                this.run_reload_actions_2();
+                void this.run_reload_actions_2();
             }, 'seg_1197'),
         200,
     );

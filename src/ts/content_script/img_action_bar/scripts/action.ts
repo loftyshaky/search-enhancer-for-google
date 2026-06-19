@@ -45,7 +45,7 @@ class Class {
 
     private send_msg = ({ type, img_url }: { type: string; img_url: string }): void =>
         err(() => {
-            ext.send_msg({
+            void ext.send_msg({
                 msg: 'run_img_action',
                 type,
                 img_url,

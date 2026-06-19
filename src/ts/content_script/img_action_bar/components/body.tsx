@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef } from 'react';
 
@@ -43,8 +45,8 @@ export const Body: React.FunctionComponent<p_img_action_bar.Body> = observer((pr
             }}
         >
             {Object.values(d_img_action_bar.Btns.btns as o_img_action_bar.Btn[]).map(
-                (btn: o_img_action_bar.Btn, i: number): JSX.Element => (
-                    <c_img_action_bar.Btn key={i} btn={btn} img_viewer_i={img_viewer_i} />
+                (btn: o_img_action_bar.Btn): JSX.Element => (
+                    <c_img_action_bar.Btn key={btn.name} btn={btn} img_viewer_i={img_viewer_i} />
                 ),
             )}
         </div>

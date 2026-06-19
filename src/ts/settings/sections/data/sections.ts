@@ -1,7 +1,7 @@
 import { computed, makeObservable } from 'mobx';
 
 import type { i_inputs } from '@loftyshaky/shared/inputs';
-import { o_inputs, o_color } from '@loftyshaky/shared/inputs';
+import { o_color, o_inputs } from '@loftyshaky/shared/inputs';
 import { d_sections as d_sections_loftyshaky_settings } from '@loftyshaky/shared/settings';
 import { s_utils } from '@loftyshaky/shared/shared';
 import { d_sections } from 'settings/internal';
@@ -29,124 +29,123 @@ class Class {
     public init = (): void =>
         err(() => {
             this.sections = [
-                ...[
-                    new o_inputs.Section({
-                        name: 'all',
-                        inputs: [
-                            new o_inputs.Select({
-                                name: 'side_panel_position',
-                                options: d_sections.Options.options,
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_color.Color({
-                                name: 'keyword_color',
-                                event_callback: d_sections.Val.change,
-                                include_remove_color_btn: true,
-                                select_palette_color_callback:
-                                    d_sections.Val.save_selected_palette_color,
-                                hide_color_help_callback: d_sections.Visibility.hide_color_help,
-                                remove_color_callback: d_sections.Val.remove_color_callback,
-                                restore_default_palette_callback:
-                                    d_sections.Val.restore_default_palette_callback,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'enable_infinite_scrolling',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_color.Color({
-                                name: 'spinner_color',
-                                parent: 'enable_infinite_scrolling',
-                                event_callback: d_sections.Val.change,
-                                select_palette_color_callback:
-                                    d_sections.Val.save_selected_palette_color,
-                                hide_color_help_callback: d_sections.Visibility.hide_color_help,
-                                remove_color_callback: d_sections.Val.remove_color_callback,
-                                restore_default_palette_callback:
-                                    d_sections.Val.restore_default_palette_callback,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'enable_btn_is_visible',
-                                parent: 'enable_infinite_scrolling',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'page_indicator_is_visible',
-                                parent: 'enable_infinite_scrolling',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'page_separators_is_visible',
-                                parent: 'enable_infinite_scrolling',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'favicons_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'server_locations_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'ai_overview_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'scroll_to_top_btn_is_visible',
-                                include_help: true,
-                                alt_help_msg: ext.msg('scroll_to_top_title'),
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'jump_to_related_searches_btn_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                        ],
-                    }),
-                    new o_inputs.Section({
-                        name: 'imgs',
-                        inputs: [
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_img_action_bar_is_visible_only_on_hover',
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_view_img_btn_is_visible',
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_search_by_img_btn_is_visible',
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_download_img_btn_is_visible',
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_save_img_as_btn_is_visible',
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_copy_img_btn_is_visible',
-                                include_help: true,
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            new o_inputs.Checkbox({
-                                name: 'img_viewer_copy_img_url_btn_is_visible',
-                                parent: 'img_viewer_img_action_bar_is_visible',
-                                event_callback: d_sections.Val.change,
-                            }),
-                            /*
+                new o_inputs.Section({
+                    name: 'all',
+                    inputs: [
+                        new o_inputs.Select({
+                            name: 'side_panel_position',
+                            options: d_sections.Options.options,
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_color.Color({
+                            name: 'keyword_color',
+                            event_callback: d_sections.Val.change,
+                            include_remove_color_btn: true,
+                            select_palette_color_callback:
+                                d_sections.Val.save_selected_palette_color,
+                            hide_color_help_callback: d_sections.Visibility.hide_color_help,
+                            remove_color_callback: d_sections.Val.remove_color_callback,
+                            restore_default_palette_callback:
+                                d_sections.Val.restore_default_palette_callback,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'enable_infinite_scrolling',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_color.Color({
+                            name: 'spinner_color',
+                            parent: 'enable_infinite_scrolling',
+                            event_callback: d_sections.Val.change,
+                            select_palette_color_callback:
+                                d_sections.Val.save_selected_palette_color,
+                            hide_color_help_callback: d_sections.Visibility.hide_color_help,
+                            remove_color_callback: d_sections.Val.remove_color_callback,
+                            restore_default_palette_callback:
+                                d_sections.Val.restore_default_palette_callback,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'enable_btn_is_visible',
+                            parent: 'enable_infinite_scrolling',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'page_indicator_is_visible',
+                            parent: 'enable_infinite_scrolling',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'page_separators_is_visible',
+                            parent: 'enable_infinite_scrolling',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'favicons_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'server_locations_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'ai_overview_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'scroll_to_top_btn_is_visible',
+                            include_help: true,
+                            alt_help_msg: ext.msg('scroll_to_top_title'),
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'jump_to_related_searches_btn_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                    ],
+                }),
+                new o_inputs.Section({
+                    name: 'imgs',
+                    inputs: [
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_img_action_bar_is_visible_only_on_hover',
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_view_img_btn_is_visible',
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_search_by_img_btn_is_visible',
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_download_img_btn_is_visible',
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_save_img_as_btn_is_visible',
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_copy_img_btn_is_visible',
+                            include_help: true,
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        new o_inputs.Checkbox({
+                            name: 'img_viewer_copy_img_url_btn_is_visible',
+                            parent: 'img_viewer_img_action_bar_is_visible',
+                            event_callback: d_sections.Val.change,
+                        }),
+                        /*
                             new o_inputs.Checkbox({
                                 name: 'preview_img_viewer_img_action_bar_is_visible',
                                 event_callback: d_sections.Val.change,
@@ -207,16 +206,15 @@ class Class {
                                 ),
                                 event_callback: d_sections.Val.change,
                             }), */
-                            new o_inputs.Text({
-                                name: 'img_downloads_dir',
-                                include_help: true,
-                                event_callback: d_sections.Val.change,
-                                warn_state_checker: d_sections.Validation.validate_input,
-                                remove_val_callback: d_sections.Val.remove_val,
-                            }),
-                        ],
-                    }),
-                ],
+                        new o_inputs.Text({
+                            name: 'img_downloads_dir',
+                            include_help: true,
+                            event_callback: d_sections.Val.change,
+                            warn_state_checker: d_sections.Validation.validate_input,
+                            remove_val_callback: d_sections.Val.remove_val,
+                        }),
+                    ],
+                }),
                 ...d_sections_loftyshaky_settings.Sections.make_shared_sections({
                     download_back_up_callback: ext.storage_get,
                     upload_back_up_callback: d_sections.Restore.restore_back_up,
@@ -240,53 +238,51 @@ class Class {
                         }),
                     ],
                 }),
-                ...[
-                    new o_inputs.Section({
-                        name: 'links',
-                        inputs: [
-                            new o_inputs.Link({
-                                name: 'privacy_policy',
-                                href: ext.msg('privacy_policy_link_href'),
-                            }),
-                            new o_inputs.Link({
-                                name: 'rate',
-                                browser: env.browser,
-                                force_resolve: true,
-                            }),
-                            ...(env.browser === 'edge'
-                                ? []
-                                : [
-                                      new o_inputs.Link({
-                                          name: 'search_enhancer_for_googlei1i',
-                                          browser: 'chrome',
-                                      }),
-                                      new o_inputs.Link({
-                                          name: 'search_enhancer_for_googlei2i',
-                                          browser: 'edge',
-                                      }),
-                                  ]),
-                            new o_inputs.Link({
-                                name: 'github',
-                            }),
-                            new o_inputs.Link({
-                                name: 'facebook_page',
-                                href: ext.msg('facebook_page_link_href'),
-                            }),
-                            new o_inputs.Link({
-                                name: 'support_page',
-                                href: ext.msg('support_page_link_href'),
-                            }),
-                            ...(env.browser === 'edge'
-                                ? []
-                                : [
-                                      new o_inputs.Link({
-                                          name: 'dependencies',
-                                          href: ext.msg('dependencies_link_href'),
-                                      }),
-                                  ]),
-                        ],
-                    }),
-                ],
+                new o_inputs.Section({
+                    name: 'links',
+                    inputs: [
+                        new o_inputs.Link({
+                            name: 'privacy_policy',
+                            href: ext.msg('privacy_policy_link_href'),
+                        }),
+                        new o_inputs.Link({
+                            name: 'rate',
+                            browser: env.browser,
+                            force_resolve: true,
+                        }),
+                        ...(env.browser === 'edge'
+                            ? []
+                            : [
+                                  new o_inputs.Link({
+                                      name: 'search_enhancer_for_googlei1i',
+                                      browser: 'chrome',
+                                  }),
+                                  new o_inputs.Link({
+                                      name: 'search_enhancer_for_googlei2i',
+                                      browser: 'edge',
+                                  }),
+                              ]),
+                        new o_inputs.Link({
+                            name: 'github',
+                        }),
+                        new o_inputs.Link({
+                            name: 'facebook_page',
+                            href: ext.msg('facebook_page_link_href'),
+                        }),
+                        new o_inputs.Link({
+                            name: 'support_page',
+                            href: ext.msg('support_page_link_href'),
+                        }),
+                        ...(env.browser === 'edge'
+                            ? []
+                            : [
+                                  new o_inputs.Link({
+                                      name: 'dependencies',
+                                      href: ext.msg('dependencies_link_href'),
+                                  }),
+                              ]),
+                    ],
+                }),
             ];
 
             this.sections = s_utils.Utils.to_object({
@@ -317,7 +313,7 @@ class Class {
             data.settings.prefs.current_section =
                 d_sections_loftyshaky_settings.Sections.current_section;
 
-            d_data.Manipulation.send_msg_to_update_settings({
+            void d_data.Manipulation.send_msg_to_update_settings({
                 settings: {
                     prefs: {
                         ...data.settings.prefs,

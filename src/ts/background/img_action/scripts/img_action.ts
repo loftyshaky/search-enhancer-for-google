@@ -7,12 +7,11 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public run = ({ type, img_url }: { type: string; img_url: string }): Promise<void> =>
         new Promise(() => {
-            err_async(async () => {
+            void err_async(async () => {
                 if (['view_img', 'search_by_img'].includes(type)) {
                     we.tabs.create({ url: img_url });
                 } else if (['download_img', 'save_img_as'].includes(type)) {

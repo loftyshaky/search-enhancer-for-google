@@ -5,4 +5,4 @@ import '@loftyshaky/shared/shared_clean';
 import 'shared_clean/internal';
 import { init } from 'background/internal';
 
-init();
+void init();

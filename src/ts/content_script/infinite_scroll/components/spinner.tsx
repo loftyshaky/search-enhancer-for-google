@@ -16,6 +16,7 @@ export const Spinner: React.FunctionComponent<p_infinite_scroll.Spinner> = obser
             {Array(8)
                 .fill(undefined)
                 .map((item, i) => (
+                    // oxlint-disable-next-line react/no-array-index-key
                     <c_infinite_scroll.SpinnerItem key={i} i={i} />
                 ))}
         </div>

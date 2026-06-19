@@ -77,7 +77,7 @@ class Class {
                             globalThis.requestAnimationFrame(
                                 async (): Promise<void> =>
                                     err_async(async () => {
-                                        s_actions.Actions.run_reload_actions();
+                                        void s_actions.Actions.run_reload_actions();
 
                                         if (this.last_iframe) {
                                             const iframe_doc: Document | null =
@@ -223,7 +223,7 @@ class Class {
 
                 if (n(separator_root) && n(separator_root.shadowRoot)) {
                     const mutation_observer = new MutationObserver((): void => {
-                        this.resize_iframe({ cur_iframe_i });
+                        void this.resize_iframe({ cur_iframe_i });
                     });
 
                     mutation_observer.observe(separator_root.shadowRoot, {
@@ -239,7 +239,7 @@ class Class {
                 );
 
                 const resize_observer = new ResizeObserver((): void => {
-                    this.resize_iframe({ cur_iframe_i });
+                    void this.resize_iframe({ cur_iframe_i });
                 });
 
                 if (n(search_results_w)) {
@@ -254,26 +254,25 @@ class Class {
             const cur_iframe: HTMLIFrameElement = this.iframes[cur_iframe_i];
             const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
-            await globalThis.requestAnimationFrame(
-                async (): Promise<void> =>
-                    err_async(async () => {
-                        cur_iframe.style.height = '';
+            globalThis.requestAnimationFrame((): void =>
+                err(() => {
+                    cur_iframe.style.height = '';
 
-                        await globalThis.requestAnimationFrame(
-                            (): Promise<void> =>
-                                err(async () => {
-                                    await x.delay(0);
+                    globalThis.requestAnimationFrame(
+                        (): Promise<void> =>
+                            err(async () => {
+                                await x.delay(0);
 
-                                    runInAction(() => {
-                                        if (n(iframe_doc)) {
-                                            cur_iframe.style.height = `${iframe_doc.documentElement.scrollHeight}px`;
-                                            iframe_doc.documentElement.scrollTop = 0;
-                                            document.documentElement.scrollTop = scroll_top;
-                                        }
-                                    });
-                                }, 'seg_1168'),
-                        );
-                    }, 'seg_1169'),
+                                runInAction(() => {
+                                    if (n(iframe_doc)) {
+                                        cur_iframe.style.height = `${iframe_doc.documentElement.scrollHeight}px`;
+                                        iframe_doc.documentElement.scrollTop = 0;
+                                        document.documentElement.scrollTop = scroll_top;
+                                    }
+                                });
+                            }, 'seg_1168'),
+                    );
+                }, 'seg_1169'),
             );
         }, 'seg_1074');
 

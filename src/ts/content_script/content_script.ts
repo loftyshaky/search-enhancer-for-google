@@ -6,7 +6,7 @@ const init_all = () => {
     s_location.Location.set_current_location();
 
     init_shared();
-    init();
+    void init();
 };
 document.addEventListener('DOMContentLoaded', () => {
     init_all();

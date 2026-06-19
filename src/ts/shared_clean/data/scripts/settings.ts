@@ -1,4 +1,4 @@
-import type { t} from '@loftyshaky/shared/shared_clean';
+import type { t } from '@loftyshaky/shared/shared_clean';
 import { s_data } from '@loftyshaky/shared/shared_clean';
 
 class Class {
@@ -8,10 +8,9 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
-    public apply_unchanged_prefs = ({ settings }: { settings: any }): t.AnyRecord =>
+    public apply_unchanged_prefs = ({ settings }: { settings: t.AnyRecord }): t.AnyRecord =>
         err(
             () =>
                 s_data.Settings.apply_unchanged_prefs({

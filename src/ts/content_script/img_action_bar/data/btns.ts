@@ -1,6 +1,6 @@
 import mapValues from 'lodash/mapValues';
 
-import type { t} from '@loftyshaky/shared/shared';
+import type { t } from '@loftyshaky/shared/shared';
 import { s_utils } from '@loftyshaky/shared/shared';
 import { o_img_action_bar, s_img_action_bar } from 'content_script/internal';
 import type { SvgType } from 'shared/internal';
@@ -13,7 +13,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public component: t.AnyRecord = {};

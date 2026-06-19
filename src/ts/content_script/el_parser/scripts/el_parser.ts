@@ -2,16 +2,10 @@ import get from 'lodash/get';
 import last from 'lodash/last';
 import tinycolor from 'tinycolor2';
 
-import type { t} from '@loftyshaky/shared/shared';
+import type { t } from '@loftyshaky/shared/shared';
 import { s_viewport } from '@loftyshaky/shared/shared';
-import type {
-    i_img_action_bar} from 'content_script/internal';
-import {
-    s_icons,
-    s_infinite_scroll,
-    s_location,
-    s_text_dir
-} from 'content_script/internal';
+import type { i_img_action_bar } from 'content_script/internal';
+import { s_icons, s_infinite_scroll, s_location, s_text_dir } from 'content_script/internal';
 import { s_suffix } from 'shared_clean/internal';
 
 class Class {
@@ -316,15 +310,16 @@ class Class {
                 const links = sa<HTMLLinkElement>('a[role="link"]');
 
                 if (n(links)) {
-                    this.img_viewer = [...links].find((link: HTMLLinkElement): boolean =>
-                        err(
-                            () =>
-                                x.closest(
-                                    link,
-                                    '[style*="transform: translate3d(0px, 0px, 0px)"]:not([style*="display: none"])',
-                                ), // check for visibility
-                            'seg_1036',
-                        ),
+                    this.img_viewer = [...links].find(
+                        (link: HTMLLinkElement): HTMLElement | undefined =>
+                            err(
+                                () =>
+                                    x.closest(
+                                        link,
+                                        '[style*="transform: translate3d(0px, 0px, 0px)"]:not([style*="display: none"])',
+                                    ), // check for visibility
+                                'seg_1036',
+                            ),
                     );
                 }
             }

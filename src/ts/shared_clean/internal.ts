@@ -1,6 +1,3 @@
-// eslint-disable-next-line spaced-comment
-/// <reference types="../@loftyshaky/shared/globals.d.ts" />
-
 export * as d_data from 'shared_clean/data/data';
 
 export * as s_css_vars from 'shared_clean/css_vars/scripts';

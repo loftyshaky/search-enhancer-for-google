@@ -1,8 +1,8 @@
-import type { t } from '@loftyshaky/shared/shared_clean';
+import type { i_error, t } from '@loftyshaky/shared/shared_clean';
 import { s_data, s_icons, s_img_action } from 'background/internal';
 
 we.runtime.onMessage.addListener(
-    (msg: t.Msg): Promise<any> =>
+    (msg: t.Msg): Promise<t.Any> =>
         err_async(async () => {
             const msg_str: string = msg.msg;
 
@@ -22,10 +22,14 @@ we.runtime.onMessage.addListener(
                         restore_back_up: n(msg.restore_back_up) ? msg.restore_back_up : false,
                     })
                         .then(() => true)
-                        .catch((error_obj: any) => show_err_ribbon(error_obj, 'seg_1244'));
+                        .catch((error_obj: unknown) => {
+                            if (n(error_obj)) {
+                                show_err_ribbon(error_obj as i_error.ErrorObj, 'seg_1244');
+                            }
+                        });
                 }
 
-                s_data.Manipulation.update_settings_debounce(
+                void s_data.Manipulation.update_settings_debounce(
                     msg.settings,
                     n(msg.replace) ? msg.replace : false,
                     n(msg.transform) ? msg.transform : false,

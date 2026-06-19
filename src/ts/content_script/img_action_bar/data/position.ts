@@ -52,7 +52,7 @@ class Class {
     public set_bottom_all = debounce(
         (): void =>
             err(() => {
-                s_el_parser.ElParser.img_data.forEach((not_used: any, i: number): void =>
+                s_el_parser.ElParser.img_data.forEach((not_used, i: number): void =>
                     err(() => {
                         this.set_bottom({ img_viewer_i: i });
                     }, 'seg_1203'),

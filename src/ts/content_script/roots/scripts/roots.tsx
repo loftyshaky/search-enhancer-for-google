@@ -1,10 +1,10 @@
 import type { FunctionComponent } from 'react';
-import React from 'react';
+
 import ReactDOM from 'react-dom/client';
 
+import type { t } from '@loftyshaky/shared/shared';
 import { c_crash_handler } from '@loftyshaky/shared/shared';
-import type {
-    i_img_action_bar} from 'content_script/internal';
+import type { i_img_action_bar } from 'content_script/internal';
 import {
     c_icons,
     c_img_action_bar,
@@ -16,7 +16,7 @@ import {
     s_infinite_scroll,
     s_location,
     s_roots,
-    s_theme
+    s_theme,
 } from 'content_script/internal';
 import { s_suffix } from 'shared_clean/internal';
 
@@ -27,10 +27,9 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
-    private component: Record<string, FunctionComponent<any>> = {};
+    private component: Record<string, FunctionComponent<t.Any>> = {};
 
     public init_component = (): void =>
         err(() => {
@@ -91,7 +90,7 @@ class Class {
                                     }
 
                                     if (!n(icons_el)) {
-                                        this.append_root({
+                                        void this.append_root({
                                             name,
                                             parent: el,
                                             i,
@@ -121,7 +120,7 @@ class Class {
                             s_el_parser.ElParser.preview_img_viewer_ws.length !== 0
                         ) {
                             if (!append_only_to_preview_img_viewers) {
-                                this.append_root({
+                                void this.append_root({
                                     name,
                                     parent: img_viewer,
                                     i: 0,
@@ -138,7 +137,7 @@ class Class {
                                         });
 
                                     if (n(preview_img_url)) {
-                                        this.append_root({
+                                        void this.append_root({
                                             name,
                                             parent: preview_img_viewer_ws,
                                             i: 0,
@@ -234,7 +233,7 @@ class Class {
                             if (n(css)) {
                                 x.bind(css, 'load', (): void =>
                                     err(() => {
-                                        const Component: FunctionComponent<any> =
+                                        const Component: FunctionComponent<t.Any> =
                                             this.component[name];
 
                                         ReactDOM.createRoot(content).render(

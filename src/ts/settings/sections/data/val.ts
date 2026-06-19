@@ -1,5 +1,5 @@
-import type { o_color, i_color, i_inputs } from '@loftyshaky/shared/inputs';
-import { d_inputs, d_color } from '@loftyshaky/shared/inputs';
+import type { i_color, i_inputs, o_color } from '@loftyshaky/shared/inputs';
+import { d_color, d_inputs } from '@loftyshaky/shared/inputs';
 import { s_sections } from '@loftyshaky/shared/settings';
 import type { i_color as i_color_loftyshaky_color, i_data } from '@loftyshaky/shared/shared';
 import { d_sections } from 'settings/internal';
@@ -12,9 +12,8 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {
-        this.get_os();
+        void this.get_os();
     }
 
     public os: string = '';
@@ -91,7 +90,7 @@ class Class {
 
     public remove_val = ({ input }: { input: i_inputs.Input }): Promise<void> =>
         err_async(async () => {
-            this.change({ input });
+            void this.change({ input });
         }, 'seg_1142');
 
     public save_selected_palette_color = ({

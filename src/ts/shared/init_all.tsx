@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@loftyshaky/shared/ext';
@@ -21,7 +20,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     private announcement_root: HTMLDivElement | undefined = undefined;
@@ -33,7 +31,7 @@ class Class {
 
     public init = (): Promise<void> =>
         new Promise((reslove) => {
-            err_async(async () => {
+            void err_async(async () => {
                 const on_loading_screen_render = (): void =>
                     err(() => {
                         const loading_screen_root_el = s<HTMLDivElement>(
@@ -50,12 +48,12 @@ class Class {
                                 x.bind(loading_screen_css, 'load', (): void =>
                                     err(() => {
                                         if (page === 'dependencies') {
-                                            s_theme_shared.Theme.set({
+                                            void s_theme_shared.Theme.set({
                                                 name: data.settings.prefs.options_page_theme,
                                             });
                                         }
 
-                                        d_loading_screen.Visibility.show();
+                                        void d_loading_screen.Visibility.show();
 
                                         reslove();
                                     }, 'seg_1158'),
@@ -187,7 +185,6 @@ class Class {
 
                                     void s_theme_shared.Theme.set({
                                         name: data.settings.prefs.options_page_theme,
-                                        additional_theme_callback: s_theme.Theme.set,
                                     });
 
                                     if (n(announcement_css)) {
@@ -208,7 +205,7 @@ class Class {
                 err_async(async () => {
                     await d_inputs.InputWidth.calculate();
 
-                    d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
+                    void d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
 
                     s_tab_index.TabIndex.bind_set_input_type_f();
                 }, 'seg_1148');
@@ -221,7 +218,7 @@ class Class {
                                 err(() => {
                                     const settings_css = x.css('settings_css', document.head);
 
-                                    s_theme_shared.Theme.set({
+                                    void s_theme_shared.Theme.set({
                                         name: data.settings.prefs.options_page_theme,
                                     });
 
@@ -295,7 +292,7 @@ class Class {
                                     if (n(side_panel_css)) {
                                         x.bind(side_panel_css, 'load', (): void =>
                                             err(() => {
-                                                s_no_tr.State.disable({
+                                                void s_no_tr.State.disable({
                                                     el: this.side_panel_root,
                                                 });
                                             }, 'seg_1155'),
@@ -315,7 +312,7 @@ class Class {
 
             const on_css_load = (): Promise<void> =>
                 err_async(async () => {
-                    d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
+                    void d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
                 }, 'seg_1230');
 
             if (n(this.dependencies_root)) {

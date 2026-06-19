@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
 
 import type { t } from '@loftyshaky/shared/shared';
 import type { p_side_panel } from 'content_script/internal';

@@ -30,7 +30,7 @@ const observer = new MutationObserver((mutations): void =>
                             `.${new s_suffix.Suffix('spinner').result}`,
                         )
                     ) {
-                        s_ai_block.Visibility.set();
+                        void s_ai_block.Visibility.set();
                         s_actions.Actions.run_reload_actions_2_debounce();
 
                         if (s_location.Location.is_shopping_page) {

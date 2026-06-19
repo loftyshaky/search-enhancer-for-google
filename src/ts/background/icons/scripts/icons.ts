@@ -12,7 +12,6 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    // eslint-disable-next-line no-useless-constructor, no-empty-function
     private constructor() {}
 
     public ip_to_country: i_icons.IpToCountry[] = [];
@@ -32,7 +31,7 @@ class Class {
             let icon_url: string | undefined;
 
             // eslint-disable-next-line no-restricted-syntax
-            for await (const favicon_provider of favicon_providers) {
+            for (const favicon_provider of favicon_providers) {
                 if (data.settings.prefs.favicon_providers[favicon_provider]) {
                     icon_url = await this.get_favicon_url_inner({
                         url,
@@ -94,14 +93,14 @@ class Class {
             };
 
             if (n(this.ip_to_country)) {
-                const region_name: t.AnyRecord = new (Intl as any).DisplayNames(
+                const region_name: t.AnyRecord = new (Intl as t.AnyRecord).DisplayNames(
                     [we.i18n.getUILanguage()],
                     { type: 'region' },
                 );
 
                 const response_2: Response = await fetch(`https://dns.google/resolve?name=${url}`);
-                const json: any = await response_2.json();
-                const ip: string = (last(json.Answer) as any).data;
+                const json: t.AnyRecord = await response_2.json();
+                const ip: string = (last(json.Answer) as t.AnyRecord).data;
 
                 const record: i_icons.IpToCountry | undefined = findLast(
                     this.ip_to_country,
@@ -152,7 +151,9 @@ class Class {
             this.generating_ip_to_country_arr = false;
 
             if (this.requested_server_location_before_ip_to_country_arr_was_ready) {
-                ext.send_msg_to_all_tabs({ msg: 'run_deferred_generate_server_location_url_fs' });
+                void ext.send_msg_to_all_tabs({
+                    msg: 'run_deferred_generate_server_location_url_fs',
+                });
             }
         }, 'seg_1012');
 

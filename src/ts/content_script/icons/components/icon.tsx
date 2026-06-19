@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
 
 import type { p_icons } from 'content_script/internal';
 import { d_icons } from 'content_script/internal';

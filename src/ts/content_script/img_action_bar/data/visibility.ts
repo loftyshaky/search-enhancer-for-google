@@ -18,7 +18,7 @@ class Class {
         });
     }
 
-    public is_visible: { [index: string]: any } = {};
+    public is_visible: { [index: string]: boolean } = {};
     private previous_target: HTMLElement | undefined = undefined;
 
     public change = (e: MouseEvent): void =>
@@ -58,7 +58,7 @@ class Class {
             );
 
             const current_img_viewer: HTMLElement | undefined = x.closest(
-                e.target as any,
+                e.target as HTMLElement | undefined,
                 '[data-img_viewer_i]',
             );
 
@@ -66,7 +66,7 @@ class Class {
             set_is_visible_val({ img_viewer: current_img_viewer });
 
             if (n(current_img_viewer)) {
-                this.previous_target = e.target as any;
+                this.previous_target = e.target as HTMLElement | undefined;
             }
         }, 'seg_1058');
 

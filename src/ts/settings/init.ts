@@ -8,5 +8,5 @@ export const init = (): Promise<void> =>
         d_sections.Options.init();
         d_sections.Sections.init();
 
-        InitAll.render_settings();
+        void InitAll.render_settings();
     }, 'seg_1125');

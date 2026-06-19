@@ -1,5 +1,6 @@
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import type { MouseEvent } from 'react';
+
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
 import { s_css_vars } from '@loftyshaky/shared/shared';
 import type { i_side_panel } from 'content_script/internal';
@@ -64,7 +65,7 @@ class Class {
         e: MouseEvent,
     ): void =>
         err(() => {
-            if (n(e.preventDefault)) {
+            if (n(e.preventDefault.bind(e))) {
                 e.preventDefault();
             }
 
