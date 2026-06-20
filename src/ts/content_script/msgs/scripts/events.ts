@@ -10,7 +10,7 @@ import {
 } from 'content_script/internal';
 
 we.runtime.onMessage.addListener(
-    (msg: t.Msg): t.Any =>
+    (msg: t.Any): t.Any =>
         err(() => {
             const msg_str: string = msg.msg;
 

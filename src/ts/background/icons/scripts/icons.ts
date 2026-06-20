@@ -30,7 +30,6 @@ class Class {
             const favicon_providers: string[] = Object.keys(s_icons.Icons.favicon_providers);
             let icon_url: string | undefined;
 
-            // eslint-disable-next-line no-restricted-syntax
             for (const favicon_provider of favicon_providers) {
                 if (data.settings.prefs.favicon_providers[favicon_provider]) {
                     icon_url = await this.get_favicon_url_inner({

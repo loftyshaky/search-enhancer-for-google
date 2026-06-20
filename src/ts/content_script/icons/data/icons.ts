@@ -90,7 +90,6 @@ class Class {
                         s_icons.Icons.favicon_providers,
                     );
 
-                    // eslint-disable-next-line no-restricted-syntax
                     for (const favicon_provider of favicon_providers) {
                         if (data.settings.prefs.favicon_providers[favicon_provider]) {
                             const icon_url: string = s_icons.Icons.construct_favicon_url({

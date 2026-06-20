@@ -2,6 +2,7 @@ import type { i_color, i_inputs, o_color } from '@loftyshaky/shared/inputs';
 import { d_color, d_inputs } from '@loftyshaky/shared/inputs';
 import { s_sections } from '@loftyshaky/shared/settings';
 import type { i_color as i_color_loftyshaky_color, i_data } from '@loftyshaky/shared/shared';
+import { s_theme } from '@loftyshaky/shared/shared_clean';
 import { d_sections } from 'settings/internal';
 import { d_data, s_css_vars } from 'shared_clean/internal';
 
@@ -84,6 +85,12 @@ class Class {
                         },
                     },
                     load_settings: true,
+                });
+            }
+
+            if (input.name === 'options_page_theme') {
+                await s_theme.Theme.set({
+                    name: data.settings.prefs.options_page_theme,
                 });
             }
         }, 'seg_1138');

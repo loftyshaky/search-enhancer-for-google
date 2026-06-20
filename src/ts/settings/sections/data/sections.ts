@@ -206,18 +206,22 @@ class Class {
                                 ),
                                 event_callback: d_sections.Val.change,
                             }), */
-                        new o_inputs.Text({
-                            name: 'img_downloads_dir',
-                            include_help: true,
-                            event_callback: d_sections.Val.change,
-                            warn_state_checker: d_sections.Validation.validate_input,
-                            remove_val_callback: d_sections.Val.remove_val,
-                        }),
+                        ...(env.browser === 'firefox'
+                            ? []
+                            : [
+                                  new o_inputs.Text({
+                                      name: 'img_downloads_dir',
+                                      include_help: true,
+                                      event_callback: d_sections.Val.change,
+                                      warn_state_checker: d_sections.Validation.validate_input,
+                                      remove_val_callback: d_sections.Val.remove_val,
+                                  }),
+                              ]),
                     ],
                 }),
                 ...d_sections_loftyshaky_settings.Sections.make_shared_sections({
                     download_back_up_callback: ext.storage_get,
-                    upload_back_up_callback: d_sections.Restore.restore_back_up,
+                    upload_back_up_save_callback: d_sections.Restore.restore_back_up,
                     restore_defaults_callback: () => d_sections.Restore.restore_confirm(),
                     input_change_val_callback: d_sections.Val.change,
                     admin_inputs: [

@@ -170,7 +170,7 @@ class Class {
             const on_css_load = (): Promise<void> =>
                 err_async(async () => {
                     await d_loading_screen.Visibility.hide({ app_id: s_suffix.app_id });
-                }, 'cnt_1354');
+                }, 'seg_1254');
 
             if (n(this.announcement_root)) {
                 ReactDOM.createRoot(this.announcement_root).render(

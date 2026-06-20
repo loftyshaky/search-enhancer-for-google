@@ -133,7 +133,6 @@ class Class {
                                             news_icon_selector,
                                         ) ||
                                             x.matches(
-                                                // eslint-disable-next-line max-len
                                                 el_2.firstElementChild
                                                     .nextElementSibling as HTMLElement,
                                                 news_icon_selector,
@@ -416,10 +415,8 @@ class Class {
                                     img_data_el_html_no_before.lastIndexOf(']') + 1,
                                 );
 
-                            // eslint-disable-next-line prefer-destructuring
                             const img_data_initial = JSON.parse(img_data_el_html_no_after)[56];
 
-                            // eslint-disable-next-line prefer-destructuring
                             this.img_data =
                                 img_data_initial[
                                     img_data_initial.length === 1 ? 0 : img_data_initial.length - 1

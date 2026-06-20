@@ -13,7 +13,6 @@ class Class {
 
     public restore_confirm = (): Promise<void> =>
         err_async(async () => {
-            // eslint-disable-next-line no-alert
             const confirmed_restore: boolean = globalThis.confirm(
                 ext.msg('restore_defaults_confirm'),
             );
@@ -32,7 +31,7 @@ class Class {
                     load_settings_content_script: true,
                 });
 
-                void s_theme.Theme.set({
+                await s_theme.Theme.set({
                     name: data.settings.prefs.options_page_theme,
                 });
                 s_css_vars.CssVars.set();

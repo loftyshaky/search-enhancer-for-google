@@ -17,10 +17,8 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
         url,
     });
 
-    // eslint-disable-next-line no-unused-expressions
-    d_icons.Icons.favicons[url];
-    // eslint-disable-next-line no-unused-expressions
-    d_icons.Icons.server_locations[url];
+    void d_icons.Icons.favicons[url];
+    void d_icons.Icons.server_locations[url];
 
     return d_icons.Icons.show_icon_w({ type }) ? (
         <span className={x.cls(['icon_w', type])}>

@@ -11,6 +11,8 @@ class Class {
     private constructor() {}
 
     public allow_load_settings: boolean = true;
+    public is_internal_storage_write: boolean = false;
+    private is_internal_storage_write_timeout: number = 0;
 
     public send_msg_to_update_settings = ({
         settings,
@@ -32,6 +34,10 @@ class Class {
         restore_back_up?: boolean;
     }): Promise<void> =>
         err_async(async () => {
+            clearTimeout(this.is_internal_storage_write_timeout);
+
+            this.is_internal_storage_write = true;
+
             await s_data.Cache.set({
                 key: 'updating_settings',
                 val: true,
@@ -48,6 +54,10 @@ class Class {
                 load_settings_content_script,
                 restore_back_up,
             });
+
+            this.is_internal_storage_write_timeout = setTimeout(() => {
+                this.is_internal_storage_write = false;
+            }, 500);
         }, 'seg_1238');
 }
 

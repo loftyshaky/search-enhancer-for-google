@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import debounce from 'lodash/debounce';
 
+import type { t } from '@loftyshaky/shared/shared_clean';
 import {
     d_schema,
     o_schema,
@@ -432,7 +433,7 @@ class Class {
     public set_session_access_level = (): void =>
         err(() => {
             if (env.browser !== 'firefox') {
-                we.storage.session.setAccessLevel({
+                (we.storage.session as t.AnyRecord).setAccessLevel({
                     accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS',
                 });
             }

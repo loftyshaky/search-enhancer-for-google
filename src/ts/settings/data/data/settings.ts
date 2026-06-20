@@ -1,4 +1,4 @@
-import { d_data, s_theme } from '@loftyshaky/shared/shared';
+import { d_data } from '@loftyshaky/shared/shared';
 import { s_css_vars } from 'shared_clean/internal';
 
 class Class {
@@ -12,13 +12,10 @@ class Class {
 
     public set_from_storage = (): Promise<void> =>
         err_async(async () => {
-            void d_data.Settings.set_from_storage();
+            await d_data.Settings.set_from_storage();
 
-            void s_theme.Theme.set({
-                name: data.settings.prefs.options_page_theme,
-            });
             s_css_vars.CssVars.set();
-        }, 'cot_1240');
+        }, 'seg_1255');
 }
 
 export const Settings = Class.get_instance();

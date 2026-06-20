@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import Archive from '../../svg/archive.svg';
 import Article from '../../svg/article.svg';
 import Collections from '../../svg/collections.svg';

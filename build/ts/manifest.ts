@@ -7,7 +7,7 @@ const app_root = appRoot.path;
 const manifest_shared = new ManifestShared({ app_root });
 
 export class Manifest {
-    generate = ({ env }: { env: Record<string, string> }) => {
+    public generate = ({ env }: { env: Record<string, string> }) => {
         // oxlint-disable-next-line typescript/no-explicit-any
         const manifest: Record<string, any> = {
             manifest_version: 3,
@@ -42,7 +42,6 @@ export class Manifest {
                     ? { scripts: ['background.mjs'] }
                     : { service_worker: 'background.mjs' }),
             },
-
             options_ui: {
                 page: 'settings.html',
                 open_in_tab: true,

@@ -2,32 +2,43 @@ import type { Target } from 'vite-plugin-static-copy';
 
 import path from 'node:path';
 
-import Reloader from 'advanced-extension-reloader-watch-2/umd/reloader';
+import { Reloader } from 'advanced-extension-reloader-watch-2/reloader';
 import appRoot from 'app-root-path';
-import { type LibraryOptions, type UserConfig, defineConfig, loadEnv } from 'vite';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import chokidar from 'chokidar';
+import {
+    type LibraryOptions,
+    type PluginOption,
+    type UserConfig,
+    defineConfig,
+    loadEnv,
+} from 'vite';
 
 import { Dependencies as DependenciesShared } from '@loftyshaky/shared/build/ts/dependencies';
 import { Locales } from '@loftyshaky/shared/build/ts/locales';
+import { get_shared_dist_path, watch } from '@loftyshaky/shared/build/ts/plugins/watch';
 import { generate_shared_config } from '@loftyshaky/shared/build/ts/vite.config';
 
 import { Dependencies } from './build/ts/dependencies';
 import { Manifest } from './build/ts/manifest';
 
 const app_root = appRoot.path.replaceAll(path.sep, path.posix.sep);
-
-const extension_id = 'mfihhepjphokhfnlioficodoomlnhlbd';
-
 const dependencies_shared = new DependenciesShared({ app_root });
-
 const manifest = new Manifest();
 const locales = new Locales({ app_root, exclude_shared_locales: ['de'] });
 const dependencies = new Dependencies();
 
 const config = defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
+    const extension_id =
+        env.browser === 'firefox'
+            ? 'search-enhancer-for-google@loftyshaky'
+            : 'mfihhepjphokhfnlioficodoomlnhlbd';
+    const core_port: number = env.browser === 'firefox' ? 8223 : 7223;
+    const content_script_port: number = env.browser === 'firefox' ? 8224 : 7224;
     const reloader = new Reloader({
-        port: env.content_script === 'true' ? 7224 : 7223,
+        port: env.content_script === 'true' ? content_script_port : core_port,
+        firefox_advanced_extension_reloader_internal_uuids:
+            env.advanced_extension_reloader_firefox_internal_uuids.split(','),
     });
 
     reloader.watch();
@@ -35,6 +46,7 @@ const config = defineConfig(({ mode }) => {
     const dest_path: string = path.posix.join(app_root, 'dist');
     const paths = {
         ts: path.join(app_root, 'src', 'ts'),
+        scss: path.join(app_root, 'src', 'scss'),
     };
     const copy_paths: Target[] =
         env.content_script === 'true'
@@ -56,7 +68,6 @@ const config = defineConfig(({ mode }) => {
                       rename: { stripBase: true },
                   },
               ];
-
     const shared_config = generate_shared_config({
         mode,
         env,
@@ -65,26 +76,28 @@ const config = defineConfig(({ mode }) => {
         copy_paths,
         callback_build_start: () => {},
         callback_close_bundle: ({ build_error }: { build_error: boolean }) => {
-            manifest.generate({
-                env,
-            });
-            void locales.merge();
-
-            dependencies_shared.add_missing_dependesies({
-                extension_specific_missing_dependencies: dependencies.missing_dependencies,
-            });
-
-            if (build_error) {
-                reloader.play_error_notification({ extension_id });
-            } else {
-                reloader.reload({
-                    extension_id,
-                    play_notifications: true,
+            if (env.content_script === 'false') {
+                manifest.generate({
+                    env,
                 });
+                void locales.merge();
+
+                dependencies_shared.add_missing_dependesies({
+                    extension_specific_missing_dependencies: dependencies.missing_dependencies,
+                });
+
+                if (build_error) {
+                    reloader.play_error_notification({ extension_id });
+                } else {
+                    reloader.reload({
+                        extension_id,
+                        play_notifications: true,
+                        delay_after_extension_reload: 2000,
+                    });
+                }
             }
         },
-        viteStaticCopy,
-    }) as UserConfig & { build: { lib: LibraryOptions } };
+    }) as UserConfig & { build: { lib: LibraryOptions } } & { plugins: PluginOption[] };
 
     if (env.content_script === 'true') {
         shared_config.build.lib.entry = {
@@ -95,60 +108,40 @@ const config = defineConfig(({ mode }) => {
             ...(shared_config.build.lib.entry as Record<string, unknown>),
             background: path.join(paths.ts, 'background', 'background.ts'),
             settings: path.join(paths.ts, 'settings', 'settings.ts'),
-            settings_css: path.join(app_root, 'src', 'scss', 'settings', 'index.scss'),
-            content_script_css: path.join(app_root, 'src', 'scss', 'content_script', 'index.scss'),
-            icons: path.join(app_root, 'src', 'scss', 'content_script', 'embed', 'icons.scss'),
-            separator: path.join(
-                app_root,
-                'src',
-                'scss',
-                'content_script',
-                'embed',
-                'separator.scss',
-            ),
+            settings_css: path.join(paths.scss, 'settings', 'index.scss'),
+            content_script_css: path.join(paths.scss, 'content_script', 'index.scss'),
+            icons: path.join(paths.scss, 'content_script', 'embed', 'icons.scss'),
+            separator: path.join(paths.scss, 'content_script', 'embed', 'separator.scss'),
             google_iframe_inner: path.join(
-                app_root,
-                'src',
-                'scss',
+                paths.scss,
                 'content_script',
                 'embed',
                 'google_iframe_inner.scss',
             ),
-            spinner: path.join(app_root, 'src', 'scss', 'content_script', 'embed', 'spinner.scss'),
-            load_end_msg: path.join(
-                app_root,
-                'src',
-                'scss',
-                'content_script',
-                'embed',
-                'load_end_msg.scss',
-            ),
-            side_panel: path.join(
-                app_root,
-                'src',
-                'scss',
-                'content_script',
-                'embed',
-                'side_panel.scss',
-            ),
-            dark_ui: path.join(app_root, 'src', 'scss', 'content_script', 'embed', 'dark_ui.scss'),
-            img_action_bar: path.join(
-                app_root,
-                'src',
-                'scss',
-                'content_script',
-                'embed',
-                'img_action_bar.scss',
-            ),
-            favicon_hidden: path.join(
-                app_root,
-                'src',
-                'scss',
-                'content_script',
-                'embed',
-                'favicon_hidden.scss',
-            ),
+            spinner: path.join(paths.scss, 'content_script', 'embed', 'spinner.scss'),
+            load_end_msg: path.join(paths.scss, 'content_script', 'embed', 'load_end_msg.scss'),
+            side_panel: path.join(paths.scss, 'content_script', 'embed', 'side_panel.scss'),
+            dark_ui: path.join(paths.scss, 'content_script', 'embed', 'dark_ui.scss'),
+            img_action_bar: path.join(paths.scss, 'content_script', 'embed', 'img_action_bar.scss'),
+            favicon_hidden: path.join(paths.scss, 'content_script', 'embed', 'favicon_hidden.scss'),
         };
+
+        shared_config.plugins = [
+            ...shared_config.plugins,
+            watch({
+                paths_to_watch: [
+                    get_shared_dist_path({ app_root, env }),
+                    path.join(app_root, 'build', 'ts'),
+                    path.join(app_root, 'src', '_locales'),
+                    path.join(app_root, 'src', 'audio'),
+                    path.join(app_root, 'src', 'html'),
+                    path.join(app_root, 'src', 'icons'),
+                    path.join(app_root, 'src', 'scss'),
+                ],
+                reload_trigger_file: path.join(paths.ts, 'background', 'background.ts'),
+                chokidar,
+            }),
+        ];
     }
 
     return shared_config;

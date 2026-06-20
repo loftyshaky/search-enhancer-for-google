@@ -9,7 +9,7 @@ export const init = (): Promise<void> =>
         await s_data.Manipulation.on_init_set_from_storage();
         await s_icons.Icons.generate_ip_to_country_arr();
         await ext.inject_js_and_css_in_content_script(
-            ['content_script.mjs'],
+            ['content_script.js'],
             ['content_script_css.css'],
         );
     }, 'seg_1016');

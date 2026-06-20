@@ -5,6 +5,7 @@ import {
     d_side_panel,
     s_actions,
     s_el_parser,
+    s_google_settings,
     s_location,
     s_roots,
     s_theme,
@@ -174,6 +175,7 @@ class Class {
                                     this.last_iframe.contentDocument;
 
                                 if (n(iframe_doc)) {
+                                    this.retarget_iframe_links({ iframe_doc });
                                     x.css(
                                         'font_face',
                                         iframe_doc.head,
@@ -198,14 +200,18 @@ class Class {
         | Document
         | undefined =>
         err(() => {
-            if (n(this.last_iframe)) {
-                const iframe_doc: Document | null = n(cur_iframe_i)
-                    ? this.iframes[cur_iframe_i].contentDocument
-                    : this.last_iframe.contentDocument;
+            const cur_iframe: HTMLIFrameElement | undefined = n(cur_iframe_i)
+                ? this.iframes[cur_iframe_i]
+                : this.last_iframe;
 
-                if (n(iframe_doc)) {
-                    return iframe_doc;
-                }
+            if (!n(cur_iframe)) {
+                return undefined;
+            }
+
+            const iframe_doc: Document | null = cur_iframe.contentDocument;
+
+            if (n(iframe_doc)) {
+                return iframe_doc;
             }
 
             return undefined;
@@ -251,28 +257,33 @@ class Class {
     private resize_iframe = ({ cur_iframe_i }: { cur_iframe_i: number }): Promise<void> =>
         err_async(async () => {
             const scroll_top = document.documentElement.scrollTop;
-            const cur_iframe: HTMLIFrameElement = this.iframes[cur_iframe_i];
+            const cur_iframe: HTMLIFrameElement | undefined = this.iframes[cur_iframe_i];
             const iframe_doc: Document | undefined = this.get_iframe_doc({ cur_iframe_i });
 
-            globalThis.requestAnimationFrame((): void =>
-                err(() => {
-                    cur_iframe.style.height = '';
+            if (!n(cur_iframe)) {
+                return;
+            }
 
-                    globalThis.requestAnimationFrame(
-                        (): Promise<void> =>
-                            err(async () => {
-                                await x.delay(0);
+            globalThis.requestAnimationFrame(
+                async (): Promise<void> =>
+                    err(() => {
+                        cur_iframe.style.height = '';
 
-                                runInAction(() => {
-                                    if (n(iframe_doc)) {
-                                        cur_iframe.style.height = `${iframe_doc.documentElement.scrollHeight}px`;
-                                        iframe_doc.documentElement.scrollTop = 0;
-                                        document.documentElement.scrollTop = scroll_top;
-                                    }
-                                });
-                            }, 'seg_1168'),
-                    );
-                }, 'seg_1169'),
+                        globalThis.requestAnimationFrame(
+                            (): Promise<void> =>
+                                err_async(async () => {
+                                    await x.delay(0);
+
+                                    runInAction(() => {
+                                        if (n(iframe_doc)) {
+                                            cur_iframe.style.height = `${iframe_doc.documentElement.scrollHeight}px`;
+                                            iframe_doc.documentElement.scrollTop = 0;
+                                            document.documentElement.scrollTop = scroll_top;
+                                        }
+                                    });
+                                }, 'seg_1168'),
+                        );
+                    }, 'seg_1169'),
             );
         }, 'seg_1074');
 
@@ -322,6 +333,68 @@ class Class {
                 ? '#rso'
                 : '#search';
         }, 'seg_1237');
+
+    private retarget_iframe_links = ({ iframe_doc }: { iframe_doc: Document }): void =>
+        // Prevent search result links on the second and following pages opening in an iframe when "Results in a new window" option in Google search settings is off.
+        err(() => {
+            if (
+                s_google_settings.GoogleSettings.open_results_in_new_window &&
+                !s_location.Location.is_books_page
+            ) {
+                // If "Results in a new window" option in Google search settings is on, let link open in a new tab. Always open results in "Books" in current tab.
+                return;
+            }
+
+            const retargeted_attr: string = new s_suffix.Suffix('data-seg-link-retargeted').result;
+
+            if (iframe_doc.documentElement.hasAttribute(retargeted_attr)) {
+                return;
+            }
+
+            iframe_doc.documentElement.setAttribute(retargeted_attr, 'true');
+
+            const links = sab<HTMLAnchorElement>(iframe_doc, 'a');
+
+            if (n(links)) {
+                links.forEach((link: HTMLAnchorElement): void =>
+                    err(() => {
+                        link.target = '_top';
+                    }, 'seg_1250'),
+                );
+            }
+
+            iframe_doc.addEventListener(
+                'click',
+                (e: MouseEvent): void =>
+                    err(() => {
+                        if (e.defaultPrevented || e.button !== 0) {
+                            return;
+                        }
+
+                        const target = e.target as HTMLElement | null;
+                        const link = n(target) ? x.closest(target, 'a') : undefined;
+
+                        if (!n(link)) {
+                            return;
+                        }
+
+                        const { href } = link as HTMLAnchorElement;
+
+                        if (!href) {
+                            return;
+                        }
+
+                        e.preventDefault();
+
+                        if (globalThis.top) {
+                            globalThis.top.location.href = href;
+                        } else {
+                            globalThis.location.href = href;
+                        }
+                    }, 'seg_1251'),
+                true,
+            );
+        }, 'seg_1249');
 }
 
 export const Iframe = Class.get_instance();

@@ -113,6 +113,15 @@
     "search_enhancer_for_google_for_edge_link_text": {
         "message": "⚗️ Search Enhancer for Google™ для Edge"
     },
+    "search_enhancer_for_google_opera_link_text": {
+        "message": "⚗️ Search Enhancer for Google™ для Opera"
+    },
+    "search_enhancer_for_google_yandex_link_text": {
+        "message": "⚗️ Search Enhancer for Google™ для Yandex Browser"
+    },
+    "search_enhancer_for_google_firefox_link_text": {
+        "message": "⚗️ Search Enhancer for Google™ для Firefox"
+    },
     "github_link_text": {
         "message": "😼 Search Enhancer for Google™ на Github"
     },

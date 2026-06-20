@@ -10,7 +10,7 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "skipLibCheck": true,
-        "typeRoots": ["node_modules/@types", "node_modules/web-ext-types"],
+        "typeRoots": ["node_modules/@types"],
         "paths": {
             "shared_clean/*": ["./src/ts/shared_clean/*"],
             "shared/*": ["./src/ts/shared/*"],
@@ -22,5 +22,5 @@
         }
     },
     "files": ["node_modules/@loftyshaky/shared/src/ts/custom.d.ts"],
-    "include": ["src/ts/**/*"]
+    "include": ["src/ts/**/*", "build/**/*"]
 }

@@ -2,7 +2,7 @@ import type { i_error, t } from '@loftyshaky/shared/shared_clean';
 import { s_data, s_icons, s_img_action } from 'background/internal';
 
 we.runtime.onMessage.addListener(
-    (msg: t.Msg): Promise<t.Any> =>
+    (msg: t.Any): t.Any =>
         err_async(async () => {
             const msg_str: string = msg.msg;
 

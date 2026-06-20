@@ -1,5 +1,7 @@
 import type { Downloads } from 'webextension-polyfill';
 
+import type { t } from '@loftyshaky/shared/shared_clean';
+
 class Class {
     private static instance: Class;
 
@@ -13,7 +15,7 @@ class Class {
         new Promise(() => {
             void err_async(async () => {
                 if (['view_img', 'search_by_img'].includes(type)) {
-                    we.tabs.create({ url: img_url });
+                    void we.tabs.create({ url: img_url });
                 } else if (['download_img', 'save_img_as'].includes(type)) {
                     const img_filename: string | undefined = img_url.split('/').pop();
 
@@ -41,10 +43,14 @@ class Class {
                                         filename: `${data.settings.prefs.img_downloads_dir}/${download_item_2.filename}`,
                                     });
 
-                                    we.downloads.onDeterminingFilename.removeListener(suggest_dir);
+                                    (
+                                        we.downloads as t.AnyRecord
+                                    ).onDeterminingFilename.removeListener(suggest_dir);
                                 }, 'seg_1014');
 
-                            we.downloads.onDeterminingFilename.addListener(suggest_dir);
+                            (we.downloads as t.AnyRecord).onDeterminingFilename.addListener(
+                                suggest_dir,
+                            );
                         }
 
                         await we.downloads.download(download_item);
