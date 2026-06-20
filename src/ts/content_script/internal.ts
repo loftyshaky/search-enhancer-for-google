@@ -18,6 +18,7 @@ export * as d_side_panel from 'content_script/side_panel/data';
 export * as s_actions from 'content_script/actions/scripts';
 export * as s_ai_block from 'content_script/ai_block/scripts';
 export * as s_el_parser from 'content_script/el_parser/scripts';
+export * as s_google_settings from 'content_script/google_settings/scripts';
 export * as s_icons from 'content_script/icons/scripts';
 export * as s_img_action_bar from 'content_script/img_action_bar/scripts';
 export * as s_infinite_scroll from 'content_script/infinite_scroll/scripts';
