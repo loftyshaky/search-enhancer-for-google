@@ -431,7 +431,11 @@ class Class {
 
     public set_session_access_level = (): void =>
         err(() => {
-            we.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
+            if (env.browser !== 'firefox') {
+                we.storage.session.setAccessLevel({
+                    accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS',
+                });
+            }
         }, 'seg_1236');
 }
 

@@ -37,9 +37,12 @@ export class Manifest {
                 },
             ],
             background: {
-                service_worker: 'background.mjs',
                 type: 'module',
+                ...(env.browser === 'firefox'
+                    ? { scripts: ['background.mjs'] }
+                    : { service_worker: 'background.mjs' }),
             },
+
             options_ui: {
                 page: 'settings.html',
                 open_in_tab: true,
@@ -477,6 +480,15 @@ export class Manifest {
                     description: '__MSG_copy_img_url_title__',
                 },
             },
+            ...(env.browser === 'firefox'
+                ? {
+                      browser_specific_settings: {
+                          gecko: {
+                              id: 'search-enhancer-for-google@loftyshaky',
+                          },
+                      },
+                  }
+                : {}),
         };
 
         if (env.test === 'true' && env.browser !== 'firefox') {

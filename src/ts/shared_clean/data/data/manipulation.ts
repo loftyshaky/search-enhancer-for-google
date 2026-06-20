@@ -39,7 +39,7 @@ class Class {
 
             await ext.send_msg_resp({
                 msg: 'update_settings_background',
-                settings,
+                settings: x.to_plain(settings),
                 replace,
                 update_instantly,
                 transform,

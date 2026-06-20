@@ -1,3 +1,4 @@
+console.log(454545);
 we.action.onClicked.addListener((): void =>
     err(() => {
         we.runtime.openOptionsPage();
