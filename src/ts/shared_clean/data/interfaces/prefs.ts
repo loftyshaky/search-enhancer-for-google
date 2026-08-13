@@ -9,6 +9,7 @@ export interface Prefs {
     developer_mode: boolean;
     enable_cut_features: boolean;
     persistent_service_worker: boolean;
+    detect_infinite_loops: boolean;
     offers_are_visible: boolean;
     colors: i_color.Color[];
     side_panel_position: string;

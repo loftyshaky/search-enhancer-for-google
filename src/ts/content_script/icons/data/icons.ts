@@ -2,6 +2,7 @@ import { action, makeObservable, observable, runInAction } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 import type { t } from '@loftyshaky/shared/shared';
+import { d_error } from '@loftyshaky/shared/shared_clean';
 import type { i_icons } from 'content_script/internal';
 import { s_el_parser, s_location } from 'content_script/internal';
 import type { i_icons as i_icons_shared } from 'shared_clean/internal';
@@ -91,6 +92,8 @@ class Class {
                     );
 
                     for (const favicon_provider of favicon_providers) {
+                        d_error.Error.print_error_code({ error_code: 'seg_1047', loop: true });
+
                         if (data.settings.prefs.favicon_providers[favicon_provider]) {
                             const icon_url: string = s_icons.Icons.construct_favicon_url({
                                 favicon_provider,

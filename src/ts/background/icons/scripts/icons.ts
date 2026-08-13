@@ -2,6 +2,7 @@ import findLast from 'lodash/findLast';
 import last from 'lodash/last';
 
 import type { t } from '@loftyshaky/shared/shared_clean';
+import { d_error } from '@loftyshaky/shared/shared_clean';
 import type { i_icons } from 'shared_clean/internal';
 import { s_icons } from 'shared_clean/internal';
 
@@ -31,6 +32,8 @@ class Class {
             let icon_url: string | undefined;
 
             for (const favicon_provider of favicon_providers) {
+                d_error.Error.print_error_code({ error_code: 'seg_1005', loop: true });
+
                 if (data.settings.prefs.favicon_providers[favicon_provider]) {
                     icon_url = await this.get_favicon_url_inner({
                         url,

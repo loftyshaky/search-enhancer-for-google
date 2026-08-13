@@ -25,6 +25,7 @@ class Class {
                     developer_mode: false,
                     enable_cut_features: false,
                     persistent_service_worker: false,
+                    detect_infinite_loops: false,
                     offers_are_visible: true,
                     colors: s_color.Colors.default_colors,
                     side_panel_position: 'right',

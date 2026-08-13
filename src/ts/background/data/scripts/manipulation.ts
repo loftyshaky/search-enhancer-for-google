@@ -413,6 +413,10 @@ class Class {
                     new_key: 'ai_overview_is_visible',
                     new_val: true,
                 }),
+                new o_schema.TransformItem({
+                    new_key: 'detect_infinite_loops',
+                    new_val: false,
+                }),
             ];
             const updated_prefs: i_data.Prefs = (await d_schema.Schema.transform({
                 data_obj: updated_settings.prefs,
