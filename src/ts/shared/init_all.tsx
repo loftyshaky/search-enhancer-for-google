@@ -11,6 +11,7 @@ import {
     s_tab_index,
     s_theme as s_theme_shared,
 } from '@loftyshaky/shared/shared';
+import { d_error } from '@loftyshaky/shared/shared_clean';
 import { s_css_vars, s_suffix } from 'shared_clean/internal';
 
 class Class {
@@ -61,6 +62,8 @@ class Class {
                             }
                         }
                     }, 'seg_1159');
+
+                d_error.Error.set_detect_infinite_loops_val();
 
                 if (['settings', 'dependencies'].includes(page)) {
                     this.set_page_title();
