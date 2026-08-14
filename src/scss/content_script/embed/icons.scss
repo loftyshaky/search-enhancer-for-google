@@ -26,27 +26,32 @@
         height: vars.$icon_size;
         background-color: white;
 
-        &.refresh_svg__refresh:nth-child(1) {
-            fill: white !important;
-            height: vars.$icon_size_2;
-            width: vars.$icon_size_2;
-            padding: 2px;
+        &.refresh:nth-child(1) {
+            fill: white;
+            background-color: transparent;
+            height: vars.$icon_size_3;
+            width: vars.$icon_size_3;
+            padding: 3px;
         }
     }
 
-    &.favicons svg {
-        fill: vars.$icon_placeholder_color_1;
+    &.favicons {
+        svg {
+            fill: vars.$icon_placeholder_color_1;
+        }
 
-        &.refresh_svg__refresh:nth-child(1) {
+        .svgs_w {
             background-color: vars.$icon_placeholder_color_1;
         }
     }
 
     /* stylelint-disable-next-line no-descending-specificity */
-    &.server_locations svg {
-        fill: vars.$icon_placeholder_color_2;
+    &.server_locations {
+        svg {
+            fill: vars.$icon_placeholder_color_2;
+        }
 
-        &.refresh_svg__refresh:nth-child(1) {
+        .svgs_w {
             background-color: vars.$icon_placeholder_color_2;
         }
     }
