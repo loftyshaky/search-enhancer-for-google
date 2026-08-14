@@ -187,13 +187,13 @@ class Class {
                 el: HTMLElement | undefined | null;
             }): HTMLElement | undefined =>
                 err(() => {
-                    const parent = ru(el);
+                    const parent = ru(el).parentElement;
 
                     if (n(parent)) {
                         const el_width: number = parent.offsetWidth;
                         const el_height: number = parent.offsetHeight;
 
-                        if (el_width === el_height && el_width >= 24) {
+                        if (el_width >= 16 && el_height >= 16) {
                             const favicon_cls: string = new s_suffix.Suffix('favicon').result;
 
                             if (!x.matches(parent, `.${favicon_cls}`)) {
