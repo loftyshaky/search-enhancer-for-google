@@ -32,7 +32,11 @@ export const Body: React.FunctionComponent<p_side_panel.Body> = observer((props)
             role='none'
             onMouseUp={d_side_panel.Scroll.stop_remember_scrolling_position_0_35_seconds_timeout}
         >
-            {data.settings.prefs.enable_infinite_scrolling &&
+            {(s_location.Location.is_all_page ||
+                s_location.Location.is_news_page ||
+                s_location.Location.is_forums_page ||
+                s_location.Location.is_books_page) &&
+            data.settings.prefs.enable_infinite_scrolling &&
             data.settings.prefs.enable_btn_is_visible ? (
                 <c_side_panel.Btn
                     name='enable_btn'
