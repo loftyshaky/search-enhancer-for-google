@@ -8,3 +8,7 @@
 .news_#{vars.$app_id} [height^='16'] {
     @include mixins.hidden;
 }
+
+.news_#{vars.$app_id} {
+    margin-right: 0 !important;
+}

@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import type { p_icons } from 'content_script/internal';
 import { d_icons } from 'content_script/internal';
 import { svg } from 'shared/internal';
+import { s_suffix } from 'shared_clean/internal';
 
 export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
     const { type, i } = props;
@@ -21,7 +22,7 @@ export const Icon: React.FunctionComponent<p_icons.Icon> = observer((props) => {
     void d_icons.Icons.server_locations[url];
 
     return d_icons.Icons.show_icon_w({ type }) ? (
-        <span className={x.cls(['icon_w', type])}>
+        <span className={x.cls(['icon_w', type])} part={new s_suffix.Suffix('icon_w').result}>
             {d_icons.Icons.is_any_placeholder({ src }) ? undefined : (
                 <img
                     className={x.cls([
