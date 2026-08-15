@@ -12,7 +12,7 @@ A browser extension that enables you to enhance Google™ search with infinite s
 
 ## Path to the images download folder in Firefox
 
-Due to Firefox extension API limitations, this setting isn't available in the Firefox version of the extension. 
+Due to Firefox extension API limitations, this setting isn't available in the Firefox version of the extension.
 
 ## Build steps
 
