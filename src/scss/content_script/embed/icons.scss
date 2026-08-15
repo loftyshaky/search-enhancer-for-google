@@ -14,7 +14,7 @@
     display: flex;
 
     &:not(:first-child) {
-        margin-inline-start: 10px;
+        margin-inline-start: loftyshaky_vars.$gap;
     }
 
     .svgs_w {
