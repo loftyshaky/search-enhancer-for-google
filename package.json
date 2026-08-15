@@ -104,9 +104,9 @@
         "pub": "powershell -File node_modules\\@loftyshaky\\shared\\build\\ps1\\extension_pub.ps1"
     },
     "dependencies": {
-        "@loftyshaky/shared": "2.6.0",
+        "@loftyshaky/shared": "2.7.0",
         "@simonwep/pickr": "^1.9.1",
-        "advanced-extension-reloader-watch-2": "^2.1.0",
+        "advanced-extension-reloader-watch-2": "^3.0.1",
         "lodash": "^4.18.1",
         "mobx": "^6.13.3",
         "mobx-react-lite": "^4.1.1",
@@ -128,6 +128,7 @@
         "app-root-path": "^3.1.0",
         "chokidar": "^5.0.0",
         "cross-env": "^10.1.0",
+        "is-empty-dir": "^2.0.0",
         "npm-run-all": "^4.1.5",
         "oxfmt": "^0.55.0",
         "oxlint": "^1.70.0",
@@ -139,6 +140,7 @@
         "typescript": "^6.0.3",
         "vite": "^8.0.16",
         "vite-plugin-static-copy": "^4.1.1",
+        "vite-plugin-svgr": "^5.2.0",
         "zip-a-folder": "^6.1.4"
     },
     "allowScripts": {
