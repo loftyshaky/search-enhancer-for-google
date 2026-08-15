@@ -1,5 +1,5 @@
 import { d_data } from '@loftyshaky/shared/shared';
-import { s_ai_block } from 'content_script/internal';
+import { s_el_parser } from 'content_script/internal';
 
 class Class {
     private static instance: Class;
@@ -12,18 +12,24 @@ class Class {
 
     public set = async (): Promise<void> =>
         err(async () => {
-            if (!n(s_ai_block.ElParser.ai_overview_el)) {
-                s_ai_block.ElParser.get_ai_overview_el();
-            }
+            s_el_parser.ElParser.get_ai_overview_el();
 
             if (!n(data.settings.prefs)) {
                 await d_data.Settings.set_from_storage();
             }
 
-            if (n(data.settings.prefs) && n(data.settings.prefs.ai_overview_is_visible)) {
-                x[`${data.settings.prefs.ai_overview_is_visible ? 'remove' : 'add'}_cls`](
-                    s_ai_block.ElParser.ai_overview_el,
-                    'none',
+            if (
+                n(s_el_parser.ElParser.ai_overview_els) &&
+                n(data.settings.prefs) &&
+                n(data.settings.prefs.ai_overview_is_visible)
+            ) {
+                s_el_parser.ElParser.ai_overview_els.forEach((el: HTMLElement): void =>
+                    err(() => {
+                        x[`${data.settings.prefs.ai_overview_is_visible ? 'remove' : 'add'}_cls`](
+                            el,
+                            'none',
+                        );
+                    }, 'seg_1257'),
                 );
             }
         }, 'seg_1247');

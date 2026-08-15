@@ -35,6 +35,7 @@ class Class {
     public img_data: t.AnyRecord[] = [];
     public loaded_all_pages: boolean = false;
     public search_result_body: HTMLElement | undefined = undefined;
+    public ai_overview_els: NodeListOf<HTMLElement> | undefined = undefined;
     //  private attempted_to_acquire_img_data: boolean = false;
 
     public get_els = (): void =>
@@ -529,6 +530,15 @@ class Class {
 
             return undefined;
         }, 'seg_1190');
+
+    public get_ai_overview_el = (): void =>
+        err(() => {
+            const ai_overview_els = sa('#rcnt > div:not(#center_col), #eKIzJc');
+
+            if (n(ai_overview_els)) {
+                this.ai_overview_els = ai_overview_els;
+            }
+        }, 'seg_1246');
 }
 
 export const ElParser = Class.get_instance();
