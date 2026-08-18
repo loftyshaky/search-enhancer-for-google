@@ -1,6 +1,6 @@
 {
     "name": "search-enhancer-for-google",
-    "version": "3.16.1",
+    "version": "3.16.2",
     "scripts": {
         "dev:content_script": "cross-env env=ext browser=chrome test=true content_script=true vite build --mode development",
         "dev:es": "cross-env env=ext browser=chrome test=true content_script=false vite build --mode development",
