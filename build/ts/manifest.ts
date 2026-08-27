@@ -485,6 +485,7 @@ export class Manifest {
                           gecko: {
                               id: 'search-enhancer-for-google@loftyshaky',
                           },
+                          ...(env.test === 'true' ? {} : { strict_min_version: '153.0.0' }),
                       },
                   }
                 : {}),
