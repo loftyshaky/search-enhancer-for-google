@@ -15,7 +15,8 @@ class Class {
         return this.instance || (this.instance = new this());
     }
 
-    private pseudo = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
+    private pseudo: string = ':not(#searchform *):not(.donut-container *)'; // searchform - Google Header; donut-container - web of trust
+    private img_selector: string = '[src*="encrypted-tbn0.gstatic.com/images?"]:not([data-csiid])';
     public keyword_els: HTMLElement[] = [];
     public title_els: HTMLElement[] = [];
     public favicon_els: (HTMLElement | undefined)[] = [];
@@ -25,7 +26,7 @@ class Class {
     public more_results_btn_spinner: HTMLElement | undefined = undefined;
     public pagination_el: HTMLElement | undefined = undefined;
     public page_els: HTMLElement[] = [];
-    public img_viewer: HTMLLinkElement | undefined = undefined;
+    public img_viewer: HTMLElement | undefined = undefined;
     public img_viewer_w: HTMLElement | undefined = undefined;
     public preview_img_viewers: HTMLElement[] = [];
     public preview_img_viewer_ws: HTMLElement[] = [];
@@ -307,27 +308,35 @@ class Class {
                 data.settings.prefs.img_viewer_img_action_bar_is_visible &&
                 s_location.Location.is_imgs_page
             ) {
-                const links = sa<HTMLLinkElement>('a[role="link"]');
+                const imgs = sa<HTMLElement>(this.img_selector);
 
-                if (n(links)) {
-                    this.img_viewer = [...links].find(
-                        (link: HTMLLinkElement): HTMLElement | undefined =>
+                if (n(imgs)) {
+                    this.img_viewer = x.closest(
+                        [...imgs].find((img: HTMLElement): HTMLElement | undefined =>
                             err(
                                 () =>
-                                    x.closest(
-                                        link,
-                                        '[style*="transform: translate3d(0px, 0px, 0px)"]:not([style*="display: none"])',
-                                    ), // check for visibility
+                                    img.offsetHeight && !n(img.getAttribute('id'))
+                                        ? img
+                                        : undefined, // img.offsetHeight - check for visibility
                                 'seg_1036',
                             ),
+                        ),
+                        'a',
                     );
                 }
             }
         }, 'seg_1037');
 
     public get_img_in_img_viewer = (): HTMLImageElement | undefined =>
-        err(() => sb<HTMLImageElement>(this.img_viewer, 'img'), 'seg_1038');
+        err(() => {
+            const img = sb<HTMLImageElement>(this.img_viewer, this.img_selector);
 
+            if (!n(img)) return undefined;
+
+            const img_final = n(img.previousElementSibling) ? img.previousElementSibling : img;
+
+            return img_final instanceof HTMLImageElement ? img_final : undefined;
+        }, 'seg_1038');
     private get_img_viewer_w = (): void =>
         err(() => {
             if (
