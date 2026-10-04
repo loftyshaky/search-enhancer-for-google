@@ -43,7 +43,7 @@ class Class {
                 /^https:\/\/www\.google\.[a-z]+\/search\?.+$/.test(globalThis.location.href);
 
             this.is_search_by_img_page = search_string_is_present && is_search_by_img_all_page;
-            this.is_videos_page = udm === '7';
+            this.is_videos_page = udm === 'vids';
             this.is_books_page = udm === '36';
             this.is_news_page = search_string_is_present && tbm === 'nws';
             this.is_shopping_page = udm === '28';
