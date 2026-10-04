@@ -3,13 +3,14 @@
 @use '../shared/vars' as shared_vars;
 @use 'vars';
 
-:host-context(.keyboard_#{shared_vars.$app_id}) {
-    .btn:focus {
-        background-color: #caad1b;
+.keyboard_#{shared_vars.$app_id} {
+    .side_panel_#{shared_vars.$app_id}::part(btn):focus {
         transition: none;
+        background-color: #caad1b;
     }
 
-    .img_action_bar .btn:focus {
+    .img_action_bar_#{shared_vars.$app_id}::part(btn):focus {
+        transition: none;
         background-color: rgba(211, 176, 0, vars.$img_action_bar_button_opacity);
     }
 }

@@ -12,7 +12,7 @@ export const Icons: React.FunctionComponent<p_icons.Icons> = observer((props) =>
     }, [on_render]);
 
     return (
-        <div className={x.cls(['icons', s_location.Location.current_location])}>
+        <div className={x.cls(['icons', s_location.Location.current_location])} part='icons'>
             <c_icons.Icon type='server_locations' i={i} />
             <c_icons.Icon type='favicons' i={i} />
         </div>

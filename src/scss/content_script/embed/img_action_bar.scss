@@ -69,9 +69,3 @@ $small_icon_size: 13px;
         }
     }
 }
-
-:host(:has([dir='rtl'])) .img_action_bar {
-    @include mixins.border_right;
-
-    border-left: 0;
-}

@@ -122,6 +122,12 @@ const config = defineConfig(({ mode }) => {
             load_end_msg: path.join(paths.scss, 'content_script', 'embed', 'load_end_msg.scss'),
             side_panel: path.join(paths.scss, 'content_script', 'embed', 'side_panel.scss'),
             dark_ui: path.join(paths.scss, 'content_script', 'embed', 'dark_ui.scss'),
+            dark_ui_main_frame: path.join(
+                paths.scss,
+                'content_script',
+                'embed',
+                'dark_ui_main_frame.scss',
+            ),
             img_action_bar: path.join(paths.scss, 'content_script', 'embed', 'img_action_bar.scss'),
             favicon_hidden: path.join(paths.scss, 'content_script', 'embed', 'favicon_hidden.scss'),
         };

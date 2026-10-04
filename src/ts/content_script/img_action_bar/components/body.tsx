@@ -40,6 +40,7 @@ export const Body: React.FunctionComponent<p_img_action_bar.Body> = observer((pr
                 d_img_action_bar.LoadState.img_loaded_cls,
             ])}
             ref={img_action_bar_ref}
+            part='img_action_bar'
             style={{
                 bottom: x.px(d_img_action_bar.Position.bottom[img_viewer_i]),
                 transform: d_img_action_bar.Size.scale[img_viewer_i],

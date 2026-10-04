@@ -7,6 +7,7 @@ import {
     s_location,
     s_roots,
     s_text_dir,
+    s_theme,
 } from 'content_script/internal';
 import { InitAll } from 'shared/internal';
 import { s_suffix } from 'shared_clean/internal';
@@ -15,6 +16,7 @@ export const init = (): Promise<void> =>
     err_async(async () => {
         if (s_location.Location.is_content_script_execution_page) {
             x.insert_invisible_chars_in_title();
+            s_theme.Theme.apply_dark_ui_main_frame();
             s_infinite_scroll.Iframe.set_search_results_w_selector_var();
             s_tab_index.TabIndex.bind_set_input_type_f({
                 parent: document.body,

@@ -40,6 +40,7 @@ export const Btn: React.FunctionComponent<p_side_panel.Btn> = observer(
                 type='button'
                 title={d_side_panel.Btn.msg({ name })}
                 aria-label='Side panel button'
+                part='btn'
                 onClick={on_click}
                 onMouseDown={on_mouse_down}
                 onMouseUp={on_mouse_up}

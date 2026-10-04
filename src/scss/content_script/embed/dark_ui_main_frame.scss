@@ -1,0 +1,14 @@
+@use '../../shared/vars' as shared_vars;
+@use '../vars';
+
+.keyboard_#{shared_vars.$app_id} {
+    .side_panel_#{shared_vars.$app_id}::part(btn):focus {
+        transition: none;
+        background-color: #b5990c;
+    }
+
+    .img_action_bar_#{shared_vars.$app_id}::part(btn):focus {
+        transition: none;
+        background-color: rgba(199, 166, 0, vars.$img_action_bar_button_opacity);
+    }
+}

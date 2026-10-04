@@ -19,6 +19,7 @@ export const Btn: React.FunctionComponent<p_img_action_bar.Btn> = observer((prop
                 type='button'
                 title={ext.msg(`${btn.name}_title`)}
                 aria-label='Image action bar button'
+                part='btn'
                 onClick={(): void => {
                     btn.event_callback({ type: btn.name, img_viewer_i });
                 }}

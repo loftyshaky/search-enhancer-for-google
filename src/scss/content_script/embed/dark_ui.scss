@@ -52,16 +52,3 @@
 .separator {
     color: #ddd;
 }
-
-:host-context(.keyboard_#{shared_vars.$app_id}) {
-    .content {
-        .btn:focus {
-            background-color: #b5990c;
-            transition: none;
-        }
-    }
-
-    .content.img_action_bar .btn:focus {
-        background-color: rgba(199, 166, 0, vars.$img_action_bar_button_opacity);
-    }
-}

@@ -31,6 +31,7 @@ export class Manifest {
                         'img_action_bar.css',
                         'favicon_hidden.css',
                         'dark_ui.css',
+                        'dark_ui_main_frame.css',
                         'flags/*',
                     ],
                     matches: ['<all_urls>'],

@@ -69,15 +69,11 @@ class Class {
             if (!ext.ext_context_invalidated()) {
                 const css_file_name = 'dark_ui';
                 const css_class = `${css_file_name}_link`;
-                const color_hsv = s_el_parser.ElParser.get_el_hsv_color({
-                    el: document.body,
-                    key: 'background-color',
-                });
 
                 roots.forEach((root: HTMLDivElement | undefined): void =>
                     err(() => {
                         if (n(root) && n(root.shadowRoot)) {
-                            if (color_hsv.v <= 0.5) {
+                            if (this.check_if_dark_mode()) {
                                 x.css(css_file_name, root.shadowRoot, css_class);
                             }
                         }
@@ -85,6 +81,23 @@ class Class {
                 );
             }
         }, 'seg_1181');
+
+    private check_if_dark_mode = (): boolean =>
+        err(() => {
+            const color_hsv = s_el_parser.ElParser.get_el_hsv_color({
+                el: document.body,
+                key: 'background-color',
+            });
+
+            return color_hsv.v <= 0.5;
+        }, 'seg_1261');
+
+    public apply_dark_ui_main_frame = (): void =>
+        err(() => {
+            if (this.check_if_dark_mode()) {
+                x.css('dark_ui_main_frame', document.head);
+            }
+        }, 'seg_1262');
 }
 
 export const Theme = Class.get_instance();
