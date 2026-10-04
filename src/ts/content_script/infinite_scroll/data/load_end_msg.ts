@@ -33,7 +33,9 @@ class Class {
 
     public change_visibility = ({ is_visible }: { is_visible: boolean }): void =>
         err(() => {
-            this.is_visible = is_visible;
+            if (!s_location.Location.is_native_infinite_scroll_results) {
+                this.is_visible = is_visible;
+            }
         }, 'seg_1061');
 
     public change_type = ({ type }: { type: i_infinite_scroll.LoadEndMsgType }): void =>
