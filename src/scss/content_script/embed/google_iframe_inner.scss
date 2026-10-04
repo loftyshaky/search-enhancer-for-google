@@ -2,8 +2,9 @@
 @use '../google';
 @use '../../shared/vars' as shared_vars;
 
+html,
 body {
-    overflow: hidden;
+    overflow: hidden !important;
 
     /* > remove padding and margin from top and bottom of search results body to set my own on my iframe elements */
     #cnt,
