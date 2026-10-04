@@ -273,7 +273,7 @@ class Class {
     public get_more_results_btn = (): void =>
         err(() => {
             const more_results_svgs = sa<HTMLElement>(
-                'path[d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"]',
+                'path[d="M480-344L240-584l56-56L480-456L664-640l56,56L480-344Z"]',
             );
 
             if (n(more_results_svgs)) {
