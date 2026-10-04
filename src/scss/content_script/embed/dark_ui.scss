@@ -1,29 +1,67 @@
+@use '../../shared/vars' as shared_vars;
 @use '../vars';
 
-.side_panel {
+.content.side_panel {
     .btn {
-        background-color: #7b3a89 !important;
+        background-color: #7b3a89;
+
+        &.position_remembered {
+            background-color: #a76236;
+        }
+
+        &.position_overridden {
+            background-color: #608f31;
+        }
     }
 
     .enable_btn {
-        background-color: #358b46 !important;
+        background-color: #358b46;
+
+        &.disabled {
+            background-color: #ab2b2b;
+        }
     }
 
     .side_panel_item {
         &.current {
-            background-color: #5064b9 !important;
+            background-color: #5064b9;
         }
 
         &.total {
-            background-color: #53a4d9 !important;
+            background-color: #53a4d9;
         }
     }
 }
 
-.img_action_bar .btn {
-    background-color: rgba(38, 90, 175, vars.$img_action_bar_button_opacity) !important;
+.img_action_bar {
+    .btn {
+        background-color: rgba(159, 34, 34, vars.$img_action_bar_button_opacity);
+
+        &:hover {
+            background-color: rgba(12, 121, 68, vars.$img_action_bar_button_opacity);
+        }
+    }
+
+    &.img_loaded {
+        .btn:not(:hover, :active) {
+            background-color: rgba(38, 90, 175, vars.$img_action_bar_button_opacity);
+        }
+    }
 }
 
 .separator {
     color: #ddd;
+}
+
+:host-context(.keyboard_#{shared_vars.$app_id}) {
+    .content {
+        .btn:focus {
+            background-color: #b5990c;
+            transition: none;
+        }
+    }
+
+    .content.img_action_bar .btn:focus {
+        background-color: rgba(199, 166, 0, vars.$img_action_bar_button_opacity);
+    }
 }

@@ -1,4 +1,5 @@
 import { s_actions, s_ai_block, s_infinite_scroll, s_location } from 'content_script/internal';
+import { d_img_action_bar } from 'content_script/internal';
 import { s_suffix } from 'shared_clean/internal';
 
 const observer = new MutationObserver((mutations): void =>
@@ -38,6 +39,15 @@ const observer = new MutationObserver((mutations): void =>
 
                             s_infinite_scroll.FooterEls.append_to_footer();
                         }
+                    }
+
+                    if (
+                        s_location.Location.is_imgs_page &&
+                        x.matches(mutation.addedNodes[0] as HTMLElement, 'img')
+                    ) {
+                        d_img_action_bar.LoadState.check_and_set_if_needed({
+                            img_el: mutation.addedNodes[0] as HTMLElement,
+                        });
                     }
                 }, 'seg_1087'),
         );

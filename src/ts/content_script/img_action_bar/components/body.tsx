@@ -37,6 +37,7 @@ export const Body: React.FunctionComponent<p_img_action_bar.Body> = observer((pr
                 'img_action_bar',
                 img_viewer_i.toString(),
                 d_img_action_bar.Visibility.visibility_cls({ img_viewer_i }),
+                d_img_action_bar.LoadState.img_loaded_cls,
             ])}
             ref={img_action_bar_ref}
             style={{

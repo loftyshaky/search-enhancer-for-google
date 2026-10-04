@@ -1,16 +1,15 @@
 @use '../../../node_modules/@loftyshaky/shared/scss/shared/vars' as loftyshaky_vars;
 @use '../../../node_modules/@loftyshaky/shared/scss/shared/mixins';
-@use '../shared/vars';
+@use '../shared/vars' as shared_vars;
+@use 'vars';
 
-:host(:has(.keyboard_#{vars.$app_id})) {
+:host-context(.keyboard_#{shared_vars.$app_id}) {
     .btn:focus {
-        @include mixins.outline_solid_thick;
-
-        outline-color: loftyshaky_vars.$black;
-        outline-offset: -2px;
+        background-color: #caad1b;
+        transition: none;
     }
 
     .img_action_bar .btn:focus {
-        outline-color: #d93deb;
+        background-color: rgba(211, 176, 0, vars.$img_action_bar_button_opacity);
     }
 }

@@ -10,6 +10,7 @@ import {
     c_img_action_bar,
     c_infinite_scroll,
     d_icons,
+    d_img_action_bar,
     s_el_parser,
     s_icons,
     s_img_action_bar,
@@ -120,6 +121,8 @@ class Class {
                             s_el_parser.ElParser.preview_img_viewer_ws.length !== 0
                         ) {
                             if (!append_only_to_preview_img_viewers) {
+                                d_img_action_bar.LoadState.set({ bool: false });
+
                                 void this.append_root({
                                     name,
                                     parent: img_viewer,
@@ -127,6 +130,8 @@ class Class {
                                     append_f_name: 'after',
                                     img_viewer_i: 'main_img_viewer',
                                 });
+
+                                d_img_action_bar.LoadState.check_and_set_if_needed();
                             }
 
                             s_el_parser.ElParser.preview_img_viewer_ws.forEach(

@@ -35,7 +35,7 @@ $small_icon_size: 13px;
         align-items: center;
         border: 0;
         cursor: pointer;
-        background-color: rgba(66, 133, 244, vars.$img_action_bar_button_opacity);
+        background-color: rgba(229, 66, 66, vars.$img_action_bar_button_opacity);
         border-color: white;
 
         svg {
@@ -48,12 +48,14 @@ $small_icon_size: 13px;
             background-color: rgba(15, 157, 88, vars.$img_action_bar_button_opacity);
         }
 
-        &:active {
-            background-color: rgba(219, 68, 55, vars.$img_action_bar_button_opacity);
+        &:not(:last-child) {
+            @include mixins.border_bottom;
         }
+    }
 
-        &:not(:first-child) {
-            @include mixins.border_top;
+    &.img_loaded {
+        .btn:not(:hover, :focus) {
+            background-color: rgba(66, 133, 244, vars.$img_action_bar_button_opacity);
         }
     }
 
