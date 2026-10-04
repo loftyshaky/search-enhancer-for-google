@@ -5,6 +5,7 @@
 html,
 body {
     overflow: hidden !important;
+    width: 100% !important;
 
     /* > remove padding and margin from top and bottom of search results body to set my own on my iframe elements */
     #cnt,
